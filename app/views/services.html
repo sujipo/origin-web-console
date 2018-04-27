@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="page-header page-header-bleed-right page-header-bleed-left">
         <h1>
-          Services
+          服务
           <span class="page-header-link">
             <a ng-href="{{'services' | helpLink}}" target="_blank">
               Learn More <i class="fa fa-external-link" aria-hidden="true"></i>
@@ -24,15 +24,15 @@
         <div class="col-md-12">
           <div ng-if="(services | hashSize) == 0">
             <p ng-if="!servicesLoaded">
-              Loading...
+              加载中...
             </p>
             <div ng-if="servicesLoaded" class="empty-state-message text-center">
               <div ng-if="!filterWithZeroResults">
-                <h2>No services.</h2>
-                <p>No services have been added to project {{projectName}}.</p>
+                <h2>没有服务</h2>
+                <p>没有服务添加到项目 {{projectName}}.</p>
               </div>
               <div ng-if="filterWithZeroResults">
-                <h2>The filter is hiding all services. <button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">Clear All Filters</button></h2>
+                <h2>过滤器隐藏了所有服务. <button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">清除所有过滤器</button></h2>
               </div>
             </div>
           </div>
