@@ -4780,7 +4780,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</catalog>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.deployImage\">\n" +
-    "<uib-tab-heading>部署映像</uib-tab-heading>\n" +
+    "<uib-tab-heading>部署镜像</uib-tab-heading>\n" +
     "<form>\n" +
     "<deploy-image ng-if=\"project\" project=\"project\"></deploy-image>\n" +
     "</form>\n" +
@@ -6365,7 +6365,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
 
 
   $templateCache.put('views/directives/deploy-image-dialog.html',
-    "<pf-wizard wizard-title=\"部署映像\" on-cancel=\"$ctrl.close()\" on-finish=\"$ctrl.close()\" hide-back-button=\"true\" hide-sidebar=\"true\" next-title=\"$ctrl.nextButtonTitle\" next-callback=\"$ctrl.nextCallback\" current-step=\"$ctrl.currentStep\" on-step-changed=\"$ctrl.stepChanged(step)\" step-class=\"order-service-wizard-step\" wizard-done=\"$ctrl.wizardDone\">\n" +
+    "<pf-wizard wizard-title=\"部署镜像\" on-cancel=\"$ctrl.close()\" on-finish=\"$ctrl.close()\" hide-back-button=\"true\" hide-sidebar=\"true\" next-title=\"$ctrl.nextButtonTitle\" next-callback=\"$ctrl.nextCallback\" current-step=\"$ctrl.currentStep\" on-step-changed=\"$ctrl.stepChanged(step)\" step-class=\"order-service-wizard-step\" wizard-done=\"$ctrl.wizardDone\">\n" +
     "\n" +
     "<pf-wizard-step step-title=\"Image\" step-id=\"image\" step-priority=\"1\" substeps=\"false\" ok-to-nav-away=\"true\" allow-click-nav=\"false\" next-enabled=\"!!($ctrl.deployForm.$valid || $ctrl.deployImageNewAppCreated)\">\n" +
     "<div class=\"wizard-pf-main-inner-shadow-covers\">\n" +
@@ -7386,10 +7386,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</button>\n" +
     "<ul role=\"menu\" uib-dropdown-menu class=\"dropdown-menu dropdown-menu-right\">\n" +
     "<li ng-if-start=\"!catalogLandingPageEnabled\" role=\"menuitem\"><a ng-href=\"project/{{currentProjectName}}/create?tab=fromCatalog\">浏览目录</a></li>\n" +
-    "<li role=\"menuitem\"><a ng-href=\"project/{{currentProjectName}}/create?tab=deployImage\">部署映像</a></li>\n" +
+    "<li role=\"menuitem\"><a ng-href=\"project/{{currentProjectName}}/create?tab=deployImage\">部署镜像</a></li>\n" +
     "<li ng-if-end role=\"menuitem\"><a ng-href=\"project/{{currentProjectName}}/create?tab=fromFile\">导入YAML / JSON</a></li>\n" +
     "<li ng-if-start=\"catalogLandingPageEnabled\" role=\"menuitem\"><a href=\"{{currentProjectName | catalogURL}}\">浏览目录</a></li>\n" +
-    "<li role=\"menuitem\"><a href=\"\" ng-click=\"showOrderingPanel('deployImage')\">部署映像</a></li>\n" +
+    "<li role=\"menuitem\"><a href=\"\" ng-click=\"showOrderingPanel('deployImage')\">部署镜像</a></li>\n" +
     "<li ng-if-end role=\"menuitem\"><a href=\"\" ng-click=\"showOrderingPanel('fromFile')\">导入YAML / JSON</a></li>\n" +
     "<li role=\"menuitem\"><a href=\"\" ng-click=\"showOrderingPanel('fromProject')\">从项目选择</a></li>\n" +
     "</ul>\n" +
@@ -11867,7 +11867,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"project.metadata.name | canIAddToProject\">\n" +
     "<h2>开始你的项目</h2>\n" +
     "<p>\n" +
-    "从web框架目录中向项目添加内容、数据库及其他组件。 您还可以部署一个现有的映像，从YAML或JSON定义中创建或替换资源，或者选择从另一个项目共享的资源。\n" +
+    "从web框架目录中向项目添加内容、数据库及其他组件。 您还可以部署一个现有的镜像，从YAML或JSON定义中创建或替换资源，或者选择从另一个项目共享的资源。\n" +
     "</p>\n" +
     "<div class=\"empty-state-message-main-action\">\n" +
     "<button class=\"btn btn-primary btn-lg\" ng-click=\"browseCatalog()\">\n" +
@@ -11876,7 +11876,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"empty-state-message-secondary-action\">\n" +
     "<button class=\"btn btn-default btn-sm\" ng-click=\"showOrderingPanel('deployImage')\">\n" +
-    "部署映像\n" +
+    "部署镜像\n" +
     "</button>\n" +
     "<button class=\"btn btn-default btn-sm\" ng-click=\"showOrderingPanel('fromFile')\">\n" +
     "导入YAML / JSON\n" +
