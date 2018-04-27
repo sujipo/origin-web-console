@@ -3,24 +3,24 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" ng-click="cancel()">
       <span class="pficon pficon-close"></span>
     </button>
-    <h1 class="modal-title">Set Home Page</h1>
+    <h1 class="modal-title">设置首页</h1>
   </div>
   <div class="modal-body">
     <p>
-      Note: This setting is browser-specific and will not be maintained across browsers.
+      注意:这个设置是特定于浏览器的，不会跨浏览器保持。
     </p>
     <form name="homePageForm">
       <fieldset ng-disabled="loading">
         <div class="radio">
           <label>
             <input type="radio" ng-model="homePagePreference" value="catalog-home">
-            Catalog Home (Default)
+            目录主页 （默认）
           </label>
         </div>
         <div class="radio">
           <label>
             <input type="radio" ng-model="homePagePreference" value="project-list">
-            My Projects List
+            我的项目列表
           </label>
         </div>
         <div class="radio" ng-show="availableProjects.length >= 1">
@@ -44,9 +44,9 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-default" type="button" ng-click="cancel()">取消</button>
     <button class="btn btn-primary" type="button"
             ng-disabled="homePageForm.$invalid || homePageForm.$pristine"
-            ng-click="setHomePage()">Save</button>
+            ng-click="setHomePage()">保存</button>
   </div>
 </div>

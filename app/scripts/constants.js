@@ -71,23 +71,23 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
   CATALOG_HELP_RESOURCES: {
     links: [
       {
-        title: 'Documentation',
+        title: '文档',
         help: ''
       },
       {
-        title: 'Interactive Learning Portal',
+        title: '交互式学习门户',
         href: 'https://learn.openshift.com'
       },
       {
-        title: 'Container Development Kit',
+        title: '容器开发工具包',
         href: 'https://developers.redhat.com/products/cdk/overview/'
       },
       {
-        title: 'YouTube',
+        title: 'YouTube视频',
         href: 'https://www.youtube.com/user/rhopenshift'
       },
       {
-        title: 'Blog',
+        title: 'Blog网址',
         href: 'https://blog.openshift.com'
       }
     ]
@@ -252,18 +252,18 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
   // href's will be prefixed with /project/{{projectName}} unless they are absolute URLs
   PROJECT_NAVIGATION: [
     {
-      label: "Overview",
+      label: "概览",
       iconClass: "fa fa-dashboard",
       href: "/overview"
     },
     {
-      label: "Applications",
+      label: "应用",
       iconClass: "fa fa-cubes",
       secondaryNavSections: [
         {
           items: [
             {
-              label: "Deployments",
+              label: "部署",
               href: "/browse/deployments",
               prefixes: [
                 "/add-config-volume",
@@ -279,7 +279,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
               ]
             },
             {
-              label: "Stateful Sets",
+              label: "状态集",
               href: "/browse/stateful-sets",
               prefixes: [
                 "/browse/stateful-sets/"
@@ -293,14 +293,14 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
               ]
             },
             {
-              label: "Services",
+              label: "服务",
               href: "/browse/services",
               prefixes: [
                 "/browse/services/"
               ]
             },
             {
-              label: "Routes",
+              label: "路由",
               href: "/browse/routes",
               prefixes: [
                 "/browse/routes/",
@@ -325,13 +325,13 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
       ]
     },
     {
-      label: "Builds",
+      label: "构建",
       iconClass: "pficon pficon-build",
       secondaryNavSections: [
         {
           items: [
             {
-              label: "Builds",
+              label: "构建",
               href: "/browse/builds",
               prefixes: [
                 "/browse/builds/",
@@ -340,7 +340,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
               ]
             },
             {
-              label: "Pipelines",
+              label: "管线",
               href: "/browse/pipelines",
               prefixes: [
                 "/browse/pipelines/",
@@ -348,7 +348,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
               ]
             },
             {
-              label: "Images",
+              label: "镜像",
               href: "/browse/images",
               prefixes: [
                 "/browse/images/"
@@ -359,17 +359,17 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
       ]
     },
     {
-      label: "Resources",
+      label: "资源",
       iconClass: "fa fa-files-o",
       secondaryNavSections: [
         {
           items: [
             {
-              label: "Quota",
+              label: "配额",
               href: "/quota"
             },
             {
-              label: "Membership",
+              label: "成员",
               href: "/membership",
               // supports: {resource: '', verb: '', group: '' }
               canI: {
@@ -378,7 +378,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
               }
             },
             {
-              label: "Config Maps",
+              label: "配置映射",
               href: "/browse/config-maps",
               prefixes: [
                 "/browse/config-maps/",
@@ -387,7 +387,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
               ]
             },
             {
-              label: "Secrets",
+              label: "隐私",
               href: "/browse/secrets",
               prefixes: [
                 "/browse/secrets/",
@@ -399,7 +399,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
               }
             },
             {
-              label: "Other Resources",
+              label: "其他资源",
               href: "/browse/other"
             }
           ]
@@ -407,7 +407,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
       ]
     },
     {
-      label: "Storage",
+      label: "存储",
       iconClass: "pficon pficon-container-node",
       href: "/browse/storage",
       prefixes: [
@@ -417,7 +417,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
       ]
     },
     {
-      label: "Monitoring",
+      label: "监视",
       iconClass: "pficon pficon-screen",
       href: "/monitoring",
       prefixes: [
@@ -444,7 +444,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
       // ]
     },
     {
-      label: "Catalog",
+      label: "目录",
       iconClass: "pficon pficon-catalog",
       href: "/catalog",
       canI: {
@@ -455,7 +455,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
   CATALOG_CATEGORIES: [
     {
       id: 'languages',
-      label: "Languages",
+      label: "语言类",
       iconClassDefault: "fa fa-code",
       items: [
         {
@@ -545,7 +545,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
     },
     {
       id: 'technologies',
-      label: "Technologies",
+      label: "技术类",
       items: [
         {
           id: "business-process-services",

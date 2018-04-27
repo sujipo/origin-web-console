@@ -30,20 +30,20 @@
   <catalog-search ng-if="canIAddToProject" catalog-items="catalogItems" base-project-url="project" toggle-at-mobile="true" search-toggle-callback="onSearchToggle"></catalog-search>
   <!-- create buttons show at mobile -->
   <div class="dropdown add-to-project" ng-if="canIAddToProject" uib-dropdown>
-    <button class="dropdown-toggle btn btn-link" ng-disabled="currentProject.status.phase != 'Active'" title="Add to Project" uib-dropdown-toggle>
-      <i class="fa fa-plus visible-xs-inline-block" aria-hidden="true" title="Add to Project"></i>
-      <span class="hidden-xs">Add to Project</span>
-      <span class="hidden-xs caret" aria-hidden="true" title="Add to Project"></span>
+    <button class="dropdown-toggle btn btn-link" ng-disabled="currentProject.status.phase != 'Active'" title="添加到项目" uib-dropdown-toggle>
+      <i class="fa fa-plus visible-xs-inline-block" aria-hidden="true" title="添加到项目"></i>
+      <span class="hidden-xs">添加到项目</span>
+      <span class="hidden-xs caret" aria-hidden="true" title="添加到项目"></span>
     </button>
     <ul role="menu" uib-dropdown-menu class="dropdown-menu dropdown-menu-right">
-      <li ng-if-start="!catalogLandingPageEnabled" role="menuitem"><a ng-href="project/{{currentProjectName}}/create?tab=fromCatalog">Browse Catalog</a></li>
-      <li role="menuitem"><a ng-href="project/{{currentProjectName}}/create?tab=deployImage">Deploy Image</a></li>
-      <li ng-if-end role="menuitem"><a ng-href="project/{{currentProjectName}}/create?tab=fromFile">Import YAML / JSON</a></li>
+      <li ng-if-start="!catalogLandingPageEnabled" role="menuitem"><a ng-href="project/{{currentProjectName}}/create?tab=fromCatalog">浏览目录</a></li>
+      <li role="menuitem"><a ng-href="project/{{currentProjectName}}/create?tab=deployImage">部署映像</a></li>
+      <li ng-if-end role="menuitem"><a ng-href="project/{{currentProjectName}}/create?tab=fromFile">导入YAML / JSON</a></li>
 
-      <li ng-if-start="catalogLandingPageEnabled" role="menuitem"><a href="{{currentProjectName | catalogURL}}">Browse Catalog</a></li>
-      <li role="menuitem"><a href="" ng-click="showOrderingPanel('deployImage')">Deploy Image</a></li>
-      <li ng-if-end role="menuitem"><a href="" ng-click="showOrderingPanel('fromFile')">Import YAML / JSON</a></li>
-      <li role="menuitem"><a href="" ng-click="showOrderingPanel('fromProject')">Select from Project</a></li>
+      <li ng-if-start="catalogLandingPageEnabled" role="menuitem"><a href="{{currentProjectName | catalogURL}}">浏览目录</a></li>
+      <li role="menuitem"><a href="" ng-click="showOrderingPanel('deployImage')">部署映像</a></li>
+      <li ng-if-end role="menuitem"><a href="" ng-click="showOrderingPanel('fromFile')">导入YAML / JSON</a></li>
+      <li role="menuitem"><a href="" ng-click="showOrderingPanel('fromProject')">从项目选择</a></li>
     </ul>
   </div>
 </div> <!-- /project-bar -->

@@ -56,7 +56,7 @@ angular.module('openshiftConsole')
               '<li class="list-group-item">',
               '<a href="logout">',
               '<span class="pficon pficon-user fa-fw" aria-hidden="true"></span>',
-              '<span class="list-group-item-value">Log out <span class="username"><%= userName %></span></span>',
+              '<span class="list-group-item-value">退出系统 <span class="username"><%= userName %></span></span>',
               '</a>',
               '</li>'
             ].join(''))({userName: (user ? (user.fullName || user.metadata.name) : "") })

@@ -110,7 +110,7 @@ angular.module('openshiftConsole')
       scope: {
         clipboardText: "@"
       },
-      template: '<a href="" data-clipboard-text="">Copy Login Command</a>',
+      template: '<a href="" data-clipboard-text="">复制登录命令</a>',
       link: function($scope, element) {
         var clipboard = new Clipboard( element.get(0) );
         clipboard.on('success', function () {
@@ -153,7 +153,7 @@ angular.module('openshiftConsole')
     return {
       restrict: 'E',
       replace: true,
-      template: '<a href="">Set Home Page</a>',
+      template: '<a href="">设置首页</a>',
       link: function($scope, element) {
         element.bind('click', function() {
           $uibModal.open({

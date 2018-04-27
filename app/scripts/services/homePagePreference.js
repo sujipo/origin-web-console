@@ -49,7 +49,7 @@ angular.module("openshiftConsole")
         details: "Project " + projectName + " no longer exists or you do not have access to it.",
         links: [{
           href: "",
-          label: "Set Home Page",
+          label: "设置首页",
           onClick: function() {
             $uibModal.open({
               templateUrl: 'views/modals/set-home-page-modal.html',

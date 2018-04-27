@@ -6,29 +6,29 @@
       <!-- Getting started -->
       <div class="empty-state-message text-center">
         <div ng-if="project.metadata.name | canIAddToProject">
-          <h2>Get started with your project.</h2>
+          <h2>开始你的项目</h2>
           <p>
-            Add content to your project from the catalog of web frameworks, databases, and other components. You may also deploy an existing image, create or replace resources from their YAML or JSON definitions, or select an item shared from another project.
+            从web框架目录中向项目添加内容、数据库及其他组件。 您还可以部署一个现有的映像，从YAML或JSON定义中创建或替换资源，或者选择从另一个项目共享的资源。
           </p>
           <div class="empty-state-message-main-action">
             <button class="btn btn-primary btn-lg" ng-click="browseCatalog()">
-              Browse Catalog
+              浏览目录
             </button>
           </div>
           <div class="empty-state-message-secondary-action">
             <button class="btn btn-default btn-sm" ng-click="showOrderingPanel('deployImage')">
-              Deploy Image
+              部署映像
             </button>
             <button class="btn btn-default btn-sm" ng-click="showOrderingPanel('fromFile')">
-              Import YAML / JSON
+              导入YAML / JSON
             </button>
             <button class="btn btn-default btn-sm" ng-click="showOrderingPanel('fromProject')">
-              Select from Project
+              从项目选择
             </button>
           </div>
         </div>
         <div ng-if="!(project.metadata.name | canIAddToProject)">
-          <h2>Welcome to project {{projectName}}.</h2>
+          <h2>欢迎来到项目 {{projectName}}.</h2>
           <ng-include src="'views/_request-access.html'"></ng-include>
         </div>
       </div>

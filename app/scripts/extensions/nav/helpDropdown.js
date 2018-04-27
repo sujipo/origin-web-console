@@ -10,7 +10,7 @@ angular.module('openshiftConsole')
         options.push(
           {
             type: 'dom',
-            node: '<li><a target="_blank" href="{{\'default\' | helpLink}}">Documentation</a></li>'
+            node: '<li><a target="_blank" href="{{\'default\' | helpLink}}">文档</a></li>'
           }
         );
 
@@ -20,7 +20,7 @@ angular.module('openshiftConsole')
             options.push(
               {
                 type: 'dom',
-                node: '<li><a href="catalog?startTour=true">Tour Catalog Home</a></li>'
+                node: '<li><a href="catalog?startTour=true">访问主页向导</a></li>'
               }
             );
           }
@@ -29,13 +29,13 @@ angular.module('openshiftConsole')
         options.push(
           {
             type: 'dom',
-            node: '<li><a href="command-line">Command Line Tools</a></li>'
+            node: '<li><a href="command-line">命令行工具</a></li>'
           }
         );
         options.push(
           {
             type: 'dom',
-            node: '<li><a href="about">About</a></li>'
+            node: '<li><a href="about">关于</a></li>'
           }
         );
         return options;

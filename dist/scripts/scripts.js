@@ -624,19 +624,19 @@ CLI: {
 },
 CATALOG_HELP_RESOURCES: {
 links: [ {
-title: "Documentation",
+title: "文档",
 help: ""
 }, {
-title: "Interactive Learning Portal",
+title: "交互式学习门户",
 href: "https://learn.openshift.com"
 }, {
-title: "Container Development Kit",
+title: "容器开发工具包",
 href: "https://developers.redhat.com/products/cdk/overview/"
 }, {
-title: "YouTube",
+title: "YouTube视频",
 href: "https://www.youtube.com/user/rhopenshift"
 }, {
-title: "Blog",
+title: "Blog网址",
 href: "https://blog.openshift.com"
 } ]
 },
@@ -3160,7 +3160,7 @@ message: "Home page project not found.",
 details: "Project " + e + " no longer exists or you do not have access to it.",
 links: [ {
 href: "",
-label: "Set Home Page",
+label: "设置首页",
 onClick: function() {
 return r.open({
 templateUrl: "views/modals/set-home-page-modal.html",
@@ -4746,19 +4746,19 @@ S(), y();
 e.sortConfig = {
 fields: [ {
 id: 'metadata.annotations["openshift.io/display-name"]',
-title: "Display Name",
+title: "显示名称",
 sortType: "alpha"
 }, {
 id: "metadata.name",
-title: "Name",
+title: "名称",
 sortType: "alpha"
 }, {
 id: 'metadata.annotations["openshift.io/requester"]',
-title: "Creator",
+title: "创建者",
 sortType: "alpha"
 }, {
 id: "metadata.creationTimestamp",
-title: "Creation Date",
+title: "创建日期",
 sortType: "alpha"
 } ],
 isAscending: !0,
@@ -8467,12 +8467,12 @@ n.error_description && (e.errorDetails = n.error_description), e.reloadConsole =
 t.location.href = "/";
 };
 } ]), angular.module("openshiftConsole").controller("LogoutController", [ "$scope", "$routeParams", "$log", "AuthService", "AUTH_CFG", function(e, t, n, r, a) {
-if (n.debug("LogoutController"), r.isLoggedIn()) n.debug("LogoutController, logged in, initiating logout"), e.logoutMessage = "Logging out...", r.startLogout().finally(function() {
-r.isLoggedIn() ? (n.debug("LogoutController, logout failed, still logged in"), e.logoutMessage = 'You could not be logged out. Return to the <a href="./">console</a>.') : a.logout_uri ? (n.debug("LogoutController, logout completed, redirecting to AUTH_CFG.logout_uri", a.logout_uri), window.location.href = a.logout_uri) : (n.debug("LogoutController, logout completed, reloading the page"), window.location.reload(!1));
+if (n.debug("LogoutController"), r.isLoggedIn()) n.debug("LogoutController, logged in, initiating logout"), e.logoutMessage = "退出中...", r.startLogout().finally(function() {
+r.isLoggedIn() ? (n.debug("LogoutController, logout failed, still logged in"), e.logoutMessage = '您不能退出系统. 返回 <a href="./">控制台</a>.') : a.logout_uri ? (n.debug("LogoutController, logout completed, redirecting to AUTH_CFG.logout_uri", a.logout_uri), window.location.href = a.logout_uri) : (n.debug("LogoutController, logout completed, reloading the page"), window.location.reload(!1));
 }); else if (a.logout_uri) n.debug("LogoutController, logout completed, redirecting to AUTH_CFG.logout_uri", a.logout_uri), e.logoutMessage = "Logging out...", window.location.href = a.logout_uri; else {
 n.debug("LogoutController, not logged in, logout complete");
-var o = "You are logged out.";
-"timeout" === t.cause && (o = "You have been logged out due to inactivity."), e.logoutMessage = o + ' Return to the <a href="./">console</a>.';
+var o = "您已经退出系统。";
+"timeout" === t.cause && (o = "由于不活动，您已经注销。"), e.logoutMessage = o + ' 返回 <a href="./">控制台</a>.';
 }
 } ]), angular.module("openshiftConsole").controller("CreateController", [ "$scope", "$filter", "$location", "$q", "$routeParams", "$uibModal", "CatalogService", "Constants", "DataService", "LabelFilter", "Logger", "ProjectsService", function(e, t, n, r, a, o, i, s, c, l, u, d) {
 e.projectName = a.project, e.categories = s.CATALOG_CATEGORIES, e.alerts = e.alerts || {}, d.get(a.project).then(_.spread(function(t, n) {
@@ -10829,7 +10829,7 @@ return n ? r.text(b(e)) : r.text(S(e, y)), r;
 };
 _.size(h) <= 100 ? (y = e("orderByDisplayName")(h), I = _.map(y, function(e) {
 return n(e, !1);
-})) : I = [ n(h[t], !0) ], k.empty(), k.append(I), k.append($('<option data-divider="true"></option>')), k.append($('<option value="">View All Projects</option>')), k.selectpicker("refresh");
+})) : I = [ n(h[t], !0) ], k.empty(), k.append(I), k.append($('<option data-divider="true"></option>')), k.append($('<option value="">查看所有项目</option>')), k.selectpicker("refresh");
 }
 }, E = function() {
 return f.list().then(function(e) {
@@ -11198,7 +11198,7 @@ replace: !0,
 scope: {
 clipboardText: "@"
 },
-template: '<a href="" data-clipboard-text="">Copy Login Command</a>',
+template: '<a href="" data-clipboard-text="">复制登录命令</a>',
 link: function(t, n) {
 var r = new Clipboard(n.get(0));
 r.on("success", function() {
@@ -11234,7 +11234,7 @@ r.destroy();
 return {
 restrict: "E",
 replace: !0,
-template: '<a href="">Set Home Page</a>',
+template: '<a href="">设置首页</a>',
 link: function(t, n) {
 n.bind("click", function() {
 e.open({
@@ -13639,14 +13639,14 @@ b.infoStep.selected = !1, b.selectStep.selected = !1, b.configStep.selected = !1
 b.loginBaseUrl = a.openshiftAPIBaseUrl(), b.preSelectedProject = b.selectedProject = b.project, b.useProjectTemplate && (b.project && (b.templateProject = b.project, b.templateProjectChange()), h()), b.noProjectsCantCreate = !1, e.$on("no-projects-cannot-create", function() {
 b.noProjectsCantCreate = !0;
 }), b.noProjectsEmptyState = {
-title: "No Available Projects",
-info: "There are no projects available from which to load templates."
+title: "没有可选的项目",
+info: "没有可用于加载模板的项目。"
 }, b.projectEmptyState = {
-title: "No Project Selected",
-info: "Please select a project from the dropdown to load templates from that project."
+title: "没有选中的项目",
+info: "请从下拉菜单中选择一个项目来从该项目加载模板。"
 }, b.templatesEmptyState = {
-title: "No Templates",
-info: "The selected project has no templates available to import."
+title: "没有模板",
+info: "所选项目没有可用于导入的模板。"
 }, b.filterConfig = {
 fields: [ {
 id: "keyword",
@@ -16426,20 +16426,20 @@ e.add("nav-help-dropdown", function() {
 var e = [];
 if (e.push({
 type: "dom",
-node: '<li><a target="_blank" href="{{\'default\' | helpLink}}">Documentation</a></li>'
+node: '<li><a target="_blank" href="{{\'default\' | helpLink}}">文档</a></li>'
 }), !_.get(window, "OPENSHIFT_CONSTANTS.DISABLE_SERVICE_CATALOG_LANDING_PAGE")) {
 var t = _.get(window, "OPENSHIFT_CONSTANTS.GUIDED_TOURS.landing_page_tour");
 t && t.enabled && t.steps && e.push({
 type: "dom",
-node: '<li><a href="catalog?startTour=true">Tour Catalog Home</a></li>'
+node: '<li><a href="catalog?startTour=true">访问主页向导</a></li>'
 });
 }
 return e.push({
 type: "dom",
-node: '<li><a href="command-line">Command Line Tools</a></li>'
+node: '<li><a href="command-line">命令行工具</a></li>'
 }), e.push({
 type: "dom",
-node: '<li><a href="about">About</a></li>'
+node: '<li><a href="about">关于</a></li>'
 }), e;
 });
 } ]), angular.module("openshiftConsole").run([ "extensionRegistry", "$rootScope", "DataService", "AuthService", function(e, t, n, r) {
@@ -16452,7 +16452,7 @@ node: '<li><copy-login-to-clipboard clipboard-text="oc login ' + _.escape(n.open
 type: "dom",
 node: "<li><set-home-page></set-home-page></li>"
 });
-var a = "Log Out";
+var a = "退出系统";
 return t.user.fullName && t.user.fullName !== t.user.metadata.name && (a += " (" + t.user.metadata.name + ")"), e.push({
 type: "dom",
 node: '<li><a href="logout">' + _.escape(a) + "</a></li>"
@@ -16478,7 +16478,7 @@ type: "dom",
 node: [ '<li class="list-group-item">', '<a href="about">', '<span class="pficon pficon-info fa-fw" aria-hidden="true"></span> <span class="list-group-item-value">About</span>', "</a>", "</li>" ].join("")
 }, {
 type: "dom",
-node: _.template([ '<li class="list-group-item">', '<a href="logout">', '<span class="pficon pficon-user fa-fw" aria-hidden="true"></span>', '<span class="list-group-item-value">Log out <span class="username"><%= userName %></span></span>', "</a>", "</li>" ].join(""))({
+node: _.template([ '<li class="list-group-item">', '<a href="logout">', '<span class="pficon pficon-user fa-fw" aria-hidden="true"></span>', '<span class="list-group-item-value">退出系统 <span class="username"><%= userName %></span></span>', "</a>", "</li>" ].join(""))({
 userName: e ? e.fullName || e.metadata.name : ""
 })
 } ]);

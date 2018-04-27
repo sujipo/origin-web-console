@@ -97,19 +97,19 @@ angular.module('openshiftConsole')
     $scope.sortConfig = {
       fields: [{
         id: 'metadata.annotations["openshift.io/display-name"]',
-        title: 'Display Name',
+        title: '显示名称',
         sortType: 'alpha'
       }, {
         id: 'metadata.name',
-        title: 'Name',
+        title: '名称',
         sortType: 'alpha'
       }, {
         id: 'metadata.annotations["openshift.io/requester"]',
-        title: 'Creator',
+        title: '创建者',
         sortType: 'alpha'
       }, {
         id: 'metadata.creationTimestamp',
-        title: 'Creation Date',
+        title: '创建日期',
         sortType: 'alpha'
       }],
       isAscending: true,

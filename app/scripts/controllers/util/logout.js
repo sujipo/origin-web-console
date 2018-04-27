@@ -13,13 +13,13 @@ angular.module('openshiftConsole')
 
     if (AuthService.isLoggedIn()) {
       $log.debug("LogoutController, logged in, initiating logout");
-      $scope.logoutMessage = "Logging out...";
+      $scope.logoutMessage = "退出中...";
 
       AuthService.startLogout().finally(function(){
         // Make sure the logout completed
         if (AuthService.isLoggedIn()) {
           $log.debug("LogoutController, logout failed, still logged in");
-          $scope.logoutMessage = 'You could not be logged out. Return to the <a href="./">console</a>.';
+          $scope.logoutMessage = '您不能退出系统. 返回 <a href="./">控制台</a>.';
         } else {
           if (AUTH_CFG.logout_uri) {
             $log.debug("LogoutController, logout completed, redirecting to AUTH_CFG.logout_uri", AUTH_CFG.logout_uri);
@@ -37,10 +37,10 @@ angular.module('openshiftConsole')
     } else {
       $log.debug("LogoutController, not logged in, logout complete");
 
-      var logoutMessage = "You are logged out.";
+      var logoutMessage = "您已经退出系统。";
       if ($routeParams.cause === "timeout") {
-        logoutMessage = "You have been logged out due to inactivity."
+        logoutMessage = "由于不活动，您已经注销。"
       }
-      $scope.logoutMessage = logoutMessage + ' Return to the <a href="./">console</a>.';
+      $scope.logoutMessage = logoutMessage + ' 返回 <a href="./">控制台</a>.';
     }
   });
