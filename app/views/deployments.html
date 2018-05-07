@@ -23,7 +23,7 @@
       <div class="row">
         <div class="col-md-12">
           <p ng-if="!deploymentConfigsLoaded">
-            Loading...
+            加载中...
           </p>
           <div ng-if="(showEmptyState || filterWithZeroResults) && deploymentConfigsLoaded">
             <div class="empty-state-message text-center">
@@ -48,11 +48,11 @@
               </colgroup>
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Last Version</th>
-                  <th>Status</th>
-                  <th>Created</th>
-                  <th>Trigger</th>
+                  <th>名称</th>
+                  <th>最后版本</th>
+                  <th>状态</th>
+                  <th>创建</th>
+                  <th>触发器</th>
                 </tr>
               </thead>
               <tbody>
@@ -63,7 +63,7 @@
                     <a ng-if="deploymentConfigs[dcName]" href="{{dcName | navigateResourceURL : 'DeploymentConfig' : projectName}}">{{dcName}}</a>
                     <span ng-if="deploymentConfigs[dcName].status.details.message" class="pficon pficon-warning-triangle-o" style="cursor: help;" data-toggle="popover" data-trigger="hover" dynamic-content="{{deploymentConfigs[dcName].status.details.message}}"></span>
                   </td>
-                  <td data-title="Last Version"><em>No deployments</em></td>
+                  <td data-title="Last Version"><em>没有部署</em></td>
                   <td class="hidden-xs">&nbsp;</td>
                   <td class="hidden-xs">&nbsp;</td>
                   <td class="hidden-xs">&nbsp;</td>
@@ -89,7 +89,7 @@
                       <status-icon status="replicationController | deploymentStatus" disable-animation></status-icon>
                       <span class="status-detail">
                         {{replicationController | deploymentStatus}}<span ng-if="(replicationController | deploymentStatus) == 'Active' || (replicationController | deploymentStatus) == 'Running'">,
-                        <span ng-if="replicationController.spec.replicas !== replicationController.status.replicas">{{replicationController.status.replicas}}/</span>{{replicationController.spec.replicas}} replica<span ng-if="replicationController.spec.replicas != 1">s</span></span>
+                        <span ng-if="replicationController.spec.replicas !== replicationController.status.replicas">{{replicationController.status.replicas}}/</span>{{replicationController.spec.replicas}} 副本<span ng-if="replicationController.spec.replicas != 1"></span></span>
                       </span>
                     </div>
                     <!-- TODO would be nice to have the deploymentStatusReason in a popup, when there is one -->
@@ -98,16 +98,16 @@
                     <span am-time-ago="replicationController.metadata.creationTimestamp"></span>
                   </td>
                   <td data-title="Trigger">
-                    <span ng-if="!replicationController.causes.length">Unknown</span>
+                    <span ng-if="!replicationController.causes.length">未知</span>
                     <span ng-if="replicationController.causes.length">
                       <span ng-repeat="cause in replicationController.causes">
                         <span ng-switch="cause.type">
                           <span ng-switch-when="ImageChange">
                             <span ng-if="cause.imageTrigger.from">
-                              <abbr title="{{cause.imageTrigger.from | imageObjectRef : null : true}}">Image</abbr> change
+                              <abbr title="{{cause.imageTrigger.from | imageObjectRef : null : true}}">镜像</abbr> 更改
                             </span>
                           </span>
-                          <span ng-switch-when="ConfigChange">Config change</span>
+                          <span ng-switch-when="ConfigChange">配置更改</span>
                           <span ng-switch-default>{{cause.type}}</span>
                         </span>
                       </span>
@@ -118,7 +118,7 @@
               </tbody>
             </table>
             <div ng-if="(deployments | size)">
-              <h3>Deployments</h3>
+              <h3>部署</h3>
               <table class="table table-bordered table-mobile table-layout-fixed">
                 <colgroup>
                   <col class="col-sm-4">
@@ -129,11 +129,11 @@
                 </colgroup>
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Last Version</th>
-                    <th>Replicas</th>
-                    <th>Created</th>
-                    <th>Strategy</th>
+                    <th>名称</th>
+                    <th>最后版本</th>
+                    <th>副本</th>
+                    <th>创建</th>
+                    <th>策略</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -150,7 +150,7 @@
                       </span>
                     </td>
                     <td data-title="Replicas">
-                      <span ng-if="!(deployment.status.replicas | isNil) && deployment.status.replicas !== deployment.spec.replicas">{{deployment.status.replicas}}/</span>{{deployment.spec.replicas}} replica<span ng-if="deployment.spec.replicas != 1">s</span>
+                      <span ng-if="!(deployment.status.replicas | isNil) && deployment.status.replicas !== deployment.spec.replicas">{{deployment.status.replicas}}/</span>{{deployment.spec.replicas}} 副本<span ng-if="deployment.spec.replicas != 1"></span>
                     </td>
                     <td data-title="Created">
                       <span am-time-ago="deployment.metadata.creationTimestamp"></span>
@@ -163,16 +163,16 @@
               </table>
             </div>
             <div ng-if="(replicaSets | size)" id="replica-sets">
-              <h3>Replica Sets</h3>
+              <h3>副本设置</h3>
               <table class="table table-bordered table-mobile table-layout-fixed">
                 <colgroup>
                   <col class="col-sm-4">
                 </colgroup>
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Replicas</th>
-                    <th>Created</th>
+                    <th>名称</th>
+                    <th>副本</th>
+                    <th>创建</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -181,7 +181,7 @@
                       <a ng-href="{{replicaSet | navigateResourceURL}}">{{replicaSet.metadata.name}}</a>
                     </td>
                     <td data-title="Replicas">
-                      <span ng-if="replicaSet.status.replicas !== replicaSet.spec.replicas">{{replicaSet.status.replicas}}/</span>{{replicaSet.spec.replicas}} replica<span ng-if="replicaSet.spec.replicas != 1">s</span>
+                      <span ng-if="replicaSet.status.replicas !== replicaSet.spec.replicas">{{replicaSet.status.replicas}}/</span>{{replicaSet.spec.replicas}} 副本<span ng-if="replicaSet.spec.replicas != 1"></span>
                     </td>
                     <td data-title="Created">
                       <span am-time-ago="replicaSet.metadata.creationTimestamp"></span>
@@ -191,16 +191,16 @@
               </table>
             </div>
             <div ng-if="(replicationControllersByDC[''] | size)" id="replica-controllers">
-              <h3>Other Replication Controllers</h3>
+              <h3>其它副本管理</h3>
               <table class="table table-bordered table-mobile table-layout-fixed">
                 <colgroup>
                   <col class="col-sm-5">
                 </colgroup>
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Replicas</th>
-                    <th>Created</th>
+                    <th>名称</th>
+                    <th>副本</th>
+                    <th>创建</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -209,7 +209,7 @@
                       <a ng-href="{{deployment | navigateResourceURL}}">{{deployment.metadata.name}}</a>
                     </td>
                     <td data-title="Replicas">
-                      <span ng-if="deployment.status.replicas !== deployment.spec.replicas">{{deployment.status.replicas}}/</span>{{deployment.spec.replicas}} replica<span ng-if="deployment.spec.replicas != 1">s</span>
+                      <span ng-if="deployment.status.replicas !== deployment.spec.replicas">{{deployment.status.replicas}}/</span>{{deployment.spec.replicas}} 副本<span ng-if="deployment.spec.replicas != 1"></span>
                     </td>
                     <td data-title="Created">
                       <span am-time-ago="deployment.metadata.creationTimestamp"></span>
