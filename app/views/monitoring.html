@@ -149,7 +149,7 @@
         </div>
 
         <div ng-if="kindSelector.selected.kind === 'All' || kindSelector.selected.kind === 'ReplicationControllers'">
-          <h2>Deployments</h2>
+          <h2>部署</h2>
           <div class="list-pf" ng-class="{'list-pf-empty': !(filteredReplicationControllers | size) && !(filteredReplicaSets | size)}">
             <div class="list-pf-item" ng-if="!(filteredReplicationControllers | size) && !(filteredReplicaSets | size)">
               <div class="list-pf-container">

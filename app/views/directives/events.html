@@ -1,5 +1,5 @@
 <div ng-if="!events">
-  Loading...
+  加载中...
 </div>
 <div ng-if="events" class="events">
   <div class="table-filter-extension">
@@ -37,34 +37,34 @@
   <table class="table table-bordered table-condensed table-mobile table-layout-fixed events-table">
     <thead>
       <tr>
-        <th id="time">Time</th>
+        <th id="time">时间</th>
         <!-- Only show Name and Kind columns if not passed to the directive. -->
         <th id="kind-name" ng-if="showKindAndName">
-          <span class="hidden-xs-inline visible-sm-inline visible-md-inline hidden-lg-inline">Kind and Name</span>
-          <span class="visible-lg-inline">Name</span>
+          <span class="hidden-xs-inline visible-sm-inline visible-md-inline hidden-lg-inline">类型和名称</span>
+          <span class="visible-lg-inline">名称</span>
         </th>
         <th id="kind" ng-if="showKindAndName" class="hidden-sm hidden-md">
-          <span class="visible-lg-inline">Kind</span>
+          <span class="visible-lg-inline">类型</span>
         </th>
-        <th id="severity" class="hidden-xs hidden-sm hidden-md"><span class="sr-only">Severity</span></th>
-        <th id="reason" class="hidden-sm hidden-md"><span class="visible-lg-inline">Reason</span></th>
-        <th id="message"><span class="hidden-xs-inline visible-sm-inline visible-md-inline hidden-lg-inline">Reason and </span>Message</th>
+        <th id="severity" class="hidden-xs hidden-sm hidden-md"><span class="sr-only">严重程度</span></th>
+        <th id="reason" class="hidden-sm hidden-md"><span class="visible-lg-inline">原因</span></th>
+        <th id="message"><span class="hidden-xs-inline visible-sm-inline visible-md-inline hidden-lg-inline">原因和</span>内容</th>
       </tr>
     </thead>
     <tbody ng-if="(filteredEvents | hashSize) === 0">
       <tr>
         <td class="hidden-lg" colspan="{{showKindAndName ? 3 : 2}}">
-          <span ng-if="(events | hashSize) === 0"><em>No events to show.</em></span>
+          <span ng-if="(events | hashSize) === 0"><em>没有事件可显示。</em></span>
           <span ng-if="(events | hashSize) > 0">
-            All events hidden by filter.
-            <button type="button" class="btn btn-link inline-btn-link" ng-click="filter.text = ''">Clear All Filters</button>
+            所有事件都隐藏在过滤器中。
+            <button type="button" class="btn btn-link inline-btn-link" ng-click="filter.text = ''">清除所有过滤器</button>
           </span>
         </td>
           <td class="hidden-xs hidden-sm hidden-md" colspan="{{showKindAndName ? 6 : 4}}">
-          <span ng-if="(events | hashSize) === 0"><em>No events to show.</em></span>
+          <span ng-if="(events | hashSize) === 0"><em>没有事件可显示。</em></span>
           <span ng-if="(events | hashSize) > 0">
-            All events hidden by filter.
-            <button type="button" class="btn btn-link inline-btn-link" ng-click="filter.text = ''">Clear All Filters</button>
+            所有事件都隐藏在过滤器中。
+            <button type="button" class="btn btn-link inline-btn-link" ng-click="filter.text = ''">清除所有过滤器</button>
           </span>
         </td>
       </tr>

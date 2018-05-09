@@ -3676,7 +3676,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<a ng-href=\"{{serviceInstance | editYamlURL}}\" role=\"button\">Edit YAML</a>\n" +
     "</li>\n" +
     "<li ng-if=\"serviceInstancesVersion | canI : 'delete'\">\n" +
-    "<a href=\"\" ng-click=\"deprovision()\" ng-attr-aria-disabled=\"{{serviceInstance.metadata.deletionTimestamp ? 'true' : undefined}}\" ng-class=\"{ 'disabled-link': serviceInstance.metadata.deletionTimestamp }\" role=\"button\">Delete</a>\n" +
+    "<a href=\"\" ng-click=\"deprovision()\" ng-attr-aria-disabled=\"{{serviceInstance.metadata.deletionTimestamp ? 'true' : undefined}}\" ng-class=\"{ 'disabled-link': serviceInstance.metadata.deletionTimestamp }\" role=\"button\">删除</a>\n" +
     "</li>\n" +
     "</ul>\n" +
     "</div>\n" +
@@ -5215,7 +5215,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</tbody>\n" +
     "</table>\n" +
     "<div ng-if=\"(deployments | size)\">\n" +
-    "<h3>Deployments</h3>\n" +
+    "<h3>部署</h3>\n" +
     "<table class=\"table table-bordered table-mobile table-layout-fixed\">\n" +
     "<colgroup>\n" +
     "<col class=\"col-sm-4\">\n" +
@@ -11175,7 +11175,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
     "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel();\">Cancel</button>\n" +
-    "<button ng-disabled=\"typeNameToConfirm && confirmName !== resourceName && confirmName !== displayName\" class=\"btn btn-danger\" type=\"submit\" ng-click=\"delete();\">Delete</button>\n" +
+    "<button ng-disabled=\"typeNameToConfirm && confirmName !== resourceName && confirmName !== displayName\" class=\"btn btn-danger\" type=\"submit\" ng-click=\"delete();\">删除</button>\n" +
     "</div>\n" +
     "</form>\n" +
     "</div>"
@@ -11430,7 +11430,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"kindSelector.selected.kind === 'All' || kindSelector.selected.kind === 'ReplicationControllers'\">\n" +
-    "<h2>Deployments</h2>\n" +
+    "<h2>部署</h2>\n" +
     "<div class=\"list-pf\" ng-class=\"{'list-pf-empty': !(filteredReplicationControllers | size) && !(filteredReplicaSets | size)}\">\n" +
     "<div class=\"list-pf-item\" ng-if=\"!(filteredReplicationControllers | size) && !(filteredReplicaSets | size)\">\n" +
     "<div class=\"list-pf-container\">\n" +
@@ -12011,7 +12011,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"overview.filteredDeployments | hashSize\">\n" +
-    "<h2>Deployments</h2>\n" +
+    "<h2>部署</h2>\n" +
     "<div class=\"list-pf\">\n" +
     "<overview-list-row ng-repeat=\"deployment in overview.filteredDeployments track by (deployment | uid)\" api-object=\"deployment\" current=\"overview.currentByDeploymentUID[deployment.metadata.uid]\" previous=\"overview.replicaSetsByDeploymentUID[deployment.metadata.uid][1]\" state=\"overview.state\">\n" +
     "</overview-list-row>\n" +

@@ -8,16 +8,16 @@
           <div ng-if="!loaded">Loading...</div>
           <div ng-if="loaded">
             <h1>
-              Edit Deployment Config {{deploymentConfig.metadata.name}}
+              修改部署配置 {{deploymentConfig.metadata.name}}
             </h1>
             <fieldset ng-disabled="disableInputs">
               <form class="edit-form" name="form" novalidate>
                 <div class="section">
-                  <h3>Deployment Strategy</h3>
+                  <h3>部署策略</h3>
                   <dl class="dl-horizontal left">
                     {{strategyParamsName}}
                     <div class="form-group strategy-name">
-                      <label class="picker-label">Strategy Type</label>
+                      <label class="picker-label">策略类型</label>
                       <ui-select ng-model="strategyData.type" search-enabled="false" ng-change="strategyChanged()">
                         <ui-select-match>{{$select.selected}}</ui-select-match>
                         <ui-select-choices repeat="strategyType in deploymentConfigStrategyTypes">
