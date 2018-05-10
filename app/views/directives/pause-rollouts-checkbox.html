@@ -6,12 +6,11 @@
           ng-disabled="disabled"
           ng-model="deployment.spec.paused"
           aria-describedby="pause-help">
-      Pause rollouts for this {{deployment.kind | humanizeKind}}
+      暂停发布，仅修改{{deployment.kind | humanizeKind}}
     </label>
     <div id="pause-help" class="help-block">
-      Pausing lets you make changes without triggering a rollout. You can resume rollouts at any
-      time.
-      <span ng-if="!alwaysVisible">If unchecked, a new rollout will start on save.</span>
+      暂停发布可以让您在不触发发布的情况下进行更改。您可以在任何时候恢复发布。
+      <span ng-if="!alwaysVisible">如果不选择，将会启动一个新的发布。</span>
     </div>
   </div>
 </div>

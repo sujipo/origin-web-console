@@ -387,7 +387,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
               ]
             },
             {
-              label: "隐私",
+              label: "密钥",
               href: "/browse/secrets",
               prefixes: [
                 "/browse/secrets/",
