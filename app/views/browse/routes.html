@@ -34,7 +34,7 @@
                 <h2>没有路由</h2>
                 <p>没有路由添加到项目 {{projectName}}.</p>
                 <p ng-if="project && (routesVersion | canI : 'create') && !filterWithZeroResults">
-                  <a ng-href="project/{{project.metadata.name}}/create-route" class="btn btn-primary btn-lg">Create Route</a>
+                  <a ng-href="project/{{project.metadata.name}}/create-route" class="btn btn-primary btn-lg">创建路由</a>
                 </p>
               </div>
               <div ng-if="filterWithZeroResults">
@@ -52,15 +52,15 @@
             </colgroup>
             <thead>
               <tr>
-                <th>{{customNameHeader || 'Name'}}</th>
-                <th>Hostname</th>
+                <th>{{customNameHeader || '名称'}}</th>
+                <th>主机名</th>
                 <!--
                   Right now only services are supported. If other types are
                   added, we'll need to change the table header.
                  -->
-                <th>Service</th>
-                <th>Target Port</th>
-                <th>TLS Termination</th>
+                <th>服务</th>
+                <th>目标端口</th>
+                <th>TLS 终止</th>
               </tr>
             </thead>
             <tbody>

@@ -2,13 +2,13 @@
   <div ng-if="$ctrl.showHeader" class="row form-row-has-controls input-labels">
     <div class="col-xs-6">
       <label class="input-label">
-        Config Map/Secret
+          配置映射/密钥
       </label>
     </div>
     <div class="col-xs-6"
         ng-if="!$ctrl.isEnvFromReadonly() && $ctrl.hasOptions()">
       <label class="input-label">
-        Prefix
+        前缀
         <small class="pficon pficon-help tooltip-default-icon"
                aria-hidden="true"
                data-toggle="tooltip"
@@ -27,7 +27,7 @@
       <div class="environment-from-input col-xs-6 form-group">
         <div ng-if="$ctrl.isEnvFromReadonly(entry) || !$ctrl.hasOptions()" class="faux-input-group">
           <div ng-if="!entry.configMapRef.name && !entry.secretRef.name">
-            No config maps or secrets have been added as Environment From.
+            环境里没有添加任何配置映射或密钥。
           </div>
           <div ng-if="entry.configMapRef.name || entry.secretRef.name" class="faux-form-control readonly">
             Use all keys and values from
@@ -102,7 +102,7 @@
             aria-grabbed="false"
             as-sortable-item-handle>
             <span class="fa fa-bars"></span>
-            <span class="sr-only">Move row</span>
+            <span class="sr-only">移动行</span>
           </button>
           <button
             ng-if="!$ctrl.cannotDeleteAny"
@@ -111,7 +111,7 @@
             aria-hidden="true"
             ng-click="$ctrl.deleteEntry($index, 1)">
             <span class="pficon pficon-close" aria-hidden="true"></span>
-            <span class="sr-only">Delete row</span>
+            <span class="sr-only">删除行</span>
           </button>
         </div>
       </div>

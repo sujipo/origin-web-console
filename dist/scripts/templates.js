@@ -10061,7 +10061,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"!loaded\">Loading...</div>\n" +
     "<div ng-if=\"loaded\">\n" +
     "<h1>\n" +
-    "Edit Deployment Config {{deploymentConfig.metadata.name}}\n" +
+    "修改部署配置 {{deploymentConfig.metadata.name}}\n" +
     "</h1>\n" +
     "<fieldset ng-disabled=\"disableInputs\">\n" +
     "<form class=\"edit-form\" name=\"form\" novalidate>\n" +
