@@ -1,0 +1,12 @@
+node_modules
+npm-debug.log
+.tmp
+.sass-cache
+.bundle
+.idea
+bower_components
+phantomjsdriver.log
+openshift-jvm
+/app/config.local.js
+.DS_Store
+test/junit/

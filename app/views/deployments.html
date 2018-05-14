@@ -1,0 +1,226 @@
+<div class="middle">
+  <div class="middle-header header-toolbar">
+    <div class="container-fluid">
+      <div class="page-header page-header-bleed-right page-header-bleed-left">
+        <h1>
+          部署
+          <span class="page-header-link">
+            <a ng-href="{{'deployments' | helpLink}}" target="_blank">
+              了解更多 <i class="fa fa-external-link" aria-hidden="true"></i>
+            </a>
+          </span>
+        </h1>
+      </div>
+      <div ng-if="!showEmptyState || filterWithZeroResults" class="data-toolbar">
+        <div class="data-toolbar-filter">
+          <project-filter></project-filter>
+        </div>
+      </div>
+    </div>
+  </div><!-- /middle-header-->
+  <div class="middle-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <p ng-if="!deploymentConfigsLoaded">
+            加载中...
+          </p>
+          <div ng-if="(showEmptyState || filterWithZeroResults) && deploymentConfigsLoaded">
+            <div class="empty-state-message text-center">
+              <div ng-if="showEmptyState">
+                <h2>没有部署</h2>
+                <p>没有将部署添加到项目 {{projectName}}.</p>
+              </div>
+              <div ng-if="filterWithZeroResults">
+                <h2>过滤器隐藏了所有的部署。 <button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">清除所有过滤器</button></h2>
+              </div>
+            </div>
+          </div>
+          <div ng-if="!filterWithZeroResults">
+            <h3 ng-if="showDeploymentConfigTable() && ((deployments | size) || (replicaSets | size) || (replicationControllersByDC[''] | size))">部署配置</h3>
+            <table ng-if="showDeploymentConfigTable() && !showEmptyState" class="table table-bordered table-mobile table-layout-fixed">
+              <colgroup>
+                <col class="col-sm-3">
+                <col class="col-sm-2">
+                <col class="col-sm-3">
+                <col class="col-sm-2">
+                <col class="col-sm-2">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>名称</th>
+                  <th>最后版本</th>
+                  <th>状态</th>
+                  <th>创建</th>
+                  <th>触发器</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat-start="(dcName, replicationControllersForDC) in replicationControllersByDC" ng-if="dcName && (deploymentConfigs[dcName] || !unfilteredDeploymentConfigs[dcName])" style="display: none;"></tr>
+                <!-- Deployment config with no replication controllers -->
+                <tr ng-if="(replicationControllersForDC | hashSize) == 0 && dcName">
+                  <td data-title="Name">
+                    <a ng-if="deploymentConfigs[dcName]" href="{{dcName | navigateResourceURL : 'DeploymentConfig' : projectName}}">{{dcName}}</a>
+                    <span ng-if="deploymentConfigs[dcName].status.details.message" class="pficon pficon-warning-triangle-o" style="cursor: help;" data-toggle="popover" data-trigger="hover" dynamic-content="{{deploymentConfigs[dcName].status.details.message}}"></span>
+                  </td>
+                  <td data-title="Last Version"><em>没有部署</em></td>
+                  <td class="hidden-xs">&nbsp;</td>
+                  <td class="hidden-xs">&nbsp;</td>
+                  <td class="hidden-xs">&nbsp;</td>
+                </tr>
+                <!-- Deployment config with replication controllers, or replication controllers from a deployment config which has since been deleted -->
+                <tr ng-repeat="replicationController in replicationControllersForDC | orderObjectsByDate : true | limitTo : 1" ng-if="dcName">
+                  <td data-title="Name">
+                    <a ng-href="{{replicationController | configURLForResource}}">{{dcName}}</a>
+                    <!-- <span ng-if="deploymentConfigs[dcName].status.details.message" class="pficon pficon-warning-triangle-o" style="cursor: help;" data-toggle="popover" data-trigger="hover" dynamic-content="{{deploymentConfigs[dcName].status.details.message}}"></span> -->
+                    <span ng-if="deploymentConfigs && !deploymentConfigs[dcName]" class="pficon pficon-warning-triangle-o" data-toggle="tooltip" title="This deployment config no longer exists" style="cursor: help;"></span>
+                  </td>
+                  <td data-title="Last Version">
+                    <!-- Deployment number and link -->
+                    <span ng-if="replicationController | annotation : 'deploymentVersion'">
+                      <a ng-href="{{replicationController | navigateResourceURL}}">#{{replicationController | annotation : 'deploymentVersion'}}</a>
+                    </span>
+                    <span ng-if="!(replicationController | annotation : 'deploymentVersion')">
+                      <a ng-href="{{replicationController | navigateResourceURL}}">{{replicationController.metadata.name}}</a>
+                    </span>
+                  </td>
+                  <td data-title="Status">
+                    <div class="status">
+                      <status-icon status="replicationController | deploymentStatus" disable-animation></status-icon>
+                      <span class="status-detail">
+                        {{replicationController | deploymentStatus}}<span ng-if="(replicationController | deploymentStatus) == 'Active' || (replicationController | deploymentStatus) == 'Running'">,
+                        <span ng-if="replicationController.spec.replicas !== replicationController.status.replicas">{{replicationController.status.replicas}}/</span>{{replicationController.spec.replicas}} 副本<span ng-if="replicationController.spec.replicas != 1"></span></span>
+                      </span>
+                    </div>
+                    <!-- TODO would be nice to have the deploymentStatusReason in a popup, when there is one -->
+                  </td>
+                  <td data-title="Created">
+                    <span am-time-ago="replicationController.metadata.creationTimestamp"></span>
+                  </td>
+                  <td data-title="Trigger">
+                    <span ng-if="!replicationController.causes.length">未知</span>
+                    <span ng-if="replicationController.causes.length">
+                      <span ng-repeat="cause in replicationController.causes">
+                        <span ng-switch="cause.type">
+                          <span ng-switch-when="ImageChange">
+                            <span ng-if="cause.imageTrigger.from">
+                              <abbr title="{{cause.imageTrigger.from | imageObjectRef : null : true}}">镜像</abbr> 更改
+                            </span>
+                          </span>
+                          <span ng-switch-when="ConfigChange">配置更改</span>
+                          <span ng-switch-default>{{cause.type}}</span>
+                        </span>
+                      </span>
+                    </span>
+                  </td>
+                </tr>
+                <tr ng-repeat-end style="display: none;"></tr>
+              </tbody>
+            </table>
+            <div ng-if="(deployments | size)">
+              <h3>部署</h3>
+              <table class="table table-bordered table-mobile table-layout-fixed">
+                <colgroup>
+                  <col class="col-sm-4">
+                  <col class="col-sm-2">
+                  <col class="col-sm-2">
+                  <col class="col-sm-2">
+                  <col class="col-sm-2">
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>名称</th>
+                    <th>最后版本</th>
+                    <th>副本</th>
+                    <th>创建</th>
+                    <th>策略</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="deployment in deployments | orderObjectsByDate : true">
+                    <td data-title="Name">
+                      <a ng-href="{{deployment | navigateResourceURL}}">{{deployment.metadata.name}}</a>
+                    </td>
+                    <td data-title="Last Version">
+                      <span ng-if="latestReplicaSetByDeploymentUID[deployment.metadata.uid]">
+                        <a ng-href="{{latestReplicaSetByDeploymentUID[deployment.metadata.uid] | navigateResourceURL}}">{{deployment | lastDeploymentRevision}}</a>
+                      </span>
+                      <span ng-if="!latestReplicaSetByDeploymentUID[deployment.metadata.uid]">
+                        {{deployment | lastDeploymentRevision}}
+                      </span>
+                    </td>
+                    <td data-title="Replicas">
+                      <span ng-if="!(deployment.status.replicas | isNil) && deployment.status.replicas !== deployment.spec.replicas">{{deployment.status.replicas}}/</span>{{deployment.spec.replicas}} 副本<span ng-if="deployment.spec.replicas != 1"></span>
+                    </td>
+                    <td data-title="Created">
+                      <span am-time-ago="deployment.metadata.creationTimestamp"></span>
+                    </td>
+                    <td data-title="Strategy">
+                      {{deployment.spec.strategy.type | sentenceCase}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div ng-if="(replicaSets | size)" id="replica-sets">
+              <h3>副本设置</h3>
+              <table class="table table-bordered table-mobile table-layout-fixed">
+                <colgroup>
+                  <col class="col-sm-4">
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>名称</th>
+                    <th>副本</th>
+                    <th>创建</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="replicaSet in replicaSets | orderObjectsByDate : true">
+                    <td data-title="Name">
+                      <a ng-href="{{replicaSet | navigateResourceURL}}">{{replicaSet.metadata.name}}</a>
+                    </td>
+                    <td data-title="Replicas">
+                      <span ng-if="replicaSet.status.replicas !== replicaSet.spec.replicas">{{replicaSet.status.replicas}}/</span>{{replicaSet.spec.replicas}} 副本<span ng-if="replicaSet.spec.replicas != 1"></span>
+                    </td>
+                    <td data-title="Created">
+                      <span am-time-ago="replicaSet.metadata.creationTimestamp"></span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div ng-if="(replicationControllersByDC[''] | size)" id="replica-controllers">
+              <h3>其它副本管理</h3>
+              <table class="table table-bordered table-mobile table-layout-fixed">
+                <colgroup>
+                  <col class="col-sm-5">
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>名称</th>
+                    <th>副本</th>
+                    <th>创建</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="deployment in replicationControllersByDC[''] | orderObjectsByDate : true">
+                    <td data-title="Name">
+                      <a ng-href="{{deployment | navigateResourceURL}}">{{deployment.metadata.name}}</a>
+                    </td>
+                    <td data-title="Replicas">
+                      <span ng-if="deployment.status.replicas !== deployment.spec.replicas">{{deployment.status.replicas}}/</span>{{deployment.spec.replicas}} 副本<span ng-if="deployment.spec.replicas != 1"></span>
+                    </td>
+                    <td data-title="Created">
+                      <span am-time-ago="deployment.metadata.creationTimestamp"></span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div><!-- /col-* -->
+      </div>
+    </div>
+  </div><!-- /middle-content -->
+</div>

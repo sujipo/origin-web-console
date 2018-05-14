@@ -1,0 +1,192 @@
+<div class="middle surface-shaded">
+  <origin-modal-popup class="projects-list-create-popup" shown="newProjectPanelShown" modal-title="创建项目" on-close="closeNewProjectPanel" reference-element="popupElement">
+    <create-project is-dialog="true" redirect-action="onNewProject" on-cancel="closeNewProjectPanel"></create-project>
+  </origin-modal-popup>
+  <div class="middle-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div ng-if="alerts" class="alerts">
+            <alerts alerts="alerts"></alerts>
+          </div>
+
+          <div ng-if="!showGetStarted">
+            <div ng-if="loading" class="empty-state-message">
+              <h2 class="text-center">加载中...</h2>
+            </div>
+            <div ng-if="!loading">
+              <div class="projects-header">
+                <div class="projects-bar">
+                  <h1>我的项目</h1>
+                  <div class="projects-options">
+                    <div class="projects-add" ng-if="canCreate">
+                      <button ng-click="createProject($event)" class="btn btn-primary">
+                        <span class="fa fa-plus" aria-hidden="true"></span>
+                        <span class="icon-button-text">创建项目</span>
+                      </button>
+                    </div>
+                    <div class="projects-search">
+                      <form role="form" class="search-pf has-button">
+                        <div class="form-group has-clear">
+                          <div class="search-pf-input-group">
+                            <label for="search-projects" class="sr-only">根据关键字过滤</label>
+                            <input
+                              type="search"
+                              class="form-control"
+                              placeholder="根据关键字过滤"
+                              id="search-projects"
+                              ng-model="search.text">
+                            <button
+                              type="button"
+                              class="clear"
+                              aria-hidden="true"
+                              ng-if="search.text"
+                              ng-click="search.text = ''">
+                              <span class="pficon pficon-close"></span>
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                      <span class="vertical-divider"></span>
+                      <span class="projects-sort-label">排序方式</span>
+                      <div class="projects-sort">
+                        <pf-sort config="sortConfig" class="sort-controls"></pf-sort>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div ng-if="isProjectListIncomplete">
+                <div class="alert alert-warning">
+                  <span class="pficon pficon-warning-triangle-o" aria-hidden="true"></span>
+                  <span class="sr-only">警告:</span>
+                  无法加载您的项目完整列表。
+                  键入项目名称来找到该项目。
+                </div>
+                <form>
+                  <div class="form-group">
+                    <label for="typed-project-name">项目名称</label>
+                    <div class="input-group">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="typed-project-name"
+                        required
+                        minlength="2"
+                        ng-model="input.typedProjectName"
+                        autocorrect="off"
+                        autocapitalize="none"
+                        spellcheck="false">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default"
+                                type="submit"
+                                ng-disabled="!input.typedProjectName"
+                                ng-click="goToProject(input.typedProjectName)">
+                          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                          <span class="sr-only">到项目</span>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div ng-if="!projects.length && !isProjectListIncomplete" class="h3 empty-state-message">
+                当前过滤器隐藏了所有项目。
+                <button type="button" class="btn btn-link inline-btn-link" ng-click="search.text = ''">清除所有过滤器</button>
+              </div>
+              <div ng-if="projects.length" class="list-pf list-group projects-list">
+                <div ng-repeat="project in projects | limitTo: limitListTo track by (project | uid)" class="list-pf-item list-group-item project-info tile-click">
+                  <div class="list-pf-container">
+                    <div class="list-pf-content list-pf-content-flex">
+                      <div class="list-pf-content-wrapper">
+                        <div class="list-pf-main-content">
+                          <div class="list-pf-title project-name-item">
+                              <h2 class="h3">
+                                <a class="tile-target" ng-href="project/{{project.metadata.name}}" title="{{project | displayName}}">
+                                  <span ng-bind-html="project | displayName | highlightKeywords : keywords"></span>
+                                </a>
+                                <span ng-if="project.status.phase != 'Active'"
+                                      data-toggle="tooltip"
+                                      title="This project has been marked for deletion."
+                                      class="pficon pficon-warning-triangle-o"></span>
+                              </h2>
+                              <small class="project-date">
+                                <span ng-if="project | displayName : true"><span ng-bind-html="project.metadata.name | highlightKeywords : keywords"></span> &ndash;</span>
+                                已创建
+                                <span ng-if="project | annotation : 'openshift.io/requester'">被 <span ng-bind-html="project | annotation : 'openshift.io/requester' | highlightKeywords : keywords"></span></span>
+                                <span am-time-ago="project.metadata.creationTimestamp"></span>
+                              </small>
+                          </div>
+                          <div class="list-pf-description project-description">
+                            <truncate-long-text ng-if="!keywords.length" content="project | description" limit="265" newline-limit="10" use-word-boundary="true"></truncate-long-text>
+                            <span class="highlighted-content" ng-if="keywords.length" ng-bind-html="project | description | truncate : 1000 | highlightKeywords : keywords"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="list-pf-actions" ng-if="project.status.phase == 'Active'">
+                        <div uib-dropdown class="dropdown pull-right dropdown-kebab-pf">
+                          <button uib-dropdown-toggle class="btn btn-link dropdown-toggle"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sr-only">Actions</span></button>
+                          <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu">
+                            <li role="menuitem">
+                              <a ng-href="project/{{project.metadata.name}}/membership">
+                                查看会员
+                              </a>
+                            </li>
+                            <li role="menuitem">
+                              <a href="" ng-click="editProject(project)">
+                                编辑项目
+                              </a>
+                            </li>
+                            <li role="menuitem">
+                              <delete-project
+                                label="Delete Project"
+                                project="project"
+                                type-name-to-confirm="true"
+                                stay-on-current-page="true"
+                                success="onDeleteProject">
+                              </delete-project>
+                            </li>
+                          </ul>
+                        </div>
+
+                      </div>
+                      <origin-modal-popup shown="editProjectPanelShown && editingProject === project"
+                                          ng-class="{'with-description': (project | description | size)}"
+                                          modal-title="Edit Project" on-close="closeEditProjectPanel">
+                        <edit-project project="project" is-dialog="true" redirect-action="onEditProject" on-cancel="closeEditProjectPanel"></edit-project>
+                      </origin-modal-popup>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p ng-if="projects.length > limitListTo">
+                只有第一个 {{limitListTo}} 项目被显示.
+                通过关键字或更改排序选项进行筛选，以查看其他项目。
+              </p>
+              <p class="projects-instructions" ng-if="canCreate === false" ng-include="'views/_cannot-create-project.html'"></p>
+            </div>
+          </div>
+
+          <div ng-if="showGetStarted">
+            <div class="empty-state-message empty-state-full-page text-center">
+              <h1>欢迎使用 OpenShift</h1>
+              <p>
+                OpenShift 帮助您快速开发、主机和规模应用程序。<br>
+                <span ng-if="canCreate">为您的应用程序创建一个项目。</span>
+              </p>
+              <div>
+                <button ng-click="createProject($event)" class="btn btn-lg btn-primary">
+                  <span class="fa fa-plus" aria-hidden="true"></span>
+                  <span class="icon-button-text">创建项目</span>
+                </button>
+              </div>
+              <p>要了解更多，请访问 OpenShift <a target="_blank" ng-href="{{'' | helpLink}}">文档</a>.</p>
+              <p class="projects-instructions" ng-if="canCreate === false" ng-include="'views/_cannot-create-project.html'"></p>
+            </div>
+          </div>
+
+        </div><!-- /col -->
+      </div><!-- /row -->
+    </div><!-- /container-fluid -->
+  </div><!-- /middle-content -->
+</div><!-- /middle -->
