@@ -107,7 +107,7 @@
                                 </a>
                                 <span ng-if="project.status.phase != 'Active'"
                                       data-toggle="tooltip"
-                                      title="This project has been marked for deletion."
+                                      title="这个项目已标记为删除。"
                                       class="pficon pficon-warning-triangle-o"></span>
                               </h2>
                               <small class="project-date">
@@ -139,7 +139,7 @@
                             </li>
                             <li role="menuitem">
                               <delete-project
-                                label="Delete Project"
+                                label="删除项目"
                                 project="project"
                                 type-name-to-confirm="true"
                                 stay-on-current-page="true"
@@ -152,7 +152,7 @@
                       </div>
                       <origin-modal-popup shown="editProjectPanelShown && editingProject === project"
                                           ng-class="{'with-description': (project | description | size)}"
-                                          modal-title="Edit Project" on-close="closeEditProjectPanel">
+                                          modal-title="修改项目" on-close="closeEditProjectPanel">
                         <edit-project project="project" is-dialog="true" redirect-action="onEditProject" on-cancel="closeEditProjectPanel"></edit-project>
                       </origin-modal-popup>
                     </div>

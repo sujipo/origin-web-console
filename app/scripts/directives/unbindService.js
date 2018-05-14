@@ -70,12 +70,12 @@
     };
 
     var showDeleteForm = function() {
-      ctrl.nextTitle = 'Delete';
+      ctrl.nextTitle = '删除';
       setupValidator();
     };
 
     var showResults = function() {
-      ctrl.nextTitle = 'Close';
+      ctrl.nextTitle = '关闭';
       ctrl.wizardComplete = true;
       unbindService();
       tearDownValidator();

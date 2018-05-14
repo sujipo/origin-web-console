@@ -161,7 +161,7 @@
           </uib-tab>
           <uib-tab ng-if="row.buildConfigs.length" active="row.selectedTab.builds">
             <uib-tab-heading>
-              Builds
+              构建
               <span class="build-count">
                 <build-counts builds="row.recentBuilds"></build-counts>
               </span>
@@ -174,7 +174,7 @@
             </overview-builds>
           </uib-tab>
           <uib-tab ng-if="row.showBindings && (row.bindings | size)" active="row.selectedTab.bindings">
-            <uib-tab-heading>Bindings</uib-tab-heading>
+            <uib-tab-heading>绑定</uib-tab-heading>
             <overview-service-bindings
               component-label="Service Bindings"
               ref-api-object="row.apiObject"

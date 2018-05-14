@@ -67,7 +67,7 @@
                         type="text"
                         class="form-control"
                         ng-model="overview.filterText"
-                        placeholder="Filter by name"
+                        placeholder="根据名称过滤"
                         autocorrect="off"
                         autocapitalize="none"
                         spellcheck="false"
@@ -87,7 +87,7 @@
             </div>
             <div class="vertical-divider"></div>
             <div class="view-by-options">
-              <span class="data-toolbar-label">List by</span>
+              <span class="data-toolbar-label">列表</span>
               <ui-select class="data-toolbar-dropdown" ng-model="overview.viewBy" search-enabled="false">
                 <ui-select-match>{{$select.selected.label}}</ui-select-match>
                 <ui-select-choices repeat="option.id as option in overview.viewByOptions">

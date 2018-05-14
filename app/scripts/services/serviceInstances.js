@@ -121,9 +121,9 @@ angular.module("openshiftConsole")
       var modalScope = {
         kind: apiObject.kind,
         displayName: apiObject.metadata.name,
-        okButtonText: 'Delete',
+        okButtonText: '删除',
         okButtonClass: 'btn-danger',
-        cancelButtonText: 'Cancel',
+        cancelButtonText: '取消',
         delete: function() {
           modalInstance.close('delete');
         }

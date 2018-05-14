@@ -67,7 +67,7 @@
   </div><!-- /middle-header-->
   <div class="middle-content" persist-tab-state>
     <div class="container-fluid">
-      <div ng-if="!loaded">Loading...</div>
+      <div ng-if="!loaded">加载中...</div>
       <div class="row" ng-if="loaded">
         <div class="col-md-12" ng-class="{ 'hide-tabs' : !deployment }">
           <div ng-if="deployment.spec.paused && !updatingPausedState" class="alert alert-info animate-if">
@@ -76,12 +76,12 @@
             This pauses any in-progress rollouts and stops new
             rollouts from running until the deployment is resumed.
             <span ng-if="!updatingPausedState && (deploymentsVersion | canI : 'update')" class="nowrap">
-              <a href="" ng-click="setPaused(false)" role="button">Resume Rollouts</a>
+              <a href="" ng-click="setPaused(false)" role="button">继续发布</a>
             </span>
           </div>
           <uib-tabset>
             <uib-tab active="selectedTab.history">
-              <uib-tab-heading>History</uib-tab-heading>
+              <uib-tab-heading>历史</uib-tab-heading>
               <div class="table-filter-extension">
                 <div class="data-toolbar">
                   <div class="data-toolbar-filter">
@@ -98,10 +98,10 @@
                 </colgroup>
                 <thead>
                   <tr>
-                    <th>Version</th>
-                    <th>Name</th>
-                    <th>Replicas</th>
-                    <th>Created</th>
+                    <th>版本</th>
+                    <th>名称</th>
+                    <th>副本</th>
+                    <th>创建</th>
                   </tr>
                 </thead>
                 <tbody ng-if="(replicaSetsForDeployment | size) == 0">
@@ -126,7 +126,7 @@
               </table>
             </uib-tab>
             <uib-tab active="selectedTab.configuration">
-              <uib-tab-heading>Configuration</uib-tab-heading>
+              <uib-tab-heading>配置</uib-tab-heading>
               <div class="resource-details" ng-if="deployment">
                 <div class="row">
                   <div class="col-lg-6">
@@ -134,7 +134,7 @@
                       Show a header at lg and xl screen sizes to balance the columns, but hide
                       it at smaller widths since "Details" is not very meaningful.
                     -->
-                    <h3 class="hidden visible-lg visible-xl">Details</h3>
+                    <h3 class="hidden visible-lg visible-xl">详情</h3>
                     <dl class="dl-horizontal left">
                       <dt>Selectors:</dt>
                       <dd>

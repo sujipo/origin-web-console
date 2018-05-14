@@ -459,8 +459,8 @@
               <key-value-editor
                 ng-if="expand.imageEnv"
                 entries="BCEnvVarsFromImage"
-                key-placeholder="Name"
-                value-placeholder="Value"
+                key-placeholder="名称"
+                value-placeholder="值"
                 is-readonly
                 cannot-add
                 cannot-sort
@@ -471,8 +471,8 @@
                   <confirm-on-exit dirty="forms.bcEnvVars.$dirty"></confirm-on-exit>
                   <key-value-editor
                     entries="envVars"
-                    key-placeholder="Name"
-                    value-placeholder="Value"
+                    key-placeholder="名称"
+                    value-placeholder="值"
                     value-from-selector-options="valueFromObjects"
                     key-validator="[A-Za-z_][A-Za-z0-9_]*"
                     key-validator-error="Please enter a valid key"
@@ -494,8 +494,8 @@
                 <key-value-editor
                   ng-if="!(buildConfigsVersion | canI : 'update')"
                   entries="envVars"
-                  key-placeholder="Name"
-                  value-placeholder="Value"
+                  key-placeholder="名称"
+                  value-placeholder="值"
                   is-readonly
                   cannot-add
                   cannot-sort
