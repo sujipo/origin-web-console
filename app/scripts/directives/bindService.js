@@ -141,7 +141,7 @@
 
     bindFormStep = {
       id: 'bindForm',
-      label: 'Binding',
+      label: '绑定',
       view: 'views/directives/bind-service/bind-service-form.html',
       valid: false,
       allowClickNav: true,
@@ -150,7 +150,7 @@
 
     bindParametersStep = {
       id: 'bindParameters',
-      label: 'Parameters',
+      label: '参数',
       view: 'views/directives/bind-service/bind-parameters.html',
       hidden: true,
       allowClickNav: true,
@@ -159,7 +159,7 @@
 
     resultsStep = {
       id: 'results',
-      label: 'Results',
+      label: '结果',
       view: 'views/directives/bind-service/results.html',
       valid: true,
       allowClickNav: false,

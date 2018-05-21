@@ -273,9 +273,9 @@
                   <p>
                     没有管道被添加到项目 {{projectName}}.
                     <br>
-                    Learn more about
+                    了解更多关于
                     <a ng-href="{{ 'pipeline-builds' | helpLink}}" target="_blank">管道建设</a>
-                    and the
+                    和
                     <a ng-href="{{ 'pipeline-plugin' | helpLink}}" target="_blank">OpenShift 管道插件</a>.
                   </p>
                   <p ng-if="(project.metadata.name | canIAddToProject) && overview.samplePipelineURL">
@@ -290,7 +290,7 @@
               </div>
               <div ng-if="(overview.pipelineBuildConfigs | hashSize) && !(overview.filteredPipelineBuildConfigs | hashSize)">
                 <div class="empty-state-message text-center h2">
-                  All pipelines are filtered.
+                  所有管道将被过滤
                   <button type="button" class="btn btn-link inline-btn-link" ng-click="overview.clearFilter()">清除所有过滤器</button>
                 </div>
               </div>

@@ -96,7 +96,7 @@
         onShow: showDeleteForm
       }, {
         id: 'results',
-        label: 'Results',
+        label: '结果',
         view: 'views/directives/bind-service/delete-binding-result.html',
         onShow: showResults
       }];

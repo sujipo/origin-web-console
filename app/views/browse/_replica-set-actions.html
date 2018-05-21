@@ -18,10 +18,10 @@
     <li ng-if="!autoscalers.length && ({ group: 'autoscaling', resource: 'horizontalpodautoscalers' } | canI : 'create')">
       <a ng-href="project/{{projectName}}/edit/autoscaler?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions"
          ng-if="!deployment"
-         role="button">添加 Autoscaler</a>
+         role="button">添加自动伸缩控制器</a>
       <a ng-href="project/{{projectName}}/edit/autoscaler?kind=Deployment&name={{deployment.metadata.name}}&group=extensions"
          ng-if="deployment"
-         role="button">添加 Autoscaler</a>
+         role="button">添加自动伸缩控制器</a>
     </li>
     <li ng-if="deployment && ({ group: 'apps', resource: 'deployments' } | canI : 'update')">
       <a ng-href="project/{{projectName}}/set-limits?kind=Deployment&name={{deployment.metadata.name}}&group=extensions"

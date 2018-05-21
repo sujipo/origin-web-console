@@ -19,10 +19,10 @@
       <!-- Create a new HPA. -->
       <a ng-href="project/{{projectName}}/edit/autoscaler?kind=ReplicationController&name={{replicaSet.metadata.name}}"
          ng-if="!deploymentConfigName"
-         role="button">添加 Autoscaler</a>
+         role="button">添加自动伸缩控制器</a>
       <a ng-href="project/{{projectName}}/edit/autoscaler?kind=DeploymentConfig&name={{deploymentConfigName}}"
          ng-if="deploymentConfigName"
-         role="button">添加 Autoscaler</a>
+         role="button">添加自动伸缩控制器</a>
     </li>
     <li ng-if="deploymentConfigName && ('deploymentconfigs' | canI : 'update')">
       <a ng-href="project/{{projectName}}/set-limits?kind=DeploymentConfig&name={{deploymentConfigName}}"

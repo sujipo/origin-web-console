@@ -48,12 +48,12 @@
               <li ng-if="!autoscalers.length && (horizontalPodAutoscalersVersion | canI : 'create')">
                 <!-- Create a new HPA. -->
                 <a ng-href="project/{{projectName}}/edit/autoscaler?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}"
-                   role="button">添加自动分配</a>
+                   role="button">添加自动伸缩控制器</a>
               </li>
               <li ng-if="autoscalers.length === 1 && (horizontalPodAutoscalersVersion | canI : 'update')">
                 <!-- Edit an existing HPA. -->
                 <a ng-href="project/{{projectName}}/edit/autoscaler?kind=HorizontalPodAutoscaler&group=autoscaling&name={{autoscalers[0].metadata.name}}"
-                  role="button">修改自动分配</a>
+                  role="button">修改自动伸缩控制器</a>
               </li>
               <li ng-if="deploymentConfigsVersion | canI : 'update'">
                 <a ng-href="project/{{projectName}}/set-limits?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}"
@@ -284,7 +284,7 @@
 
                   <!-- Autoscaling -->
                   <div class="col-lg-6">
-                    <h3>自动分配</h3>
+                    <h3>自动伸缩控制器</h3>
 
                     <!-- Show any warnings. -->
                     <div ng-repeat="warning in hpaWarnings" class="alert alert-warning">
@@ -302,8 +302,8 @@
                     <!-- Create autoscaler -->
                     <div ng-if="!autoscalers.length">
                       <a ng-if="horizontalPodAutoscalersVersion | canI : 'create'" ng-href="project/{{projectName}}/edit/autoscaler?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}"
-                         role="button">添加自动分配</a>
-                      <span ng-if="!(horizontalPodAutoscalersVersion | canI : 'create')">自动分配没有启用。部署配置没有自动分配设置。</span>
+                         role="button">添加自动伸缩控制器</a>
+                      <span ng-if="!(horizontalPodAutoscalersVersion | canI : 'create')">自动自动伸缩控制器没有启用。部署配置没有自动伸缩控制器的设置。</span>
                     </div>
 
                     <!-- HPA details -->
