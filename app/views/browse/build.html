@@ -109,11 +109,11 @@
                   is-readonly
                   show-header
                   class="mar-bottom-xl block"></key-value-editor>
-                <p ng-if="!(build | buildStrategy).env"><em>The build strategy had no environment variables defined.</em></p>
+                <p ng-if="!(build | buildStrategy).env"><em>构建策略没有定义环境变量。</em></p>
               </uib-tab>
 
               <uib-tab active="selectedTab.logs" ng-if="!(build | isJenkinsPipelineStrategy) && (buildsLogVersion | canI : 'get')">
-                <uib-tab-heading>Logs</uib-tab-heading>
+                <uib-tab-heading>日志</uib-tab-heading>
                 <log-viewer
                   ng-if="selectedTab.logs"
                   follow-affix-top="390"
@@ -123,21 +123,21 @@
                   empty="logEmpty"
                   run="logCanRun">
 
-                  <label>Status:</label>
+                  <label>状态：</label>
                   <status-icon status="build.status.phase"></status-icon>
                   <span class="space-after">{{build.status.phase}}</span>
 
                   <div ng-if="build.status.startTimestamp && !logEmpty" class="log-timestamps">
-                    Log from {{build.status.startTimestamp  | date : 'medium'}}
+                    日志从 {{build.status.startTimestamp  | date : 'medium'}}
                     <span ng-if="build.status.completionTimestamp">
-                      to {{build.status.completionTimestamp  | date : 'medium'}}
+                      到 {{build.status.completionTimestamp  | date : 'medium'}}
                     </span>
                   </div>
 
                 </log-viewer>
               </uib-tab>
               <uib-tab active="selectedTab.events" ng-if="(eventsVersion | canI : 'watch')">
-                <uib-tab-heading>Events</uib-tab-heading>
+                <uib-tab-heading>事件</uib-tab-heading>
                 <events api-objects="eventObjects" project-context="projectContext" ng-if="selectedTab.events"></events>
               </uib-tab>
             </uib-tabset>

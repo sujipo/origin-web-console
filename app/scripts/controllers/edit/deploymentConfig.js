@@ -75,7 +75,7 @@ angular.module('openshiftConsole')
       case "Custom":
         return "customParams";
       default:
-        Logger.error('Unknown deployment strategy type: ' + strategyType);
+        Logger.error('未知的部署策略类型: ' + strategyType);
         return;
       }
     };
@@ -87,8 +87,8 @@ angular.module('openshiftConsole')
         $scope.context = context;
 
         if (!AuthorizationService.canI('deploymentconfigs', 'update', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to update deployment config ' +
-                               $routeParams.deploymentconfig + '.', 'access_denied');
+          Navigate.toErrorPage('您没有权限更新部署配置 ' +
+                               $routeParams.deploymentconfig + '。', 'access_denied');
           return;
         }
 
@@ -164,7 +164,7 @@ angular.module('openshiftConsole')
                 return;
               }
 
-              displayError('Could not load config maps', getErrorDetails(e));
+              displayError('不能加载配置映射', getErrorDetails(e));
             });
 
             DataService.list(secretsVersion, context, null, { errorNotification: false }).then(function(secretData) {
@@ -190,13 +190,13 @@ angular.module('openshiftConsole')
               if (action === 'MODIFIED') {
                 $scope.alerts["updated/deleted"] = {
                   type: "warning",
-                  message: "This deployment configuration has changed since you started editing it. You'll need to copy any changes you've made and edit again."
+                  message: "自从您开始编辑这个配置以来，这个配置已经发生了变化。您需要复制您所做的更改并重新编辑。"
                 };
               }
               if (action === "DELETED") {
                 $scope.alerts["updated/deleted"] = {
                   type: "warning",
-                  message: "This deployment configuration has been deleted."
+                  message: "此部署配置已被删除。"
                 };
                 $scope.disableInputs = true;
               }
@@ -209,7 +209,7 @@ angular.module('openshiftConsole')
             $scope.loaded = true;
             $scope.alerts["load"] = {
               type: "error",
-              message: "The deployment configuration details could not be loaded.",
+              message: "无法加载部署配置细节。",
               details: $filter('getErrorDetails')(e)
             };
           }
@@ -233,11 +233,11 @@ angular.module('openshiftConsole')
           modalConfig: function() {
             return {
               alerts: $scope.alerts,
-              title: "Keep some existing " + $scope.originalStrategy.toLowerCase() + " strategy parameters?",
+              title: "保持现有的一些 " + $scope.originalStrategy.toLowerCase() + " 策略参数?",
               details: "The timeout parameter and any pre or post lifecycle hooks will be copied from " + $scope.originalStrategy.toLowerCase() + " strategy to " + $scope.strategyData.type.toLowerCase() + " strategy. After saving the changes, " + $scope.originalStrategy.toLowerCase() + " strategy parameters will be removed.",
-              okButtonText: "Yes",
+              okButtonText: "是",
               okButtonClass: "btn-primary",
-              cancelButtonText: "No"
+              cancelButtonText: "否"
             };
           }
         }
@@ -376,7 +376,7 @@ angular.module('openshiftConsole')
         function() {
           NotificationsService.addNotification({
             type: "success",
-            message: "Deployment config " + $scope.updatedDeploymentConfig.metadata.name + " was successfully updated."
+            message: "部署配置 " + $scope.updatedDeploymentConfig.metadata.name + " 已成功更新。"
           });
           var returnURL = Navigate.resourceURL($scope.updatedDeploymentConfig);
           $location.url(returnURL);
@@ -386,7 +386,7 @@ angular.module('openshiftConsole')
           NotificationsService.addNotification({
             id: "edit-deployment-config-error",
             type: "error",
-            message: "An error occurred updating deployment config " + $scope.updatedDeploymentConfig.metadata.name + ".",
+            message: "更新部署配置时出错 " + $scope.updatedDeploymentConfig.metadata.name + "。",
             details: $filter('getErrorDetails')(result)
           });
         }

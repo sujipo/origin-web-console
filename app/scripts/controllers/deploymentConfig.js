@@ -90,7 +90,7 @@ angular.module('openshiftConsole')
               if (action === "DELETED") {
                 $scope.alerts["deleted"] = {
                   type: "warning",
-                  message: "This deployment configuration has been deleted."
+                  message: "此部署配置已被删除。"
                 };
               }
               $scope.deploymentConfig = deploymentConfig;
@@ -104,15 +104,15 @@ angular.module('openshiftConsole')
             $scope.loaded = true;
             $scope.alerts["load"] = {
               type: "error",
-              message: e.status === 404 ? "This deployment configuration can not be found, it may have been deleted." : "The deployment configuration details could not be loaded.",
-              details: e.status === 404 ? "Any remaining deployment history for this deployment will be shown." : $filter('getErrorDetails')(e)
+              message: e.status === 404 ? "无法找到此部署配置，它可能已被删除。" : "无法加载部署配置细节。",
+              details: e.status === 404 ? "将显示此部署的任何剩余部署历史。" : $filter('getErrorDetails')(e)
             };
           }
         );
 
         watches.push(DataService.watch(replicationControllersVersion, context, function(deployments, action, deployment) {
           var deploymentConfigName = $routeParams.deploymentconfig;
-          $scope.emptyMessage = "No deployments to show";
+          $scope.emptyMessage = "没有部署说明";
           if (!action) {
             var deploymentsByDeploymentConfig = DeploymentsService.associateDeploymentsToDeploymentConfig(deployments.by("metadata.name"));
             $scope.unfilteredDeployments = deploymentsByDeploymentConfig[$routeParams.deploymentconfig] || {};

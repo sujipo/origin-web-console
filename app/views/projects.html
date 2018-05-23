@@ -112,7 +112,7 @@
                               </h2>
                               <small class="project-date">
                                 <span ng-if="project | displayName : true"><span ng-bind-html="project.metadata.name | highlightKeywords : keywords"></span> &ndash;</span>
-                                已创建
+                                创建于
                                 <span ng-if="project | annotation : 'openshift.io/requester'">被 <span ng-bind-html="project | annotation : 'openshift.io/requester' | highlightKeywords : keywords"></span></span>
                                 <span am-time-ago="project.metadata.creationTimestamp"></span>
                               </small>

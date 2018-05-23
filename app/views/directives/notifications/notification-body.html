@@ -7,7 +7,7 @@
     type="button"
     ng-if="!notification.actions.length"
     ng-click="$ctrl.customScope.clear(notification, $index, notificationGroup)">
-    <span class="sr-only">Clear notification</span>
+    <span class="sr-only">清除通知</span>
     <span aria-hidden="true" class="pficon pficon-close"></span>
   </button>
   <div
@@ -88,7 +88,7 @@
             <span ng-if="!$last" class="toast-action-divider">|</span>
           </span>
         </span>
-        <span class="sr-only">Message Unread. </span>
+        <span class="sr-only">未读消息。 </span>
         <a
           ng-if="notification.unread"
           href=""
@@ -100,7 +100,7 @@
       <div
         ng-if="notification.event.count > 1"
         class="text-muted small">
-        {{notification.event.count}} times in the last
+        {{notification.event.count}} 次已发生
         <duration-until-now
           timestamp="notification.event.firstTimestamp"
           omit-single="true"

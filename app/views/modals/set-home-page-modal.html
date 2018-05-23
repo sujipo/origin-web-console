@@ -26,7 +26,7 @@
         <div class="radio" ng-show="availableProjects.length >= 1">
           <label>
             <input type="radio" ng-model="homePagePreference" value="project-overview">
-            Overview Page for{{availableProjects.length === 1 ? ' ' + (selectedProject | displayName) : ':'}}
+            概述页面{{availableProjects.length === 1 ? ' ' + (selectedProject | displayName) : ':'}}
           </label>
           <div class="select-project-container" ng-if="availableProjects.length > 1">
             <select-project is-required="homePagePreference === 'project-overview'"

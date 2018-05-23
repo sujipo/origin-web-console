@@ -45,7 +45,7 @@ angular.module('openshiftConsole')
     ];
     $scope.terminalDisconnectAlert["disconnect"] = {
       type: "warning",
-      message: "This terminal has been disconnected. If you reconnect, your terminal history will be lost."
+      message: "此终端已断开连接。如果您重新连接，您的终端历史将丢失。"
     };
 
     $scope.noContainersYet = true;
@@ -177,7 +177,7 @@ angular.module('openshiftConsole')
     $scope.$watch('selectedTab.terminal', function(terminalTabSelected) {
       if (terminalTabSelected) {
         if (!characterBoundingBox.height || !characterBoundingBox.width) {
-          Logger.warn("Unable to calculate the bounding box for a character.  Terminal will not be able to resize.");
+          Logger.warn("无法计算字符的边界框。终端将无法调整大小。");
         } else {
           addTerminalResizeListeners();
         }
@@ -303,7 +303,7 @@ angular.module('openshiftConsole')
             $scope.loaded = true;
             $scope.alerts["load"] = {
               type: "error",
-              message: "The pod details could not be loaded.",
+              message: "该 pod 细节无法加载。",
               details: $filter('getErrorDetails')(e)
             };
           });
@@ -348,7 +348,7 @@ angular.module('openshiftConsole')
               function(result) {
                 $scope.alerts['debug-container-error'] = {
                   type: "error",
-                  message: "Could not delete pod " + debugPod.metadata.name,
+                  message: "不能删除该 pod " + debugPod.metadata.name,
                   details: $filter('getErrorDetails')(result)
                 };
               });
@@ -376,7 +376,7 @@ angular.module('openshiftConsole')
           if (!debugPod) {
             $scope.alerts['debug-container-error'] = {
               type: "error",
-              message: "Could not debug container " + containerName
+              message: "不能调试容器 " + containerName
             };
             return;
           }
@@ -388,7 +388,7 @@ angular.module('openshiftConsole')
 
               // Warn users when navigating away with the debug pod open. (Removed in `cleanUpDebugPod`.)
               $(window).on('beforeunload.debugPod', function() {
-                return "Are you sure you want to leave with the debug terminal open? The debug pod will not be deleted unless you close the dialog.";
+                return "您确定要打开调试终端吗?除非关闭对话框，否则不会删除调试pod。";
               });
 
               // Watch the pod so we know when it's running to connect.
@@ -423,7 +423,7 @@ angular.module('openshiftConsole')
             function(result) {
               $scope.alerts['debug-container-error'] = {
                 type: "error",
-                message: "Could not debug container " + containerName,
+                message: "不能调试容器 " + containerName,
                 details: $filter('getErrorDetails')(result)
               };
             });
