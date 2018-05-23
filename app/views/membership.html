@@ -14,7 +14,7 @@
            成员
            <span class="page-header-link">
              <a ng-href="{{'roles' | helpLink}}" target="_blank">
-               Learn More <i class="fa fa-external-link" aria-hidden="true"></i>
+               了解更多 <i class="fa fa-external-link" aria-hidden="true"></i>
              </a>
            </span>
         </h1>
@@ -44,7 +44,7 @@
                 target="_blank"
                 ng-href="{{subjectKind.helpLinkKey | helpLink}}"
                 class="learn-more-inline">
-                Learn More <i class="fa fa-external-link" aria-hidden="true"></i>
+                了解更多 <i class="fa fa-external-link" aria-hidden="true"></i>
               </a>
             </p>
           </div>
@@ -117,7 +117,7 @@
                       title="Select a new role for {{subject.name}}"
                       class="select-role">
                       <ui-select-match
-                        placeholder="Select a role">
+                        placeholder="选择角色">
                         <span ng-bind="subject.newRole.metadata.name"></span>
                       </ui-select-match>
                       <ui-select-choices
@@ -136,7 +136,7 @@
                       ng-disabled="disableAddForm || (!subject.newRole)"
                       ng-click="addRoleTo(subject.name, subjectKind.name, subject.newRole, subject.namespace)"
                       class="btn btn-default add-role-to">
-                      Add
+                      添加
                     </button>
                   </div>
                 </div>
@@ -231,7 +231,7 @@
                         title="new {{subjectKind.name}} role"
                         class="select-role">
                         <ui-select-match
-                          placeholder="Select a role">
+                          placeholder="选择角色">
                           <span ng-bind="newBinding.newRole.metadata.name"></span>
                         </ui-select-match>
                         <ui-select-choices
@@ -250,7 +250,7 @@
                         ng-disabled="disableAddForm || (!newBinding.name) || (!newBinding.newRole)"
                         ng-click="addRoleTo(newBinding.name, newBinding.kind, newBinding.newRole, newBinding.namespace)"
                         class="btn btn-default add-role-to">
-                        Add
+                        添加
                       </button>
                     </div>
                   </div>
@@ -268,11 +268,11 @@
                     class="toggle-hidden"
                     ng-click="toggleRoles($event)"
                     ng-checked="toggle.roles">
-                  Show hidden roles</label>&nbsp;<a href=""
+                  显示隐藏角色</label>&nbsp;<a href=""
                                                     class="action-inline"
                                                     data-toggle="popover"
                                                     data-trigger="hover focus"
-                                                    data-content="System roles are hidden by default and do not typically need to be managed."><i class="pficon pficon-help"></i></a>
+                                                    data-content="默认情况下隐藏通常不需要管理的系统角色。"><i class="pficon pficon-help"></i></a>
               </div>
             </div>
           </div>

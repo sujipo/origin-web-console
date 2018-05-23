@@ -225,14 +225,14 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
 
 
   $templateCache.put('views/_parse-error.html',
-    "<div ng-show=\"error && !hidden\" class=\"alert alert-danger animate-show\">\n" +
-    "<button ng-click=\"hidden = true\" type=\"button\" class=\"close\" aria-hidden=\"true\">\n" +
-    "<span class=\"pficon pficon-close\"></span>\n" +
-    "</button>\n" +
-    "<span class=\"pficon pficon-error-circle-o\"></span>\n" +
-    "<strong>Failed to process the resource.</strong>\n" +
-    "<div class=\"pre-wrap\" ng-if=\"error.message\">{{error.message}}</div>\n" +
-    "</div>"
+  "<div ng-show=\"error && !hidden\" class=\"alert alert-danger animate-show\">\n" +
+  "<button ng-click=\"hidden = true\" type=\"button\" class=\"close\" aria-hidden=\"true\">\n" +
+  "<span class=\"pficon pficon-close\"></span>\n" +
+  "</button>\n" +
+  "<span class=\"pficon pficon-error-circle-o\"></span>\n" +
+  "<strong>Failed to process the resource.</strong>\n" +
+  "<div class=\"pre-wrap\" ng-if=\"error.message\">{{error.message}}</div>\n" +
+  "</div>"
   );
 
 
@@ -5448,7 +5448,8 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"row form-row-has-controls\" ng-repeat=\"arg in input.args\" as-sortable-item>\n" +
     "<div class=\"form-group col-xs-12\">\n" +
     "<input type=\"text\" ng-model=\"arg.value\" ng-if=\"!arg.multiline\" required class=\"form-control\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\n" +
-    "<textarea ng-model=\"arg.value\" ng-if=\"arg.multiline\" rows=\"5\" required class=\"form-control\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\n" +
+    "<textarea ng-model=\"arg.value\" ng-if=\"arg.multiline\" rows=\"5\" required class=\"form-control\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\r" +
+    "\n" +
     "        </textarea>\n" +
     "</div>\n" +
     "<div class=\"form-row-controls\">\n" +
@@ -5478,7 +5479,8 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</span>\n" +
     "\n" +
     "<span ng-show=\"multiline\">\n" +
-    "<textarea ng-model=\"nextArg\" name=\"nextArg\" rows=\"10\" ng-attr-id=\"{{id}}-add-arg\" ng-attr-placeholder=\"{{placeholder || 'Add argument'}}\" class=\"form-control\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\n" +
+    "<textarea ng-model=\"nextArg\" name=\"nextArg\" rows=\"10\" ng-attr-id=\"{{id}}-add-arg\" ng-attr-placeholder=\"{{placeholder || 'Add argument'}}\" class=\"form-control\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\r" +
+    "\n" +
     "      </textarea>\n" +
     "<div class=\"mar-top-md\">\n" +
     "<a class=\"btn btn-default\" href=\"\" ng-click=\"addArg()\" ng-disabled=\"!nextArg\" ng-attr-aria-disabled=\"!nextArg\" role=\"button\">Add</a>\n" +
@@ -10708,13 +10710,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"page-header page-header-bleed-right page-header-bleed-left\">\n" +
     "<h1>\n" +
     "<a class=\"pull-right btn btn-default\" href=\"\" ng-if=\"canUpdateRolebindings\" ng-click=\"toggleEditMode()\">\n" +
-    "<span ng-if=\"!(mode.edit)\">Edit Membership</span>\n" +
-    "<span ng-if=\"mode.edit\">Done Editing</span>\n" +
+    "<span ng-if=\"!(mode.edit)\">编辑成员</span>\n" +
+    "<span ng-if=\"mode.edit\">完成编辑</span>\n" +
     "</a>\n" +
-    "Membership\n" +
+    "成员\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'roles' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "查看更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -10725,7 +10727,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
     "<div ng-if=\"!(roleBindingsVersion | canI : 'list')\">\n" +
-    "<p>You do not have permission to view roles in this project.</p>\n" +
+    "<p>您没有权限查看此项目中的角色。</p>\n" +
     "</div>\n" +
     "<uib-tabset ng-if=\"roleBindingsVersion | canI : 'list'\">\n" +
     "<uib-tab ng-repeat=\"subjectKind in subjectKindsForUI | orderBy: 'sortOrder'\" active=\"selectedTab[subjectKind.name]\" select=\"selectTab(subjectKind.name)\">\n" +
@@ -10743,11 +10745,11 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"content-pane\" ng-class=\"'content-' + subjectKind.name.toLowerCase()\">\n" +
     "<div class=\"col-heading\">\n" +
     "<div class=\"col-name\">\n" +
-    "<h3>Name</h3>\n" +
+    "<h3>名称</h3>\n" +
     "</div>\n" +
     "<div class=\"action-set\">\n" +
     "<div class=\"col-roles\">\n" +
-    "<h3>Roles</h3>\n" +
+    "<h3>角色</h3>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -12252,13 +12254,17 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<li ng-if=\"row.deploymentConfigsVersion | canI : 'update'\" role=\"menuitem\">\n" +
     "<a ng-href=\"{{row.apiObject | editResourceURL}}\">Edit</a>\n" +
     "</li>\n" +
-    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\n" +
-    "                      && row.state.bindableServiceInstances.length\n" +
+    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\r" +
+    "\n" +
+    "                      && row.state.bindableServiceInstances.length\r" +
+    "\n" +
     "                      && (row.serviceBindingsVersion | canI : 'create')\" role=\"menuitem\">\n" +
     "<a href=\"\" ng-click=\"row.showOverlayPanel('bindService', {target: row.apiObject})\">Create Binding</a>\n" +
     "</li>\n" +
-    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\n" +
-    "                      && row.state.deleteableBindingsByApplicationUID[row.apiObject.metadata.uid].length\n" +
+    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\r" +
+    "\n" +
+    "                      && row.state.deleteableBindingsByApplicationUID[row.apiObject.metadata.uid].length\r" +
+    "\n" +
     "                      && (row.serviceBindingsVersion | canI : 'delete')\" role=\"menuitem\">\n" +
     "<a href=\"\" ng-click=\"row.showOverlayPanel('unbindService', {target: row.apiObject})\">Delete Binding</a>\n" +
     "</li>\n" +
@@ -12292,13 +12298,17 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<li role=\"menuitem\" ng-if=\"row.rgv | canI : 'update'\">\n" +
     "<a ng-href=\"{{row.apiObject | editYamlURL}}\">Edit YAML</a>\n" +
     "</li>\n" +
-    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\n" +
-    "                      && row.state.bindableServiceInstances.length\n" +
+    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\r" +
+    "\n" +
+    "                      && row.state.bindableServiceInstances.length\r" +
+    "\n" +
     "                      && (row.serviceBindingsVersion | canI : 'create')\" role=\"menuitem\">\n" +
     "<a href=\"\" ng-click=\"row.showOverlayPanel('bindService', {target: row.apiObject})\">Create Binding</a>\n" +
     "</li>\n" +
-    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\n" +
-    "                      && row.state.deleteableBindingsByApplicationUID[row.apiObject.metadata.uid].length\n" +
+    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\r" +
+    "\n" +
+    "                      && row.state.deleteableBindingsByApplicationUID[row.apiObject.metadata.uid].length\r" +
+    "\n" +
     "                      && (row.serviceBindingsVersion | canI : 'delete')\" role=\"menuitem\">\n" +
     "<a href=\"\" ng-click=\"row.showOverlayPanel('unbindService', {target: row.apiObject})\">Delete Binding</a>\n" +
     "</li>\n" +
@@ -12457,24 +12467,34 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"list-pf-content\">\n" +
     "<alerts alerts=\"row.notifications\"></alerts>\n" +
     "<div ng-if=\"row.current\">\n" +
-    "<div class=\"row-expanded-top\" ng-class=\"{\n" +
-    "        'metrics-active': row.state.showMetrics,\n" +
-    "        'metrics-not-active': !row.state.showMetrics\n" +
+    "<div class=\"row-expanded-top\" ng-class=\"{\r" +
+    "\n" +
+    "        'metrics-active': row.state.showMetrics,\r" +
+    "\n" +
+    "        'metrics-not-active': !row.state.showMetrics\r" +
+    "\n" +
     "      }\">\n" +
-    "<div ng-if=\"row.state.breakpoint !== 'xxs' && row.state.breakpoint !== 'xs'\" class=\"overview-pod-template\" ng-class=\"{\n" +
-    "          'ng-enter': row.previous,\n" +
-    "          'hidden-sm hidden-md': row.previous\n" +
+    "<div ng-if=\"row.state.breakpoint !== 'xxs' && row.state.breakpoint !== 'xs'\" class=\"overview-pod-template\" ng-class=\"{\r" +
+    "\n" +
+    "          'ng-enter': row.previous,\r" +
+    "\n" +
+    "          'hidden-sm hidden-md': row.previous\r" +
+    "\n" +
     "        }\">\n" +
     "<h4 class=\"component-label section-label\">Containers</h4>\n" +
     "<pod-template pod-template=\"row.current | podTemplate\" images-by-docker-reference=\"row.state.imagesByDockerReference\" builds=\"row.state.builds\" class=\"hide-ng-leave\">\n" +
     "</pod-template>\n" +
     "<init-containers-summary api-object=\"row.apiObject\"></init-containers-summary>\n" +
     "</div>\n" +
-    "<div class=\"overview-animation-block\" ng-class=\"{\n" +
-    "        'animation-in-progress': row.previous\n" +
+    "<div class=\"overview-animation-block\" ng-class=\"{\r" +
+    "\n" +
+    "        'animation-in-progress': row.previous\r" +
+    "\n" +
     "      }\">\n" +
-    "<div ng-if=\"row.state.showMetrics && !row.previous\" class=\"overview-metrics\" ng-class=\"{\n" +
-    "          'ng-enter': row.previous\n" +
+    "<div ng-if=\"row.state.showMetrics && !row.previous\" class=\"overview-metrics\" ng-class=\"{\r" +
+    "\n" +
+    "          'ng-enter': row.previous\r" +
+    "\n" +
     "        }\">\n" +
     "<div ng-if=\"row.apiObject.kind === 'Pod'\">\n" +
     "<deployment-metrics pods=\"[row.apiObject]\" containers=\"row.apiObject.spec.containers\" profile=\"compact\" alerts=\"row.state.alerts\" class=\"overview-metrics\">\n" +
@@ -12487,9 +12507,12 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<h4 class=\"h5\">Average Usage <small>Last 15 Minutes</small></h4>\n" +
     "</div>\n" +
     "</div>\n" +
-    "<div class=\"overview-deployment-donut\" ng-class=\"{\n" +
-    "            'ng-enter': row.previous,\n" +
-    "            'stacked-template': row.state.breakpoint !== 'lg'\n" +
+    "<div class=\"overview-deployment-donut\" ng-class=\"{\r" +
+    "\n" +
+    "            'ng-enter': row.previous,\r" +
+    "\n" +
+    "            'stacked-template': row.state.breakpoint !== 'lg'\r" +
+    "\n" +
     "        }\">\n" +
     "<div ng-if=\"row.previous\" class=\"previous-donut\">\n" +
     "<deployment-donut rc=\"row.previous\" deployment-config=\"row.apiObject\" pods=\"row.getPods(row.previous)\" hpa=\"row.hpa\" limit-ranges=\"row.state.limitRanges\" project=\"row.state.project\" quotas=\"row.state.quotas\" cluster-quotas=\"row.state.clusterQuotas\" scalable=\"false\">\n" +
@@ -12867,8 +12890,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"list-pf-details\" ng-if=\"!row.expanded\">\n" +
-    "<span ng-if=\"!row.bindings.length\n" +
-    "                    && row.isBindable\n" +
+    "<span ng-if=\"!row.bindings.length\r" +
+    "\n" +
+    "                    && row.isBindable\r" +
+    "\n" +
     "                    && (row.serviceBindingsVersion | canI : 'create')\" class=\"hidden-xs hidden-sm\">\n" +
     "<a href=\"\" ng-click=\"row.showOverlayPanel('bindService', {target: row.apiObject})\">\n" +
     "<span class=\"pficon pficon-add-circle-o\" aria-hidden=\"true\"></span>\n" +
@@ -13364,7 +13389,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span ng-if=\"clusterQuotas.length\">集群 </span>配额\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'quota' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "查看更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +

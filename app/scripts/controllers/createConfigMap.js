@@ -24,11 +24,11 @@ angular.module('openshiftConsole')
     // TODO: Update BreadcrumbsService to handle create pages.
     $scope.breadcrumbs = [
       {
-         title: "Config Maps",
+         title: "配置映射",
          link: "project/" + $scope.projectName + "/browse/config-maps"
       },
       {
-        title: "Create Config Map"
+        title: "创建配置映射"
       }
     ];
 
@@ -48,7 +48,7 @@ angular.module('openshiftConsole')
         $scope.project = project;
 
         if (!AuthorizationService.canI('configmaps', 'create', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to create config maps in project ' + $routeParams.project + '.', 'access_denied');
+          Navigate.toErrorPage('您没有权限在 ' + $routeParams.project + '.', '项目中创建配置映射。');
           return;
         }
 
@@ -70,7 +70,7 @@ angular.module('openshiftConsole')
               .then(function() { // Success
                 NotificationsService.addNotification({
                   type: "success",
-                  message: "Config map " + $scope.configMap.metadata.name + " successfully created."
+                  message: "配置映射 " + $scope.configMap.metadata.name + " 创建成功。"
                 });
                 // Return to the previous page.
                 navigateBack();
@@ -79,7 +79,7 @@ angular.module('openshiftConsole')
                 NotificationsService.addNotification({
                   id: "create-config-map-error",
                   type: "error",
-                  message: "An error occurred creating the config map.",
+                  message: "创建配置映射时出错。",
                   details: $filter('getErrorDetails')(result)
                 });
               });

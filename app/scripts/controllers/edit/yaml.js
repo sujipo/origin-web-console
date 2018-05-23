@@ -58,7 +58,7 @@ angular.module('openshiftConsole')
         };
 
         if (!AuthorizationService.canI(resourceGroupVersion, 'update', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to update ' +
+          Navigate.toErrorPage('您没有权限更新 ' +
                                humanizeKind($routeParams.kind) + ' ' + $routeParams.name + '.', 'access_denied');
           return;
         }
@@ -94,7 +94,7 @@ angular.module('openshiftConsole')
               $scope.modified = false;
               if (updated.kind !== original.kind) {
                 $scope.error = {
-                  message: 'Cannot change resource kind (original: ' + original.kind + ', modified: ' + (updated.kind || '<unspecified>') + ').'
+                  message: '无法更改资源类型 (修改前： ' + original.kind + '，修改后： ' + (updated.kind || '<unspecified>') + ')。'
                 };
                 return;
               }
@@ -106,7 +106,7 @@ angular.module('openshiftConsole')
                 return;
               }
               if (updatedGroupVersion.group !== groupVersion.group) {
-                $scope.error = { message: 'Cannot change resource group (original: ' + (groupVersion.group || '<none>') + ', modified: ' + (updatedGroupVersion.group || '<none>') + ').' };
+                $scope.error = { message: '无法更改资源组 (修改前： ' + (groupVersion.group || '<none>') + '，修改后： ' + (updatedGroupVersion.group || '<none>') + ')。' };
                 return;
               }
               if (!APIService.apiInfo(updatedGroupVersion)) {
@@ -125,15 +125,15 @@ angular.module('openshiftConsole')
                   if (newResourceVersion === editedResourceVersion) {
                     $scope.alerts['no-changes-applied'] = {
                       type: "warning",
-                      message: "No changes were applied to " + humanizeKind($routeParams.kind) + " " + $routeParams.name + ".",
-                      details: "Make sure any new fields you may have added are supported API fields."
+                      message:  humanizeKind($routeParams.kind) + " " + $routeParams.name + "没有任何变化。",
+                      details: "确保您添加的任何新字段都是受支持的API字段。"
                     };
                     $scope.updatingNow = false;
                     return;
                   }
                   NotificationsService.addNotification({
                       type: "success",
-                      message: humanizeKind($routeParams.kind, true) + " " + $routeParams.name + " was successfully updated."
+                      message: humanizeKind($routeParams.kind, true) + " " + $routeParams.name + " 已成功更新。"
                   });
                   navigateBack();
                 },
@@ -161,7 +161,7 @@ angular.module('openshiftConsole')
           },
           // GET failure
           function(e) {
-            Navigate.toErrorPage("Could not load " + humanizeKind($routeParams.kind) + " '" + $routeParams.name + "'. " + $filter('getErrorDetails')(e));
+            Navigate.toErrorPage("无法加载 " + humanizeKind($routeParams.kind) + " '" + $routeParams.name + "'. " + $filter('getErrorDetails')(e));
           });
 
           $scope.$on('$destroy', function(){

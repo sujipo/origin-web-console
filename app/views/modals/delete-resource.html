@@ -5,11 +5,11 @@
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" ng-click="cancel()">
         <span class="pficon pficon-close"></span>
       </button>
-      <h1 class="modal-title">Confirm Delete</h1>
+      <h1 class="modal-title">确认删除</h1>
     </div>
     <div class="modal-body">
-      <p>Are you sure you want to delete the {{typeDisplayName || (kind | humanizeKind)}}
-        '<strong>{{displayName ? displayName : resourceName}}</strong>'?</p>
+      <p>您确定要删除 {{typeDisplayName || (kind | humanizeKind)}}
+        '<strong>{{displayName ? displayName : resourceName}}</strong>'吗？</p>
 
       <p>
         <span ng-if="kind === 'DeploymentConfig'">
@@ -33,7 +33,7 @@
           project {{displayName ? displayName : resourceName}}.
         </span>
 
-        <strong>It cannot be undone.</strong> Make sure this is something you really want to do!
+        <strong>此操作无法撤销！</strong> 请确定您是否要删除！
       </p>
 
       <div ng-show="typeNameToConfirm">
@@ -93,8 +93,8 @@
 
     </div>
     <div class="modal-footer">
-      <button class="btn btn-default" type="button" ng-click="cancel();">Cancel</button>
-      <button ng-disabled="typeNameToConfirm && confirmName !== resourceName && confirmName !== displayName" class="btn btn-danger" type="submit" ng-click="delete();">Delete</button>
+      <button class="btn btn-default" type="button" ng-click="cancel();">取消</button>
+      <button ng-disabled="typeNameToConfirm && confirmName !== resourceName && confirmName !== displayName" class="btn btn-danger" type="submit" ng-click="delete();">删除</button>
     </div>
   </form>
 </div>

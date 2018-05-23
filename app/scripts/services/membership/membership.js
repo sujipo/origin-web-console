@@ -54,7 +54,7 @@ angular
          "ServiceAccount":{
             "kind":"ServiceAccount",
             "sortOrder":3,
-            "description":"Service accounts provide a flexible way to control API access without sharing a regular user’s credentials.",
+            "description":"服务帐户提供了一种灵活的方式来控制API访问而不共享普通用户的凭证。",
             "helpLinkKey":"service_accounts",
             "name":"ServiceAccount",
             "subjects":{
