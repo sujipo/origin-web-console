@@ -31,7 +31,7 @@
             <span ng-switch-when="Failed">失败</span>
             <span ng-switch-when="Error">遇到一个错误</span>
             <span ng-switch-when="Cancelled">被取消了</span>
-            <span ng-switch-default>is {{build.status.phase | lowercase}}</span>
+            <span ng-switch-default>状态为 {{build.status.phase | lowercase}}</span>
           </span>
           <ellipsis-pulser ng-if="build | isIncompleteBuild" color="dark" size="sm" display="inline" msg=""></ellipsis-pulser>
           <small class="text-muted mar-left-md">创建于 <span am-time-ago="build.metadata.creationTimestamp"></span></small>
