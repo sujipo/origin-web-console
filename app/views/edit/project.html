@@ -2,13 +2,22 @@
   <div class="middle-content">
     <div class="container gutter-top">
       <div class="col-md-12">
+<<<<<<< HEAD
         <h1 style="margin-bottom: 5px;">修改项目 {{project.metadata.name}}</h1>
         <div class="help-block mar-bottom-lg">更新项目的显示名称和描述。无法修改项目的惟一名称。</div>
+=======
+        <h1 style="margin-bottom: 5px;">Edit Project {{project.metadata.name}}</h1>
+        <div class="help-block mar-bottom-lg">Update the display name and description of your project. The project's unique name cannot be modified.</div>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         <alerts alerts="alerts"></alerts>
         <form name="editProjectForm">
           <fieldset ng-disabled="disableInputs">
             <div class="form-group">
+<<<<<<< HEAD
               <label for="displayName">显示名称</label>
+=======
+              <label for="displayName">Display Name</label>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <input class="form-control input-lg"
                   name="displayName"
                   id="displayName"
@@ -18,7 +27,11 @@
             </div>
 
             <div class="form-group">
+<<<<<<< HEAD
               <label for="description">描述</label>
+=======
+              <label for="description">Description</label>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <textarea class="form-control input-lg"
                   name="description"
                   id="description"
@@ -31,8 +44,13 @@
                   class="btn btn-primary btn-lg"
                   ng-click="update()"
                   ng-disabled="editProjectForm.$invalid || disableInputs"
+<<<<<<< HEAD
                   value="">保存</button>
               <a class="btn btn-default btn-lg" href="#" back>取消</a>
+=======
+                  value="">Save</button>
+              <a class="btn btn-default btn-lg" href="#" back>Cancel</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
             </div>
           </fieldset>
         </form>

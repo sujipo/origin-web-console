@@ -3,16 +3,25 @@
     <div class="container-fluid">
       <breadcrumbs breadcrumbs="breadcrumbs"></breadcrumbs>
       <alerts alerts="alerts"></alerts>
+<<<<<<< HEAD
       <div ng-if="!loaded" class="mar-top-xl">加载中...</div>
+=======
+      <div ng-if="!loaded" class="mar-top-xl">Loading...</div>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       <div ng-if="service">
         <h1 class="contains-actions">
           <div class="pull-right dropdown" ng-hide="!('services' | canIDoAny)">
             <button type="button" class="dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs" data-toggle="dropdown">
+<<<<<<< HEAD
               动作
+=======
+              Actions
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <span class="caret"></span>
             </button>
             <a href=""
                class="dropdown-toggle actions-dropdown-kebab visible-xs-inline"
+<<<<<<< HEAD
                data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">动作</span></a>
             <ul class="dropdown-menu dropdown-menu-right actions action-button">
               <li ng-if="routesVersion | canI : 'create'">
@@ -21,6 +30,16 @@
               </li>
               <li ng-if="servicesVersion | canI : 'update'">
                 <a ng-href="{{service | editYamlURL}}" role="button">修改 YAML</a>
+=======
+               data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">Actions</span></a>
+            <ul class="dropdown-menu dropdown-menu-right actions action-button">
+              <li ng-if="routesVersion | canI : 'create'">
+                <a ng-href="project/{{project.metadata.name}}/create-route?service={{service.metadata.name}}"
+                   role="button">Create Route</a>
+              </li>
+              <li ng-if="servicesVersion | canI : 'update'">
+                <a ng-href="{{service | editYamlURL}}" role="button">Edit YAML</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               </li>
               <li ng-if="servicesVersion | canI : 'delete'">
                 <delete-link
@@ -45,14 +64,22 @@
         <div class="col-md-12">
           <uib-tabset>
             <uib-tab active="selectedTab.details">
+<<<<<<< HEAD
               <uib-tab-heading>详情</uib-tab-heading>
               <div class="resource-details">
                 <dl class="dl-horizontal left">
                   <dt>选择器:</dt>
+=======
+              <uib-tab-heading>Details</uib-tab-heading>
+              <div class="resource-details">
+                <dl class="dl-horizontal left">
+                  <dt>Selectors:</dt>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                   <dd>
                     <span ng-if="!service.spec.selector"><em>none</em></span>
                     <span ng-repeat="(selectorLabel, selectorValue) in service.spec.selector"> {{selectorLabel}}={{selectorValue}}<span ng-show="!$last">, </span></span>
                   </dd>
+<<<<<<< HEAD
                   <dt>类别:</dt>
                   <dd>{{service.spec.type}}</dd>
                   <dt>IP地址:</dt>
@@ -67,6 +94,22 @@
                   <dt ng-if-start="service.spec.externalName">外部主机名:</dt>
                   <dd ng-if-end>{{service.spec.externalName}}</dd>
                   <dt>会话关联:</dt>
+=======
+                  <dt>Type:</dt>
+                  <dd>{{service.spec.type}}</dd>
+                  <dt>IP:</dt>
+                  <dd>{{service.spec.clusterIP}}</dd>
+                  <dt>Hostname:</dt>
+                  <dd>
+                    {{service.metadata.name}}.{{service.metadata.namespace}}.svc
+                    <span data-toggle="popover" data-trigger="hover" data-content="{{'This address is only resolvable from within the cluster.'}}" style="cursor: help; padding-left: 5px;">
+                      <span class="pficon pficon-info" aria-hidden="true" data-toggle="tooltip" style="cursor: help;"></span>
+                    </span>
+                  </dd>
+                  <dt ng-if-start="service.spec.externalName">External Hostname:</dt>
+                  <dd ng-if-end>{{service.spec.externalName}}</dd>
+                  <dt>Session affinity:</dt>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                   <dd>{{service.spec.sessionAffinity}}</dd>
                   <dt ng-if-start="service.status.loadBalancer.ingress.length">Ingress Points:</dt>
                   <dd ng-if-end>
@@ -78,20 +121,35 @@
                     <span ng-repeat="externalIP in service.spec.externalIPs"
                       >{{externalIP}}<span ng-if="!$last">, </span></span>
                   </dd>
+<<<<<<< HEAD
                   <dt ng-if-start="(routesForService | hashSize) == 0">路由:</dt>
                   <dd ng-if-end>
                     <span>
                       <a ng-href="project/{{project.metadata.name}}/create-route?service={{service.metadata.name}}"  ng-if="routesVersion | canI : 'create'">创建路由</a>
+=======
+                  <dt ng-if-start="(routesForService | hashSize) == 0">Routes:</dt>
+                  <dd ng-if-end>
+                    <span>
+                      <a ng-href="project/{{project.metadata.name}}/create-route?service={{service.metadata.name}}"  ng-if="routesVersion | canI : 'create'">Create route</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                       <span ng-if="!(routesVersion | canI : 'create')"><em>None</em></span>
                     </span>
                   </dd>
                 </dl>
+<<<<<<< HEAD
                 <h3>通信转换</h3>
+=======
+                <h3>Traffic</h3>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 <div>
                   <traffic-table ports-by-route="portsByRoute" routes="routesForService" services="services" show-node-ports="showNodePorts" custom-name-header="'Route'"></traffic-table>
                 </div>
                 <p>
+<<<<<<< HEAD
                   了解更多关于 <a ng-href="{{'route-types' | helpLink}}" target="_blank">路由</a> 和 <a ng-href="{{'services' | helpLink}}" target="_blank">服务</a>.
+=======
+                  Learn more about <a ng-href="{{'route-types' | helpLink}}" target="_blank">routes</a> and <a ng-href="{{'services' | helpLink}}" target="_blank">services</a>.
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 </p>
                 <h3>Pods</h3>
                 <div>
@@ -101,7 +159,11 @@
               </div>
             </uib-tab>
             <uib-tab active="selectedTab.events" ng-if="eventsVersion | canI : 'watch'">
+<<<<<<< HEAD
               <uib-tab-heading>事件</uib-tab-heading>
+=======
+              <uib-tab-heading>Events</uib-tab-heading>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <events api-objects="[ service ]" project-context="projectContext" ng-if="selectedTab.events"></events>
             </uib-tab>
           </uib-tabset>

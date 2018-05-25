@@ -3,16 +3,25 @@
     <div class="container-fluid">
       <breadcrumbs breadcrumbs="breadcrumbs"></breadcrumbs>
       <alerts alerts="alerts"></alerts>
+<<<<<<< HEAD
       <div ng-if="!loaded" class="mar-top-xl">加载中...</div>
+=======
+      <div ng-if="!loaded" class="mar-top-xl">Loading...</div>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       <div ng-if="route">
         <h1 class="contains-actions">
           <div class="pull-right dropdown" ng-hide="!('routes' | canIDoAny)">
             <button type="button" class="dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs" data-toggle="dropdown">
+<<<<<<< HEAD
               动作
+=======
+              Actions
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <span class="caret" aria-hidden="true"></span>
             </button>
             <a href=""
                class="dropdown-toggle actions-dropdown-kebab visible-xs-inline"
+<<<<<<< HEAD
                data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">动作</span></a>
             <ul class="dropdown-menu dropdown-menu-right actions action-button">
               <li ng-if="routesVersion | canI : 'update'">
@@ -20,6 +29,15 @@
               </li>
               <li ng-if="routesVersion | canI : 'update'">
                 <a ng-href="{{route | editYamlURL}}" role="button">修改 YAML</a>
+=======
+               data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">Actions</span></a>
+            <ul class="dropdown-menu dropdown-menu-right actions action-button">
+              <li ng-if="routesVersion | canI : 'update'">
+                <a ng-href="{{route | editResourceURL}}" role="button">Edit</a>
+              </li>
+              <li ng-if="routesVersion | canI : 'update'">
+                <a ng-href="{{route | editYamlURL}}" role="button">Edit YAML</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               </li>
               <li ng-if="routesVersion | canI : 'delete'">
                 <delete-link
@@ -53,7 +71,11 @@
               </span>
               <div class="meta">
                 <status-icon status="'Pending'"></status-icon>
+<<<<<<< HEAD
                 这条线路还没有接受流量，因为它还没有被路由器接收。
+=======
+                The route is not accepting traffic yet because it has not been admitted by a router.
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               </div>
             </div>
             <div ng-repeat="ingress in route.status.ingress" ng-init="admittedCondition = (ingress | routeIngressCondition : 'Admitted')" class="route-status">
@@ -69,7 +91,11 @@
                 </span>
               </div>
               <div class="meta">
+<<<<<<< HEAD
                 <span ng-if="!admittedCondition">'{{ingress.routerName}}' 路由器的进入状态未知</span>
+=======
+                <span ng-if="!admittedCondition">Admission status unknown for router '{{ingress.routerName}}'</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 <span ng-if="admittedCondition.status === 'True'">
                   <status-icon status="'Succeeded'"></status-icon>
                   Exposed on router '{{ingress.routerName}}' <span am-time-ago="admittedCondition.lastTransitionTime"></span>
@@ -88,11 +114,19 @@
               </div>
             </div>
 
+<<<<<<< HEAD
             <h4 class="mar-top-xl">详情</h4>
             <dl class="dl-horizontal left">
               <dt ng-if-start="route.spec.wildcardPolicy && route.spec.wildcardPolicy !== 'None' && route.spec.wildcardPolicy !== 'Subdomain'">Wildcard Policy:</dt>
               <dd ng-if-end>{{route.spec.wildcardPolicy}}</dd>
               <dt>路径:</dt>
+=======
+            <h4 class="mar-top-xl">Details</h4>
+            <dl class="dl-horizontal left">
+              <dt ng-if-start="route.spec.wildcardPolicy && route.spec.wildcardPolicy !== 'None' && route.spec.wildcardPolicy !== 'Subdomain'">Wildcard Policy:</dt>
+              <dd ng-if-end>{{route.spec.wildcardPolicy}}</dd>
+              <dt>Path:</dt>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <dd>
                 <span ng-if="route.spec.path">{{route.spec.path}}</span>
                 <span ng-if="!route.spec.path"><em>none</em></span>
@@ -101,7 +135,11 @@
               <dd>
                 <a ng-href="{{route.spec.to.name | navigateResourceURL : route.spec.to.kind : route.metadata.namespace}}">{{route.spec.to.name}}</a>
               </dd>
+<<<<<<< HEAD
               <dt>目标端口:</dt>
+=======
+              <dt>Target Port:</dt>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <dd>
                 <span ng-if="route.spec.port.targetPort">
                   {{route.spec.port.targetPort}}
@@ -114,9 +152,15 @@
             </dl>
             <div ng-if="route.spec.alternateBackends.length" class="row">
               <div class="col-sm-12 mar-bottom-lg">
+<<<<<<< HEAD
                 <h4>通信</h4>
                 <div class="help-block">
                   这条路由将跨多个服务进行通信。
+=======
+                <h4>Traffic</h4>
+                <div class="help-block">
+                  This route splits traffic across multiple services.
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 </div>
               </div>
               <div class="col-sm-12 col-md-5 col-md-push-7 mar-bottom-lg">
@@ -126,8 +170,13 @@
                 <table class="table table-bordered">
                   <thead>
                     <tr>
+<<<<<<< HEAD
                       <th>服务</th>
                       <th>重要性</th>
+=======
+                      <th>Service</th>
+                      <th>Weight</th>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                     </tr>
                   </thead>
                   <tbody>
@@ -152,7 +201,11 @@
               </div>
             </div>
             <div style="margin-bottom: 10px;">
+<<<<<<< HEAD
               <h4>TLS 设置</h4>
+=======
+              <h4>TLS Settings</h4>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <dl class="dl-horizontal left" ng-if="route.spec.tls">
                 <dt>Termination Type:</dt>
                 <dd>{{route.spec.tls.termination | humanizeTLSTermination}}</dd>
@@ -200,9 +253,15 @@
                 </div>
               </dl>
               <p ng-if="!route.spec.tls">
+<<<<<<< HEAD
                 TLS 没有启用.
                 <span ng-if="routesVersion | canI : 'update'">
                   <a ng-href="{{route | editResourceURL}}" role="button">修改</a> 此路由以启用安全的网络流量。
+=======
+                TLS is not enabled.
+                <span ng-if="routesVersion | canI : 'update'">
+                  <a ng-href="{{route | editResourceURL}}" role="button">Edit</a> this route to enable secure network traffic.
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 </span>
               </p>
             </div>

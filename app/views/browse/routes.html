@@ -3,7 +3,11 @@
     <div class="container-fluid">
       <div class="page-header page-header-bleed-right page-header-bleed-left">
         <div class="pull-right" ng-if="project && (routesVersion | canI : 'create') && ((routes | hashSize) > 0 || filterWithZeroResults)">
+<<<<<<< HEAD
           <a ng-href="project/{{project.metadata.name}}/create-route" class="btn btn-default">创建路由</a>
+=======
+          <a ng-href="project/{{project.metadata.name}}/create-route" class="btn btn-default">Create Route</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         </div>
         <h1>
           路由
@@ -34,7 +38,11 @@
                 <h2>没有路由</h2>
                 <p>没有路由添加到项目 {{projectName}}.</p>
                 <p ng-if="project && (routesVersion | canI : 'create') && !filterWithZeroResults">
+<<<<<<< HEAD
                   <a ng-href="project/{{project.metadata.name}}/create-route" class="btn btn-primary btn-lg">创建路由</a>
+=======
+                  <a ng-href="project/{{project.metadata.name}}/create-route" class="btn btn-primary btn-lg">Create Route</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 </p>
               </div>
               <div ng-if="filterWithZeroResults">
@@ -52,21 +60,36 @@
             </colgroup>
             <thead>
               <tr>
+<<<<<<< HEAD
                 <th>{{customNameHeader || '名称'}}</th>
                 <th>主机名</th>
+=======
+                <th>{{customNameHeader || 'Name'}}</th>
+                <th>Hostname</th>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 <!--
                   Right now only services are supported. If other types are
                   added, we'll need to change the table header.
                  -->
+<<<<<<< HEAD
                 <th>服务</th>
                 <th>目标端口</th>
                 <th>TLS终端</th>
+=======
+                <th>Service</th>
+                <th>Target Port</th>
+                <th>TLS Termination</th>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="route in routes | orderObjectsByDate : true">
                 <td data-title="{{ customNameHeader || 'Name' }}">
                   <a href="{{route | navigateResourceURL}}">{{route.metadata.name}}</a>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                   <route-warnings ng-if="route.spec.to.kind !== 'Service' || services"
                                   route="route"
                                   services="services">

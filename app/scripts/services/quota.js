@@ -86,10 +86,17 @@ angular.module("openshiftConsole")
       if (usageValue(q.hard[type]) <= usageValue(q.used[type])) {
         var details, message;
         if (resource.kind === 'Pod') {
+<<<<<<< HEAD
           details = "You will not be able to create the " + humanizeKind(resource.kind) + " '" + resource.metadata.name + "'.";
         }
         else {
           details = "You can still create " + humanizeKind(resource.kind) + " '" + resource.metadata.name + "' but no pods will be created until resources are freed.";
+=======
+          details = "您将不能创建 " + humanizeKind(resource.kind) + " '" + resource.metadata.name + "'.";
+        }
+        else {
+          details = "您依旧可以创建 " + humanizeKind(resource.kind) + " '" + resource.metadata.name + "' 但是在资源释放前不会创建Pod。";
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         }
         if (type === "pods") {
           message = 'You are at your quota for pods.';
@@ -135,10 +142,17 @@ angular.module("openshiftConsole")
       if (usageValue(q.hard[type]) < usageValue(q.used[type]) + templateTotal) {
         var detail;
         if (resource.kind === 'Pod') {
+<<<<<<< HEAD
           detail = "You may not be able to create the " + humanizeKind(resource.kind) + " '" + resource.metadata.name + "'.";
         }
         else {
           detail = "You can still create " + humanizeKind(resource.kind) + " '" + resource.metadata.name + "' but you may not have pods created until resources are freed.";
+=======
+          detail = "您将不能创建 " + humanizeKind(resource.kind) + " '" + resource.metadata.name + "'.";
+        }
+        else {
+          detail = "您依旧可以创建 " + humanizeKind(resource.kind) + " '" + resource.metadata.name + "' 但是在资源释放前不会创建Pod。";
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         }
         return {
           type: 'warning',

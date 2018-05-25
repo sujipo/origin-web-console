@@ -10,7 +10,11 @@
           'ng-enter': row.previous,
           'hidden-sm hidden-md': row.previous
         }">
+<<<<<<< HEAD
           <h4 class="component-label section-label">容器</h4>
+=======
+          <h4 class="component-label section-label">Containers</h4>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
           <pod-template
             pod-template="row.current | podTemplate"
             images-by-docker-reference="row.state.imagesByDockerReference"
@@ -106,7 +110,11 @@
         <!-- Only show the tabset if any of the tabs are visible. -->
         <uib-tabset ng-if="row.current || (row.services | size) || row.recentPipelines.length || row.buildConfigs.length" class="list-row-tabset">
           <uib-tab active="row.selectedTab.networking" ng-if="row.services | size">
+<<<<<<< HEAD
             <uib-tab-heading>联网</uib-tab-heading>
+=======
+            <uib-tab-heading>Networking</uib-tab-heading>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
             <overview-networking
               row-services="row.services"
               all-services="row.state.allServices"
@@ -114,7 +122,11 @@
             </overview-networking>
           </uib-tab>
           <uib-tab ng-if="row.current" active="row.selectedTab.containers">
+<<<<<<< HEAD
             <uib-tab-heading>容器</uib-tab-heading>
+=======
+            <uib-tab-heading>Containers</uib-tab-heading>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
             <pod-template
               pod-template="row.current | podTemplate"
               images-by-docker-reference="row.state.imagesByDockerReference"
@@ -123,7 +135,11 @@
             <init-containers-summary api-object="row.apiObject"></init-containers-summary>
           </uib-tab>
           <uib-tab ng-if="row.current && row.state.showMetrics && row.state.breakpoint === 'xxs'" active="row.selectedTab.metrics">
+<<<<<<< HEAD
             <uib-tab-heading>度量</uib-tab-heading>
+=======
+            <uib-tab-heading>Metrics</uib-tab-heading>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
             <!-- Use ng-if to avoid requesting metrics when the tab is not active. -->
             <div ng-if="row.selectedTab.metrics">
               <div ng-if="row.apiObject.kind === 'Pod'">
@@ -150,7 +166,11 @@
           </uib-tab>
           <uib-tab ng-if="!row.hidePipelines && row.recentPipelines.length" active="row.selectedTab.pipelines">
             <uib-tab-heading>
+<<<<<<< HEAD
               管道
+=======
+              Pipelines
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <span class="build-count">
                 <build-counts builds="row.recentPipelines"></build-counts>
               </span>
@@ -161,7 +181,11 @@
           </uib-tab>
           <uib-tab ng-if="row.buildConfigs.length" active="row.selectedTab.builds">
             <uib-tab-heading>
+<<<<<<< HEAD
               构建
+=======
+              Builds
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <span class="build-count">
                 <build-counts builds="row.recentBuilds"></build-counts>
               </span>
@@ -174,7 +198,11 @@
             </overview-builds>
           </uib-tab>
           <uib-tab ng-if="row.showBindings && (row.bindings | size)" active="row.selectedTab.bindings">
+<<<<<<< HEAD
             <uib-tab-heading>绑定</uib-tab-heading>
+=======
+            <uib-tab-heading>Bindings</uib-tab-heading>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
             <overview-service-bindings
               component-label="Service Bindings"
               ref-api-object="row.apiObject"

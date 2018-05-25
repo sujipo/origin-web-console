@@ -86,17 +86,29 @@
 
             <uib-tabset>
               <uib-tab active="selectedTab.details">
+<<<<<<< HEAD
                 <uib-tab-heading>详情</uib-tab-heading>
+=======
+                <uib-tab-heading>Details</uib-tab-heading>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 <build-pipeline build="build" ng-if="build | isJenkinsPipelineStrategy"></build-pipeline>
                 <ng-include src=" 'views/browse/_build-details.html' "></ng-include>
               </uib-tab>
 
               <uib-tab heading="Environment" active="selectedTab.environment" ng-if="!(build | isJenkinsPipelineStrategy)">
+<<<<<<< HEAD
                 <uib-tab-heading>环境</uib-tab-heading>
                 <h3>环境变量</h3>
                 <p ng-if="buildConfigsVersion | canI : 'update'">
                   <span class="pficon pficon-info" aria-hidden="true"></span>
                   环境变量可以修改在 <a ng-href="{{build | configURLForResource}}?tab=environment">生成配置</a> 的时候.
+=======
+                <uib-tab-heading>Environment</uib-tab-heading>
+                <h3>Environment Variables</h3>
+                <p ng-if="buildConfigsVersion | canI : 'update'">
+                  <span class="pficon pficon-info" aria-hidden="true"></span>
+                  Environment variables can be edited on the <a ng-href="{{build | configURLForResource}}?tab=environment">build configuration</a>.
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 </p>
                 <key-value-editor
                   ng-if="(build | buildStrategy).env | size"

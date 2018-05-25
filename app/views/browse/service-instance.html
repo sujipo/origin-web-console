@@ -8,7 +8,11 @@
         <div class="container-fluid">
           <breadcrumbs breadcrumbs="breadcrumbs"></breadcrumbs>
           <alerts alerts="alerts"></alerts>
+<<<<<<< HEAD
           <div ng-if="!loaded" class="mar-top-xl">加载中...</div>
+=======
+          <div ng-if="!loaded" class="mar-top-xl">Loading...</div>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
           <div ng-if="serviceInstance">
             <h1 class="contains-actions">
               <div class="pull-right dropdown" ng-hide="!('serviceInstances' | canIDoAny)">
@@ -17,21 +21,34 @@
                   ng-if="editAvailable && (serviceInstancesVersion | canI : 'update')"
                   class="btn btn-default hidden-xs"
                   ng-click="showEditDialog()">
+<<<<<<< HEAD
                   修改
+=======
+                  Edit
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 </button>
 
                 <!-- Secondary Actions -->
                 <button type="button" class="dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs" data-toggle="dropdown">
+<<<<<<< HEAD
                   动作
+=======
+                  Actions
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                   <span class="caret"></span>
                 </button>
                 <a href=""
                    class="dropdown-toggle actions-dropdown-kebab visible-xs-inline"
+<<<<<<< HEAD
                    data-toggle="dropdown"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sr-only">动作</span></a>
+=======
+                   data-toggle="dropdown"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sr-only">Actions</span></a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 <ul class="dropdown-menu dropdown-menu-right actions action-button">
                   <li class="visible-xs-inline" ng-if="editAvailable && (serviceInstancesVersion  | canI : 'update')">
                     <a href=""
                        role="button"
+<<<<<<< HEAD
                        ng-click="showEditDialog()">修改</a>
                   </li>
                   <li ng-if="serviceInstancesVersion | canI : 'update'">
@@ -39,6 +56,15 @@
                   </li>
                   <li ng-if="serviceInstancesVersion | canI : 'delete'">
                     <a href="" ng-click="deprovision()" ng-attr-aria-disabled="{{serviceInstance.metadata.deletionTimestamp ? 'true' : undefined}}" ng-class="{ 'disabled-link': serviceInstance.metadata.deletionTimestamp }" role="button">删除</a>
+=======
+                       ng-click="showEditDialog()">Edit</a>
+                  </li>
+                  <li ng-if="serviceInstancesVersion | canI : 'update'">
+                    <a ng-href="{{serviceInstance | editYamlURL}}" role="button">Edit YAML</a>
+                  </li>
+                  <li ng-if="serviceInstancesVersion | canI : 'delete'">
+                    <a href="" ng-click="deprovision()" ng-attr-aria-disabled="{{serviceInstance.metadata.deletionTimestamp ? 'true' : undefined}}" ng-class="{ 'disabled-link': serviceInstance.metadata.deletionTimestamp }" role="button">Delete</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                   </li>
                 </ul>
               </div>
@@ -60,12 +86,18 @@
             <div class="col-md-12">
               <div ng-if="serviceInstance.metadata.deletionTimestamp" class="alert word-break alert-warning">
                 <span class="pficon pficon-warning-triangle-o" aria-hidden="true"></span>
+<<<<<<< HEAD
                 <span class="sr-only">警告</span>
                 <span class="strong">该服务标记为删除。</span>
+=======
+                <span class="sr-only">warning</span>
+                <span class="strong">The service was marked for deletion</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 <span class="strong" am-time-ago="serviceInstance.metadata.deletionTimestamp"></span>.
               </div>
               <uib-tabset>
                 <uib-tab active="selectedTab.details">
+<<<<<<< HEAD
                   <uib-tab-heading>详情</uib-tab-heading>
                   <div class="resource-details">
                     <div class="row">
@@ -73,6 +105,15 @@
                         <h3>状态</h3>
                         <dl class="dl-horizontal left">
                           <dt>状态:</dt>
+=======
+                  <uib-tab-heading>Details</uib-tab-heading>
+                  <div class="resource-details">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <h3>Status</h3>
+                        <dl class="dl-horizontal left">
+                          <dt>Status:</dt>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                           <dd>
                             <status-icon status="serviceInstance | serviceInstanceStatus" disable-animation></status-icon>
                             <span>{{serviceInstance | serviceInstanceStatus | sentenceCase}}</span>
@@ -81,7 +122,11 @@
                           <dd ng-if-end class="instance-status-message">{{serviceInstance | serviceInstanceConditionMessage}}</dd>
                         </dl>
                         <div class="hidden-lg">
+<<<<<<< HEAD
                           <h3 ng-if-start="serviceClass.spec.description || serviceClass.spec.externalMetadata.longDescription">描述</h3>
+=======
+                          <h3 ng-if-start="serviceClass.spec.description || serviceClass.spec.externalMetadata.longDescription">Description</h3>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                           <p class="service-description"><truncate-long-text
                             limit="500"
                             content="serviceClass.spec.description"
@@ -97,11 +142,19 @@
                             linkify="true">
                           </truncate-long-text></p>
                         </div>
+<<<<<<< HEAD
                         <h3>计划</h3>
                         <p ng-bind-html="plan.spec.description | linkify : '_blank'"></p>
                         <div ng-if="parameterSchema.properties" class="config-parameters-form">
                           <h3>
                             <span>配置</span>
+=======
+                        <h3>Plan</h3>
+                        <p ng-bind-html="plan.spec.description | linkify : '_blank'"></p>
+                        <div ng-if="parameterSchema.properties" class="config-parameters-form">
+                          <h3>
+                            <span>Configuration</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                             <a ng-if="allowParametersReveal" href="" class="hide-show-link" ng-click="toggleShowParameterValues()" role="button">
                               {{showParameterValues ? 'Hide Values' : 'Reveal Values'}}
                             </a>
@@ -121,7 +174,11 @@
                       </div>
                       <div class="col-lg-6">
                         <div class="hidden-xs hidden-sm hidden-md">
+<<<<<<< HEAD
                           <h3 ng-if-start="serviceClass.spec.description || serviceClass.spec.externalMetadata.longDescription">描述</h3>
+=======
+                          <h3 ng-if-start="serviceClass.spec.description || serviceClass.spec.externalMetadata.longDescription">Description</h3>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                           <p class="service-description"><truncate-long-text
                             limit="500"
                             content="serviceClass.spec.description"
@@ -151,7 +208,11 @@
                   </div>
                 </uib-tab>
                 <uib-tab active="selectedTab.events" ng-if="eventsVersion | canI : 'watch'">
+<<<<<<< HEAD
                   <uib-tab-heading>事件</uib-tab-heading>
+=======
+                  <uib-tab-heading>Events</uib-tab-heading>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                   <events api-objects="[ serviceInstance ]" project-context="projectContext" ng-if="selectedTab.events"></events>
                 </uib-tab>
               </uib-tabset>

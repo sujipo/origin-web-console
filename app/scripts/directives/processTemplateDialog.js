@@ -119,7 +119,11 @@
           {
             id: 'keyword',
             title:  'Keyword',
+<<<<<<< HEAD
             placeholder: '根据关键字过滤',
+=======
+            placeholder: 'Filter by Keyword',
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
             filterType: 'text'
           }
         ],

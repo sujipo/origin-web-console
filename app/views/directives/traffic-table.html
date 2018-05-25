@@ -2,6 +2,7 @@
 <table class="table table-bordered table-mobile">
   <thead>
     <tr>
+<<<<<<< HEAD
       <th>{{customNameHeader || '路由'}}<span ng-if="showNodePorts"> / 节点端口</span></th>
       <th role="presentation"></th>
       <th>服务端口</th>
@@ -13,6 +14,19 @@
   </thead>
   <tbody ng-if="(portsByRoute | hashSize) == 0">
     <tr><td colspan="7"><em>没有路由或端口显示。</em></td></tr>
+=======
+      <th>{{customNameHeader || 'Route'}}<span ng-if="showNodePorts"> / Node Port</span></th>
+      <th role="presentation"></th>
+      <th>Service Port</th>
+      <th role="presentation"></th>
+      <th>Target Port</th>
+      <th>Hostname</th>
+      <th>TLS Termination</th>
+    </tr>
+  </thead>
+  <tbody ng-if="(portsByRoute | hashSize) == 0">
+    <tr><td colspan="7"><em>No routes or ports to show</em></td></tr>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
   </tbody>
   <tbody ng-if="(portsByRoute | hashSize) > 0">
     <tr ng-repeat-start="(routeName,ports) in portsByRoute" style="display: none;"></tr>

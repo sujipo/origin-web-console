@@ -3,16 +3,28 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" ng-click="ctrl.onCancel()">
       <span class="pficon pficon-close"></span>
     </button>
+<<<<<<< HEAD
     <h1 class="modal-title">添加到应用</h1>
+=======
+    <h1 class="modal-title">添加到应用程序</h1>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
   </div>
   <form name="addToApplicationForm" novalidate>
     <fieldset ng-disabled="disableInputs">
       <div class="modal-body">
+<<<<<<< HEAD
         <legend>添加{{ctrl.apiObject.kind | humanizeKind}}到应用程序:</legend>
         <div class="form-group"  ng-class="{'has-error' : ctrl.addType === 'env' && ctrl.application && !ctrl.canAddRefToApplication}">
           <div class="application-select">
             <ui-select autofocus id="application" ng-model="ctrl.application" on-select="ctrl.checkApplicationContainersRefs($item)" required="true" ng-disabled="ctrl.disableInputs">
               <ui-select-match placeholder="{{ctrl.applications.length ? 'Select an application' : '这个项目没有应用程序'}}">
+=======
+        <legend>添加这个{{ctrl.apiObject.kind | humanizeKind}}到应用程序：</legend>
+        <div class="form-group"  ng-class="{'has-error' : ctrl.addType === 'env' && ctrl.application && !ctrl.canAddRefToApplication}">
+          <div class="application-select">
+            <ui-select autofocus id="application" ng-model="ctrl.application" on-select="ctrl.checkApplicationContainersRefs($item)" required="true" ng-disabled="ctrl.disableInputs">
+              <ui-select-match placeholder="{{ctrl.applications.length ? '选择应用程序' : '此项目中没有应用程序'}}">
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <span>
                 {{$select.selected.metadata.name}}
                 <small class="text-muted">&ndash; {{$select.selected.kind | humanizeKind : true}}</small>
@@ -28,10 +40,17 @@
         </div>
         <div class="has-error" ng-if="ctrl.addType === 'env' && ctrl.application && !ctrl.canAddRefToApplication">
           <span class="help-block">
+<<<<<<< HEAD
             {{ctrl.apiObject.kind | humanizeKind}}已经被添加到这个程序.
           </span>
         </div>
         <legend>Add {{ctrl.apiObject.kind | humanizeKind}} as:</legend>
+=======
+            {{ctrl.apiObject.kind | humanizeKind}}已被添加到这个应用程序中。
+          </span>
+        </div>
+        <legend>将{{ctrl.apiObject.kind | humanizeKind}}添加为：</legend>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         <div class="radio">
           <label for="env">
             <input id="env" type="radio" ng-model="ctrl.addType" value="env" >
@@ -42,7 +61,11 @@
           <div class="has-warning" ng-if="ctrl.hasInvalidEnvVars">
             <div class="help-block">
               <span class="pf-icon pficon-warning-triangle-o" aria-hidden="true"></span>
+<<<<<<< HEAD
               {{ctrl.apiObject.kind | humanizeKind | upperFirst}} <strong>{{ctrl.apiObject.metadata.name}}</strong> contains keys that are not valid environment variable names. Only {{ctrl.apiObject.kind | humanizeKind}} keys with valid names will be added as environment variables.
+=======
+              {{ctrl.apiObject.kind | humanizeKind | upperFirst}} <strong>{{ctrl.apiObject.metadata.name}}</strong> 包含无效的环境变量名称的键。只有{{ctrl.apiObject.kind | humanizeKind}}的键具有有效名称才会被添加到环境变量中。
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
             </div>
           </div>
           <div class="form-group">
@@ -50,7 +73,11 @@
               <label>Prefix</label>
               <a href="" class="pficon pficon-info field-help"
                  aria-hidden="true"
+<<<<<<< HEAD
                  uib-popover="或者，您可以指定一个前缀以用于环境变量."
+=======
+                 uib-popover="可选项, 您可以指定使用环境变量的前缀。"
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                  popover-trigger="focus">
               </a>
             </div>
@@ -58,7 +85,11 @@
               <input class="form-control"
                      name="envPrefix"
                      id="envPrefix"
+<<<<<<< HEAD
                      placeholder="(可选的)"
+=======
+                     placeholder="(optional)"
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                      type="text"
                      ng-pattern="/^[A-Za-z_][A-Za-z0-9_]*$/"
                      aria-describedby="env-prefix-help"
@@ -68,9 +99,15 @@
                      autocapitalize="off"
                      spellcheck="false">
                 <div class="help-block" ng-show="addToApplicationForm.envPrefix.$error.pattern && addToApplicationForm.envPrefix.$touched">
+<<<<<<< HEAD
                   前缀可以包含数字，字母和下划线，但不能以数字开头.
                 </div>
                 <span class="sr-only" id="env-prefix-help">或者，您可以指定一个前缀以用于环境变量.</span>
+=======
+                  前缀可以包含数字、字母和下划线，但不能用数字开头。
+                </div>
+                <span class="sr-only" id="env-prefix-help">可选项, 您可以指定使用环境变量的前缀。</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
             </span>
           </div>
         </div>
@@ -83,12 +120,21 @@
         <div ng-if="ctrl.addType === 'volume'" class="choice-contents clearfix">
           <div class="form-group">
             <div class="control-label">
+<<<<<<< HEAD
               <label class="required">装载路径</label>
               <a href="" class="pficon pficon-info field-help"
                  aria-hidden="true"
                  uib-popover="卷的装载路径. 一个文件将在
                              {{ctrl.apiObject.kind | humanizeKind}}创建.
                               文件的内容是密钥的值."
+=======
+              <label class="required">挂载路径</label>
+              <a href="" class="pficon pficon-info field-help"
+                 aria-hidden="true"
+                 uib-popover="Volume的挂载路径。将在该目录中为{{ctrl.apiObject.kind | humanizeKind}}中的
+                              每个Key创建一个文件。
+                              文件的内容将是Key的值。"
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                  popover-trigger="focus">
               </a>
             </div>
@@ -107,6 +153,7 @@
                      autocapitalize="off"
                      spellcheck="false">
               <div class="help-block" ng-show="addToApplicationForm.mountVolume.$error.pattern && addToApplicationForm.mountVolume.$touched">
+<<<<<<< HEAD
                 装载路径必须是以目录开头的有效路径 <code>/</code>.
               </div>
               <div class="help-block" ng-show="addToApplicationForm.mountVolume.$error.oscUnique">
@@ -116,11 +163,23 @@
                 卷的装载路径. 一个文件将在
                 {{ctrl.apiObject.kind | humanizeKind}}创建.
                 文件内容将是密钥的值.
+=======
+                挂载路径必须是从目录 <code>/</code> 开始的有效路径。
+              </div>
+              <div class="help-block" ng-show="addToApplicationForm.mountVolume.$error.oscUnique">
+                挂载路径已被使用。请选择另一个安装路径。
+              </div>
+              <span class="sr-only" id="mount-path-help">
+                Volume的挂载路径。将在该目录中为{{ctrl.apiObject.kind | humanizeKind}}中的
+                每个Key创建一个文件。
+                文件的内容将是Key的值。
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               </span>
             </div>
           </div>
         </div>
         <div ng-if="ctrl.canAddRefToApplication">
+<<<<<<< HEAD
           <legend ng-if-start="ctrl.application.spec.template.spec.containers.length > 1">Containers:</legend>
           <div ng-if-end class="form-group container-options">
             <div ng-if="ctrl.attachAllContainers">
@@ -130,11 +189,26 @@
             </div>
             <div ng-if="!ctrl.attachAllContainers" class="form-group">
               <label class="sr-only required">Containers</label>
+=======
+          <legend ng-if-start="ctrl.application.spec.template.spec.containers.length > 1">容器：</legend>
+          <div ng-if-end class="form-group container-options">
+            <div ng-if="ctrl.attachAllContainers">
+              {{ctrl.apiObject.kind | humanizeKind}} 将会被添加到所有容器中。您也可以
+              <a href="" ng-click="ctrl.attachAllContainers = false">选择指定容器</a>
+              。
+            </div>
+            <div ng-if="!ctrl.attachAllContainers" class="form-group">
+              <label class="sr-only required">容器</label>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <select-containers
                 ng-model="ctrl.attachContainers"
                 pod-template="ctrl.application.spec.template"
                 ng-required="true"
+<<<<<<< HEAD
                 help-text="Add the {{ctrl.apiObject.kind | humanizeKind}} to the selected containers.">
+=======
+                help-text="添加{{ctrl.apiObject.kind | humanizeKind}}到指定的容器。">
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               </select-containers>
             </div>
           </div>
@@ -145,7 +219,11 @@
           class="btn btn-default"
           ng-class="{'dialog-btn': isDialog}"
           ng-click="ctrl.onCancel()">
+<<<<<<< HEAD
           Cancel
+=======
+          关闭
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         </button>
         <button type="submit"
                 class="btn btn-primary"
@@ -153,7 +231,11 @@
                 ng-click="ctrl.addToApplication()"
                 ng-disabled="addToApplicationForm.$invalid || (ctrl.addType === 'env' && !ctrl.canAddRefToApplication)"
                 value="">
+<<<<<<< HEAD
                 Save
+=======
+                保存
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         </button>
       </div>
     </fieldset>

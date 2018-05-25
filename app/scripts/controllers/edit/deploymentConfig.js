@@ -36,7 +36,11 @@ angular.module('openshiftConsole')
       name: $routeParams.name,
       kind: $routeParams.kind,
       namespace: $routeParams.project,
+<<<<<<< HEAD
       subpage: '修改部署配置'
+=======
+      subpage: 'Edit Deployment Config'
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
     });
 
     $scope.deploymentConfigStrategyTypes = [

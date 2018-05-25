@@ -5,12 +5,21 @@
         <div class="col-md-10">
           <breadcrumbs breadcrumbs="breadcrumbs"></breadcrumbs>
           <div class="mar-top-xl">
+<<<<<<< HEAD
             <h1>创建路由</h1>
             <div class="help-block">
               路由是使应用程序公开可见的一种方法。
             </div>
             <form name="createRouteForm" class="mar-top-xl osc-form" novalidate>
               <div ng-if="!services">加载中...</div>
+=======
+            <h1>Create Route</h1>
+            <div class="help-block">
+              Routing is a way to make your application publicly visible.
+            </div>
+            <form name="createRouteForm" class="mar-top-xl osc-form" novalidate>
+              <div ng-if="!services">Loading...</div>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <div ng-if="services">
                 <fieldset ng-disabled="disableInputs">
                   <osc-routing
@@ -19,18 +28,30 @@
                       show-name-input="true">
                   </osc-routing>
                   <label-editor
+<<<<<<< HEAD
                       labels="标签"
                       expand="true"
                       can-toggle="false"
                       help-text="这条路由的标签">
+=======
+                      labels="labels"
+                      expand="true"
+                      can-toggle="false"
+                      help-text="Labels for this route.">
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                   </label-editor>
                   <div class="button-group gutter-top gutter-bottom">
                     <button type="submit"
                         class="btn btn-primary btn-lg"
                         ng-click="createRoute()"
                         ng-disabled="createRouteForm.$invalid || disableInputs || !createRoute"
+<<<<<<< HEAD
                         value="">创建</button>
                     <a class="btn btn-default btn-lg" href="" ng-click="cancel()">取消</a>
+=======
+                        value="">Create</button>
+                    <a class="btn btn-default btn-lg" href="" ng-click="cancel()">Cancel</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                   </div>
                 </fieldset>
               </div>

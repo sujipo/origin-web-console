@@ -1,29 +1,53 @@
+<<<<<<< HEAD
 <h2>没有部署。</h2>
 <div ng-if="row.imageChangeTriggers.length">
   一个新的部署将会自动运行，当
   <span ng-if="row.imageChangeTriggers.length === 1">
     一个镜像被拉入
+=======
+<h2>No deployments.</h2>
+<div ng-if="row.imageChangeTriggers.length">
+  A new deployment will start automatically when
+  <span ng-if="row.imageChangeTriggers.length === 1">
+    an image is pushed to
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
     <a ng-href="{{row.urlForImageChangeTrigger(row.imageChangeTriggers[0])}}">
       {{row.imageChangeTriggers[0].imageChangeParams.from | imageObjectRef : row.apiObject.metadata.namespace}}</a>.
   </span>
   <span ng-if="row.imageChangeTriggers.length > 1">
+<<<<<<< HEAD
     部署配置关联的所有镜像有一个变更。
+=======
+    one of the images referenced by this deployment config changes.
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
   </span>
 </div>
 <div ng-if="!row.imageChangeTriggers.length">
   <p>
+<<<<<<< HEAD
     没有部署在 {{row.apiObject.kind | humanizeKind}}
+=======
+    No deployments for {{row.apiObject.kind | humanizeKind}}
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
     <a ng-href="{{row.apiObject | navigateResourceURL}}">{{row.apiObject.metadata.name}}</a>.
   </p>
   <div ng-if="row.apiObject.kind === 'DeploymentConfig'">
     <div ng-if="pipeline = row.pipelines[0]">
       <p>
+<<<<<<< HEAD
         这个部署配置是管道的一部分
+=======
+        This deployment config is part of the pipeline
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         <a ng-href="{{pipeline | navigateResourceURL}}">{{pipeline.metadata.name}}</a>.
       </p>
       <div ng-if="row.showStartPipelineAction()">
         <button class="btn btn-primary" ng-click="row.startBuild(pipeline)">
+<<<<<<< HEAD
           开启管道
+=======
+          Start Pipeline
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         </button>
       </div>
     </div>
@@ -31,7 +55,11 @@
       <button ng-if="row.deploymentConfigsInstantiateVersion | canI : 'create'"
               class="btn btn-primary"
               ng-click="row.startDeployment()">
+<<<<<<< HEAD
         开始部署
+=======
+        Start Deployment
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       </button>
     </div>
   </div>

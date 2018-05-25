@@ -15,7 +15,11 @@
   </div>
   <div class="col-sm-8 col-sm-pull-4">
     <dl class="dl-horizontal left">
+<<<<<<< HEAD
       <dt ng-if-start="replicaSet | hasDeploymentConfig">状态:</dt>
+=======
+      <dt ng-if-start="replicaSet | hasDeploymentConfig">Status:</dt>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       <dd ng-if-end>
         <status-icon status="replicaSet | deploymentStatus"></status-icon>
         {{replicaSet | deploymentStatus}}
@@ -46,6 +50,7 @@
           <button ng-show="(replicaSet | deploymentIsInProgress) && !replicaSet.metadata.deletionTimestamp && ('replicationcontrollers' | canI : 'update')" type="button" ng-click="cancelRunningDeployment(replicaSet)" class="btn btn-default btn-xs">Cancel</button>
         </span>
       </dd>
+<<<<<<< HEAD
       <dt ng-if-start="replicaSet | hasDeploymentConfig">部署配置:</dt>
       <dd ng-if-end>
         <a ng-href="{{replicaSet | configURLForResource}}">{{deploymentConfigName}}</a>
@@ -59,17 +64,40 @@
         {{replicaSet | annotation:'deploymentStatusReason'}}
       </dd>
       <dt ng-if-start="replicaSet | deploymentIsInProgress">持续时间:</dt>
+=======
+      <dt ng-if-start="replicaSet | hasDeploymentConfig">Deployment Config:</dt>
+      <dd ng-if-end>
+        <a ng-href="{{replicaSet | configURLForResource}}">{{deploymentConfigName}}</a>
+      </dd>
+      <dt ng-if-start="deployment">Deployment:</dt>
+      <dd ng-if-end>
+        <a ng-href="{{deployment | navigateResourceURL}}">{{deployment.metadata.name}}</a>
+      </dd>
+      <dt ng-if-start="replicaSet | annotation:'deploymentStatusReason'">Status Reason:</dt>
+      <dd ng-if-end>
+        {{replicaSet | annotation:'deploymentStatusReason'}}
+      </dd>
+      <dt ng-if-start="replicaSet | deploymentIsInProgress">Duration:</dt>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       <dd ng-if-end>
         <span ng-switch="replicaSet | deploymentStatus" class="hide-ng-leave">
           <span ng-switch-when="Running">running for <duration-until-now timestamp="replicaSet.metadata.creationTimestamp"></duration-until-now></span>
           <span ng-switch-default>waiting for <duration-until-now timestamp="replicaSet.metadata.creationTimestamp"></duration-until-now></span>
         </span>
       </dd>
+<<<<<<< HEAD
       <dt>选择器:</dt>
       <dd>
         <selector selector="replicaSet.spec.selector"></selector>
       </dd>
       <dt>副本:</dt>
+=======
+      <dt>Selectors:</dt>
+      <dd>
+        <selector selector="replicaSet.spec.selector"></selector>
+      </dd>
+      <dt>Replicas:</dt>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       <dd>
         <!-- Enable scaling if this is a plain replication controller or it's the active deployment,
              as long as it doesn't have an HPA. -->
@@ -87,7 +115,11 @@
 <div class="row">
   <div class="col-lg-6">
     <div class="deployment-detail">
+<<<<<<< HEAD
       <h3>模板</h3>
+=======
+      <h3>Template</h3>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       <pod-template
         pod-template="replicaSet.spec.template"
         images-by-docker-reference="imagesByDockerReference"
@@ -95,14 +127,24 @@
         detailed="true"
         add-health-check-url="{{((!deploymentConfig || isActive) && ('deploymentconfigs' | canI : 'update')) ? healthCheckURL : ''}}">
       </pod-template>
+<<<<<<< HEAD
       <h4>卷</h4>
+=======
+      <h4>Volumes</h4>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       <div ng-if="kind === 'ReplicaSet'">
         <div ng-if="deployment">
           <volumes volumes="replicaSet.spec.template.spec.volumes" namespace="project.metadata.name"></volumes>
           <div ng-if="{ group: 'apps', resource: 'deployments' } | canI : 'update'">
+<<<<<<< HEAD
             <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=Deployment&name={{deployment.metadata.name}}&group=apps">添加存储</a>
             <span class="action-divider" aria-hidden="true">|</span>
             <a ng-href="project/{{project.metadata.name}}/add-config-volume?kind=Deployment&name={{deployment.metadata.name}}&group=apps">添加配置文件</a>
+=======
+            <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=Deployment&name={{deployment.metadata.name}}&group=apps">Add Storage</a>
+            <span class="action-divider" aria-hidden="true">|</span>
+            <a ng-href="project/{{project.metadata.name}}/add-config-volume?kind=Deployment&name={{deployment.metadata.name}}&group=apps">Add Config Files</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
           </div>
           <div ng-if="!replicaSet.spec.template.spec.volumes.length && !({ group: 'apps', resource: 'deployments' } | canI : 'update')">none</div>
         </div>
@@ -114,9 +156,15 @@
                 can-remove="true"
                 remove-fn="removeVolume(volume)">
             </volumes>
+<<<<<<< HEAD
             <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions">添加存储</a>
             <span class="action-divider" aria-hidden="true">|</span>
             <a ng-href="project/{{project.metadata.name}}/add-config-volume?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions">添加配置文件</a>
+=======
+            <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions">Add Storage</a>
+            <span class="action-divider" aria-hidden="true">|</span>
+            <a ng-href="project/{{project.metadata.name}}/add-config-volume?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions">Add Config Files</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
           </div>
           <div ng-if="!(resource | canI : 'update')">
             <volumes volumes="replicaSet.spec.template.spec.volumes" namespace="project.metadata.name"></volumes>
@@ -128,9 +176,15 @@
         <div ng-if="deploymentConfigName">
           <volumes volumes="replicaSet.spec.template.spec.volumes" namespace="project.metadata.name"></volumes>
           <div ng-if="'deploymentconfigs' | canI : 'update'">
+<<<<<<< HEAD
             <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{deploymentConfigName}}">添加存储</a>
             <span class="action-divider" aria-hidden="true">|</span>
             <a ng-href="project/{{project.metadata.name}}/add-config-volume?kind=DeploymentConfig&name={{deploymentConfigName}}">添加配置文件</a>
+=======
+            <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{deploymentConfigName}}">Add Storage</a>
+            <span class="action-divider" aria-hidden="true">|</span>
+            <a ng-href="project/{{project.metadata.name}}/add-config-volume?kind=DeploymentConfig&name={{deploymentConfigName}}">Add Config Files</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
           </div>
           <div ng-if="!replicaSet.spec.template.spec.volumes.length && !('deploymentconfigs' | canI : 'update')">none</div>
         </div>
@@ -142,9 +196,15 @@
                 can-remove="true"
                 remove-fn="removeVolume(volume)">
             </volumes>
+<<<<<<< HEAD
             <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=ReplicationController&name={{replicaSet.metadata.name}}">添加存储</a>
             <span class="action-divider" aria-hidden="true">|</span>
             <a ng-href="project/{{project.metadata.name}}/add-config-volume?kind=ReplicationController&name={{replicaSet.metadata.name}}">添加配置文件</a>
+=======
+            <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=ReplicationController&name={{replicaSet.metadata.name}}">Add Storage</a>
+            <span class="action-divider" aria-hidden="true">|</span>
+            <a ng-href="project/{{project.metadata.name}}/add-config-volume?kind=ReplicationController&name={{replicaSet.metadata.name}}">Add Config Files</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
           </div>
           <div ng-if="!(resource | canI : 'update')">
             <volumes volumes="replicaSet.spec.template.spec.volumes" namespace="project.metadata.name"></volumes>
@@ -158,12 +218,20 @@
 
 <!-- Autoscaling -->
 <div ng-if="!deploymentConfigName || autoscalers.length">
+<<<<<<< HEAD
   <h3>自动缩放</h3>
+=======
+  <h3>Autoscaling</h3>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
 
   <!-- Show any warnings. -->
   <div ng-repeat="warning in hpaWarnings" class="alert alert-warning">
     <span class="pficon pficon-warning-triangle-o" aria-hidden="true"></span>
+<<<<<<< HEAD
     <span class="sr-only">警告:</span>
+=======
+    <span class="sr-only">Warning:</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
     {{warning.message}}
 
     <!-- If the CPU request is missing, add an action to set one. -->
@@ -171,6 +239,7 @@
       <!-- Prompt to set CPU request on the DC if this is a deployment. -->
       <a ng-href="project/{{projectName}}/set-limits?kind=DeploymentConfig&name={{deploymentConfigName}}"
          ng-if="deploymentConfigName && !deploymentConfigMissing && ('deploymentconfigs' | canI : 'update')"
+<<<<<<< HEAD
          role="button">修改资源
         <span ng-if="!('cpu' | isRequestCalculated : project)">要求与</span> 限制</a>
       <!-- Prompt to set CPU request on the RC if not a deployment. -->
@@ -182,6 +251,19 @@
          ng-if="!deploymentConfigName && kind === 'ReplicaSet' && (resource | canI : 'update')"
          role="button">修改资源
         <span ng-if="!('cpu' | isRequestCalculated : project)">要求与</span> 限制</a>
+=======
+         role="button">Edit Resource
+        <span ng-if="!('cpu' | isRequestCalculated : project)">Requests and</span> Limits</a>
+      <!-- Prompt to set CPU request on the RC if not a deployment. -->
+      <a ng-href="project/{{projectName}}/set-limits?kind=ReplicationController&name={{replicaSet.metadata.name}}"
+         ng-if="!deploymentConfigName && kind === 'ReplicationController' && (resource | canI : 'update')"
+         role="button">Edit Resource
+        <span ng-if="!('cpu' | isRequestCalculated : project)">Requests and</span> Limits</a>
+      <a ng-href="project/{{projectName}}/set-limits?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions"
+         ng-if="!deploymentConfigName && kind === 'ReplicaSet' && (resource | canI : 'update')"
+         role="button">Edit Resource
+        <span ng-if="!('cpu' | isRequestCalculated : project)">Requests and</span> Limits</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
     </span>
   </div>
 
@@ -202,8 +284,13 @@
          role="button">Add Autoscaler</a>
     </span>
     <span ng-if="!({resource: 'horizontalpodautoscalers', group: 'autoscaling'} | canI : 'create')">
+<<<<<<< HEAD
       自动缩放不启用。 没有自动缩放器针对这个
       <span ng-if="deploymentConfigName">部署配置或部署。</span>
+=======
+      Autoscaling is not enabled. There are no autoscalers for this
+      <span ng-if="deploymentConfigName">deployment config or deployment.</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       <span ng-if="!deploymentConfigName">{{replicaSet.kind | humanizeKind}}.</span>
     </span>
   </div>

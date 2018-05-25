@@ -126,6 +126,7 @@ angular.module('openshiftConsole')
           $scope.sortConfig = {
             fields: [{
               id: 'lastTimestamp',
+<<<<<<< HEAD
               title: '时间',
               sortType: 'alpha'
             }, {
@@ -143,6 +144,25 @@ angular.module('openshiftConsole')
             }, {
               id: 'count',
               title: '数量',
+=======
+              title: 'Time',
+              sortType: 'alpha'
+            }, {
+              id: 'type',
+              title: 'Severity',
+              sortType: 'alpha'
+            }, {
+              id: 'reason',
+              title: 'Reason',
+              sortType: 'alpha'
+            }, {
+              id: 'message',
+              title: 'Message',
+              sortType: 'alpha'
+            }, {
+              id: 'count',
+              title: 'Count',
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               sortType: 'numeric'
             }],
             isAscending: true,
@@ -153,11 +173,19 @@ angular.module('openshiftConsole')
           if (showKindAndName) {
             $scope.sortConfig.fields.splice(1, 0, {
               id: 'involvedObject.name',
+<<<<<<< HEAD
               title: '名称',
               sortType: 'alpha'
             }, {
               id: 'involvedObject.kind',
               title: '种类',
+=======
+              title: 'Name',
+              sortType: 'alpha'
+            }, {
+              id: 'involvedObject.kind',
+              title: 'Kind',
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               sortType: 'alpha'
             });
           }

@@ -5,9 +5,15 @@
         <div class="col-md-10">
           <breadcrumbs breadcrumbs="breadcrumbs"></breadcrumbs>
           <alerts alerts="alerts"></alerts>
+<<<<<<< HEAD
           <h1>修改路由 {{routeName}}</h1>
           <div ng-if="loading">
             加载中...
+=======
+          <h1>Edit Route {{routeName}}</h1>
+          <div ng-if="loading">
+            Loading...
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
           </div>
           <form name="form" novalidate>
             <fieldset ng-disabled="disableInputs" ng-if="!loading">
@@ -22,8 +28,13 @@
                     class="btn btn-primary btn-lg"
                     ng-click="updateRoute()"
                     ng-disabled="form.$invalid || disableInputs"
+<<<<<<< HEAD
                     value="">保存</button>
                 <button class="btn btn-default btn-lg" ng-click="cancel()">取消</button>
+=======
+                    value="">Save</button>
+                <button class="btn btn-default btn-lg" ng-click="cancel()">Cancel</button>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               </div>
             </fieldset>
           </form>

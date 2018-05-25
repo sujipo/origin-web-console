@@ -34,7 +34,11 @@
       </div>
     </div>
     <div ng-if="overview.showLoading" class="container-fluid loading-message">
+<<<<<<< HEAD
       加载中...
+=======
+      Loading...
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
     </div>
     <div ng-if="!overview.showGetStarted && !overview.showLoading">
       <div class="middle-header">
@@ -62,12 +66,20 @@
                 <form role="form" class="search-pf has-button">
                   <div class="form-group filter-controls has-clear">
                     <div class="search-pf-input-group">
+<<<<<<< HEAD
                       <label for="name-filter" class="sr-only">根据名称过滤</label>
+=======
+                      <label for="name-filter" class="sr-only">Filter by name</label>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                       <input
                         type="text"
                         class="form-control"
                         ng-model="overview.filterText"
+<<<<<<< HEAD
                         placeholder="根据名称过滤"
+=======
+                        placeholder="Filter by name"
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                         autocorrect="off"
                         autocapitalize="none"
                         spellcheck="false"
@@ -87,7 +99,11 @@
             </div>
             <div class="vertical-divider"></div>
             <div class="view-by-options">
+<<<<<<< HEAD
               <span class="data-toolbar-label">列表</span>
+=======
+              <span class="data-toolbar-label">List by</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <ui-select class="data-toolbar-dropdown" ng-model="overview.viewBy" search-enabled="false">
                 <ui-select-match>{{$select.selected.label}}</ui-select-match>
                 <ui-select-choices repeat="option.id as option in overview.viewByOptions">
@@ -111,15 +127,24 @@
           <alerts alerts="overview.state.alerts"></alerts>
           <div ng-if="overview.everythingFiltered && overview.viewBy !== 'pipeline'">
             <div class="empty-state-message text-center h2">
+<<<<<<< HEAD
               过滤器在隐藏所有资源。
               <button type="button" class="btn btn-link inline-btn-link" ng-click="overview.clearFilter()">清除所有过滤器</button>
+=======
+              The filter is hiding all resources.
+              <button type="button" class="btn btn-link inline-btn-link" ng-click="overview.clearFilter()">Clear All Filters</button>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
             </div>
           </div>
           <div ng-if="!overview.everythingFiltered || overview.viewBy === 'pipeline'">
             <div ng-if="overview.viewBy === 'app'" ng-repeat="app in overview.apps">
               <div ng-if="app" class="app-heading">
                 <h2>
+<<<<<<< HEAD
                   <div class="component-label">应用</div>
+=======
+                  <div class="component-label">Application</div>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                   <span ng-bind-html="app | highlightKeywords : overview.state.filterKeywords"></span>
                 </h2>
                 <div class="overview-routes" ng-if="overview.routesToDisplayByApp[app] | size">
@@ -135,7 +160,11 @@
                 </div>
               </div>
               <h2 ng-if="!app">
+<<<<<<< HEAD
                 其他资源
+=======
+                Other Resources
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               </h2>
               <div class="list-pf">
                 <overview-list-row
@@ -185,10 +214,17 @@
               <div ng-if="overview.filteredDeploymentConfigs | hashSize">
                 <h2>
                   <span ng-if="overview.deployments | hashSize">
+<<<<<<< HEAD
                     部署配置
                   </span>
                   <span ng-if="!(overview.deployments | hashSize)">
                     部署
+=======
+                    Deployment Configs
+                  </span>
+                  <span ng-if="!(overview.deployments | hashSize)">
+                    Deployments
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                   </span>
                 </h2>
                 <div class="list-pf">
@@ -203,7 +239,11 @@
                 </div>
               </div>
               <div ng-if="overview.filteredDeployments | hashSize">
+<<<<<<< HEAD
                 <h2>部署</h2>
+=======
+                <h2>Deployments</h2>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 <div class="list-pf">
                   <overview-list-row
                        ng-repeat="deployment in overview.filteredDeployments track by (deployment | uid)"
@@ -215,7 +255,11 @@
                 </div>
               </div>
               <div ng-if="overview.filteredReplicationControllers | hashSize">
+<<<<<<< HEAD
                 <h2>副本控制器</h2>
+=======
+                <h2>Replication Controllers</h2>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 <div class="list-pf">
                   <overview-list-row
                        ng-repeat="replicationController in overview.filteredReplicationControllers track by (replicationController | uid)"
@@ -225,7 +269,11 @@
                 </div>
               </div>
               <div ng-if="overview.filteredReplicaSets | hashSize">
+<<<<<<< HEAD
                 <h2>副本集</h2>
+=======
+                <h2>Replica Sets</h2>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 <div class="list-pf">
                   <overview-list-row
                        ng-repeat="replicaSet in overview.filteredReplicaSets track by (replicaSet | uid)"
@@ -235,7 +283,11 @@
                 </div>
               </div>
               <div ng-if="overview.filteredStatefulSets | hashSize">
+<<<<<<< HEAD
                 <h2>状态集</h2>
+=======
+                <h2>Stateful Sets</h2>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 <div class="list-pf">
                   <overview-list-row
                        ng-repeat="statefulSet in overview.filteredStatefulSets track by (statefulSet | uid)"
@@ -245,7 +297,11 @@
                 </div>
               </div>
               <div ng-if="overview.filteredDaemonSets | hashSize">
+<<<<<<< HEAD
                 <h2>守护程序集</h2>
+=======
+                <h2>Daemon Sets</h2>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 <div class="list-pf">
                   <overview-list-row
                        ng-repeat="daemonSet in overview.filteredDaemonSets track by (daemonSet | uid)"
@@ -268,6 +324,7 @@
             <div ng-if="overview.viewBy === 'pipeline'">
               <!-- TODO: Reuse pipelines empty state message from pipelines.html -->
               <div ng-if="!overview.pipelineBuildConfigs.length" class="empty-state-message text-center">
+<<<<<<< HEAD
                 <h2>没有管道。</h2>
                 <div ng-if="project.metadata.name | canIAddToProject">
                   <p>
@@ -281,6 +338,21 @@
                   <p ng-if="(project.metadata.name | canIAddToProject) && overview.samplePipelineURL">
                     <a ng-href="{{overview.samplePipelineURL}}" class="btn btn-lg btn-primary">
                       创建简单管道
+=======
+                <h2>No pipelines.</h2>
+                <div ng-if="project.metadata.name | canIAddToProject">
+                  <p>
+                    No pipelines have been added to project {{projectName}}.
+                    <br>
+                    Learn more about
+                    <a ng-href="{{ 'pipeline-builds' | helpLink}}" target="_blank">Pipeline Builds</a>
+                    and the
+                    <a ng-href="{{ 'pipeline-plugin' | helpLink}}" target="_blank">OpenShift Pipeline Plugin</a>.
+                  </p>
+                  <p ng-if="(project.metadata.name | canIAddToProject) && overview.samplePipelineURL">
+                    <a ng-href="{{overview.samplePipelineURL}}" class="btn btn-lg btn-primary">
+                      Create Sample Pipeline
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                     </a>
                   </p>
                 </div>
@@ -291,7 +363,11 @@
               <div ng-if="(overview.pipelineBuildConfigs | hashSize) && !(overview.filteredPipelineBuildConfigs | hashSize)">
                 <div class="empty-state-message text-center h2">
                   All pipelines are filtered.
+<<<<<<< HEAD
                   <button type="button" class="btn btn-link inline-btn-link" ng-click="overview.clearFilter()">清除所有过滤器</button>
+=======
+                  <button type="button" class="btn btn-link inline-btn-link" ng-click="overview.clearFilter()">Clear All Filters</button>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 </div>
               </div>
               <div ng-repeat="pipeline in overview.filteredPipelineBuildConfigs track by (pipeline | uid)">
@@ -300,6 +376,7 @@
                       class="btn btn-default"
                       ng-if="overview.buildConfigsInstantiateVersion | canI : 'create'"
                       ng-click="overview.startBuild(pipeline)">
+<<<<<<< HEAD
                     开启管道
                   </button>
                 </div>
@@ -309,6 +386,17 @@
                 </h2>
                 <div ng-if="!(overview.recentPipelinesByBuildConfig[pipeline.metadata.name] | hashSize)" class="mar-bottom-lg">
                   没有管道运行。
+=======
+                    Start Pipeline
+                  </button>
+                </div>
+                <h2>
+                  <div class="component-label">Pipeline</div>
+                  <span ng-bind-html="pipeline.metadata.name | highlightKeywords : overview.state.filterKeywords"></span>
+                </h2>
+                <div ng-if="!(overview.recentPipelinesByBuildConfig[pipeline.metadata.name] | hashSize)" class="mar-bottom-lg">
+                  No pipeline runs.
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 </div>
                 <div ng-if="overview.recentPipelinesByBuildConfig[pipeline.metadata.name] | hashSize" class="build-pipelines">
                   <div ng-repeat="pipeline in overview.recentPipelinesByBuildConfig[pipeline.metadata.name] track by (pipeline | uid)"
@@ -319,7 +407,11 @@
                   </div>
                 </div>
                 <div ng-if="!overview.deploymentConfigsByPipeline[pipeline.metadata.name].length" class="mar-bottom-lg">
+<<<<<<< HEAD
                   此管道与任何部署无关。
+=======
+                  This pipeline is not associated with any deployments.
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 </div>
                 <div ng-if="overview.deploymentConfigsByPipeline[pipeline.metadata.name].length" class="list-pf">
                   <overview-list-row
@@ -335,7 +427,11 @@
 
               <!-- Currently we only filter the pipelines. Hide "Other Resources" if a pipeline filter is active or if we're showing the pipeline empty state message. -->
               <div class="list-pf" ng-if="overview.pipelineViewHasOtherResources && !overview.hidePipelineOtherResources">
+<<<<<<< HEAD
                 <h2>其他资源</h2>
+=======
+                <h2>Other Resources</h2>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 <overview-list-row
                      ng-repeat="deploymentConfig in overview.deploymentConfigsNoPipeline track by (deploymentConfig | uid)"
                      ng-init="dcName = deploymentConfig.metadata.name"
@@ -381,7 +477,11 @@
             </div>
             <!-- Show Mobile Apps -->
             <div ng-if="(overview.filteredMobileClients | size) && AEROGEAR_MOBILE_ENABLED">
+<<<<<<< HEAD
               <h2>移动客户端</h2>
+=======
+              <h2>Mobile Clients</h2>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <div class="list-pf">
                 <mobile-client-row
                   ng-repeat="mobileapp in overview.filteredMobileClients track by (mobileapp | uid)"
@@ -392,7 +492,11 @@
             <!-- Show provisioned services. -->
             <div ng-if="overview.filteredServiceInstances.length && !overview.hidePipelineOtherResources">
               <h2>
+<<<<<<< HEAD
                 提供服务
+=======
+                Provisioned Services
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               </h2>
               <div class="list-pf">
                 <service-instance-row

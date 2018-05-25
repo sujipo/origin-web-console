@@ -5,6 +5,7 @@
         <div class="col-md-10">
           <breadcrumbs breadcrumbs="breadcrumbs"></breadcrumbs>
           <div class="mar-top-xl">
+<<<<<<< HEAD
             <h1>Edit Config Map {{configMap.metadata.name}}</h1>
             <div class="help-block">
               Config maps hold key-value pairs that can be used in pods to read application
@@ -12,17 +13,34 @@
             </div>
             <div class="mar-top-xl">
               <div ng-if="!loaded">Loading...</div>
+=======
+            <h1>编辑配置映射 {{configMap.metadata.name}}</h1>
+            <div class="help-block">
+              配置映射保存的键/值对可用于Pods读取应用程序的配置。
+            </div>
+            <div class="mar-top-xl">
+              <div ng-if="!loaded">加载中...</div>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               <form ng-if="loaded" name="forms.editConfigMapForm">
                 <div ng-if="resourceChanged && !resourceDeleted && !updatingNow" class="alert alert-warning">
                   <span class="pficon pficon-warning-triangle-o" aria-hidden="true"></span>
                   <span class="sr-only">Warning:</span>
+<<<<<<< HEAD
                   Config map {{configMap.metadata.name}} has changed since you started editing it.
                   You'll need to copy any changes you've made and edit the config map again.
+=======
+                  配置映射{{configMap.metadata.name}}自从您开始编辑就已发生了变化。
+                  您需要复制您所做的所有修改并再次编辑配置映射。
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 </div>
                 <div ng-if="resourceDeleted" class="alert alert-warning">
                   <span class="pficon pficon-warning-triangle-o" aria-hidden="true"></span>
                   <span class="sr-only">Warning:</span>
+<<<<<<< HEAD
                   Config map {[configMap.metadata.name}} has been deleted since you started editing it.
+=======
+                  配置映射 {[configMap.metadata.name}} 自从您开始编辑就已被删除。
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 </div>
                 <fieldset ng-disabled="disableInputs">
                   <edit-config-map-or-secret model="configMap" type="config map"></edit-config-map-or-secret>
@@ -31,8 +49,13 @@
                         class="btn btn-primary btn-lg"
                         ng-click="updateConfigMap()"
                         ng-disabled="forms.editConfigMapForm.$invalid || forms.editConfigMapForm.$pristine || disableInputs || resourceChanged || resourceDeleted"
+<<<<<<< HEAD
                         value="">Save</button>
                     <a class="btn btn-default btn-lg" href="" ng-click="cancel()" role="button">Cancel</a>
+=======
+                        value="">保存</button>
+                    <a class="btn btn-default btn-lg" href="" ng-click="cancel()" role="button">关闭</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                   </div>
                 </fieldset>
               </form>

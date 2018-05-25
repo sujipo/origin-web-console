@@ -1,5 +1,9 @@
 <div ng-if="!events">
+<<<<<<< HEAD
   加载中...
+=======
+  Loading...
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
 </div>
 <div ng-if="events" class="events">
   <div class="table-filter-extension">
@@ -9,7 +13,11 @@
           <div class="search-pf-input-group">
             <label for="events-filter" class="sr-only">Filter</label>
             <input type="search"
+<<<<<<< HEAD
                    placeholder="根据关键字过滤"
+=======
+                   placeholder="Filter by keyword"
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                    class="form-control"
                    id="events-filter"
                    ng-model="filter.text"
@@ -29,7 +37,11 @@
       </form>
       <div class="vertical-divider"></div>
       <div class="sort-group">
+<<<<<<< HEAD
         <span class="sort-label">排序方式</span>
+=======
+        <span class="sort-label">Sort by</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         <pf-sort config="sortConfig" class="sort-controls"></pf-sort>
       </div>
     </div>
@@ -37,6 +49,7 @@
   <table class="table table-bordered table-condensed table-mobile table-layout-fixed events-table">
     <thead>
       <tr>
+<<<<<<< HEAD
         <th id="time">时间</th>
         <!-- Only show Name and Kind columns if not passed to the directive. -->
         <th id="kind-name" ng-if="showKindAndName">
@@ -49,11 +62,26 @@
         <th id="severity" class="hidden-xs hidden-sm hidden-md"><span class="sr-only">严重程度</span></th>
         <th id="reason" class="hidden-sm hidden-md"><span class="visible-lg-inline">原因</span></th>
         <th id="message"><span class="hidden-xs-inline visible-sm-inline visible-md-inline hidden-lg-inline">原因和</span>内容</th>
+=======
+        <th id="time">Time</th>
+        <!-- Only show Name and Kind columns if not passed to the directive. -->
+        <th id="kind-name" ng-if="showKindAndName">
+          <span class="hidden-xs-inline visible-sm-inline visible-md-inline hidden-lg-inline">Kind and Name</span>
+          <span class="visible-lg-inline">Name</span>
+        </th>
+        <th id="kind" ng-if="showKindAndName" class="hidden-sm hidden-md">
+          <span class="visible-lg-inline">Kind</span>
+        </th>
+        <th id="severity" class="hidden-xs hidden-sm hidden-md"><span class="sr-only">Severity</span></th>
+        <th id="reason" class="hidden-sm hidden-md"><span class="visible-lg-inline">Reason</span></th>
+        <th id="message"><span class="hidden-xs-inline visible-sm-inline visible-md-inline hidden-lg-inline">Reason and </span>Message</th>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       </tr>
     </thead>
     <tbody ng-if="(filteredEvents | hashSize) === 0">
       <tr>
         <td class="hidden-lg" colspan="{{showKindAndName ? 3 : 2}}">
+<<<<<<< HEAD
           <span ng-if="(events | hashSize) === 0"><em>没有事件可显示。</em></span>
           <span ng-if="(events | hashSize) > 0">
             所有事件都隐藏在过滤器中。
@@ -65,6 +93,19 @@
           <span ng-if="(events | hashSize) > 0">
             所有事件都隐藏在过滤器中。
             <button type="button" class="btn btn-link inline-btn-link" ng-click="filter.text = ''">清除所有过滤器</button>
+=======
+          <span ng-if="(events | hashSize) === 0"><em>No events to show.</em></span>
+          <span ng-if="(events | hashSize) > 0">
+            All events hidden by filter.
+            <button type="button" class="btn btn-link inline-btn-link" ng-click="filter.text = ''">Clear All Filters</button>
+          </span>
+        </td>
+          <td class="hidden-xs hidden-sm hidden-md" colspan="{{showKindAndName ? 6 : 4}}">
+          <span ng-if="(events | hashSize) === 0"><em>No events to show.</em></span>
+          <span ng-if="(events | hashSize) > 0">
+            All events hidden by filter.
+            <button type="button" class="btn btn-link inline-btn-link" ng-click="filter.text = ''">Clear All Filters</button>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
           </span>
         </td>
       </tr>

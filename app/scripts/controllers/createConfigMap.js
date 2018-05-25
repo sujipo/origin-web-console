@@ -24,11 +24,19 @@ angular.module('openshiftConsole')
     // TODO: Update BreadcrumbsService to handle create pages.
     $scope.breadcrumbs = [
       {
+<<<<<<< HEAD
          title: "Config Maps",
          link: "project/" + $scope.projectName + "/browse/config-maps"
       },
       {
         title: "Create Config Map"
+=======
+         title: "配置映射",
+         link: "project/" + $scope.projectName + "/browse/config-maps"
+      },
+      {
+        title: "创建配置映射"
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       }
     ];
 
@@ -48,7 +56,11 @@ angular.module('openshiftConsole')
         $scope.project = project;
 
         if (!AuthorizationService.canI('configmaps', 'create', $routeParams.project)) {
+<<<<<<< HEAD
           Navigate.toErrorPage('You do not have authority to create config maps in project ' + $routeParams.project + '.', 'access_denied');
+=======
+          Navigate.toErrorPage('您没有权限在 ' + $routeParams.project + '.', '项目中创建配置映射。');
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
           return;
         }
 
@@ -70,7 +82,11 @@ angular.module('openshiftConsole')
               .then(function() { // Success
                 NotificationsService.addNotification({
                   type: "success",
+<<<<<<< HEAD
                   message: "Config map " + $scope.configMap.metadata.name + " successfully created."
+=======
+                  message: "配置映射 " + $scope.configMap.metadata.name + " 创建成功。"
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 });
                 // Return to the previous page.
                 navigateBack();
@@ -79,7 +95,11 @@ angular.module('openshiftConsole')
                 NotificationsService.addNotification({
                   id: "create-config-map-error",
                   type: "error",
+<<<<<<< HEAD
                   message: "An error occurred creating the config map.",
+=======
+                  message: "创建配置映射时出错。",
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                   details: $filter('getErrorDetails')(result)
                 });
               });

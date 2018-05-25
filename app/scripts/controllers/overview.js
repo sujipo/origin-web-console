@@ -168,10 +168,17 @@ function OverviewController($scope,
 
   overview.filterByOptions = [{
     id: 'name',
+<<<<<<< HEAD
     label: '名称'
   }, {
     id: 'label',
     label: '标签'
+=======
+    label: 'Name'
+  }, {
+    id: 'label',
+    label: 'Label'
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
   }];
 
   // If there is a label filter persisted (such as in the URL), default to filtering by label.
@@ -179,6 +186,7 @@ function OverviewController($scope,
 
   overview.viewByOptions = [{
     id: 'app',
+<<<<<<< HEAD
     label: '应用'
   }, {
     id: 'resource',
@@ -186,6 +194,15 @@ function OverviewController($scope,
   }, {
     id: 'pipeline',
     label: '管道'
+=======
+    label: 'Application'
+  }, {
+    id: 'resource',
+    label: 'Resource Type'
+  }, {
+    id: 'pipeline',
+    label: 'Pipeline'
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
   }];
 
   var getName = function(apiObject) {

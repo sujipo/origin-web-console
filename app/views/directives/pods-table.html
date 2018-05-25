@@ -5,12 +5,21 @@
   </colgroup>
   <thead>
     <tr>
+<<<<<<< HEAD
       <th>{{customNameHeader || '名称'}}</th>
       <th>状态</th>
       <th>容器情况</th>
       <th>容器重启</th>
       <th>时间</th>
       <th ng-if="activePods">接受通讯</th>
+=======
+      <th>{{customNameHeader || 'Name'}}</th>
+      <th>Status</th>
+      <th>Containers Ready</th>
+      <th>Container Restarts</th>
+      <th>Age</th>
+      <th ng-if="activePods">Receiving Traffic</th>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
     </tr>
   </thead>
   <tbody ng-if="!sortedPods.length">

@@ -33,7 +33,11 @@ angular.module('openshiftConsole')
       if (action === "DELETED") {
         $scope.alerts["deleted"] = {
           type: "warning",
+<<<<<<< HEAD
           message: "This config map has been deleted."
+=======
+          message: "这个配置映射已被删除。"
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         };
       }
     };

@@ -1,5 +1,9 @@
 <ng-form name="form">
+<<<<<<< HEAD
   <div ng-hide="input.args.length"><em>没有{{type || '命令'}}设置。</em></div>
+=======
+  <div ng-hide="input.args.length"><em>No {{type || 'command'}} set.</em></div>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
   <div ng-show="input.args.length" as-sortable ng-model="input.args" class="command-args has-sort">
     <div class="row form-row-has-controls" ng-repeat="arg in input.args" as-sortable-item>
       <div class="form-group col-xs-12">
@@ -28,7 +32,11 @@
           aria-hidden="true"
           as-sortable-item-handle>
           <span class="fa fa-bars"></span>
+<<<<<<< HEAD
           <span class="sr-only">移动行</span>
+=======
+          <span class="sr-only">Move row</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         </button>
         <button
           class="btn-remove close delete-row"
@@ -36,7 +44,11 @@
           aria-hidden="true"
           ng-click="removeArg($index)">
           <span class="pficon pficon-close" aria-hidden="true"></span>
+<<<<<<< HEAD
           <span class="sr-only">删除行</span>
+=======
+          <span class="sr-only">Delete row</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         </button>
       </div>
     </div>
@@ -44,7 +56,11 @@
   <div class="form-group">
     <label class="sr-only" ng-attr-for="{{id}}-add-arg">
       <span ng-if="placeholder">{{placeholder}}</span>
+<<<<<<< HEAD
       <span ng-if="!placeholder">添加参数</span>
+=======
+      <span ng-if="!placeholder">Add argument</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
     </label>
     <!-- Single-line entry -->
     <span ng-show="!multiline" class="input-group">
@@ -67,7 +83,11 @@
            ng-click="addArg()"
            ng-disabled="!nextArg"
            ng-attr-aria-disabled="!nextArg"
+<<<<<<< HEAD
            role="button">添加</a>
+=======
+           role="button">Add</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       </span>
     </span>
     <!-- Multiline entry -->
@@ -88,26 +108,46 @@
            ng-click="addArg()"
            ng-disabled="!nextArg"
            ng-attr-aria-disabled="!nextArg"
+<<<<<<< HEAD
            role="button">添加</a>
+=======
+           role="button">Add</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       </div>
     </span>
     <div class="help-block">
       <span ng-if="description">{{description}}</span>
       <span ng-if="!description">
+<<<<<<< HEAD
         输入要在容器内运行的命令。如果该命令的退出代码为0，则认为该命令是成功的。拖放以重新排序参数。
+=======
+        Enter the command to run inside the container. The command is considered successful if its
+        exit code is 0. Drag and drop to reorder arguments.
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       </span>
     </div>
   </div>
   <div class="mar-top-sm mar-bottom-md">
+<<<<<<< HEAD
     <a href="" ng-click="multiline = !multiline">切换到 {{multiline ? '单行' : '多行'}} 编辑器</a>
     <span ng-show="input.args.length">
       <span class="action-divider">|</span>
       <a href="" ng-click="clear()" role="button">清除 {{ (type || '命令') | upperFirst }}</a>
+=======
+    <a href="" ng-click="multiline = !multiline">Switch to {{multiline ? 'Single-line' : 'Multiline'}} Editor</a>
+    <span ng-show="input.args.length">
+      <span class="action-divider">|</span>
+      <a href="" ng-click="clear()" role="button">Clear {{ (type || 'Command') | upperFirst }}</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
     </span>
   </div>
   <!-- Add a hidden input to help with form validation. -->
   <input type="hidden" name="command" ng-model="input.args" ng-required="isRequired">
   <div ng-if="form.command.$dirty && form.command.$error.required" class="has-error">
+<<<<<<< HEAD
     <span class="help-block">必须填写一条命令。</span>
+=======
+    <span class="help-block">A command is required.</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
   </div>
 </ng-form>

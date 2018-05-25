@@ -1,6 +1,10 @@
 <div class="osc-file-input">
   <div ng-attr-id="{{dropMessageID}}" class="drag-and-drop-zone">
+<<<<<<< HEAD
     <p>Drop file here</p>
+=======
+    <p>请将文件拖拽到此处</p>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
   </div>
   <div class="input-group">
     <input
@@ -13,7 +17,11 @@
         ng-attr-aria-describedby="{{helpText ? helpID : undefined}}">
     <span class="input-group-btn">
       <span class="btn btn-default btn-file" ng-show="supportsFileUpload" ng-attr-disabled="{{ (disabled || readonly) || undefined }}">
+<<<<<<< HEAD
         Browse&hellip;
+=======
+        浏览&hellip;
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         <input type="file" ng-disabled="disabled || readonly" class="form-control">
       </span>
     </span>
@@ -22,7 +30,11 @@
     <span ng-attr-id="{{helpID}}" class="help-block">{{::helpText}}</span>
   </div>
   <div class="has-error" ng-show="uploadError">
+<<<<<<< HEAD
     <span class="help-block">There was an error reading the file. Please copy the file content into the text area.</span>
+=======
+    <span class="help-block">读取文件时出错。请将文件内容复制到文本区域。</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
   </div>
   <textarea class="form-control"
       rows="5"
@@ -36,5 +48,9 @@
       spellcheck="false"
       ng-attr-aria-describedby="{{helpText ? helpID : undefined}}">
   </textarea>
+<<<<<<< HEAD
   <a href="" ng-show="(model || fileName) && !disabled && !readonly && !hideClear" ng-click="cleanInputValues()">Clear Value</a>
+=======
+  <a href="" ng-show="(model || fileName) && !disabled && !readonly && !hideClear" ng-click="cleanInputValues()">清除内容</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
 </div>

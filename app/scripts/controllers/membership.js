@@ -33,6 +33,7 @@ angular
 
       var messages = {
         notice: {
+<<<<<<< HEAD
           yourLastRole: _.template('Removing the role "<%= roleName %>" may completely remove your ability to see this project.')
         },
         warning: {
@@ -53,6 +54,29 @@ angular
             success: _.template('The role "<%= roleName %>" was granted to "<%= subjectName %>".'),
             error: _.template('The role "<%= roleName %>" could not be granted to "<%= subjectName %>".'),
             exists: _.template('The role "<%= roleName %>" has already been granted to "<%= subjectName %>".')
+=======
+          yourLastRole: _.template('删除角色 "<%= roleName %>" 可能会完全移除您查看此项目的权限。')
+        },
+        warning: {
+          serviceAccount: _.template('删除被授予服务帐户的系统角色可能会导致意外情况。')
+    },
+        remove: {
+          areYouSure: {
+            html: {
+              subject: _.template('您确定要从<%- kindName %> <strong><%- subjectName %></strong>中删除 <strong><%- roleName %></strong>吗？'),
+              //subject: _.template('Are you sure you want to remove <strong><%- roleName %></strong> from the <%- kindName %> <strong><%- subjectName %></strong>?'),
+              self: _.template('您确定要从<strong><%- subjectName %></strong>(you) 删除 <strong><%- roleName %></strong>吗？')
+            }
+          },
+          success: _.template('角色 "<%= roleName %>" 已从 "<%= subjectName %>"中删除。'),
+          error: _.template('角色 "<%= roleName %>" 未从 "<%= subjectName %>"中删除。')
+        },
+        update: {
+          subject: {
+            success: _.template('角色 "<%= roleName %>" 已成功添加到 "<%= subjectName %>"。'),
+            error: _.template('角色 "<%= roleName %>" 未能成功添加到 "<%= subjectName %>"。'),
+            exists: _.template('角色 "<%= roleName %>" 在 "<%= subjectName %>"中已存在。')
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
           }
         }
       };
@@ -209,16 +233,26 @@ angular
 
       var createModalScope = function(subjectName, kind, roleName, currentUserName) {
         var modalScope = {
+<<<<<<< HEAD
           title: 'Confirm Removal',
+=======
+          title: '确认删除',
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
           alerts: {},
           detailsMarkup: messages.remove.areYouSure.html.subject({
             roleName: roleName,
             kindName: humanizeKind(kind),
             subjectName:  subjectName
           }),
+<<<<<<< HEAD
           okButtonText: 'Remove',
           okButtonClass: 'btn-danger',
           cancelButtonText: 'Cancel'
+=======
+          okButtonText: '删除',
+          okButtonClass: 'btn-danger',
+          cancelButtonText: '关闭'
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         };
         if(_.isEqual(subjectName, currentUserName)) {
           modalScope.detailsMarkup = messages.remove.areYouSure.html.self({

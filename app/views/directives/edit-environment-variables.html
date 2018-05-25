@@ -1,12 +1,21 @@
 <form ng-if="$ctrl.apiObject" name="$ctrl.form" class="mar-bottom-xl">
   <confirm-on-exit ng-if="$ctrl.canIUpdate && !$ctrl.ngReadonly" dirty="$ctrl.form.$dirty"></confirm-on-exit>
   <div ng-repeat="container in $ctrl.containers track by container.name">
+<<<<<<< HEAD
     <h3>容器 {{container.name}}</h3>
 
     <div ng-if="!$ctrl.canIUpdate || $ctrl.ngReadonly">
       <span ng-if="!container.env.length">
          {{container.name}}容器 {{$ctrl.apiObject.kind | humanizeKind}}模板
          没有环境变量。
+=======
+    <h3>Container {{container.name}}</h3>
+
+    <div ng-if="!$ctrl.canIUpdate || $ctrl.ngReadonly">
+      <span ng-if="!container.env.length">
+        No environment variables set in the {{$ctrl.apiObject.kind | humanizeKind}}
+        template for container {{container.name}}.
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       </span>
       <key-value-editor
         ng-if="container.env.length"
@@ -29,17 +38,30 @@
       key-validator="[A-Za-z_][A-Za-z0-9_]*"
       key-validator-error="Please enter a valid key."
       key-validator-error-tooltip="A valid environment variable name is an alphanumeric (a-z and 0-9) string beginning with a letter that may contain underscores."
+<<<<<<< HEAD
       add-row-link="添加值"
       add-row-with-selectors-link="从配置映射或密钥中添加值"
+=======
+      add-row-link="Add Value"
+      add-row-with-selectors-link="Add Value from Config Map or Secret"
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       show-header>
     </key-value-editor>
 
     <h4>
+<<<<<<< HEAD
       环境添加
       <span class="pficon pficon-help tooltip-default-icon"
             aria-hidden="true"
             data-toggle="tooltip"
             data-original-title="环境允许您从配置映射或密钥中添加所有键值对作为环境变量。"></span>
+=======
+      Environment From
+      <span class="pficon pficon-help tooltip-default-icon"
+            aria-hidden="true"
+            data-toggle="tooltip"
+            data-original-title="Environment From lets you add all key-value pairs from a config map or secret as environment variables."></span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
     </h4>
     <edit-environment-from
       entries="container.envFrom"
@@ -53,11 +75,19 @@
       class="btn btn-default"
       ng-if="$ctrl.canIUpdate && !$ctrl.ngReadonly"
       ng-click="$ctrl.save()"
+<<<<<<< HEAD
       ng-disabled="$ctrl.form.$pristine || $ctrl.form.$invalid">保存</button>
+=======
+      ng-disabled="$ctrl.form.$pristine || $ctrl.form.$invalid">Save</button>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
     <a
       ng-if="!$ctrl.form.$pristine"
       href=""
       ng-click="$ctrl.clearChanges()"
+<<<<<<< HEAD
       class="mar-left-sm clear-env-changes-link">清除变更</a>
+=======
+      class="mar-left-sm clear-env-changes-link">Clear Changes</a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
   </div>
 </form>

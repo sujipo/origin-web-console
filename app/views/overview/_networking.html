@@ -1,9 +1,17 @@
 <div ng-if="networking.rowServices | size" class="expanded-section networking-section">
+<<<<<<< HEAD
   <div class="component-label section-label hidden-xs">联网</div>
   <div ng-repeat="service in networking.rowServices" class="row">
     <div class="col-sm-5 col-md-6">
       <div class="resource-label">
         服务 - 内部通讯
+=======
+  <div class="component-label section-label hidden-xs">Networking</div>
+  <div ng-repeat="service in networking.rowServices" class="row">
+    <div class="col-sm-5 col-md-6">
+      <div class="resource-label">
+        Service - Internal Traffic
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       </div>
       <h3>
         <a ng-href="{{service | navigateResourceURL}}">{{service.metadata.name}}</a>
@@ -14,17 +22,29 @@
         {{portMapping.targetPort}}
       </span>
       <span ng-if="service.spec.ports.length >= 2">
+<<<<<<< HEAD
         和
         <span class="nowrap">
           {{service.spec.ports.length - 1}}
           <span ng-if="service.spec.ports.length > 2">其它</span>
           <span ng-if="service.spec.ports.length === 2">其它</span>
+=======
+        and
+        <span class="nowrap">
+          {{service.spec.ports.length - 1}}
+          <span ng-if="service.spec.ports.length > 2">others</span>
+          <span ng-if="service.spec.ports.length === 2">other</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         </span>
       </span>
     </div>
     <div class="col-sm-7 col-md-6 overview-routes">
       <div class="resource-label">
+<<<<<<< HEAD
         路由 - 外部通讯
+=======
+        Routes - External Traffic
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       </div>
       <div ng-if="networking.routesByService[service.metadata.name] | size">
         <div ng-repeat="route in networking.routesByService[service.metadata.name] track by (route | uid)" class="overview-routes">
@@ -39,8 +59,13 @@
             <route-warnings route="route" services="networking.allServices"></route-warnings>
           </h3>
           <div class="overview-route">
+<<<<<<< HEAD
             路由 <a ng-href="{{route | navigateResourceURL}}">{{route.metadata.name}}</a><span ng-if="route.spec.port.targetPort">,
             目标端口 {{route.spec.port.targetPort}}</span>
+=======
+            Route <a ng-href="{{route | navigateResourceURL}}">{{route.metadata.name}}</a><span ng-if="route.spec.port.targetPort">,
+            target port {{route.spec.port.targetPort}}</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
           </div>
           <div ng-if="route | hasAlternateBackends">
             <route-service-bar-chart route="route" highlight-service="service.metadata.name"></route-service-bar-chart>
@@ -50,9 +75,15 @@
       <div ng-if="!(networking.routesByService[service.metadata.name] | size)">
         <a ng-if="'routes' | canI : 'create'" ng-href="project/{{service.metadata.namespace}}/create-route?service={{service.metadata.name}}">
           <span class="pficon pficon-add-circle-o" aria-hidden="true"></span>
+<<<<<<< HEAD
           创建路由
         </a>
         <span ng-if="!('routes' | canI : 'create')" class="text-muted">没有路由</span>
+=======
+          Create Route
+        </a>
+        <span ng-if="!('routes' | canI : 'create')" class="text-muted">No Routes</span>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       </div>
     </div>
   </div>

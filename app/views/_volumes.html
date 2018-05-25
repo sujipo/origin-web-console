@@ -12,12 +12,21 @@
   </h4>
   <dl class="dl-horizontal left">
     <div ng-if="volume.secret">
+<<<<<<< HEAD
       <dt>类别:</dt>
       <dd>
         密钥
         <span class="small text-muted">(当Pod被创建时，一个对应的密钥也被创建)</span>
       </dd>
       <dt>密钥:</dt>
+=======
+      <dt>Type:</dt>
+      <dd>
+        secret
+        <span class="small text-muted">(populated by a secret when the pod is created)</span>
+      </dd>
+      <dt>Secret:</dt>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       <dd>
         <span ng-if="secretsVersion | canI : 'get'">
           <a ng-href="{{volume.secret.secretName | navigateResourceURL : 'Secret' : namespace}}">{{volume.secret.secretName}}</a>
@@ -27,11 +36,16 @@
         </span>
       </dd>
       <div ng-repeat="item in volume.secret.items">
+<<<<<<< HEAD
         <dt>关键文件:</dt>
+=======
+        <dt>Key to File:</dt>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         <dd>{{item.key}}&#8201;&#8594;&#8201;{{item.path}}</dd>
       </div>
     </div>
     <div ng-if="volume.persistentVolumeClaim">
+<<<<<<< HEAD
       <dt>类别:</dt>
       <dd>
         持续的卷要求
@@ -40,13 +54,27 @@
       <dt>声称名称:</dt>
       <dd><a ng-href="{{volume.persistentVolumeClaim.claimName | navigateResourceURL : 'PersistentVolumeClaim' : namespace}}">{{volume.persistentVolumeClaim.claimName}}</a></dd>
       <dt>模式:</dt>
+=======
+      <dt>Type:</dt>
+      <dd>
+        persistent volume claim
+        <span class="small text-muted">(reference to a persistent volume claim)</span>
+      </dd>
+      <dt>Claim name:</dt>
+      <dd><a ng-href="{{volume.persistentVolumeClaim.claimName | navigateResourceURL : 'PersistentVolumeClaim' : namespace}}">{{volume.persistentVolumeClaim.claimName}}</a></dd>
+      <dt>Mode:</dt>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       <dd>
         <span ng-if="volume.persistentVolumeClaim.readOnly">read-only</span>
         <span ng-if="!volume.persistentVolumeClaim.readOnly">read-write</span>
       </dd>
     </div>
     <div ng-if="volume.hostPath">
+<<<<<<< HEAD
       <dt>类型:</dt>
+=======
+      <dt>Type:</dt>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       <dd>
         host path
         <span class="small text-muted">(bare host directory volume)</span>

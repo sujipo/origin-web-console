@@ -8,6 +8,7 @@
             href=""
             ng-if="canUpdateRolebindings"
             ng-click="toggleEditMode()">
+<<<<<<< HEAD
             <span ng-if="!(mode.edit)">Edit Membership</span>
             <span ng-if="mode.edit">Done Editing</span>
           </a>
@@ -15,6 +16,15 @@
            <span class="page-header-link">
              <a ng-href="{{'roles' | helpLink}}" target="_blank">
                Learn More <i class="fa fa-external-link" aria-hidden="true"></i>
+=======
+            <span ng-if="!(mode.edit)">编辑成员</span>
+            <span ng-if="mode.edit">完成编辑</span>
+          </a>
+           成员
+           <span class="page-header-link">
+             <a ng-href="{{'roles' | helpLink}}" target="_blank">
+               了解更多 <i class="fa fa-external-link" aria-hidden="true"></i>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
              </a>
            </span>
         </h1>
@@ -25,7 +35,11 @@
     <div class="container-fluid">
       <alerts alerts="alerts"></alerts>
       <div  ng-if="!(roleBindingsVersion | canI : 'list')">
+<<<<<<< HEAD
         <p>You do not have permission to view roles in this project.</p>
+=======
+        <p>您没有权限查看此项目中的角色。</p>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       </div>
       <uib-tabset
         ng-if="roleBindingsVersion | canI : 'list'">
@@ -44,7 +58,11 @@
                 target="_blank"
                 ng-href="{{subjectKind.helpLinkKey | helpLink}}"
                 class="learn-more-inline">
+<<<<<<< HEAD
                 Learn More <i class="fa fa-external-link" aria-hidden="true"></i>
+=======
+                了解更多 <i class="fa fa-external-link" aria-hidden="true"></i>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               </a>
             </p>
           </div>
@@ -55,11 +73,19 @@
             <div
               class="col-heading">
               <div class="col-name">
+<<<<<<< HEAD
                 <h3>Name</h3>
               </div>
               <div class="action-set">
                 <div class="col-roles">
                   <h3>Roles</h3>
+=======
+                <h3>名称</h3>
+              </div>
+              <div class="action-set">
+                <div class="col-roles">
+                  <h3>角色</h3>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                 </div>
               </div>
             </div>
@@ -117,7 +143,11 @@
                       title="Select a new role for {{subject.name}}"
                       class="select-role">
                       <ui-select-match
+<<<<<<< HEAD
                         placeholder="Select a role">
+=======
+                        placeholder="选择角色">
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                         <span ng-bind="subject.newRole.metadata.name"></span>
                       </ui-select-match>
                       <ui-select-choices
@@ -136,7 +166,11 @@
                       ng-disabled="disableAddForm || (!subject.newRole)"
                       ng-click="addRoleTo(subject.name, subjectKind.name, subject.newRole, subject.namespace)"
                       class="btn btn-default add-role-to">
+<<<<<<< HEAD
                       Add
+=======
+                      添加
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                     </button>
                   </div>
                 </div>
@@ -231,7 +265,11 @@
                         title="new {{subjectKind.name}} role"
                         class="select-role">
                         <ui-select-match
+<<<<<<< HEAD
                           placeholder="Select a role">
+=======
+                          placeholder="选择角色">
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                           <span ng-bind="newBinding.newRole.metadata.name"></span>
                         </ui-select-match>
                         <ui-select-choices
@@ -250,7 +288,11 @@
                         ng-disabled="disableAddForm || (!newBinding.name) || (!newBinding.newRole)"
                         ng-click="addRoleTo(newBinding.name, newBinding.kind, newBinding.newRole, newBinding.namespace)"
                         class="btn btn-default add-role-to">
+<<<<<<< HEAD
                         Add
+=======
+                        添加
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
                       </button>
                     </div>
                   </div>
@@ -268,11 +310,19 @@
                     class="toggle-hidden"
                     ng-click="toggleRoles($event)"
                     ng-checked="toggle.roles">
+<<<<<<< HEAD
                   Show hidden roles</label>&nbsp;<a href=""
                                                     class="action-inline"
                                                     data-toggle="popover"
                                                     data-trigger="hover focus"
                                                     data-content="System roles are hidden by default and do not typically need to be managed."><i class="pficon pficon-help"></i></a>
+=======
+                  显示隐藏角色</label>&nbsp;<a href=""
+                                                    class="action-inline"
+                                                    data-toggle="popover"
+                                                    data-trigger="hover focus"
+                                                    data-content="默认情况下隐藏通常不需要管理的系统角色。"><i class="pficon pficon-help"></i></a>
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
               </div>
             </div>
           </div>

@@ -70,12 +70,20 @@
     };
 
     var showDeleteForm = function() {
+<<<<<<< HEAD
       ctrl.nextTitle = '删除';
+=======
+      ctrl.nextTitle = 'Delete';
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       setupValidator();
     };
 
     var showResults = function() {
+<<<<<<< HEAD
       ctrl.nextTitle = '关闭';
+=======
+      ctrl.nextTitle = 'Close';
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       ctrl.wizardComplete = true;
       unbindService();
       tearDownValidator();

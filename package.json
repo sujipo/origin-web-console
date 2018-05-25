@@ -11,7 +11,11 @@
     "clean-css": "3.4.12",
     "connect-modrewrite": "0.7.9",
     "geckodriver": "1.3.0",
+<<<<<<< HEAD
     "grunt": "0.4.5",
+=======
+    "grunt": "^0.4.5",
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
     "grunt-angular-templates": "1.0.3",
     "grunt-cli": "1.1.0",
     "grunt-concurrent": "2.3.1",

@@ -35,11 +35,19 @@ angular.module('openshiftConsole')
 
     $scope.breadcrumbs = [
       {
+<<<<<<< HEAD
          title: "路由",
          link: "project/" + $scope.projectName + "/browse/routes"
       },
       {
         title: "创建路由"
+=======
+         title: "Routes",
+         link: "project/" + $scope.projectName + "/browse/routes"
+      },
+      {
+        title: "Create Route"
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       }
     ];
 

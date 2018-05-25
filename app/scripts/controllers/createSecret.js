@@ -24,11 +24,19 @@ angular.module('openshiftConsole')
 
     $scope.breadcrumbs = [
       {
+<<<<<<< HEAD
          title: "密钥",
          link: "project/" + $scope.projectName + "/browse/secrets"
       },
       {
         title: "创建密钥"
+=======
+         title: "Secrets",
+         link: "project/" + $scope.projectName + "/browse/secrets"
+      },
+      {
+        title: "Create Secret"
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
       }
     ];
 

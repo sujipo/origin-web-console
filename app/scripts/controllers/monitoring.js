@@ -46,7 +46,11 @@ angular.module('openshiftConsole')
         kind: "Pods"
       },
       {
+<<<<<<< HEAD
         label: "部署",
+=======
+        label: "Deployments",
+>>>>>>> 94fb08e7f06e2d1ad2b99b3cc6ae23330217009b
         kind: "ReplicationControllers"
       },
       {
