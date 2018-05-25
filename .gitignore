@@ -11,3 +11,5 @@ openshift-jvm
 .DS_Store
 test/junit/
 *.rar
+dist/
+dist.java/
