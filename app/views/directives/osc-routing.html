@@ -3,7 +3,7 @@
 
     <!-- Name -->
     <div ng-show="showNameInput" class="form-group">
-      <label for="route-name" class="required">Name</label>
+      <label for="route-name" class="required">名称</label>
       <span ng-class="{ 'has-error': routeForm.name.$invalid && routeForm.name.$touched && !routingDisabled }">
         <input
             id="route-name"
@@ -22,7 +22,7 @@
             aria-describedby="route-name-help">
       </span>
       <div>
-        <span id="route-name-help" class="help-block">A unique name for the route within the project.</span>
+        <span id="route-name-help" class="help-block">在项目中路由名称必须唯一。</span>
       </div>
       <div class="has-error" ng-show="routeForm.name.$error.pattern && routeForm.name.$touched && !routingDisabled">
         <span class="help-block">
@@ -38,7 +38,7 @@
 
     <!-- Host -->
     <div class="form-group">
-      <label for="host">Hostname</label>
+      <label for="host">主机名</label>
       <span ng-class="{ 'has-error': routeForm.host.$invalid && routeForm.host.$touched && !routingDisabled }">
         <input
             id="host"
@@ -58,34 +58,34 @@
       <div>
         <span id="route-host-help" class="help-block">
           <p>
-            Public hostname for the route.
+            路线的公共主机名。
             <span ng-if="!hostReadOnly">
-              If not specified, a hostname is generated.
+              如果没有指定，将自行生成一个主机名。
             </span>
             <span ng-if="!disableWildcards">
-              You can use <var>*.example.com</var> with routers that support wildcard subdomains.
+              您可以用 <var>*.example.com</var> 形式来支持通配符子域的路由器。
             </span>
           </p>
-          <p ng-if="(existingRoute || canICreateCustomHosts) && !canIUpdateCustomHosts">The hostname can't be changed after the route is created.</p>
+          <p ng-if="(existingRoute || canICreateCustomHosts) && !canIUpdateCustomHosts">在创建路由后，主机名不能更改。</p>
         </span>
       </div>
       <div class="has-error" ng-show="routeForm.host.$error.pattern && routeForm.host.$touched && !routingDisabled">
         <span class="help-block">
-          Hostname must consist of lower-case letters, numbers, periods, and
-          hyphens. It must start and end with a letter or number.
-          <span ng-if="!disableWildcards">Wildcard subdomains may start with <var>*.</var></span>
+          主机名必须由小写字母、数字、句点和连字符组成。
+          它必须以字母或数字开头和结尾。
+          <span ng-if="!disableWildcards">通配符子域可能以 <var>*.</var> 开头</span>
         </span>
       </div>
       <div class="has-error" ng-show="routeForm.host.$error.maxlength && routeForm.host.$touched && !routingDisabled">
         <span class="help-block">
-          Can't be longer than {{hostnameMaxLength}} characters.
+            不能超过 {{hostnameMaxLength}} 个字符。
         </span>
       </div>
     </div>
 
     <!-- Path -->
     <div class="form-group">
-      <label for="path">Path</label>
+      <label for="path">路径</label>
       <span ng-class="{ 'has-error': routeForm.path.$invalid && routeForm.path.$touched && !routingDisabled }">
         <input
             id="path"
@@ -103,17 +103,17 @@
       </span>
       <div>
         <span id="route-path-help" class="help-block">
-          Path that the router watches to route traffic to the service.
+          路由器监视路由到服务的路径。
         </span>
       </div>
       <div class="has-error" ng-show="routeForm.path.$error.pattern && routeForm.path.$touched && !routingDisabled">
         <span class="help-block">
-          Path must start with <code>/</code>
+          路径必须以 <code>/</code> 开头
         </span>
       </div>
       <div class="has-warning" ng-show="route.path && route.tls.termination === 'passthrough'">
         <span class="help-block">
-          Path value will not be used. Paths cannot be set for passthrough TLS.
+            路径值将不会被使用。 不能为贯通TLS设置路径。
         </span>
       </div>
     </div>
@@ -130,7 +130,7 @@
 
     <!-- Target Port -->
     <div ng-if="route.portOptions.length" class="form-group">
-      <label for="routeTargetPort">Target Port</label>
+      <label for="routeTargetPort">目标端口</label>
       <ui-select ng-if="route.portOptions.length" ng-model="route.targetPort" input-id="routeTargetPort" search-enabled="false" aria-describedby="target-port-help">
         <ui-select-match>{{$select.selected.label}}</ui-select-match>
         <ui-select-choices repeat="portOption.port as portOption in route.portOptions">
@@ -139,7 +139,7 @@
       </ui-select>
       <div>
         <span id="target-port-help" class="help-block">
-          Target port for traffic.
+          目标端口为了通信
         </span>
       </div>
     </div>
@@ -152,11 +152,11 @@
         <div class="checkbox">
           <label>
             <input type="checkbox" ng-model="options.alternateServices" aria-describedby="secure-route-help">
-            Split traffic across multiple services
+            多个服务将分割流量。
           </label>
           <div class="help-block">
-            Routes can direct traffic to multiple services for A/B testing. Each service has a weight
-            controlling how much traffic it gets.
+            路由可以将流量直接发送到多个服务，以进行A/B测试。
+            每个服务都有一个权重来控制它所获得的流量。
           </div>
         </div>
       </div>
@@ -171,27 +171,27 @@
         </osc-routing-service>
         <div class="row form-group-actions">
           <div class="col-sm-6">
-            <button type="button" class="btn btn-link" ng-click="route.alternateServices.splice($index, 1)">Remove Service</button>
+            <button type="button" class="btn btn-link" ng-click="route.alternateServices.splice($index, 1)">移除服务</button>
             <span ng-if="$last && route.alternateServices.length < alternateServiceOptions.length">
               <span class="action-divider">|</span>
-              <button type="button" class="btn btn-link" ng-click="addAlternateService()">Add Another Service</button>
+              <button type="button" class="btn btn-link" ng-click="addAlternateService()">添加另一个服务</button>
             </span>
           </div>
           <div ng-if="route.alternateServices.length === 1 && controls.hideSlider" class="col-sm-6">
-            <button type="button" class="btn btn-link" ng-click="controls.hideSlider = false">Edit Weights Using Percentage Slider</button>
+            <button type="button" class="btn btn-link" ng-click="controls.hideSlider = false">使用百分比滑块编辑权重</button>
           </div>
         </div>
       </div>
       <div ng-repeat="duplicate in duplicateServices" class="has-error mar-bottom-lg">
         <span class="help-block">
-          Service {{duplicate.metadata.name}} cannot be added twice.
+          服务 {{duplicate.metadata.name}} 不能重复添加.
         </span>
       </div>
     </div>
 
     <!-- If there is exactly one alternate service, let the user change the weights using a slider. -->
     <div ng-if="route.alternateServices.length === 1 && !controls.hideSlider">
-      <h3>Service Weights</h3>
+      <h3>服务权重</h3>
       <div class="form-group">
         <div class="weight-slider-values">
           <div>
@@ -204,7 +204,7 @@
             <span class="weight-percentage visible-xs-inline">{{weightAsPercentage(route.alternateServices[0].weight, true)}}</span>
           </div>
         </div>
-        <label class="sr-only" for="weight-slider">Service {{route.to.service.metadata.name}} Weight</label>
+        <label class="sr-only" for="weight-slider">服务 {{route.to.service.metadata.name}} 权重</label>
         <input
             id="weight-slider"
             type="range"
@@ -223,27 +223,27 @@
           <option>100</option>
         </datalist>
         <div class="help-block" id="weight-slider-help">
-          Percentage of traffic sent to each service. Drag the slider to adjust the values or
-          <button type="button" class="btn btn-link" ng-click="controls.hideSlider = true">edit weights as integers</button>.
+          发送给每个服务的流量百分比。拖动滑块来调整值或者
+          <button type="button" class="btn btn-link" ng-click="controls.hideSlider = true">直接修改权重值</button>.
         </div>
       </div>
     </div>
 
-    <h3>Security</h3>
+    <h3>安全</h3>
     <div class="checkbox">
       <label>
         <input type="checkbox" ng-model="options.secureRoute" aria-describedby="secure-route-help">
-        Secure route
+        安全路由
       </label>
       <div class="help-block" id="secure-route-help">
-        Routes can be secured using several TLS termination types for serving certificates.
+        可以使用多个TLS终端类型来保护路由，以获取服务证书。
       </div>
     </div>
 
     <div ng-show="options.secureRoute">
       <!-- TLS Termination -->
       <div class="form-group">
-        <label for="tlsTermination">TLS Termination</label>
+        <label for="tlsTermination">TLS 终端</label>
         <ui-select ng-model="route.tls.termination" input-id="tlsTermination" search-enabled="false">
           <ui-select-match>{{$select.selected | humanizeTLSTermination}}</ui-select-match>
           <ui-select-choices repeat="option in ['edge', 'passthrough', 'reencrypt']">
@@ -251,13 +251,13 @@
           </ui-select-choices>
         </ui-select>
         <div class="learn-more-block help-block">
-          <a href="{{'route-types' | helpLink}}" target="_blank">Learn More&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+          <a href="{{'route-types' | helpLink}}" target="_blank">了解更多&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
         </div>
       </div>
 
       <!-- Insecure Edge Termination Policy -->
       <div class="form-group">
-        <label for="insecureTraffic">Insecure Traffic</label>
+        <label for="insecureTraffic">不安全的通信</label>
         <!-- Since we can't give the ui-select field a name, create a hidden input for Angular form validation. -->
         <input type="hidden" name="insecureTraffic">
         <ui-select ng-model="route.tls.insecureEdgeTerminationPolicy"
@@ -274,30 +274,30 @@
         </ui-select>
         <div>
           <span id="route-insecure-policy-help" class="help-block">
-            Policy for traffic on insecure schemes like HTTP.
+            不安全方案的流量策略有HTTP。
           </span>
         </div>
         <div ng-if="routeForm.insecureTraffic.$error.passthrough" class="has-warning">
           <span class="help-block">
-            Passthrough routes can't use the insecure traffic policy <var>Allow</var>.
+            贯穿路由不能使用不安全的交通政策-<var>允许</var>。
           </span>
         </div>
       </div>
 
       <!-- Key and Certificates -->
-      <h3>Certificates</h3>
+      <h3>证书</h3>
       <div class="help-block">
-        TLS certificates for edge and re-encrypt termination. If not specified, the router's default
-        certificate is used.
+        TLS证书为了移动和重新加密终端. 
+        如果没有指定，则使用路由器的默认证书。
       </div>
       <div ng-if="showCertificatesNotUsedWarning" class="has-warning">
         <span class="help-block">
-          The certificate or key you've set will not be used.
+          您设置的证书或密钥将不会被使用。
           <span ng-if="!route.tls.termination">
-            The route is unsecured.
+            该路由不安全
           </span>
           <span ng-if="route.tls.termination === 'passthrough'">
-            Custom certificates cannot be used with passthrough termination.
+            自定义证书不能用于贯穿终端。
           </span>
         </span>
       </div>
@@ -309,40 +309,40 @@
               model="route.tls.certificate"
               drop-zone-id="certificate-file"
               show-text-area="true"
-              help-text="The PEM format certificate. Upload file by dragging & dropping, selecting it, or pasting from the clipboard."
+              help-text="PEM格式的证书。通过拖放、选择或粘贴剪贴板来上传文件。"
               ng-readonly="areCertificateInputsReadOnly()"
               ng-disabled="areCertificateInputsDisabled()">
             </osc-file-input>
           </div>
           <div class="form-group" id="private-key-file">
-            <label>Private Key</label>
+            <label>私Key</label>
             <osc-file-input
               model="route.tls.key"
               drop-zone-id="private-key-file"
               show-text-area="true"
-              help-text="The PEM format key. Upload file by dragging & dropping, selecting it, or pasting from the clipboard."
+              help-text="PEM格式的关键。通过拖放、选择或粘贴剪贴板来上传文件。"
               ng-readonly="areCertificateInputsReadOnly()"
               ng-disabled="areCertificateInputsDisabled()">
           </osc-file-input>
           </div>
           <div class="form-group" id="ca-certificate-file">
-            <label>CA Certificate</label>
+            <label>CA证书</label>
             <osc-file-input
               model="route.tls.caCertificate"
               drop-zone-id="ca-certificate-file"
               show-text-area="true"
-              help-text="The PEM format CA certificate chain. Upload file by dragging & dropping, selecting it, or pasting from the clipboard."
+              help-text="PEM格式CA证书链。通过拖放、选择或粘贴剪贴板来上传文件。"
               ng-readonly="areCertificateInputsReadOnly()"
               ng-disabled="areCertificateInputsDisabled()">
             </osc-file-input>
           </div>
           <div class="form-group" id="dest-ca-certificate-file">
-            <label>Destination CA Certificate</label>
+            <label>目的CA证书</label>
             <osc-file-input
                 model="route.tls.destinationCACertificate"
                 show-text-area="true"
                 drop-zone-id="dest-ca-certificate-file"
-                help-text="The PEM format CA certificate chain to validate the endpoint certificate for re-encrypt termination. Upload file by dragging & dropping, selecting it, or pasting from the clipboard."
+                help-text="PEM格式CA证书链验证端点证书的重新加密终端。通过拖放、选择或粘贴剪贴板来上传文件。"
                 ng-readonly="areCertificateInputsReadOnly()"
                 ng-disabled="isDestinationCACertInputDisabled()">
             </osc-file-input>
@@ -350,8 +350,8 @@
                  not already showing the generic certificate warning above. -->
             <div ng-if="route.tls.destinationCACertificate && route.tls.termination !== 'reencrypt' && !showCertificatesNotUsedWarning" class="has-warning">
               <span class="help-block">
-                The destination CA certificate will be removed from the route.
-                Destination CA certificates are only used for re-encrypt termination.
+                目的CA证书将从路由中删除。
+                目的CA证书仅用于重新加密终端。
               </span>
             </div>
           </div>

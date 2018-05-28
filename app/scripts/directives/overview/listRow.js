@@ -297,9 +297,9 @@
       var latestVersion = _.get(row, 'apiObject.status.latestVersion');
       var details;
       if (latestVersion === 1) {
-        details = "This will attempt to stop the in-progress deployment. It may take some time to complete.";
+        details = "这将试图阻止正在进行中的部署。这可能需要一段时间才能完成。";
       } else {
-        details = "This will attempt to stop the in-progress deployment and rollback to the last successful deployment. It may take some time to complete.";
+        details = "这将尝试停止正在进行的部署，并回滚到最后一次成功部署。这可能需要一段时间才能完成。";
       }
 
       var modalInstance = $uibModal.open({
@@ -322,7 +322,7 @@
         if (replicationController.metadata.uid !== row.current.metadata.uid) {
           NotificationsService.addNotification({
             type: "error",
-            message: "Deployment #" + latestVersion + " is no longer the latest."
+            message: "部署 #" + latestVersion + " 不再是最新的。"
           });
           return;
         }
@@ -334,7 +334,7 @@
         if (!deploymentIsInProgress(replicationController)) {
           NotificationsService.addNotification({
             type: "error",
-            message: "Deployment " + rcName + " is no longer in progress."
+            message: "部署 " + rcName + " 已不再有进展。"
           });
           return;
         }

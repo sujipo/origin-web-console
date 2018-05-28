@@ -2,7 +2,7 @@
   <div class="row">
     <div class="form-group" ng-class="{ 'col-sm-6': showWeight, 'col-sm-12': !showWeight }">
       <label for="{{id}}-service-select" class="required">
-        Service
+        服务
       </label>
       <ui-select ng-model="model.name" input-id="{{id}}-service-select" aria-describedby="{{id}}-service-help" required>
         <ui-select-match>{{$select.selected}}</ui-select-match>
@@ -12,19 +12,18 @@
       </ui-select>
       <div>
         <span ng-attr-id="{{id}}-service-help" class="help-block">
-          <span ng-if="!isAlternate">Service to route to.</span>
-          <span ng-if="isAlternate">Alternate service for route traffic.</span>
+          <span ng-if="!isAlternate">服务路线。</span>
+          <span ng-if="isAlternate">为路由通信提供替代服务。</span>
         </span>
       </div>
       <div ng-if="model.name && !allServices[model.name]" class="has-warning">
         <span class="help-block">
-          Service {{model.name}} does not exist.
+          服务 {{model.name}} 不存在。
         </span>
       </div>
       <div ng-if="(optionNames | size) === 0" class="has-error">
         <span class="help-block">
-          There are no <span ng-if="is-alternate">additional</span> services in your project to expose
-          with a route.
+          在您的项目中没有 <span ng-if="is-alternate">additional</span> 的服务来公开一条路由。
         </span>
       </div>
       <div ng-if="warnUnnamedPort" class="has-warning">

@@ -34,7 +34,7 @@
       </div>
     </div>
     <div ng-if="overview.showLoading" class="container-fluid loading-message">
-      Loading...
+      加载中...
     </div>
     <div ng-if="!overview.showGetStarted && !overview.showLoading">
       <div class="middle-header">
@@ -62,12 +62,12 @@
                 <form role="form" class="search-pf has-button">
                   <div class="form-group filter-controls has-clear">
                     <div class="search-pf-input-group">
-                      <label for="name-filter" class="sr-only">Filter by name</label>
+                      <label for="name-filter" class="sr-only">根据名称过滤</label>
                       <input
                         type="text"
                         class="form-control"
                         ng-model="overview.filterText"
-                        placeholder="Filter by name"
+                        placeholder="根据名称过滤"
                         autocorrect="off"
                         autocapitalize="none"
                         spellcheck="false"
@@ -87,7 +87,7 @@
             </div>
             <div class="vertical-divider"></div>
             <div class="view-by-options">
-              <span class="data-toolbar-label">List by</span>
+              <span class="data-toolbar-label">列表</span>
               <ui-select class="data-toolbar-dropdown" ng-model="overview.viewBy" search-enabled="false">
                 <ui-select-match>{{$select.selected.label}}</ui-select-match>
                 <ui-select-choices repeat="option.id as option in overview.viewByOptions">
@@ -111,15 +111,15 @@
           <alerts alerts="overview.state.alerts"></alerts>
           <div ng-if="overview.everythingFiltered && overview.viewBy !== 'pipeline'">
             <div class="empty-state-message text-center h2">
-              The filter is hiding all resources.
-              <button type="button" class="btn btn-link inline-btn-link" ng-click="overview.clearFilter()">Clear All Filters</button>
+              过滤器在隐藏所有资源。
+              <button type="button" class="btn btn-link inline-btn-link" ng-click="overview.clearFilter()">清除所有过滤器</button>
             </div>
           </div>
           <div ng-if="!overview.everythingFiltered || overview.viewBy === 'pipeline'">
             <div ng-if="overview.viewBy === 'app'" ng-repeat="app in overview.apps">
               <div ng-if="app" class="app-heading">
                 <h2>
-                  <div class="component-label">Application</div>
+                  <div class="component-label">应用</div>
                   <span ng-bind-html="app | highlightKeywords : overview.state.filterKeywords"></span>
                 </h2>
                 <div class="overview-routes" ng-if="overview.routesToDisplayByApp[app] | size">
@@ -135,7 +135,7 @@
                 </div>
               </div>
               <h2 ng-if="!app">
-                Other Resources
+                其他资源
               </h2>
               <div class="list-pf">
                 <overview-list-row
@@ -185,10 +185,10 @@
               <div ng-if="overview.filteredDeploymentConfigs | hashSize">
                 <h2>
                   <span ng-if="overview.deployments | hashSize">
-                    Deployment Configs
+                    部署配置
                   </span>
                   <span ng-if="!(overview.deployments | hashSize)">
-                    Deployments
+                    部署
                   </span>
                 </h2>
                 <div class="list-pf">
@@ -203,7 +203,7 @@
                 </div>
               </div>
               <div ng-if="overview.filteredDeployments | hashSize">
-                <h2>Deployments</h2>
+                <h2>部署</h2>
                 <div class="list-pf">
                   <overview-list-row
                        ng-repeat="deployment in overview.filteredDeployments track by (deployment | uid)"
@@ -215,7 +215,7 @@
                 </div>
               </div>
               <div ng-if="overview.filteredReplicationControllers | hashSize">
-                <h2>Replication Controllers</h2>
+                <h2>副本控制器</h2>
                 <div class="list-pf">
                   <overview-list-row
                        ng-repeat="replicationController in overview.filteredReplicationControllers track by (replicationController | uid)"
@@ -225,7 +225,7 @@
                 </div>
               </div>
               <div ng-if="overview.filteredReplicaSets | hashSize">
-                <h2>Replica Sets</h2>
+                <h2>副本集</h2>
                 <div class="list-pf">
                   <overview-list-row
                        ng-repeat="replicaSet in overview.filteredReplicaSets track by (replicaSet | uid)"
@@ -235,7 +235,7 @@
                 </div>
               </div>
               <div ng-if="overview.filteredStatefulSets | hashSize">
-                <h2>Stateful Sets</h2>
+                <h2>状态集</h2>
                 <div class="list-pf">
                   <overview-list-row
                        ng-repeat="statefulSet in overview.filteredStatefulSets track by (statefulSet | uid)"
@@ -245,7 +245,7 @@
                 </div>
               </div>
               <div ng-if="overview.filteredDaemonSets | hashSize">
-                <h2>Daemon Sets</h2>
+                <h2>守护程序集</h2>
                 <div class="list-pf">
                   <overview-list-row
                        ng-repeat="daemonSet in overview.filteredDaemonSets track by (daemonSet | uid)"
@@ -268,19 +268,19 @@
             <div ng-if="overview.viewBy === 'pipeline'">
               <!-- TODO: Reuse pipelines empty state message from pipelines.html -->
               <div ng-if="!overview.pipelineBuildConfigs.length" class="empty-state-message text-center">
-                <h2>No pipelines.</h2>
+                <h2>没有管道。</h2>
                 <div ng-if="project.metadata.name | canIAddToProject">
                   <p>
-                    No pipelines have been added to project {{projectName}}.
+                    没有管道被添加到项目 {{projectName}}.
                     <br>
-                    Learn more about
-                    <a ng-href="{{ 'pipeline-builds' | helpLink}}" target="_blank">Pipeline Builds</a>
-                    and the
-                    <a ng-href="{{ 'pipeline-plugin' | helpLink}}" target="_blank">OpenShift Pipeline Plugin</a>.
+                    了解更多关于
+                    <a ng-href="{{ 'pipeline-builds' | helpLink}}" target="_blank">管道建设</a>
+                    和
+                    <a ng-href="{{ 'pipeline-plugin' | helpLink}}" target="_blank">OpenShift 管道插件</a>.
                   </p>
                   <p ng-if="(project.metadata.name | canIAddToProject) && overview.samplePipelineURL">
                     <a ng-href="{{overview.samplePipelineURL}}" class="btn btn-lg btn-primary">
-                      Create Sample Pipeline
+                      创建简单管道
                     </a>
                   </p>
                 </div>
@@ -290,8 +290,8 @@
               </div>
               <div ng-if="(overview.pipelineBuildConfigs | hashSize) && !(overview.filteredPipelineBuildConfigs | hashSize)">
                 <div class="empty-state-message text-center h2">
-                  All pipelines are filtered.
-                  <button type="button" class="btn btn-link inline-btn-link" ng-click="overview.clearFilter()">Clear All Filters</button>
+                  所有管道将被过滤
+                  <button type="button" class="btn btn-link inline-btn-link" ng-click="overview.clearFilter()">清除所有过滤器</button>
                 </div>
               </div>
               <div ng-repeat="pipeline in overview.filteredPipelineBuildConfigs track by (pipeline | uid)">
@@ -300,15 +300,15 @@
                       class="btn btn-default"
                       ng-if="overview.buildConfigsInstantiateVersion | canI : 'create'"
                       ng-click="overview.startBuild(pipeline)">
-                    Start Pipeline
+                    开启管道
                   </button>
                 </div>
                 <h2>
-                  <div class="component-label">Pipeline</div>
+                  <div class="component-label">管道</div>
                   <span ng-bind-html="pipeline.metadata.name | highlightKeywords : overview.state.filterKeywords"></span>
                 </h2>
                 <div ng-if="!(overview.recentPipelinesByBuildConfig[pipeline.metadata.name] | hashSize)" class="mar-bottom-lg">
-                  No pipeline runs.
+                  没有管道运行。
                 </div>
                 <div ng-if="overview.recentPipelinesByBuildConfig[pipeline.metadata.name] | hashSize" class="build-pipelines">
                   <div ng-repeat="pipeline in overview.recentPipelinesByBuildConfig[pipeline.metadata.name] track by (pipeline | uid)"
@@ -319,7 +319,7 @@
                   </div>
                 </div>
                 <div ng-if="!overview.deploymentConfigsByPipeline[pipeline.metadata.name].length" class="mar-bottom-lg">
-                  This pipeline is not associated with any deployments.
+                  此管道与任何部署无关。
                 </div>
                 <div ng-if="overview.deploymentConfigsByPipeline[pipeline.metadata.name].length" class="list-pf">
                   <overview-list-row
@@ -335,7 +335,7 @@
 
               <!-- Currently we only filter the pipelines. Hide "Other Resources" if a pipeline filter is active or if we're showing the pipeline empty state message. -->
               <div class="list-pf" ng-if="overview.pipelineViewHasOtherResources && !overview.hidePipelineOtherResources">
-                <h2>Other Resources</h2>
+                <h2>其他资源</h2>
                 <overview-list-row
                      ng-repeat="deploymentConfig in overview.deploymentConfigsNoPipeline track by (deploymentConfig | uid)"
                      ng-init="dcName = deploymentConfig.metadata.name"
@@ -381,7 +381,7 @@
             </div>
             <!-- Show Mobile Apps -->
             <div ng-if="(overview.filteredMobileClients | size) && AEROGEAR_MOBILE_ENABLED">
-              <h2>Mobile Clients</h2>
+              <h2>移动客户端</h2>
               <div class="list-pf">
                 <mobile-client-row
                   ng-repeat="mobileapp in overview.filteredMobileClients track by (mobileapp | uid)"
@@ -392,7 +392,7 @@
             <!-- Show provisioned services. -->
             <div ng-if="overview.filteredServiceInstances.length && !overview.hidePipelineOtherResources">
               <h2>
-                Provisioned Services
+                提供服务
               </h2>
               <div class="list-pf">
                 <service-instance-row

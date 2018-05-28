@@ -41,7 +41,7 @@
 
     ctrl.selectStep = {
       id: 'projectTemplates',
-      label: 'Selection',
+      label: '选择',
       view: 'views/directives/process-template-dialog/process-template-select.html',
       hidden: ctrl.useProjectTemplate !== true,
       allowed: true,
@@ -52,7 +52,7 @@
 
     ctrl.infoStep = {
       id: 'info',
-      label: 'Information',
+      label: '信息',
       view: 'views/directives/process-template-dialog/process-template-info.html',
       allowed: true,
       valid: true,
@@ -62,7 +62,7 @@
 
     ctrl.configStep = {
       id: 'configuration',
-      label: 'Configuration',
+      label: '配置',
       view: 'views/directives/process-template-dialog/process-template-config.html',
       // Start initially as invalid so the button doesn't flicker when the dialog
       // is displayed and the template has required fields.
@@ -74,7 +74,7 @@
 
     ctrl.resultsStep = {
       id: 'results',
-      label: 'Results',
+      label: '结果',
       view: 'views/directives/process-template-dialog/process-template-results.html',
       valid: true,
       allowed: false,
@@ -119,7 +119,7 @@
           {
             id: 'keyword',
             title:  'Keyword',
-            placeholder: 'Filter by Keyword',
+            placeholder: '根据关键字过滤',
             filterType: 'text'
           }
         ],

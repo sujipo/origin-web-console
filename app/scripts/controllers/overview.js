@@ -168,10 +168,10 @@ function OverviewController($scope,
 
   overview.filterByOptions = [{
     id: 'name',
-    label: 'Name'
+    label: '名称'
   }, {
     id: 'label',
-    label: 'Label'
+    label: '标签'
   }];
 
   // If there is a label filter persisted (such as in the URL), default to filtering by label.
@@ -179,13 +179,13 @@ function OverviewController($scope,
 
   overview.viewByOptions = [{
     id: 'app',
-    label: 'Application'
+    label: '应用'
   }, {
     id: 'resource',
-    label: 'Resource Type'
+    label: '资源类型'
   }, {
     id: 'pipeline',
-    label: 'Pipeline'
+    label: '管道'
   }];
 
   var getName = function(apiObject) {

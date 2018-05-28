@@ -25,7 +25,7 @@ angular.module('openshiftConsole')
 
     $scope.breadcrumbs = [
       {
-        title: "Secrets",
+        title: "密钥",
         link: "project/" + $routeParams.project + "/browse/secrets"
       },
       {

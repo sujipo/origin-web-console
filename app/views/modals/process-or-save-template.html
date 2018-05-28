@@ -3,18 +3,18 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" ng-click="cancel()">
       <span class="pficon pficon-close"></span>
     </button>
-    <h1 class="modal-title">{{updateTemplate ? "Update" : "Add"}} Template</h1>
+    <h1 class="modal-title">{{updateTemplate ? "更新" : "添加"}} 模板</h1>
   </div>
   <div class="modal-body">
-    <p>What would you like to do?</p>
+    <p>你想做什么?</p>
     <div class="form-group">
       <div class="checkbox">
         <label>
           <input type="checkbox" ng-model="templateOptions.process" aria-descirbedby="process-template-help">
-          <strong>Process the template</strong>
+          <strong>处理模板</strong>
         </label>
         <div id="process-template-help" class="help-block">
-          Create the objects defined in the template. You will have an opportunity to fill in template parameters.
+          创建在模板中定义的对象。您将有机会填写模板参数。
         </div>
       </div>
     </div>
@@ -22,16 +22,16 @@
       <div class="checkbox">
         <label>
           <input type="checkbox" ng-model="templateOptions.add" aria-descirbedby="save-template-help">
-          <strong>{{updateTemplate ? "Update" : "Save"}} template</strong>
+          <strong>{{updateTemplate ? "更新" : "保存"}} 模板</strong>
         </label>
         <div id="save-template-help" class="help-block">
-          {{updateTemplate ? "This will overwrite the current version of the template." : "Save the template to the project. This will make the template available to anyone who can view the project."}}
+          {{updateTemplate ? "这将覆盖模板的当前版本。" : "将模板保存到项目中。 这将使可以查看该项目的任何人都可以使用该模板。"}}
         </div>
       </div>
     </div>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-default" type="button" ng-click="cancel();">Cancel</button>
-    <button class="btn btn-primary" type="button" ng-click="continue();" ng-disabled="!templateOptions.process && !templateOptions.add">Continue</button>
+    <button class="btn btn-default" type="button" ng-click="cancel();">取消</button>
+    <button class="btn btn-primary" type="button" ng-click="continue();" ng-disabled="!templateOptions.process && !templateOptions.add">继续</button>
   </div>
 </div>

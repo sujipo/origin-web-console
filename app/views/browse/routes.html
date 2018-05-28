@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="page-header page-header-bleed-right page-header-bleed-left">
         <div class="pull-right" ng-if="project && (routesVersion | canI : 'create') && ((routes | hashSize) > 0 || filterWithZeroResults)">
-          <a ng-href="project/{{project.metadata.name}}/create-route" class="btn btn-default">Create Route</a>
+          <a ng-href="project/{{project.metadata.name}}/create-route" class="btn btn-default">创建路由</a>
         </div>
         <h1>
           路由
@@ -34,7 +34,7 @@
                 <h2>没有路由</h2>
                 <p>没有路由添加到项目 {{projectName}}.</p>
                 <p ng-if="project && (routesVersion | canI : 'create') && !filterWithZeroResults">
-                  <a ng-href="project/{{project.metadata.name}}/create-route" class="btn btn-primary btn-lg">Create Route</a>
+                  <a ng-href="project/{{project.metadata.name}}/create-route" class="btn btn-primary btn-lg">创建路由</a>
                 </p>
               </div>
               <div ng-if="filterWithZeroResults">
@@ -52,22 +52,21 @@
             </colgroup>
             <thead>
               <tr>
-                <th>{{customNameHeader || 'Name'}}</th>
-                <th>Hostname</th>
+                <th>{{customNameHeader || '名称'}}</th>
+                <th>主机名</th>
                 <!--
                   Right now only services are supported. If other types are
                   added, we'll need to change the table header.
                  -->
-                <th>Service</th>
-                <th>Target Port</th>
-                <th>TLS Termination</th>
+                <th>服务</th>
+                <th>目标端口</th>
+                <th>TLS终端</th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="route in routes | orderObjectsByDate : true">
                 <td data-title="{{ customNameHeader || 'Name' }}">
                   <a href="{{route | navigateResourceURL}}">{{route.metadata.name}}</a>
-
                   <route-warnings ng-if="route.spec.to.kind !== 'Service' || services"
                                   route="route"
                                   services="services">

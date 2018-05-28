@@ -340,7 +340,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
               ]
             },
             {
-              label: "管线",
+              label: "管道",
               href: "/browse/pipelines",
               prefixes: [
                 "/browse/pipelines/",
@@ -387,7 +387,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
               ]
             },
             {
-              label: "隐私",
+              label: "密钥",
               href: "/browse/secrets",
               prefixes: [
                 "/browse/secrets/",

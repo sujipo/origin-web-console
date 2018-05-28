@@ -2,14 +2,14 @@
   <div class="row">
     <div class="col-lg-6">
       <h3>
-        Status
+        状态
         <small ng-if="pod | isDebugPod">
-          debugging
+          调试
           <a ng-href="{{pod | debugPodSourceName | navigateResourceURL : 'Pod' : pod.metadata.namespace}}">{{pod | debugPodSourceName}}</a>
         </small>
       </h3>
       <dl class="dl-horizontal left">
-        <dt>Status:</dt>
+        <dt>状态:</dt>
         <dd>
           <status-icon status="pod | podStatus"></status-icon>
           {{pod | podStatus | humanizePodStatus}}<span ng-if="pod | podCompletionTime">, ran for {{(pod | podStartTime) | duration : (pod | podCompletionTime)}}</span>
@@ -18,7 +18,7 @@
         <dt ng-if-start="pod.status.message">Message:</dt>
         <dd ng-if-end>{{pod.status.message}}</dd>
         <dt ng-if-start="dcName">
-          Deployment:
+          部署:
         </dt>
         <dd ng-if-end>
           <a ng-href="{{dcName | navigateResourceURL : 'DeploymentConfig' : pod.metadata.namespace}}">{{dcName}}</a><span ng-if="rcName">,
@@ -41,11 +41,11 @@
             {{pod.spec.terminationGracePeriodSeconds | humanizeDurationValue : 'seconds'}}
           </span>
         </dd>
-        <dt>IP:</dt>
+        <dt>IP地址:</dt>
         <dd>{{pod.status.podIP || 'unknown'}}</dd>
-        <dt>Node:</dt>
+        <dt>节点:</dt>
         <dd>{{pod.spec.nodeName || 'unknown'}} <span ng-if="pod.status.hostIP && pod.spec.nodeName != pod.status.hostIP">({{pod.status.hostIP}})</span></dd>
-        <dt>Restart Policy:</dt>
+        <dt>重启策略:</dt>
         <dd>{{pod.spec.restartPolicy || 'Always'}}</dd>
         <dt ng-if-start="pod.spec.activeDeadlineSeconds">Active Deadline:</dt>
         <dd ng-if-end>
@@ -70,7 +70,7 @@
     </div>
     <div class="col-lg-6">
 
-      <h3>Template</h3>
+      <h3>模板</h3>
       <pod-template
         pod-template="pod"
         images-by-docker-reference="imagesByDockerReference"
@@ -78,14 +78,14 @@
         detailed="true">
       </pod-template>
 
-      <h4>Volumes</h4>
+      <h4>卷</h4>
       <volumes ng-if="pod.spec.volumes.length" volumes="pod.spec.volumes" namespace="project.metadata.name"></volumes>
       <div ng-if="!pod.spec.volumes.length">none</div>
 
       <p ng-if="dcName && (deploymentConfigsVersion | canI : 'update')">
-        <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{dcName}}">Add Storage to {{dcName}}</a>
+        <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{dcName}}">添加存储到 {{dcName}}</a>
         <span class="action-divider" aria-hidden="true">|</span>
-        <a ng-href="project/{{project.metadata.name}}/add-config-volume?kind=DeploymentConfig&name={{dcName}}">Add Config Files to {{dcName}}</a>
+        <a ng-href="project/{{project.metadata.name}}/add-config-volume?kind=DeploymentConfig&name={{dcName}}">添加配置文件到 {{dcName}}</a>
       </p>
     </div>
   </div>

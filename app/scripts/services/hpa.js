@@ -94,8 +94,8 @@ angular.module("openshiftConsole")
       if (!hasCPURequest(containers, limitRanges, project)) {
         kind = humanizeKind(scaleTarget.kind);
         return {
-          message: 'This ' + kind + ' does not have any containers with a CPU request set. ' +
-                   'Autoscaling will not work without a CPU request.',
+          message: '这个 ' + kind + ' 没有任何带有CPU请求集的容器。' +
+                   '如果没有CPU请求，自动伸缩将无法工作。',
           reason: 'NoCPURequest'
         };
       }

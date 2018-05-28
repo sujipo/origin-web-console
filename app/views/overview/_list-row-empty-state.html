@@ -1,29 +1,29 @@
-<h2>No deployments.</h2>
+<h2>没有部署。</h2>
 <div ng-if="row.imageChangeTriggers.length">
-  A new deployment will start automatically when
+  一个新的部署将会自动运行，当
   <span ng-if="row.imageChangeTriggers.length === 1">
-    an image is pushed to
+    一个镜像被拉入
     <a ng-href="{{row.urlForImageChangeTrigger(row.imageChangeTriggers[0])}}">
       {{row.imageChangeTriggers[0].imageChangeParams.from | imageObjectRef : row.apiObject.metadata.namespace}}</a>.
   </span>
   <span ng-if="row.imageChangeTriggers.length > 1">
-    one of the images referenced by this deployment config changes.
+    部署配置关联的所有镜像有一个变更。
   </span>
 </div>
 <div ng-if="!row.imageChangeTriggers.length">
   <p>
-    No deployments for {{row.apiObject.kind | humanizeKind}}
+    没有部署在 {{row.apiObject.kind | humanizeKind}}
     <a ng-href="{{row.apiObject | navigateResourceURL}}">{{row.apiObject.metadata.name}}</a>.
   </p>
   <div ng-if="row.apiObject.kind === 'DeploymentConfig'">
     <div ng-if="pipeline = row.pipelines[0]">
       <p>
-        This deployment config is part of the pipeline
+        这个部署配置是管道的一部分
         <a ng-href="{{pipeline | navigateResourceURL}}">{{pipeline.metadata.name}}</a>.
       </p>
       <div ng-if="row.showStartPipelineAction()">
         <button class="btn btn-primary" ng-click="row.startBuild(pipeline)">
-          Start Pipeline
+          开启管道
         </button>
       </div>
     </div>
@@ -31,7 +31,7 @@
       <button ng-if="row.deploymentConfigsInstantiateVersion | canI : 'create'"
               class="btn btn-primary"
               ng-click="row.startDeployment()">
-        Start Deployment
+        开始部署
       </button>
     </div>
   </div>
