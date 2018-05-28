@@ -160,7 +160,7 @@ angular.module("openshiftConsole")
             .then(function() {
               NotificationsService.addNotification({
                   type: "success",
-                  message: formattedResource + " was marked for deletion."
+                  message: formattedResource + " 删除成功。"
               });
 
               if (scope.success) {
@@ -180,11 +180,11 @@ angular.module("openshiftConsole")
                 name: resourceName,
                 data: {
                   type: "error",
-                  message: _.capitalize(formattedResource) + "\'" + " could not be deleted.",
+                  message: _.capitalize(formattedResource) + "\'" + " 删除失败。",
                   details: $filter('getErrorDetails')(err)
                 }
               });
-              Logger.error(formattedResource + " could not be deleted.", err);
+              Logger.error(formattedResource + " 删除失败。", err);
             });
           });
         };

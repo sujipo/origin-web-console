@@ -3,21 +3,21 @@
     <div class="container-fluid">
       <alerts alerts="alerts"></alerts>
           <h1>
-            <span ng-if="clusterQuotas.length">Cluster </span>Quota
+            <span ng-if="clusterQuotas.length">集群 </span>配额
             <span class="page-header-link">
               <a ng-href="{{'quota' | helpLink}}" target="_blank">
-                Learn More <i class="fa fa-external-link" aria-hidden="true"></i>
+                了解更多 <i class="fa fa-external-link" aria-hidden="true"></i>
               </a>
             </span>
           </h1>
           <div ng-if="!quotas.length && !clusterQuotas.length" class="mar-top-xl">
             <div class="help-block">{{quotaHelp}}</div>
-            <p><em ng-if="!quotas && !clusterQuotas">Loading...</em><em ng-if="quotas || clusterQuotas">There are no resource quotas set on this project.</em></p>
+            <p><em ng-if="!quotas && !clusterQuotas">加载中...</em><em ng-if="quotas || clusterQuotas">在这个项目上没有设置资源配额。</em></p>
           </div>
 
           <div ng-repeat="quota in clusterQuotas | orderBy: 'metadata.name'" class="gutter-bottom">
             <h2 ng-if="clusterQuotas.length">{{quota.metadata.name}}</h2>
-            <div ng-if="$first" class="help-block">Limits resource usage across a set of projects.</div>
+            <div ng-if="$first" class="help-block">限制一组项目的资源使用情况。</div>
             <dl ng-if="quota.spec.quota.scopes.length">
               <dt>Scopes:</dt>
               <dd>
@@ -59,16 +59,16 @@
             <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
-                  <th>Resource Type</th>
-                  <th>Used (This Project)</th>
-                  <th>Used (All Projects)</th>
-                  <th>Max</th>
+                  <th>资源类型</th>
+                  <th>已用 (本项目)</th>
+                  <th>已用 (所有项目)</th>
+                  <th>最大</th>
                 </thead>
                 <tbody>
                   <tr ng-if='!quota.status.total.used' class="danger">
                     <td colspan="4">
                       <span data-toggle="tooltip" title="Missing quota status" class="pficon pficon-error-circle-o" style="cursor: help;"></span>
-                      Status has not been reported on this quota usage record.  Any resources limited by this quota record can not be allocated.
+                      此配额使用记录中尚未记录报告状态。任何受此配额记录限制的资源都不能被分配。
                     </td>
                   </tr>
                   <!-- Don't show quotas for type `resourcequotas`. They are frequently at limit,
@@ -84,8 +84,8 @@
                       {{resourceType | humanizeQuotaResource : true}}
                       <span ng-if="isAtLimit(quota, resourceType)" data-toggle="tooltip" title="Quota limit reached." class="pficon pficon-warning-triangle-o warnings-popover"></span>
                       <span ng-if="(quota.status.total.hard[resourceType] || quota.spec.quota.hard[resourceType]) === '0'"
-                            data-toggle="tooltip"
-                            title="You are not allowed to create resources of this type."
+                            data-toggle="提示信息"
+                            title="您不能创建这种类型的资源。"
                             class="pficon pficon-info warnings-popover"></span>
                     </td>
                     <td>
@@ -106,7 +106,7 @@
             </div>
           </div>
 
-          <h1 ng-if="clusterQuotas.length && quotas.length">Project Quota</h1>
+          <h1 ng-if="clusterQuotas.length && quotas.length">配额项目</h1>
           <div ng-repeat="quota in quotas | orderBy: 'metadata.name'" class="gutter-bottom">
             <h2 ng-if="quotas.length">{{quota.metadata.name}}</h2>
             <div ng-if="$first" class="help-block mar-bottom-md">{{quotaHelp}}</div>
@@ -151,15 +151,15 @@
             <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
-                  <th>Resource Type</th>
-                  <th>Used</th>
-                  <th>Max</th>
+                  <th>资源类型</th>
+                  <th>已用</th>
+                  <th>最大</th>
                 </thead>
                 <tbody>
                   <tr ng-if='!quota.status.used' class="danger">
                     <td colspan="3">
                       <span data-toggle="tooltip" title="Missing quota status" class="pficon pficon-error-circle-o" style="cursor: help;"></span>
-                      Status has not been reported on this quota usage record.  Any resources limited by this quota record can not be allocated.
+                      此配额使用记录中尚未记录报告状态。任何受此配额记录限制的资源都不能被分配。
                     </td>
                   </tr>
                   <!-- Don't show quotas for type `resourcequotas`. They are frequently at limit,
@@ -175,8 +175,8 @@
                       {{resourceType | humanizeQuotaResource : true}}
                       <span ng-if="isAtLimit(quota, resourceType)" data-toggle="tooltip" title="Quota limit reached." class="pficon pficon-warning-triangle-o warnings-popover"></span>
                       <span ng-if="(quota.status.hard[resourceType] || quota.spec.hard[resourceType]) === '0'"
-                            data-toggle="tooltip"
-                            title="You are not allowed to create resources of this type."
+                            data-toggle="提示信息"
+                            title="您不能创建这种类型的资源。"
                             class="pficon pficon-info warnings-popover"></span>
                     </td>
                     <td>
@@ -194,7 +194,7 @@
           </div>
 
           <div class="limit-ranges-section">
-            <h1>Limit Range</h1>
+            <h1>极限范围</h1>
             <div ng-if="!limitRanges.length">
               <div class="help-block">{{limitRangeHelp}}</div>
               <p><em>{{emptyMessageLimitRanges}}</em></p>
@@ -206,37 +206,37 @@
               <div class="table-responsive">
                 <table class="table table-bordered">
                   <thead>
-                    <th>Resource Type</th>
+                    <th>资源类型</th>
                     <th>
                       <span class="nowrap">
-                        Min
+                        最小
                         <i class="small pficon pficon-help" data-toggle="tooltip" title="The minimum amount of this compute resource that can be requested."></i>
                       </span>
                     </th>
                     <th>
                       <span class="nowrap">
-                        Max
+                        最大
                         <i class="small pficon pficon-help" data-toggle="tooltip" title="The maximum amount of this compute resource that can be requested.  The limit must also be below the maximum value."></i>
                       </span>
                     </th>
                     <th>
-                      Default
+                      默认
                       <span class="nowrap">
-                        Request
+                        请求
                         <i class="small pficon pficon-help" data-toggle="tooltip" title="A container will default to request this amount of a compute resource if no request is specified. The system will guarantee the requested amount of compute resource when scheduling a container for execution. If a quota is enabled for this compute resource, the quota usage is incremented by the requested value."></i>
                       </span>
                     </th>
                     <th>
-                      Default
+                      默认
                       <span class="nowrap">
-                        Limit
+                        极限
                         <i class="small pficon pficon-help" data-toggle="tooltip" title="The default limit defines the maximum amount of compute resource the container may have access to during execution if no limit is specified. If no request is made for the compute resource on the container or via a Default Request value, the container will default to request the limit."></i>
                       </span>
                     </th>
                     <th>
-                      Max Limit/Request
+                      最大极限/请求
                       <span class="nowrap">
-                        Ratio
+                        比率
                         <i class="small pficon pficon-help" data-toggle="tooltip" title="If specified, the compute resource must have a request and limit that are both non-zero, where limit divided by request is less than or equal to the specified amount; this represents the max burst for the compute resource during execution."></i>
                       </span>
                     </th>

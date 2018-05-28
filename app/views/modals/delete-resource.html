@@ -8,8 +8,8 @@
       <h1 class="modal-title">确认删除</h1>
     </div>
     <div class="modal-body">
-      <p>您确认要删除 {{typeDisplayName || (kind | humanizeKind)}}
-        '<strong>{{displayName ? displayName : resourceName}}</strong>'吗?</p>
+      <p>您确定要删除 {{typeDisplayName || (kind | humanizeKind)}}
+        '<strong>{{displayName ? displayName : resourceName}}</strong>'吗？</p>
 
       <p>
         <span ng-if="kind === 'DeploymentConfig'">
@@ -33,7 +33,7 @@
           project {{displayName ? displayName : resourceName}}.
         </span>
 
-        <strong>它不能被撤销.</strong>确保你真的想这么做!
+        <strong>此操作无法撤销！</strong> 请确定您是否要删除！
       </p>
 
       <div ng-show="typeNameToConfirm">

@@ -2,11 +2,11 @@
   <div class="middle-header header-toolbar">
     <div class="container-fluid">
       <div class="page-header page-header-bleed-right page-header-bleed-left">
-        <h1>Other Resources</h1>
+        <h1>其他资源</h1>
       </div>
       <div class="data-toolbar other-resources-toolbar">
         <ui-select class="data-toolbar-dropdown" ng-model="kindSelector.selected" theme="bootstrap" search-enabled="true" ng-disabled="kindSelector.disabled" title="Choose a resource">
-          <ui-select-match placeholder="Choose a resource to list...">{{$select.selected.kind | humanizeKind : true}}</ui-select-match>
+          <ui-select-match placeholder="选择需要列出的资源...">{{$select.selected.kind | humanizeKind : true}}</ui-select-match>
           <ui-select-choices repeat="kind in kinds | filter : {kind: $select.search} : matchKind | orderBy : 'kind'">
             <div ng-bind-html="(kind.kind | humanizeKind : true) | highlight: $select.search"></div>
             <small ng-if="isDuplicateKind(kind.kind)" ng-bind-html="kind.group | highlight: $select.search" class="text-muted"></small>
@@ -25,17 +25,17 @@
         <div class="col-md-12">
           <div ng-if="(resources | hashSize) == 0">
             <p ng-if="!kindSelector.selected">
-              <em>Select a resource from the list above...</em>
+              <em>请从上面列表中选择一种资源...</em>
             </p>
             <div ng-if="kindSelector.selected" class="empty-state-message text-center">
               <div ng-if="!filterWithZeroResults">
-                <h2>No {{resourceName}}.</h2>
+                <h2>没有 {{resourceName}}。</h2>
                 <p>
-                  No {{resourceName}} have been added to project {{projectName}}.
+                  当前 {{projectName}} 项目中没有添加 {{resourceName}}。
                 </p>
               </div>
               <div ng-if="filterWithZeroResults">
-                <h2>The filter is hiding all {{resourceName}}. <button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">Clear All Filters</button></h2>
+                <h2>过滤器隐藏所有 {{resourceName}}. <button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">清除所有过滤条件</button></h2>
               </div>
             </div>
           </div>
@@ -49,9 +49,9 @@
             <thead>
               <tr>
                 <th>名称</th>
-                <th>创建</th>
+                <th>创建时间</th>
                 <th>标签</th>
-                <th><span class="sr-only">Actions</span></th>
+                <th><span class="sr-only">操作</span></th>
               </tr>
             </thead>
             <tbody>
@@ -64,12 +64,12 @@
                 <td data-title="Actions" class="text-xs-left text-right">
                   <span uib-dropdown ng-hide="!(selectedResource | canI : 'update') && !(selectedResource | canI : 'delete')">
                     <button type="button" class="dropdown-toggle btn btn-default" data-toggle="dropdown">
-                      Actions
+                      操作
                       <span class="caret"></span>
                     </button>
                     <ul uib-dropdown-menu class="dropdown-menu-right" aria-labelledby="{{resource.metadata.name}}_actions">
                       <li ng-if="selectedResource | canI : 'update'">
-                        <a ng-href="{{resource | editYamlURL : getReturnURL()}}" role="button">修改 YAML</a>
+                        <a ng-href="{{resource | editYamlURL : getReturnURL()}}" role="button">编辑 YAML</a>
                       </li>
                       <li ng-if="selectedResource | canI : 'delete'">
                         <delete-link

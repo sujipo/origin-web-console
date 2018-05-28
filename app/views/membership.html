@@ -8,10 +8,10 @@
             href=""
             ng-if="canUpdateRolebindings"
             ng-click="toggleEditMode()">
-            <span ng-if="!(mode.edit)">修改会员</span>
-            <span ng-if="mode.edit">做修改</span>
+            <span ng-if="!(mode.edit)">编辑成员</span>
+            <span ng-if="mode.edit">完成编辑</span>
           </a>
-          会员
+           成员
            <span class="page-header-link">
              <a ng-href="{{'roles' | helpLink}}" target="_blank">
                了解更多 <i class="fa fa-external-link" aria-hidden="true"></i>
@@ -25,7 +25,7 @@
     <div class="container-fluid">
       <alerts alerts="alerts"></alerts>
       <div  ng-if="!(roleBindingsVersion | canI : 'list')">
-        <p>你没有权限查看这个项目的角色</p>
+        <p>您没有权限查看此项目中的角色。</p>
       </div>
       <uib-tabset
         ng-if="roleBindingsVersion | canI : 'list'">
@@ -34,7 +34,7 @@
           active="selectedTab[subjectKind.name]"
           select="selectTab(subjectKind.name)">
           <uib-tab-heading>
-            {{subjectKind.name | startCase}}&nbsp;({{subjectKind.subjects | hashSize}})
+            {{subjectKind.name | startCase}}s&nbsp;({{subjectKind.subjects | hashSize}})
           </uib-tab-heading>
           <div ng-if="subjectKind.description">
             <p>
@@ -117,7 +117,7 @@
                       title="Select a new role for {{subject.name}}"
                       class="select-role">
                       <ui-select-match
-                        placeholder="Select a role">
+                        placeholder="选择角色">
                         <span ng-bind="subject.newRole.metadata.name"></span>
                       </ui-select-match>
                       <ui-select-choices
@@ -155,7 +155,7 @@
                   <label
                     ng-attr-for="newBindingName"
                     class="sr-only">
-                    名称
+                    Name
                   </label>
 
                   <!-- name entry field for everything but service accounts -->
@@ -231,7 +231,7 @@
                         title="new {{subjectKind.name}} role"
                         class="select-role">
                         <ui-select-match
-                          placeholder="Select a role">
+                          placeholder="选择角色">
                           <span ng-bind="newBinding.newRole.metadata.name"></span>
                         </ui-select-match>
                         <ui-select-choices
@@ -268,11 +268,11 @@
                     class="toggle-hidden"
                     ng-click="toggleRoles($event)"
                     ng-checked="toggle.roles">
-                    显示隐藏的角色</label>&nbsp;<a href=""
+                  显示隐藏角色</label>&nbsp;<a href=""
                                                     class="action-inline"
                                                     data-toggle="popover"
                                                     data-trigger="hover focus"
-                                                    data-content="System roles are hidden by default and do not typically need to be managed."><i class="pficon pficon-help"></i></a>
+                                                    data-content="默认情况下隐藏通常不需要管理的系统角色。"><i class="pficon pficon-help"></i></a>
               </div>
             </div>
           </div>

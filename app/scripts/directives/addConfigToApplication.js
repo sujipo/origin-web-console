@@ -167,7 +167,7 @@
         function() {
           NotificationsService.addNotification({
             type: "success",
-            message: "Successfully added " + sourceKind + " " + ctrl.apiObject.metadata.name + " to " + targetKind + " " + applicationToUpdate.metadata.name + ".",
+            message: "成功添加 " + sourceKind + " " + ctrl.apiObject.metadata.name + " 到 " + targetKind + " " + applicationToUpdate.metadata.name + "中。",
             links: [{
               href: Navigate.resourceURL(applicationToUpdate),
               label: "View " + humanizeKind(applicationToUpdate.kind, true)
@@ -182,7 +182,7 @@
 
           NotificationsService.addNotification({
             type: "error",
-            message: "An error occurred  adding " + sourceKind + " " + ctrl.apiObject.metadata.name + " to " + targetKind + " " + applicationToUpdate.metadata.name + ". " +
+            message: "将 " + sourceKind + " " + ctrl.apiObject.metadata.name + " 添加到 " + targetKind + " " + applicationToUpdate.metadata.name + " 时发生错误。 " +
             getErrorDetails(result)
           });
         }).finally(function() {

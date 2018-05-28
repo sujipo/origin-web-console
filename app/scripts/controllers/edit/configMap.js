@@ -27,7 +27,7 @@ angular.module('openshiftConsole')
       name: $routeParams.configMap,
       kind: 'ConfigMap',
       namespace: $routeParams.project,
-      subpage: 'Edit Config Map'
+      subpage: '编辑配置映射'
     });
 
     var getVersion = function(resource) {
@@ -56,7 +56,7 @@ angular.module('openshiftConsole')
               name: $routeParams.configMap,
               object: configMap,
               project: project,
-              subpage: 'Edit Config Map'
+              subpage: '编辑配置映射'
             });
             $scope.configMap = configMap;
             watches.push(DataService.watchObject(configMapsVersion, $routeParams.configMap, context, function(newValue, action) {
@@ -64,7 +64,7 @@ angular.module('openshiftConsole')
               $scope.resourceDeleted = action === "DELETED";
             }));
           }, function(e) {
-            Navigate.toErrorPage("Could not load config map " + $routeParams.configMap + ". " +
+            Navigate.toErrorPage("无法加载配置映射 " + $routeParams.configMap + ". " +
                                  $filter('getErrorDetails')(e));
           });
 
@@ -77,7 +77,7 @@ angular.module('openshiftConsole')
               .then(function() { // Success
                 NotificationsService.addNotification({
                   type: "success",
-                  message: "Config map " + $scope.configMap.metadata.name + " successfully updated."
+                  message: "配置映射 " + $scope.configMap.metadata.name + " 更新成功。"
                 });
                 navigateBack();
               }, function(result) { // Failure
@@ -85,7 +85,7 @@ angular.module('openshiftConsole')
                 NotificationsService.addNotification({
                   id: "edit-config-map-error",
                   type: "error",
-                  message: "An error occurred updating the config map.",
+                  message: "更新配置映射时出错。",
                   details: $filter('getErrorDetails')(result)
                 });
               });

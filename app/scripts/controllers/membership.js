@@ -33,26 +33,27 @@ angular
 
       var messages = {
         notice: {
-          yourLastRole: _.template('Removing the role "<%= roleName %>" may completely remove your ability to see this project.')
+          yourLastRole: _.template('删除角色 "<%= roleName %>" 可能会完全移除您查看此项目的权限。')
         },
         warning: {
-          serviceAccount: _.template('Removing a system role granted to a service account may cause unexpected behavior.')
-        },
+          serviceAccount: _.template('删除被授予服务帐户的系统角色可能会导致意外情况。')
+    },
         remove: {
           areYouSure: {
             html: {
-              subject: _.template('Are you sure you want to remove <strong><%- roleName %></strong> from the <%- kindName %> <strong><%- subjectName %></strong>?'),
-              self: _.template('Are you sure you want to remove <strong><%- roleName %></strong> from <strong><%- subjectName %></strong> (you)?')
+              subject: _.template('您确定要从<%- kindName %> <strong><%- subjectName %></strong>中删除 <strong><%- roleName %></strong>吗？'),
+              //subject: _.template('Are you sure you want to remove <strong><%- roleName %></strong> from the <%- kindName %> <strong><%- subjectName %></strong>?'),
+              self: _.template('您确定要从<strong><%- subjectName %></strong>(you) 删除 <strong><%- roleName %></strong>吗？')
             }
           },
-          success: _.template('The role "<%= roleName %>" was removed from "<%= subjectName %>".'),
-          error: _.template('The role "<%= roleName %>" was not removed from "<%= subjectName %>".')
+          success: _.template('角色 "<%= roleName %>" 已从 "<%= subjectName %>"中删除。'),
+          error: _.template('角色 "<%= roleName %>" 未从 "<%= subjectName %>"中删除。')
         },
         update: {
           subject: {
-            success: _.template('The role "<%= roleName %>" was granted to "<%= subjectName %>".'),
-            error: _.template('The role "<%= roleName %>" could not be granted to "<%= subjectName %>".'),
-            exists: _.template('The role "<%= roleName %>" has already been granted to "<%= subjectName %>".')
+            success: _.template('角色 "<%= roleName %>" 已成功添加到 "<%= subjectName %>"。'),
+            error: _.template('角色 "<%= roleName %>" 未能成功添加到 "<%= subjectName %>"。'),
+            exists: _.template('角色 "<%= roleName %>" 在 "<%= subjectName %>"中已存在。')
           }
         }
       };
@@ -209,16 +210,16 @@ angular
 
       var createModalScope = function(subjectName, kind, roleName, currentUserName) {
         var modalScope = {
-          title: 'Confirm Removal',
+          title: '确认删除',
           alerts: {},
           detailsMarkup: messages.remove.areYouSure.html.subject({
             roleName: roleName,
             kindName: humanizeKind(kind),
             subjectName:  subjectName
           }),
-          okButtonText: 'Remove',
+          okButtonText: '删除',
           okButtonClass: 'btn-danger',
-          cancelButtonText: 'Cancel'
+          cancelButtonText: '关闭'
         };
         if(_.isEqual(subjectName, currentUserName)) {
           modalScope.detailsMarkup = messages.remove.areYouSure.html.self({

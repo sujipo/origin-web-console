@@ -10,6 +10,9 @@ openshift-jvm
 /app/config.local.js
 .DS_Store
 test/junit/
+<<<<<<< HEAD
+=======
 *.rar
 dist/
 dist.java/
+>>>>>>> d35f8cd9c6a521c988ae5669bb3d34f1e6fd559f

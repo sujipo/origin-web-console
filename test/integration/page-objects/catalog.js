@@ -31,17 +31,29 @@ class CatalogPage extends Page {
   }
   clickBrowseCatalog() {
     return this._findTabs()
+<<<<<<< HEAD
+               .element(by.cssContainingText('a', 'Browse Catalog'))
+=======
                .element(by.cssContainingText('a', '浏览目录'))
+>>>>>>> d35f8cd9c6a521c988ae5669bb3d34f1e6fd559f
                .click();
   }
   clickDeployImage() {
     return this._findTabs()
+<<<<<<< HEAD
+               .element(by.cssContainingText('a', 'Deploy Image'))
+=======
                .element(by.cssContainingText('a', '部署镜像'))
+>>>>>>> d35f8cd9c6a521c988ae5669bb3d34f1e6fd559f
                .click();
   }
   clickImport() {
     return this._findTabs()
+<<<<<<< HEAD
+               .element(by.cssContainingText('a', 'Import YAML / JSON'))
+=======
                .element(by.cssContainingText('a', '导入 YAML / JSON'))
+>>>>>>> d35f8cd9c6a521c988ae5669bb3d34f1e6fd559f
                .click();
   }
   setImportValue(str) {
