@@ -215,14 +215,14 @@ angular.module("openshiftConsole")
             // Show a single success message saying the secret was both created and linked.
             NotificationsService.addNotification({
               type: "success",
-              message: "Secret " + secret.metadata.name + " was created and linked with service account " + sa.metadata.name + "."
+              message: "密钥 " + secret.metadata.name + " 创建成功并链接到服务帐户 " + sa.metadata.name + "。"
             });
             $scope.onCreate({newSecret: secret});
           }, function(result){
             // Show a success message that the secret was created and a separate error message saying it couldn't be linked.
             NotificationsService.addNotification({
               type: "success",
-              message: "Secret " + secret.metadata.name + " was created."
+              message: "密钥 " + secret.metadata.name + " 创建成功。"
             });
 
             // Don't show any error related to linking to SA when linking is done automatically.
@@ -230,7 +230,7 @@ angular.module("openshiftConsole")
               NotificationsService.addNotification({
                 id: "secret-sa-link-error",
                 type: "error",
-                message: "An error occurred while linking the secret with service account " + $scope.newSecret.pickedServiceAccountToLink + ".",
+                message: "将密钥与服务帐户 " + $scope.newSecret.pickedServiceAccountToLink + " 链接时出错。",
                 details: $filter('getErrorDetails')(result)
               });
             }
@@ -273,7 +273,7 @@ angular.module("openshiftConsole")
             } else {
               NotificationsService.addNotification({
                 type: "success",
-                message: "Secret " + newSecret.metadata.name + " was created."
+                message: "密钥 " + newSecret.metadata.name + " 创建成功。"
               });
               $scope.onCreate({newSecret: secret});
             }
@@ -286,7 +286,7 @@ angular.module("openshiftConsole")
             NotificationsService.addNotification({
               id: "create-secret-error",
               type: "error",
-              message: "An error occurred while creating the secret.",
+              message: "创建密钥时出错。",
               details: $filter('getErrorDetails')(result)
             });
           });

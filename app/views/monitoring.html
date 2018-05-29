@@ -10,7 +10,7 @@
         </div>
         <div class="data-toolbar">
           <ui-select class="data-toolbar-dropdown" ng-model="kindSelector.selected" theme="bootstrap" search-enabled="true" ng-disabled="kindSelector.disabled" title="Choose a resource">
-            <ui-select-match placeholder="Choose a resource">{{$select.selected.label ? $select.selected.label : ($select.selected.kind | humanizeKind : true)}}</ui-select-match>
+            <ui-select-match placeholder="选择资源类型">{{$select.selected.label ? $select.selected.label : ($select.selected.kind | humanizeKind : true)}}</ui-select-match>
             <ui-select-choices repeat="kind in kinds | filter : {kind: $select.search} : matchKind">
               <div ng-bind-html="(kind.label ? kind.label : (kind.kind | humanizeKind : true)) | highlight: $select.search"></div>
             </ui-select-choices>
@@ -43,7 +43,7 @@
           </div>
           <div class="checkbox nowrap">
             <label>
-              <input type="checkbox" ng-model="filters.hideOlderResources">Hide older resources
+              <input type="checkbox" ng-model="filters.hideOlderResources">隐藏旧资源
             </label>
           </div>
         </div>
@@ -59,8 +59,8 @@
               <div class="list-pf-container">
                 <ellipsis-pulser color="dark" size="sm" msg="Loading pods" ng-if="!podsLoaded"></ellipsis-pulser>
                 <em>
-                  <div ng-if="(pods | size) > 0">The current filters are hiding all pods.</div>
-                  <span ng-if="podsLoaded && (pods | size) === 0">There are no pods in this project.</span>
+                  <div ng-if="(pods | size) > 0">当前过滤器隐藏所有Pods。</div>
+                  <span ng-if="podsLoaded && (pods | size) === 0">当前项目没有Pods。</span>
                 </em>
               </div>
             </div>
@@ -77,7 +77,7 @@
                     </span>
                     <span ng-if="!expanded.pods[pod.metadata.name]">
                       <span class="fa fa-angle-right"  aria-hidden="true"></span>
-                      <span class="sr-only">Expand</span>
+                      <span class="sr-only">展开</span>
                     </span>
                   </a>
                 </div>
@@ -124,7 +124,7 @@
                     ng-class="{'log-viewer-select': pod.spec.containers.length > 1}">
 
                     <span class="container-details">
-                      <label for="selectLogContainer">Container:</label>
+                      <label for="selectLogContainer">容器：</label>
 
                       <span ng-if="pod.spec.containers.length === 1">
                         {{pod.spec.containers[0].name}}
@@ -155,8 +155,8 @@
               <div class="list-pf-container">
                 <ellipsis-pulser color="dark" size="sm" msg="Loading deployments" ng-if="!replicationControllersLoaded"></ellipsis-pulser>
                 <em>
-                  <div ng-if="(replicationControllers | size) > 0 || (replicaSets | size) > 0">The current filters are hiding all deployments.</div>
-                  <span ng-if="replicationControllersLoaded && !(replicationControllers | size) && replicaSetsLoaded && !(replicaSets | size)">There are no deployments in this project.</span>
+                  <div ng-if="(replicationControllers | size) > 0 || (replicaSets | size) > 0">当前过滤器隐藏所有部署。</div>
+                  <span ng-if="replicationControllersLoaded && !(replicationControllers | size) && replicaSetsLoaded && !(replicaSets | size)">在这个项目中没有部署。</span>
                 </em>
               </div>
             </div>

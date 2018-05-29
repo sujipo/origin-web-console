@@ -38,7 +38,7 @@ angular
          "User":{
             "kind":"User",
             "sortOrder":1,
-            "name":"用户",
+            "name":"User",
             "subjects":{
 
             }
@@ -46,7 +46,7 @@ angular
          "Group":{
             "kind":"Group",
             "sortOrder":2,
-            "name":"组",
+            "name":"Group",
             "subjects":{
 
             }
@@ -56,7 +56,7 @@ angular
             "sortOrder":3,
             "description":"服务帐户提供了一种灵活的方式来控制API访问，而不需要共享一个普通用户的凭证。",
             "helpLinkKey":"service_accounts",
-            "name":"服务帐户",
+            "name":"ServiceAccount",
             "subjects":{
 
             }
