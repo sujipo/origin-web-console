@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="page-header page-header-bleed-right page-header-bleed-left">
           <h1>
-            Monitoring
+            监视
             <events-badge project-context="projectContext" ng-if="projectContext" class="pull-right" sidebar-collapsed="renderOptions.collapseEventsSidebar"></events-badge>
           </h1>
         </div>
         <div class="data-toolbar">
-          <ui-select class="data-toolbar-dropdown" ng-model="kindSelector.selected" theme="bootstrap" search-enabled="true" ng-disabled="kindSelector.disabled" title="Choose a resource">
+          <ui-select class="data-toolbar-dropdown" ng-model="kindSelector.selected" theme="bootstrap" search-enabled="true" ng-disabled="kindSelector.disabled" title="选择资源类型">
             <ui-select-match placeholder="选择资源类型">{{$select.selected.label ? $select.selected.label : ($select.selected.kind | humanizeKind : true)}}</ui-select-match>
             <ui-select-choices repeat="kind in kinds | filter : {kind: $select.search} : matchKind">
               <div ng-bind-html="(kind.label ? kind.label : (kind.kind | humanizeKind : true)) | highlight: $select.search"></div>
@@ -60,7 +60,7 @@
                 <ellipsis-pulser color="dark" size="sm" msg="Loading pods" ng-if="!podsLoaded"></ellipsis-pulser>
                 <em>
                   <div ng-if="(pods | size) > 0">当前过滤器隐藏所有Pods。</div>
-                  <span ng-if="podsLoaded && (pods | size) === 0">当前项目没有Pods。</span>
+                  <span ng-if="podsLoaded && (pods | size) === 0">当前项目中没有Pods。</span>
                 </em>
               </div>
             </div>
@@ -77,7 +77,7 @@
                     </span>
                     <span ng-if="!expanded.pods[pod.metadata.name]">
                       <span class="fa fa-angle-right"  aria-hidden="true"></span>
-                      <span class="sr-only">展开</span>
+                      <span class="sr-only">Expand</span>
                     </span>
                   </a>
                 </div>
@@ -156,7 +156,7 @@
                 <ellipsis-pulser color="dark" size="sm" msg="Loading deployments" ng-if="!replicationControllersLoaded"></ellipsis-pulser>
                 <em>
                   <div ng-if="(replicationControllers | size) > 0 || (replicaSets | size) > 0">当前过滤器隐藏所有部署。</div>
-                  <span ng-if="replicationControllersLoaded && !(replicationControllers | size) && replicaSetsLoaded && !(replicaSets | size)">在这个项目中没有部署。</span>
+                  <span ng-if="replicationControllersLoaded && !(replicationControllers | size) && replicaSetsLoaded && !(replicaSets | size)">当前项目中没有部署。</span>
                 </em>
               </div>
             </div>
@@ -322,14 +322,14 @@
         </div>
 
         <div ng-if="kindSelector.selected.kind === 'All' || kindSelector.selected.kind === 'StatefulSets'">
-          <h2>Stateful Sets</h2>
+          <h2>状态集</h2>
           <div class="list-pf" ng-class="{'list-pf-empty': !(filteredStatefulSets | size)}">
             <div class="list-pf-item" ng-if="!(filteredStatefulSets | size)">
               <div class="list-pf-container">
                 <ellipsis-pulser color="dark" size="sm" msg="Loading stateful sets" ng-if="!statefulSetsLoaded"></ellipsis-pulser>
                 <em>
-                  <div ng-if="(statefulSets | size) > 0">The current filters are hiding all stateful sets.</div>
-                  <span ng-if="statefulSetsLoaded && (statefulSets | size) === 0">There are no stateful sets in this project.</span>
+                  <div ng-if="(statefulSets | size) > 0">当前过滤器隐藏所有状态集。</div>
+                  <span ng-if="statefulSetsLoaded && (statefulSets | size) === 0">当前项目中没有状态集。</span>
                 </em>
               </div>
             </div>
@@ -380,7 +380,7 @@
               <div class="list-pf-expansion collapse"
                     ng-if="expanded.statefulSets[set.metadata.name]" ng-class="{'in': expanded.statefulSets[set.metadata.name]}">
                 <div class="list-pf-container">
-                  Logs are not available for stateful sets.
+                  状态集的日志不可用。
                   <span ng-if="podsByOwnerUID[set.metadata.uid] | size">
                     To see application logs, view the logs for one of the stateful sets's
                     <a ng-href="{{set | donutURL : podsByOwnerUID[set.metadata.uid]}}">pods</a>.
@@ -399,14 +399,14 @@
         </div>
 
         <div ng-if="kindSelector.selected.kind === 'All' || kindSelector.selected.kind === 'Builds'" class="mar-bottom-xl">
-          <h2>Builds</h2>
+          <h2>构建</h2>
           <div class="list-pf" ng-class="{'list-pf-empty': !(filteredBuilds | size)}">
             <div class="list-pf-item" ng-if="!(filteredBuilds | size)">
               <div class="list-pf-container">
                 <ellipsis-pulser color="dark" size="sm" msg="Loading builds" ng-if="!buildsLoaded"></ellipsis-pulser>
                 <em>
-                  <div ng-if="(builds | size) > 0">The current filters are hiding all builds.</div>
-                  <span ng-if="buildsLoaded && (builds | size) === 0">There are no builds in this project.</span>
+                  <div ng-if="(builds | size) > 0">当前过滤器隐藏所有构建。</div>
+                  <span ng-if="buildsLoaded && (builds | size) === 0">当前项目中没有构建。</span>
                 </em>
               </div>
             </div>

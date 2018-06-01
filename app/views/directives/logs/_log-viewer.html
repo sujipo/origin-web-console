@@ -12,7 +12,7 @@
         method="POST">
         <input type="hidden" name="redirect" value="{{kibanaArchiveUrl}}">
         <input type="hidden" name="access_token" value="{{access_token}}">
-        <button class="btn btn-link">View Archive</button>
+        <button class="btn btn-link">查看存档</button>
       </form>
       <span ng-if="state && state !== 'empty'" class="action-divider">|</span>
     </span>
@@ -20,7 +20,7 @@
       <a href=""
          ng-click="saveLog()"
          role="button">
-         Save
+         保存
          <i class="fa fa-download"></i></a>
       <span ng-if="state && state !== 'empty'" class="action-divider">|</span>
     </span>
@@ -28,15 +28,14 @@
        href=""
        ng-click="goChromeless(options, fullLogUrl)"
        role="button">
-       Expand
+       展开
        <i class="fa fa-external-link"></i></a>
   </div>
 </div>
 
 <div ng-if="largeLog" class="alert alert-info log-size-warning">
   <span class="pficon pficon-info" aria-hidden="true"></span>
-  Only the previous {{options.tailLines || 5000}} log lines and new log
-  messages will be displayed because of the large log size.
+  由于日志数量太多，只显示前{{options.tailLines || 5000}}条日志和新日志。
 </div>
 
 
@@ -47,7 +46,7 @@
 </div>
 
 <div class="empty-state-message text-center" ng-if="state=='empty'" ng-class="{'log-fixed-height': fixedHeight}">
-  <h2>Logs are not available.</h2>
+  <h2>日志不可用。</h2>
 
   <p>
     {{emptyStateMessage}}
@@ -60,7 +59,7 @@
       <input type="hidden" name="redirect" value="{{kibanaArchiveUrl}}">
       <input type="hidden" name="access_token" value="{{access_token}}">
       <button class="btn btn-primary btn-lg">
-        View Archive
+        查看存档
       </button>
     </form>
   </div>
@@ -75,11 +74,11 @@
       id="{{logViewerID}}-affixedFollow"
       class="log-scroll log-scroll-top">
       <a ng-if="loading" href="" ng-click="toggleAutoScroll()">
-        <span ng-if="!autoScrollActive">Follow</span>
-        <span ng-if="autoScrollActive">Stop Following</span>
+        <span ng-if="!autoScrollActive">追踪</span>
+        <span ng-if="autoScrollActive">停止追踪</span>
       </a>
       <a ng-if="!loading" href="" ng-show="showScrollLinks" ng-click="onScrollBottom()">
-        Go to End
+        前往底部
       </a>
     </div>
     <div class="log-view-output" id="{{logViewerID}}-fixed-scrollable">
@@ -87,7 +86,7 @@
         <tbody id="{{logViewerID}}-logContent"></tbody>
       </table>
       <div ng-if="(!loading) && (!limitReached) && (!errorWhileRunning) && state=='logs'" class="log-end-msg">
-        End of log
+        日志结束
       </div>
     </div>
     <!-- show if logs are still streaming -->
@@ -95,19 +94,19 @@
     <div
       ng-show="showScrollLinks"
       class="log-scroll log-scroll-bottom">
-      <a href="" ng-click="onScrollTop()">Go to Top</a>
+      <a href="" ng-click="onScrollTop()">前往顶部</a>
     </div>
   </div>
 </div>
 
 <!-- Show a different messsage if the log might have stopped because we reached the byte limit -->
 <div ng-if="limitReached" class="text-muted">
-  The maximum web console log size has been reached. Use the command-line interface or
-  <a href="" ng-click="restartLogs()">reload</a> the log to see new messages.
+  已达到Web控制台最大日志数量。请使用命令行或者
+  <a href="" ng-click="restartLogs()">重新加载</a>日志来查看最新信息。
 </div>
 
 
 <div ng-if="errorWhileRunning" class="text-muted">
-  An error occurred loading the log.
-  <a href="" ng-click="restartLogs()">Reload</a>
+  加载日志时出错。
+  <a href="" ng-click="restartLogs()">重新加载</a>
 </div>

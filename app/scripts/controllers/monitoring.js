@@ -50,10 +50,13 @@ angular.module('openshiftConsole')
         kind: "ReplicationControllers"
       },
       {
+        label: "构建",
         kind: "Builds"
       },
       {
+        label: "状态集",
         kind: "StatefulSets"
+
       }
     ];
     $scope.kindSelector = {
