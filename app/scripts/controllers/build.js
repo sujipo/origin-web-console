@@ -118,7 +118,7 @@ angular.module('openshiftConsole')
           if (action === "DELETED") {
             $scope.alerts["deleted"] = {
               type: "warning",
-              message: "This build has been deleted."
+              message: "此构建已被删除。"
             };
           }
 
@@ -139,7 +139,7 @@ angular.module('openshiftConsole')
           $scope.loaded = true;
           $scope.alerts["load"] = {
             type: "error",
-            message: "The build details could not be loaded.",
+            message: "无法加载构建细节。",
             details: $filter('getErrorDetails')(e)
           };
         };
@@ -148,7 +148,7 @@ angular.module('openshiftConsole')
           if (action === "DELETED") {
             $scope.alerts["deleted"] = {
               type: "warning",
-              message: "Build configuration " + $scope.buildConfigName + " has been deleted."
+              message: "构建配置 " + $scope.buildConfigName + " 已被删除。"
             };
             $scope.buildConfigDeleted = true;
           }

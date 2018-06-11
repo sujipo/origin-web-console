@@ -3,35 +3,35 @@
     <div class="container-fluid">
       <breadcrumbs breadcrumbs="breadcrumbs"></breadcrumbs>
       <alerts alerts="alerts"></alerts>
-      <div ng-if="!loaded" class="mar-top-xl">Loading...</div>
+      <div ng-if="!loaded" class="mar-top-xl">加载中...</div>
       <div ng-if="build">
         <h1 class="contains-actions">
           <div class="pull-right dropdown" ng-hide="!('builds' | canIDoAny)">
             <!-- Primary Actions -->
             <button class="btn btn-default hidden-xs"
                     ng-click="cancelBuild()"
-                    ng-if="!build.metadata.deletionTimestamp && (build | isIncompleteBuild) && (buildsVersion | canI : 'update')">Cancel Build</button>
+                    ng-if="!build.metadata.deletionTimestamp && (build | isIncompleteBuild) && (buildsVersion | canI : 'update')">取消构建</button>
             <button class="btn btn-default hidden-xs"
                     ng-click="cloneBuild()"
                     ng-hide="build.metadata.deletionTimestamp || (build | isIncompleteBuild) || !(buildsCloneVersion | canI : 'create') || (build | isBinaryBuild)"
-                    ng-disabled="!canBuild">Rebuild</button>
+                    ng-disabled="!canBuild">重新构建</button>
 
             <!-- Secondary Actions -->
             <button type="button" class="dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs" data-toggle="dropdown">
-              Actions
+              操作
               <span class="caret" aria-hidden="true"></span>
             </button>
             <a href=""
                class="dropdown-toggle actions-dropdown-kebab visible-xs-inline"
-               data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">Actions</span></a>
+               data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">操作</span></a>
             <ul class="dropdown-menu dropdown-menu-right actions action-button">
               <li ng-if="buildConfigsVersion | canI : 'update'">
                 <a ng-href="{{buildConfig | editResourceURL}}" role="button">
                   <span ng-if="!(buildConfig | isJenkinsPipelineStrategy)">
-                    Edit Configuration
+                    编辑配置
                   </span>
                   <span ng-if="buildConfig | isJenkinsPipelineStrategy">
-                    Edit Pipeline
+                    编辑管道
                   </span>
                 </a>
               </li>
@@ -40,7 +40,7 @@
                   class="visible-xs-inline">
                 <a href=""
                    role="button"
-                   ng-click="cancelBuild()">Cancel Build</a>
+                   ng-click="cancelBuild()">取消构建</a>
               </li>
               <li class="visible-xs-inline"
                   ng-class="{ disabled: !canBuild }"
@@ -49,10 +49,10 @@
                    role="button"
                    ng-click="cloneBuild()"
                    ng-attr-aria-disabled="{{canBuild ? undefined : 'true'}}"
-                   ng-class="{ 'disabled-link': !canBuild }">Rebuild</a>
+                   ng-class="{ 'disabled-link': !canBuild }">重新构建</a>
               </li>
               <li ng-if="(buildsVersion | canI : 'update')">
-                <a ng-href="{{build | editYamlURL}}" role="button">Edit YAML</a>
+                <a ng-href="{{build | editYamlURL}}" role="button">编辑 YAML</a>
               </li>
               <li ng-if="(buildsVersion | canI : 'delete')">
                 <delete-link
@@ -96,7 +96,7 @@
                 <h3>环境变量</h3>
                 <p ng-if="buildConfigsVersion | canI : 'update'">
                   <span class="pficon pficon-info" aria-hidden="true"></span>
-                  环境变量可以修改在 <a ng-href="{{build | configURLForResource}}?tab=environment">生成配置</a> 的时候.
+                  环境变量可以修改在 <a ng-href="{{build | configURLForResource}}?tab=environment">生成配置</a> 的时候。
                 </p>
                 <key-value-editor
                   ng-if="(build | buildStrategy).env | size"

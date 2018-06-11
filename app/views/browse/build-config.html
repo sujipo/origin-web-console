@@ -79,7 +79,7 @@
 
               <!-- Show an empty state message when there are no builds. -->
               <div ng-if="buildConfig && unfilteredBuilds && (unfilteredBuilds | hashSize) === 0" class="empty-state-message text-center">
-                <h2>没有构建.</h2>
+                <h2>没有构建。</h2>
 
                   <p>
                     <span ng-if="!buildConfig.spec.strategy.jenkinsPipelineStrategy">
@@ -97,21 +97,31 @@
                                         context-dir="buildConfig.spec.source.contextDir">{{buildConfig.spec.source.git.uri}}</osc-git-link></span>
                       </span>
                       <span ng-if="buildConfig.spec.source.type !== 'Git'">
-                        生成配置 {{buildConfig.metadata.name}}.
+                        生成配置 {{buildConfig.metadata.name}}。
                       </span>
                     </span>
                     <span ng-if="buildConfig.spec.strategy.jenkinsPipelineStrategy">
-                      没有管道构建 {{buildConfigName}}.
+                      没有管道构建用于 {{buildConfigName}}。
                       <br>
                       <span ng-if="buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfile">
-                        View the <a ng-href="{{(buildConfig | navigateResourceURL) + '?tab=configuration'}}">Jenkinsfile</a> to see what stages will run.
+                        通过查看 <a ng-href="{{(buildConfig | navigateResourceURL) + '?tab=configuration'}}">Jenkinsfile</a> 文件来查看将要运行的阶段。
                       </span>
+                      <!--
                       <span ng-if="buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath">
                         View the file <code>{{buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath}}</code> in the
                         <a ng-if="buildConfig | jenkinsfileLink" ng-href="buildConfig | jenkinsfileLink">source repository</a>
                         <span ng-if="!(buildConfig | jenkinsfileLink)">source repository</span>
                         to see what stages will run.
                       </span>
+                      -->
+                      <span ng-if="buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath">
+                        通过查看在
+                        <a ng-if="buildConfig | jenkinsfileLink" ng-href="buildConfig | jenkinsfileLink">源码仓库</a>
+                        <span ng-if="!(buildConfig | jenkinsfileLink)">源码仓库</span>中的
+                        <code>{{buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath}}</code>
+                        来查看将要运行的阶段。
+                      </span>
+
                     </span>
                   </p>
 
@@ -240,23 +250,23 @@
                     <h3 class="hidden visible-lg visible-xl">细节</h3>
                     <dl class="dl-horizontal left">
                       <div>
-                        <dt>构建策略:</dt>
+                        <dt>构建策略：</dt>
                         <dd>{{buildConfig.spec.strategy.type | startCase}}</dd>
                       </div>
                       <div ng-if="buildConfig.spec.source">
                         <div ng-if="buildConfig.spec.source.type == 'Git'">
-                          <dt>源码地址:</dt>
+                          <dt>源码地址：</dt>
                           <dd><span class="word-break"><osc-git-link
                                     uri="buildConfig.spec.source.git.uri"
                                     ref="buildConfig.spec.source.git.ref"
                                     context-dir="buildConfig.spec.source.contextDir">{{buildConfig.spec.source.git.uri}}</osc-git-link></span></dd>
-                          <dt ng-if="buildConfig.spec.source.git.ref">源码版本:</dt>
+                          <dt ng-if="buildConfig.spec.source.git.ref">源码版本：</dt>
                           <dd ng-if="buildConfig.spec.source.git.ref">{{buildConfig.spec.source.git.ref}}</dd>
-                          <dt ng-if="buildConfig.spec.source.contextDir">Source Context Dir:</dt>
+                          <dt ng-if="buildConfig.spec.source.contextDir">源码环境目录：</dt>
                           <dd ng-if="buildConfig.spec.source.contextDir">{{buildConfig.spec.source.contextDir}}</dd>
                         </div>
                         <div ng-if="buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath">
-                          <dt>Jenkinsfile Path:</dt>
+                          <dt>Jenkinsfile路径：</dt>
                           <dd ng-if="buildConfig | jenkinsfileLink">
                             <a ng-href="{{buildConfig | jenkinsfileLink}}">{{buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath}}</a>
                           </dd>
@@ -264,15 +274,15 @@
                             {{buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath}}
                           </dd>
                           <div class="small">
-                            <a href="" ng-click="showJenkinsfileExamples()">What's a Jenkinsfile?</a>
+                            <a href="" ng-click="showJenkinsfileExamples()">Jenkinsfile是什么？</a>
                           </div>
                         </div>
                         <dt ng-if-start="buildConfig.spec.source.binary.asFile">Binary Input as File:</dt>
                         <dd ng-if-end>{{buildConfig.spec.source.binary.asFile}}</dd>
                         <div ng-if="buildConfig.spec.source.type == 'None' && !(buildConfig | isJenkinsPipelineStrategy)">
-                          <dt>源码:</dt>
+                          <dt>源码：</dt>
                           <dd>
-                            <i>none</i>
+                            <i>没有</i>
                             <span class="help action-inline">
                               <a href>
                                 <i class="pficon pficon-help" data-toggle="tooltip" aria-hidden="true" data-original-title="No source inputs have been defined for this build configuration.">
@@ -282,13 +292,13 @@
                           </dd>
                         </div>
                         <div ng-if="buildConfig.spec.source.images" class="image-sources">
-                          <dt>镜像来源:</dt>
+                          <dt>镜像来源：</dt>
                           <dd></dd>
                           <div ng-repeat="imageSource in imageSources" class="image-source-item">
                             <h4>{{imageSource.from | imageObjectRef : buildConfig.metadata.namespace}}</h4>
                             <dl class="dl-horizontal left">
                               <div class="is-item-description">
-                                <dt>Paths:</dt>
+                                <dt>路径：</dt>
                                 <div ng-repeat="(source, destination) in imageSourcesPaths[$index]" class="image-source-paths">
                                   <dd><span class="source-path">{{source}}</span><i class="fa fa-long-arrow-right" aria-hidden="true"></i><span class="destination-dir">{{destination}}</span></dd>
                                 </div>
@@ -297,7 +307,7 @@
                           </div>
                         </div>
                       </div>
-                      <dt ng-if-start="buildFrom = (buildConfig | buildStrategy).from">基础镜像:</dt>
+                      <dt ng-if-start="buildFrom = (buildConfig | buildStrategy).from">基础镜像：</dt>
                       <dd ng-if-end>
                         <a ng-if="buildFrom.kind === 'ImageStreamTag' && (!buildFrom.namespace || buildConfig.metadata.namespace === buildFrom.namespace)"
                             ng-href="{{buildFrom.name | navigateResourceURL : 'ImageStreamTag' : buildConfig.metadata.namespace}}">
@@ -308,7 +318,7 @@
                         </span>
                       </dd>
                       <div ng-if="outputTo = buildConfig.spec.output.to">
-                        <dt>发布镜像:</dt>
+                        <dt>发布镜像：</dt>
                         <dd>
                           <a ng-if="outputTo.kind === 'ImageStreamTag' && (!outputTo.namespace || buildConfig.metadata.namespace === outputTo.namespace)"
                               ng-href="{{outputTo.name | navigateResourceURL : 'ImageStreamTag' : buildConfig.metadata.namespace}}">
@@ -320,7 +330,7 @@
                         </dd>
                       </div>
                       <div class="run-policy">
-                        <dt>运行策略:</dt>
+                        <dt>运行策略：</dt>
                         <dd>
                           {{buildConfig.spec.runPolicy | sentenceCase}}
                           <span class="help action-inline">
@@ -415,7 +425,7 @@
                           </div>
                           <div ng-switch-when="ImageChange">
                             <dt>
-                              镜像变更:
+                              镜像变更：
                             </dt>
                             <dd ng-init="triggerFrom = (trigger.imageChange.from || (buildConfig | buildStrategy).from)">
                               <a ng-if="triggerFrom.kind === 'ImageStreamTag' && (!triggerFrom.namespace || buildConfig.metadata.namespace === triggerFrom.namespace)"
@@ -428,16 +438,16 @@
                             </dd>
                           </div>
                           <div ng-switch-when="ConfigChange">
-                            <dt>配置变化:</dt>
+                            <dt>配置变化：</dt>
                             <dd>构建配置 {{buildConfig.metadata.name}}</dd>
                           </div>
                           <div ng-switch-default>
-                            <dt>其他触发器:</dt>
+                            <dt>其他触发器：</dt>
                             <dd>{{trigger.type}}</dd>
                           </div>
                         </div>
                       </div>
-                      <dt>手工操作 (CLI):
+                      <dt>手工操作 (CLI)：
                       </dt>
                       <dd>
                         <copy-to-clipboard clipboard-text="'oc start-build ' + buildConfig.metadata.name + ' -n ' + project.metadata.name"></copy-to-clipboard>

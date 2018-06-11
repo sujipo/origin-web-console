@@ -7,8 +7,8 @@
           <alerts alerts="alerts"></alerts>
           <div ng-if="!loaded">Loading...</div>
           <h1>
-            Edit Build Config {{buildConfig.metadata.name}}
-            <small>&mdash; {{strategyType | startCase}} Build Strategy</small>
+            编辑构建配置 {{buildConfig.metadata.name}}
+            <small>&mdash; {{strategyType | startCase}} 构建策略</small>
           </h1>
           <fieldset ng-disabled="disableInputs">
             <form class="edit-form" name="form" novalidate ng-submit="save()">
@@ -230,7 +230,7 @@
               </div>
 
               <div ng-if="updatedBuildConfig | isJenkinsPipelineStrategy" class="section">
-                <h3 ng-class="{ 'with-divider': !sources.none }">Jenkins Pipeline Configuration</h3>
+                <h3 ng-class="{ 'with-divider': !sources.none }">Jenkins Pipeline 配置</h3>
                 <div class="form-group" ng-if="buildConfig.spec.source.type === 'Git'">
                   <label for="jenkinsfile-type">Jenkinsfile Type</label>
                   <ui-select search-enabled="false" ng-model="jenkinsfileOptions.type" input-id="jenkinsfile-type" aria-describedby="jenkinsfile-type-help">
@@ -240,13 +240,13 @@
                     </ui-select-choices>
                   </ui-select>
                   <div class="help-block" id="jenkinsfile-type-help">
-                    Use a Jenkinsfile from the source repository or specify the
-                    Jenkinsfile content directly in the build configuration.
+                    使用源码仓库中的Jenkinsfile或
+                    直接在构建配置中指定Jenkinsfile内容。
                   </div>
                 </div>
 
                 <div ng-if="jenkinsfileOptions.type === 'path'" class="form-group">
-                  <label for="jenkinsfilePath">Jenkinsfile Source Path</label>
+                  <label for="jenkinsfilePath">Jenkinsfile 源码路径</label>
                   <input class="form-control"
                          id="jenkinsfilePath"
                          name="jenkinsfilePath"
@@ -257,8 +257,8 @@
                          spellcheck="false"
                          aria-describedby="jenkinsfile-path-help">
                   <div class="help-block" id="jenkinsfile-path-help">
-                    Optional path to the Jenkinsfile relative to the context dir.
-                    Defaults to the Jenkinsfile in context dir.
+                    Jenkinsfile相对于上下文目录的可选路径。
+                    默认为上下文目录中的Jenkinsfile。
                   </div>
                 </div>
 
@@ -274,19 +274,19 @@
                   }" ng-model="updatedBuildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfile" class="ace-bordered ace-inline"></div>
                 </div>
                 <div class="mar-top-md mar-bottom-md">
-                  <a ng-if="!view.jenkinsfileExamples" href="" ng-click="view.jenkinsfileExamples = true">What's a Jenkinsfile?</a>
+                  <a ng-if="!view.jenkinsfileExamples" href="" ng-click="view.jenkinsfileExamples = true">什么是Jenkinsfile？</a>
                 </div>
                 <div ng-if="view.jenkinsfileExamples" class="editor-examples">
                   <div class="pull-right mar-top-md">
-                    <a href="" ng-click="view.jenkinsfileExamples = false">Hide examples</a>
+                    <a href="" ng-click="view.jenkinsfileExamples = false">隐藏示例</a>
                   </div>
-                  <h4>Jenkinsfile Examples</h4>
+                  <h4>Jenkinsfile 示例</h4>
                   <ng-include src="'views/edit/jenkinsfile-examples.html'"></ng-include>
                 </div>
               </div>
               <div ng-if="sources.none && !(updatedBuildConfig | isJenkinsPipelineStrategy)">
                 <div class="form-group">
-                  <i>No source inputs have been defined for this build configuration.</i>
+                  <i>当前构建配置没有定于源码输入。</i>
                 </div>
               </div>
 
@@ -506,15 +506,15 @@
                 </div>
               </div>
               <div class="section mar-bottom-lg" ng-if="view.advancedOptions">
-                <h3 class="with-divider">Run Policy
+                <h3 class="with-divider">运行策略
                   <span class="help action-inline">
                     <a href="">
-                      <i class="pficon pficon-help" data-toggle="tooltip" aria-hidden="true" data-original-title="The build run policy describes the order in which the builds created from the build configuration should run."></i>
+                      <i class="pficon pficon-help" data-toggle="tooltip" aria-hidden="true" data-original-title="运行策略是描述从构建配置创建的构建应该运行的顺序。"></i>
                     </a>
                   </span>
                 </h3>
                 <div class="form-group">
-                  <label class="sr-only">Run policy type</label>
+                  <label class="sr-only">运行策略类型</label>
                   <ui-select required ng-model="updatedBuildConfig.spec.runPolicy" search-enabled="false">
                     <ui-select-match>{{$select.selected | sentenceCase}}</ui-select-match>
                     <ui-select-choices repeat="type in runPolicyTypes">
@@ -524,10 +524,10 @@
                 </div>
 
                 <div ng-switch="updatedBuildConfig.spec.runPolicy">
-                  <div class="help-block" ng-switch-when="Serial">Builds triggered from this Build Configuration will run one at the time, in the order they have been triggered.</div>
-                  <div class="help-block" ng-switch-when="Parallel">Builds triggered from this Build Configuration will run all at the same time. The order in which they will finish is not guaranteed.</div>
-                  <div class="help-block" ng-switch-when="SerialLatestOnly">Builds triggered from this Build Configuration will run one at the time. When a currently running build completes, the next build that will run is the latest build created. Other queued builds will be cancelled.</div>
-                  <div class="help-block" ng-switch-default>Builds triggered from this Build Configuration will run using the {{updatedBuildConfig.spec.runPolicy | sentenceCase}} policy.</div>
+                  <div class="help-block" ng-switch-when="Serial">由此策略触发的构建将按照它们被触发的顺序执行。</div>
+                  <div class="help-block" ng-switch-when="Parallel">由此策略触发的构建将同时运行。无法保证它们的完成顺序。</div>
+                  <div class="help-block" ng-switch-when="SerialLatestOnly">由此策略触发的构建将在此时只运行一个。当前正在运行的构建完成时，将运行最新创建的构建。其它队列中的构建将会被取消。</div>
+                  <div class="help-block" ng-switch-default>由此策略触发的构建将使用 {{updatedBuildConfig.spec.runPolicy | sentenceCase}} 策略运行。</div>
                 </div>
               </div>
 
@@ -607,16 +607,16 @@
               </div>
 
               <div class="gutter-top">
-                <a href="" ng-click="view.advancedOptions = !view.advancedOptions" role="button">{{view.advancedOptions ? 'Hide' : 'Show'}} advanced options</a>
+                <a href="" ng-click="view.advancedOptions = !view.advancedOptions" role="button">{{view.advancedOptions ? '隐藏' : '显示'}}高级选项</a>
               </div>
               <div class="buttons gutter-top-bottom">
                 <button
                   type="submit"
                   class="btn btn-primary btn-lg"
                   ng-disabled="form.$invalid || form.$pristine || disableInputs">
-                  Save
+                  保存
                 </button>
-                <button class="btn btn-default btn-lg" ng-click="cancel()">Cancel</button>
+                <button class="btn btn-default btn-lg" ng-click="cancel()">取消</button>
               </div>
            </form>
         </fieldset>

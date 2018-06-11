@@ -11,10 +11,10 @@
           valueMaxlength: '',                                      // max character length, falsy by default
           keyValidator: '[a-zA-Z0-9-_]+',                          // alphanumeric, with dash & underscores
           valueValidator: '',                                      // values have no default validation
-          keyValidatorError: 'Validation error',                   // default error message string
+          keyValidatorError: '格式错误',                   // default error message string
           keyValidatorErrorTooltip: undefined,                     // default error message tooltip string
           keyValidatorErrorTooltipIcon: 'pficon pficon-help',      // default error message tooltip icon
-          valueValidatorError: 'Validation error',                 // default error message string
+          valueValidatorError: '格式错误',                 // default error message string
           valueValidatorErrorTooltip: undefined,                   // default error message tooltip string
           valueValidatorErrorTooltipIcon: 'pficon pficon-help',    // default error message tooltip icon
           keyPlaceholder: '',

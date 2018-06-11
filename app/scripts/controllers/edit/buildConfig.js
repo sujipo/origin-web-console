@@ -488,7 +488,7 @@ angular.module('openshiftConsole')
       return imageObject;
     };
 
-    // Return only webhook triggers that have defined type and their type object. 
+    // Return only webhook triggers that have defined type and their type object.
     var filterValidWebhookTriggers = function(triggers) {
       return _.filter(triggers, function(trigger) {
         return (!_.isEmpty(trigger.data.type) && !_.isEmpty(trigger.data[_.toLower(trigger.data.type)]));
@@ -625,7 +625,7 @@ angular.module('openshiftConsole')
         function() {
           NotificationsService.addNotification({
             type: "success",
-            message: "Build config " + $scope.updatedBuildConfig.metadata.name + " was successfully updated."
+            message: "构建配置 " + $scope.updatedBuildConfig.metadata.name + " 已成功更新。"
           });
           navigateBack();
         },
@@ -635,7 +635,7 @@ angular.module('openshiftConsole')
           NotificationsService.addNotification({
             id: "edit-build-config-error",
             type: "error",
-            message: "An error occurred updating build config " + $scope.updatedBuildConfig.metadata.name + ".",
+            message: "更新构建配置 " + $scope.updatedBuildConfig.metadata.name + " 时发生错误。",
             details: $filter('getErrorDetails')(result)
           });
         }
