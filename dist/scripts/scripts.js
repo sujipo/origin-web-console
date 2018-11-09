@@ -1,9 +1,9 @@
 "use strict";
 
 function OverviewController(e, t, n, r, a, o, i, s, c, l, u, d, m, p, f, g, v, h, y, b, S, C, w, P, j, k, I, R, E, T) {
-var N = this, A = t("isIE")();
+var N = this, D = t("isIE")();
 e.projectName = a.project;
-var D = a.isHomePage;
+var A = a.isHomePage;
 N.catalogLandingPageEnabled = !d.DISABLE_SERVICE_CATALOG_LANDING_PAGE;
 var B = t("annotation"), L = t("canI"), V = t("buildConfigForBuild"), O = t("deploymentIsInProgress"), U = t("imageObjectRef"), F = t("isJenkinsPipelineStrategy"), x = t("isNewerResource"), M = t("label"), q = t("podTemplate"), z = i.getPreferredVersion("buildconfigs"), H = i.getPreferredVersion("builds"), G = i.getPreferredVersion("appliedclusterresourcequotas"), K = i.getPreferredVersion("daemonsets"), W = i.getPreferredVersion("deploymentconfigs"), J = i.getPreferredVersion("deployments"), Q = i.getPreferredVersion("horizontalpodautoscalers"), Y = i.getPreferredVersion("imagestreams"), Z = i.getPreferredVersion("limitranges"), X = i.getPreferredVersion("pods"), ee = i.getPreferredVersion("replicasets"), te = i.getPreferredVersion("replicationcontrollers"), ne = i.getPreferredVersion("resourcequotas"), re = i.getPreferredVersion("routes"), ae = i.getPreferredVersion("servicebindings"), oe = i.getPreferredVersion("clusterserviceclasses"), ie = i.getPreferredVersion("serviceinstances"), se = i.getPreferredVersion("clusterserviceplans"), ce = i.getPreferredVersion("services"), le = i.getPreferredVersion("statefulsets"), ue = i.getPreferredVersion("templates");
 N.buildConfigsInstantiateVersion = i.getPreferredVersion("buildconfigs/instantiate");
@@ -14,7 +14,7 @@ clusterQuotas: {},
 imageStreamImageRefByDockerReference: {},
 imagesByDockerReference: {},
 limitRanges: {},
-limitWatches: A,
+limitWatches: D,
 notificationsByObjectUID: {},
 pipelinesByDeploymentConfig: {},
 podsByOwnerUID: {},
@@ -39,19 +39,19 @@ N.state.breakpoint = t;
 }, 50);
 $(window).on("resize.overview", he), N.showGetStarted = !1, N.showLoading = !0, N.filterByOptions = [ {
 id: "name",
-label: "Name"
+label: "名称"
 }, {
 id: "label",
-label: "Label"
+label: "标签"
 } ], N.filterBy = b.getLabelSelector().isEmpty() ? "name" : "label", N.viewByOptions = [ {
 id: "app",
-label: "Application"
+label: "应用"
 }, {
 id: "resource",
-label: "Resource Type"
+label: "资源类型"
 }, {
 id: "pipeline",
-label: "Pipeline"
+label: "管道"
 } ];
 var ye = function(e) {
 return _.get(e, "metadata.name");
@@ -107,7 +107,7 @@ N.disableFilter = "pipeline" === N.viewBy && _.isEmpty(N.pipelineBuildConfigs);
 return b.getLabelSelector().select(e);
 }, Te = [ "metadata.name", "spec.clusterServiceClassExternalName" ], Ne = function(e) {
 return y.filterForKeywords(e, Te, ve.filterKeywords);
-}, Ae = function(e) {
+}, De = function(e) {
 switch (N.filterBy) {
 case "label":
 return Ee(e);
@@ -116,7 +116,7 @@ case "name":
 return Ne(e);
 }
 return e;
-}, De = function() {
+}, Ae = function() {
 switch (N.filterBy) {
 case "label":
 return !b.getLabelSelector().isEmpty();
@@ -125,7 +125,7 @@ case "name":
 return !_.isEmpty(ve.filterKeywords);
 }
 }, $e = function() {
-N.filteredDeploymentConfigs = Ae(N.deploymentConfigs), N.filteredReplicationControllers = Ae(N.vanillaReplicationControllers), N.filteredDeployments = Ae(N.deployments), N.filteredReplicaSets = Ae(N.vanillaReplicaSets), N.filteredStatefulSets = Ae(N.statefulSets), N.filteredDaemonSets = Ae(N.daemonSets), N.filteredMonopods = Ae(N.monopods), N.filteredPipelineBuildConfigs = Ae(N.pipelineBuildConfigs), N.filteredServiceInstances = Ae(ve.orderedServiceInstances), N.filteredMobileClients = Ae(N.mobileClients), N.filterActive = De(), ke(), _e();
+N.filteredDeploymentConfigs = De(N.deploymentConfigs), N.filteredReplicationControllers = De(N.vanillaReplicationControllers), N.filteredDeployments = De(N.deployments), N.filteredReplicaSets = De(N.vanillaReplicaSets), N.filteredStatefulSets = De(N.statefulSets), N.filteredDaemonSets = De(N.daemonSets), N.filteredMonopods = De(N.monopods), N.filteredPipelineBuildConfigs = De(N.pipelineBuildConfigs), N.filteredServiceInstances = De(ve.orderedServiceInstances), N.filteredMobileClients = De(N.mobileClients), N.filterActive = Ae(), ke(), _e();
 }, Be = a.project + "/overview/view-by";
 N.viewBy = localStorage.getItem(Be) || "app", e.$watch(function() {
 return N.viewBy;
@@ -380,7 +380,7 @@ return _.get(_.head(t), [ "metadata", "name" ]) || e.metadata.name;
 }
 }, Pt = function() {
 ve.bindableServiceInstances = c.filterBindableServiceInstances(ve.serviceInstances, ve.serviceClasses, ve.servicePlans), ve.orderedServiceInstances = c.sortServiceInstances(ve.serviceInstances, ve.serviceClasses);
-}, jt = [], kt = D ? {
+}, jt = [], kt = A ? {
 skipErrorNotFound: !0
 } : {};
 k.get(a.project, kt).then(_.spread(function(t, r) {
@@ -391,7 +391,7 @@ N.pods && h.fetchReferencedImageStreamImages(N.pods, ve.imagesByDockerReference,
 N.daemonSets = e.by("metadata.name"), st(N.daemonSetData), st(N.monopods), xe(N.daemonSets), Ye(N.daemonSets), wt(), $e(), S.log("daemonsets", N.daemonSets);
 }, i = !1, s = function() {
 i || (jt.push(m.watch(K, r, o, {
-poll: A,
+poll: D,
 pollInterval: 6e4
 })), i = !0);
 }, c = function(e) {
@@ -418,34 +418,34 @@ ve.builds = e.by("metadata.name"), Ct(), S.log("builds (subscribe)", ve.builds);
 })), jt.push(m.watch(le, r, function(e) {
 N.statefulSets = e.by("metadata.name"), st(N.statefulSets), st(N.monopods), xe(N.statefulSets), Ye(N.statefulSets), wt(), $e(), S.log("statefulsets (subscribe)", N.statefulSets);
 }, {
-poll: A,
+poll: D,
 pollInterval: 6e4
 })), m.list(K, r, function(e) {
 o(e), _.isEmpty(N.daemonSets) || s();
 }), jt.push(m.watch(ce, r, function(e) {
 ve.allServices = e.by("metadata.name"), ct(), S.log("services (subscribe)", ve.allServices);
 }, {
-poll: A,
+poll: D,
 pollInterval: 6e4
 })), jt.push(m.watch(re, r, function(e) {
 N.routes = e.by("metadata.name"), lt(), S.log("routes (subscribe)", N.routes);
 }, {
-poll: A,
+poll: D,
 pollInterval: 6e4
 })), jt.push(m.watch(z, r, function(e) {
 N.buildConfigs = e.by("metadata.name"), pt(), bt(), Ct(), $e(), S.log("buildconfigs (subscribe)", N.buildConfigs);
 }, {
-poll: A,
+poll: D,
 pollInterval: 6e4
 })), jt.push(m.watch(Q, r, function(e) {
 N.horizontalPodAutoscalers = e.by("metadata.name"), ut(), S.log("autoscalers (subscribe)", N.horizontalPodAutoscalers);
 }, {
-poll: A,
+poll: D,
 pollInterval: 6e4
 })), jt.push(m.watch(Y, r, function(e) {
 me = e.by("metadata.name"), h.buildDockerRefMapForImageStreams(me, ve.imageStreamImageRefByDockerReference), a(), S.log("imagestreams (subscribe)", me);
 }, {
-poll: A,
+poll: D,
 pollInterval: 6e4
 })), jt.push(m.watch(ne, r, function(e) {
 ve.quotas = e.by("metadata.name"), _t();
@@ -464,7 +464,7 @@ resource: "mobileclients"
 }, r, function(e) {
 N.mobileClients = e.by("metadata.name"), $e(), S.log("mobileclients (subscribe)", e);
 }, {
-poll: A,
+poll: D,
 pollInterval: 6e4
 }));
 var p, f, g = {}, v = {};
@@ -496,12 +496,12 @@ Oe(e, n), t.push(p(e)), t.push(f(e));
 Pt(), $e();
 }), Ye(ve.serviceInstances);
 }, {
-poll: A,
+poll: D,
 pollInterval: 6e4
 }))), u.SERVICE_CATALOG_ENABLED && L(ae, "watch") && jt.push(m.watch(ae, r, function(e) {
 ve.bindings = e.by("metadata.name"), N.bindingsByInstanceRef = _.groupBy(ve.bindings, "spec.instanceRef.name"), wt();
 }, {
-poll: A,
+poll: D,
 pollInterval: 6e4
 })), m.list(Z, r, function(e) {
 ve.limitRanges = e.by("metadata.name");
@@ -517,7 +517,7 @@ N.samplePipelineURL = w.createFromTemplateURL(t, e.projectName);
 m.unwatchAll(jt), $(window).off(".overview");
 });
 }), function(t) {
-D && _.get(t, "notFound") && (f.notifyInvalidProjectHomePage(e.projectName), w.toProjectList());
+A && _.get(t, "notFound") && (f.notifyInvalidProjectHomePage(e.projectName), w.toProjectList());
 });
 }
 
@@ -846,7 +846,7 @@ label: "构建",
 href: "/browse/builds",
 prefixes: [ "/browse/builds/", "/browse/builds-noconfig/", "/edit/builds/" ]
 }, {
-label: "管线",
+label: "管道",
 href: "/browse/pipelines",
 prefixes: [ "/browse/pipelines/", "/edit/pipelines/" ]
 }, {
@@ -874,7 +874,7 @@ label: "配置映射",
 href: "/browse/config-maps",
 prefixes: [ "/browse/config-maps/", "/create-config-map", "/edit/config-maps/" ]
 }, {
-label: "隐私",
+label: "密钥",
 href: "/browse/secrets",
 prefixes: [ "/browse/secrets/", "/create-secret" ],
 canI: {
@@ -2092,19 +2092,19 @@ namespace: e.metadata.namespace
 };
 return r.create(i, e.metadata.name, c, l).then(function(t) {
 var n, r, i = g(t, e.metadata.name), c = _.get(e, "spec.runPolicy");
-"Serial" === c || "SerialLatestOnly" === c ? (n = _.capitalize(s) + " " + i + " successfully queued.", r = "Builds for " + e.metadata.name + " are configured to run one at a time.") : n = _.capitalize(s) + " " + i + " successfully created.", o.addNotification({
+"Serial" === c || "SerialLatestOnly" === c ? (n = _.capitalize(s) + " " + i + " 已成功加入队列。", r = e.metadata.name + " 的构建被配置为一次运行一个。") : n = _.capitalize(s) + " " + i + " 创建成功。", o.addNotification({
 type: "success",
 message: n,
 details: r,
 links: [ {
 href: a.resourceURL(t),
-label: "View Build"
+label: "View build"
 } ]
 });
 }, function(e) {
 return o.addNotification({
 type: "error",
-message: "An error occurred while starting the " + s + ".",
+message: "启动 " + s + " 时发生错误。",
 details: u(e)
 }), t.reject(e);
 });
@@ -2116,12 +2116,12 @@ namespace: e.metadata.namespace
 return l.status.cancelled = !0, r.update(d, l.metadata.name, l, c).then(function() {
 o.addNotification({
 type: "success",
-message: _.capitalize(i) + " " + s + " successfully cancelled."
+message: _.capitalize(i) + " " + s + " 构建取消成功。"
 });
 }), function(e) {
 return o.addNotification({
 type: "error",
-message: "An error occurred cancelling " + i + " " + s + ".",
+message: "取消 " + i + " " + s + " 时发生错误。",
 details: u(e)
 }), t.reject(e);
 };
@@ -2140,16 +2140,16 @@ return r.create(s, e.metadata.name, d, p).then(function(e) {
 var t = g(e, i);
 o.addNotification({
 type: "success",
-message: _.capitalize(c) + " " + l + " is being rebuilt as " + t + ".",
+message: _.capitalize(c) + " " + l + " 正在重建为 " + t + "。",
 links: [ {
 href: a.resourceURL(e),
-label: "View Build"
+label: "View build"
 } ]
 });
 }, function(e) {
 return o.addNotification({
 type: "error",
-message: "An error occurred while rerunning " + c + " " + l + ".",
+message: "重新运行 " + c + " " + l + " 时发生错误。",
 details: u(e)
 }), t.reject();
 });
@@ -2506,7 +2506,7 @@ subjects: {}
 ServiceAccount: {
 kind: "ServiceAccount",
 sortOrder: 3,
-description: "服务帐户提供了一种灵活的方式来控制API访问而不共享普通用户的凭证。.",
+description: "服务帐户提供了一种灵活的方式来控制API访问，而不需要共享一个普通用户的凭证。",
 helpLinkKey: "service_accounts",
 name: "ServiceAccount",
 subjects: {}
@@ -2564,7 +2564,7 @@ subjects: {}
 ServiceAccount: {
 kind: "ServiceAccount",
 sortOrder: 3,
-description: "服务帐户提供了一种灵活的方式来控制API访问而不共享普通用户的凭证。.",
+description: "服务帐户提供了一种灵活的方式来控制API访问，而不需要共享一个普通用户的凭证。",
 helpLinkKey: "service_accounts",
 name: "ServiceAccount",
 subjects: {}
@@ -3196,7 +3196,7 @@ reason: "MetricsNotAvailable"
 }, g = function(e, t, n) {
 var r, a = _.get(e, "spec.template.spec.containers", []);
 if (!d(a, t, n)) return r = m(e.kind), {
-message: "This " + r + " does not have any containers with a CPU request set. Autoscaling will not work without a CPU request.",
+message: "这个 " + r + " 没有任何带有CPU请求集的容器。如果没有CPU请求，自动伸缩将无法工作。",
 reason: "NoCPURequest"
 };
 }, v = function(e) {
@@ -4187,10 +4187,10 @@ valueMinlength: "",
 valueMaxlength: "",
 keyValidator: "[a-zA-Z0-9-_]+",
 valueValidator: "",
-keyValidatorError: "Validation error",
+keyValidatorError: "格式错误",
 keyValidatorErrorTooltip: void 0,
 keyValidatorErrorTooltipIcon: "pficon pficon-help",
-valueValidatorError: "Validation error",
+valueValidatorError: "格式错误",
 valueValidatorErrorTooltip: void 0,
 valueValidatorErrorTooltipIcon: "pficon pficon-help",
 keyPlaceholder: "",
@@ -4423,7 +4423,7 @@ var r = {};
 return _.get(t, "spec.paused") && (r[t.metadata.uid + "-paused"] = {
 type: "info",
 message: t.metadata.name + " is paused.",
-details: "This will stop any new rollouts or triggers from running until resumed.",
+details: "在恢复发布之前，任何新的发布或触发器都会停止运行。",
 links: [ {
 href: "",
 label: "Resume Rollouts",
@@ -4597,9 +4597,9 @@ deprovision: function(e, t) {
 var r, a = {
 kind: e.kind,
 displayName: e.metadata.name,
-okButtonText: "Delete",
+okButtonText: "删除",
 okButtonClass: "btn-danger",
-cancelButtonText: "Cancel",
+cancelButtonText: "取消",
 delete: function() {
 r.close("delete");
 }
@@ -4837,7 +4837,7 @@ link: "project/" + n.project + "/browse/pods"
 title: n.pod
 } ], r.terminalDisconnectAlert.disconnect = {
 type: "warning",
-message: "This terminal has been disconnected. If you reconnect, your terminal history will be lost."
+message: "此终端已断开连接。如果您重新连接，您的终端历史将丢失。"
 }, r.noContainersYet = !0, r.selectedTab = {};
 var g = i.getPreferredVersion("imagestreams"), v = i.getPreferredVersion("builds");
 r.podsVersion = i.getPreferredVersion("pods"), r.podsLogVersion = i.getPreferredVersion("pods/log"), r.eventsVersion = i.getPreferredVersion("events"), r.deploymentConfigsVersion = i.getPreferredVersion("deploymentconfigs");
@@ -4894,7 +4894,7 @@ setTimeout(P, 150);
 $(window).off("resize.terminalsize"), y && (y(), y = null);
 };
 r.$watch("selectedTab.terminal", function(e) {
-e ? (C.height && C.width ? j() : u.warn("Unable to calculate the bounding box for a character.  Terminal will not be able to resize."), a(P, 0)) : k();
+e ? (C.height && C.width ? j() : u.warn("无法计算字符的边界框。终端将无法调整大小。"), a(P, 0)) : k();
 }), r.onTerminalSelectChange = function(e) {
 _.each(r.containerTerminals, function(e) {
 e.isVisible = !1;
@@ -4927,7 +4927,7 @@ name: e.containerName
 }), n = I(t);
 e.containerState = n;
 });
-}, N = e("annotation"), A = function(e, t) {
+}, N = e("annotation"), D = function(e, t) {
 if (r.loaded = !0, r.pod = e, r.dcName = N(e, "deploymentConfig"), r.rcName = N(e, "deployment"), r.deploymentVersion = N(e, "deploymentVersion"), r.logCanRun = !_.includes([ "New", "Pending", "Unknown" ], e.status.phase), S(), delete r.controllerRef, !r.dcName) {
 var n = m.getControllerReferences(e);
 r.controllerRef = _.find(n, function(e) {
@@ -4943,15 +4943,15 @@ f.get(n.project).then(_.spread(function(t, a) {
 b = a, r.project = t, r.projectContext = a, s.get(r.podsVersion, n.pod, a, {
 errorNotification: !1
 }).then(function(e) {
-A(e);
+D(e);
 var t = {};
 t[e.metadata.name] = e, r.logOptions.container = n.container || e.spec.containers[0].name, r.containerTerminals = R(), E(e), l.fetchReferencedImageStreamImages(t, r.imagesByDockerReference, r.imageStreamImageRefByDockerReference, b), h.push(s.watchObject(r.podsVersion, n.pod, a, function(e, t) {
-A(e, t), T(r.containerTerminals), E(e);
+D(e, t), T(r.containerTerminals), E(e);
 }));
 }, function(t) {
 r.loaded = !0, r.alerts.load = {
 type: "error",
-message: "The pod details could not be loaded.",
+message: "该 pod 细节无法加载。",
 details: e("getErrorDetails")(t)
 };
 }), r.$watch("logOptions.container", S), h.push(s.watch(g, a, function(e) {
@@ -4966,7 +4966,7 @@ gracePeriodSeconds: 0
 }).then(_.noop, function(n) {
 r.alerts["debug-container-error"] = {
 type: "error",
-message: "Could not delete pod " + t.metadata.name,
+message: "不能删除该 pod " + t.metadata.name,
 details: e("getErrorDetails")(n)
 };
 }), r.debugPod = null);
@@ -4984,7 +4984,7 @@ var i = _.find(r.pod.spec.containers, {
 name: t
 });
 r.debugPod = e, $(window).on("beforeunload.debugPod", function() {
-return "Are you sure you want to leave with the debug terminal open? The debug pod will not be deleted unless you close the dialog.";
+return "您确定要打开调试终端吗?除非关闭对话框，否则不会删除调试pod。";
 }), d = s.watchObject(r.podsVersion, n.metadata.name, a, function(e) {
 r.debugPod = e;
 }), o.open({
@@ -5003,12 +5003,12 @@ return _.get(r, [ "imagesByDockerReference", i.image ]);
 }, function(n) {
 r.alerts["debug-container-error"] = {
 type: "error",
-message: "Could not debug container " + t,
+message: "不能调试容器 " + t,
 details: e("getErrorDetails")(n)
 };
 }) : r.alerts["debug-container-error"] = {
 type: "error",
-message: "Could not debug container " + t
+message: "不能调试容器 " + t
 };
 }, r.containersRunning = function(e) {
 var t = 0;
@@ -5088,11 +5088,13 @@ kind: "All"
 }, {
 kind: "Pods"
 }, {
-label: "Deployments",
+label: "部署",
 kind: "ReplicationControllers"
 }, {
+label: "构建",
 kind: "Builds"
 }, {
+label: "状态集",
 kind: "StatefulSets"
 } ], n.kindSelector = {
 selected: _.find(n.kinds, {
@@ -5147,12 +5149,12 @@ n.filteredStatefulSets = c.filterForKeywords(_.values(n.statefulSets), P, j);
 C = _.filter(n.pods, function(e) {
 return !n.filters.hideOlderResources || "Succeeded" !== e.status.phase && "Failed" !== e.status.phase;
 }), n.filteredPods = c.filterForKeywords(C, P, j);
-}, A = r("isIncompleteBuild"), D = r("buildConfigForBuild"), B = r("isRecentBuild"), L = function() {
+}, D = r("isIncompleteBuild"), A = r("buildConfigForBuild"), B = r("isRecentBuild"), L = function() {
 moment().subtract(5, "m");
 y = _.filter(n.builds, function(e) {
 if (!n.filters.hideOlderResources) return !0;
-if (A(e)) return !0;
-var t = D(e);
+if (D(e)) return !0;
+var t = A(e);
 return t ? n.latestBuildByConfig[t].metadata.name === e.metadata.name : B(e);
 }), n.filteredBuilds = c.filterForKeywords(y, P, j);
 }, V = r("deploymentStatus"), O = r("deploymentIsInProgress"), U = function() {
@@ -5248,26 +5250,26 @@ var g, v = n.project, h = e("humanizeKind"), y = e("annotation"), b = e("canI"),
 r.roleBindingsVersion = i.getPreferredVersion("rolebindings");
 var C = [], w = {
 notice: {
-yourLastRole: _.template('Removing the role "<%= roleName %>" may completely remove your ability to see this project.')
+yourLastRole: _.template('删除角色 "<%= roleName %>" 可能会完全移除您查看此项目的权限。')
 },
 warning: {
-serviceAccount: _.template("Removing a system role granted to a service account may cause unexpected behavior.")
+serviceAccount: _.template("删除被授予服务帐户的系统角色可能会导致意外情况。")
 },
 remove: {
 areYouSure: {
 html: {
-subject: _.template("Are you sure you want to remove <strong><%- roleName %></strong> from the <%- kindName %> <strong><%- subjectName %></strong>?"),
-self: _.template("Are you sure you want to remove <strong><%- roleName %></strong> from <strong><%- subjectName %></strong> (you)?")
+subject: _.template("您确定要从<%- kindName %> <strong><%- subjectName %></strong>中删除 <strong><%- roleName %></strong>吗？"),
+self: _.template("您确定要从<strong><%- subjectName %></strong>(you) 删除 <strong><%- roleName %></strong>吗？")
 }
 },
-success: _.template('The role "<%= roleName %>" was removed from "<%= subjectName %>".'),
-error: _.template('The role "<%= roleName %>" was not removed from "<%= subjectName %>".')
+success: _.template('角色 "<%= roleName %>" 已从 "<%= subjectName %>"中删除。'),
+error: _.template('角色 "<%= roleName %>" 未从 "<%= subjectName %>"中删除。')
 },
 update: {
 subject: {
-success: _.template('The role "<%= roleName %>" was granted to "<%= subjectName %>".'),
-error: _.template('The role "<%= roleName %>" could not be granted to "<%= subjectName %>".'),
-exists: _.template('The role "<%= roleName %>" has already been granted to "<%= subjectName %>".')
+success: _.template('角色 "<%= roleName %>" 已成功添加到 "<%= subjectName %>"。'),
+error: _.template('角色 "<%= roleName %>" 未能成功添加到 "<%= subjectName %>"。'),
+exists: _.template('角色 "<%= roleName %>" 在 "<%= subjectName %>"中已存在。')
 }
 }
 }, P = function(e, t, n) {
@@ -5364,18 +5366,18 @@ return e ? r + (y(e, "description") || "") : "";
 }
 }
 });
-var A = function(e, t, n, a) {
+var D = function(e, t, n, a) {
 var o = {
-title: "Confirm Removal",
+title: "确认删除",
 alerts: {},
 detailsMarkup: w.remove.areYouSure.html.subject({
 roleName: n,
 kindName: h(t),
 subjectName: e
 }),
-okButtonText: "Remove",
+okButtonText: "删除",
 okButtonClass: "btn-danger",
-cancelButtonText: "Cancel"
+cancelButtonText: "关闭"
 };
 return _.isEqual(e, a) && (o.detailsMarkup = w.remove.areYouSure.html.self({
 roleName: n,
@@ -5411,7 +5413,7 @@ project: n,
 subjectKinds: N,
 canUpdateRolebindings: b("rolebindings", "update", v),
 confirmRemove: function(n, a, i, s) {
-var l = null, u = A(n, a, i, r.user.metadata.name);
+var l = null, u = D(n, a, i, r.user.metadata.name);
 _.isEqual(n, r.user.metadata.name) && d.isLastRole(r.user.metadata.name, r.roleBindings) && (l = !0), o.open({
 templateUrl: "views/modals/confirm.html",
 controller: "ConfirmModalController",
@@ -5742,7 +5744,7 @@ e.loaded = !0, e.build = t, m(t), c();
 var r = u(t, "buildNumber");
 r && e.breadcrumbs[2] && (e.breadcrumbs[2].title = "#" + r), "DELETED" === n && (e.alerts.deleted = {
 type: "warning",
-message: "This build has been deleted."
+message: "此构建已被删除。"
 });
 var a;
 l || (a = u(t, "buildPod")) && o.get(e.podsVersion, a, s, {
@@ -5753,7 +5755,7 @@ l = e, c();
 }, g = function(t, n) {
 "DELETED" === n && (e.alerts.deleted = {
 type: "warning",
-message: "Build configuration " + e.buildConfigName + " has been deleted."
+message: "构建配置 " + e.buildConfigName + " 已被删除。"
 }, e.buildConfigDeleted = !0), e.buildConfig = t, e.buildConfigPaused = a.isPaused(e.buildConfig), p();
 };
 o.get(e.buildsVersion, n.build, s, {
@@ -5763,7 +5765,7 @@ f(t), d.push(o.watchObject(e.buildsVersion, n.build, s, f)), d.push(o.watchObjec
 }, function(n) {
 e.loaded = !0, e.alerts.load = {
 type: "error",
-message: "The build details could not be loaded.",
+message: "无法加载构建细节。",
 details: t("getErrorDetails")(n)
 };
 }), e.toggleSecret = function() {
@@ -6055,18 +6057,18 @@ errorNotification: !1
 e.loaded = !0, e.deploymentConfig = r, e.strategyParams = t("deploymentStrategyParams")(r), p(), j.push(o.watchObject(e.deploymentConfigsVersion, n.deploymentconfig, a, function(t, n) {
 "DELETED" === n && (e.alerts.deleted = {
 type: "warning",
-message: "This deployment configuration has been deleted."
+message: "此部署配置已被删除。"
 }), e.deploymentConfig = t, e.updatingPausedState = !1, p(), c.fetchReferencedImageStreamImages([ t.spec.template ], e.imagesByDockerReference, h, a);
 }));
 }, function(n) {
 e.loaded = !0, e.alerts.load = {
 type: "error",
-message: 404 === n.status ? "This deployment configuration can not be found, it may have been deleted." : "The deployment configuration details could not be loaded.",
-details: 404 === n.status ? "Any remaining deployment history for this deployment will be shown." : t("getErrorDetails")(n)
+message: 404 === n.status ? "无法找到此部署配置，它可能已被删除。" : "无法加载部署配置细节。",
+details: 404 === n.status ? "将显示此部署的任何剩余部署历史。" : t("getErrorDetails")(n)
 };
 }), j.push(o.watch(C, a, function(r, a, o) {
 var s = n.deploymentconfig;
-if (e.emptyMessage = "No deployments to show", a) {
+if (e.emptyMessage = "没有部署说明", a) {
 if (i.deploymentBelongsToConfig(o, n.deploymentconfig)) {
 var c = o.metadata.name;
 switch (a) {
@@ -6150,7 +6152,7 @@ o.unwatchAll(j);
 });
 }));
 } ]), angular.module("openshiftConsole").controller("ReplicaSetController", [ "$scope", "$filter", "$routeParams", "APIService", "AuthorizationService", "BreadcrumbsService", "DataService", "DeploymentsService", "HPAService", "ImageStreamResolver", "keyValueEditorUtils", "kind", "Logger", "MetricsService", "ModalsService", "Navigate", "OwnerReferencesService", "PodsService", "ProjectsService", "StorageService", function(e, t, n, r, a, o, i, s, c, l, u, d, m, p, f, g, v, h, y, b) {
-var S = !1, C = t("annotation"), w = t("humanizeKind")(d), P = t("hasDeployment"), j = r.getPreferredVersion("builds"), k = r.getPreferredVersion("imagestreams"), I = r.getPreferredVersion("horizontalpodautoscalers"), R = r.getPreferredVersion("limitranges"), E = r.getPreferredVersion("pods"), T = r.getPreferredVersion("replicasets"), N = r.getPreferredVersion("replicationcontrollers"), A = r.getPreferredVersion("resourcequotas"), D = r.getPreferredVersion("appliedclusterresourcequotas");
+var S = !1, C = t("annotation"), w = t("humanizeKind")(d), P = t("hasDeployment"), j = r.getPreferredVersion("builds"), k = r.getPreferredVersion("imagestreams"), I = r.getPreferredVersion("horizontalpodautoscalers"), R = r.getPreferredVersion("limitranges"), E = r.getPreferredVersion("pods"), T = r.getPreferredVersion("replicasets"), N = r.getPreferredVersion("replicationcontrollers"), D = r.getPreferredVersion("resourcequotas"), A = r.getPreferredVersion("appliedclusterresourcequotas");
 switch (d) {
 case "ReplicaSet":
 e.resource = T, e.healthCheckURL = g.healthCheckURL(n.project, "ReplicaSet", n.replicaSet, "extensions");
@@ -6298,12 +6300,12 @@ pollInterval: 6e4
 })), i.list(R, u).then(function(t) {
 e.limitRanges = t.by("metadata.name"), U();
 });
-B.push(i.watch(A, u, function(t) {
+B.push(i.watch(D, u, function(t) {
 e.quotas = t.by("metadata.name");
 }, {
 poll: !0,
 pollInterval: 6e4
-})), B.push(i.watch(D, u, function(t) {
+})), B.push(i.watch(A, u, function(t) {
 e.clusterQuotas = t.by("metadata.name");
 }, {
 poll: !0,
@@ -6652,7 +6654,7 @@ r.unwatchAll(i);
 n.projectName = e.project, n.secretName = e.secret, n.view = {
 showSecret: !1
 }, n.alerts = n.alerts || {}, n.breadcrumbs = [ {
-title: "Secrets",
+title: "密钥",
 link: "project/" + e.project + "/browse/secrets"
 }, {
 title: n.secretName
@@ -6684,10 +6686,10 @@ a.unwatchAll(s);
 }));
 } ]), angular.module("openshiftConsole").controller("CreateSecretController", [ "$filter", "$location", "$routeParams", "$scope", "$window", "ApplicationGenerator", "AuthorizationService", "DataService", "Navigate", "ProjectsService", function(e, t, n, r, a, o, i, s, c, l) {
 r.alerts = {}, r.projectName = n.project, r.breadcrumbs = [ {
-title: "Secrets",
+title: "密钥",
 link: "project/" + r.projectName + "/browse/secrets"
 }, {
-title: "Create Secret"
+title: "创建密钥"
 } ], l.get(n.project).then(_.spread(function(e, o) {
 r.project = e, r.context = o, i.canI("secrets", "create", n.project) ? r.navigateBack = function() {
 n.then ? t.url(n.then) : a.history.back();
@@ -6723,7 +6725,7 @@ namespace: t.project
 var i = [], s = function(t, n) {
 e.loaded = !0, e.configMap = t, "DELETED" === n && (e.alerts.deleted = {
 type: "warning",
-message: "This config map has been deleted."
+message: "这个配置映射已被删除。"
 });
 };
 e.addToApplicationVisible = !1, e.addToApplication = function() {
@@ -6743,10 +6745,10 @@ a.unwatchAll(i);
 }));
 } ]), angular.module("openshiftConsole").controller("CreateConfigMapController", [ "$filter", "$routeParams", "$scope", "$window", "APIService", "AuthorizationService", "DataService", "Navigate", "NotificationsService", "ProjectsService", function(e, t, n, r, a, o, i, s, c, l) {
 n.projectName = t.project, n.breadcrumbs = [ {
-title: "Config Maps",
+title: "配置映射",
 link: "project/" + n.projectName + "/browse/config-maps"
 }, {
-title: "Create Config Map"
+title: "创建配置映射"
 } ];
 var u = function() {
 c.hideNotification("create-config-map-error");
@@ -6770,18 +6772,18 @@ var t = a.objectToResourceGroupVersion(n.configMap);
 i.create(t, null, n.configMap, l).then(function() {
 c.addNotification({
 type: "success",
-message: "Config map " + n.configMap.metadata.name + " successfully created."
+message: "配置映射 " + n.configMap.metadata.name + " 创建成功。"
 }), d();
 }, function(t) {
 n.disableInputs = !1, c.addNotification({
 id: "create-config-map-error",
 type: "error",
-message: "An error occurred creating the config map.",
+message: "创建配置映射时出错。",
 details: e("getErrorDetails")(t)
 });
 });
 }
-}) : s.toErrorPage("You do not have authority to create config maps in project " + t.project + ".", "access_denied");
+}) : s.toErrorPage("您没有权限在 " + t.project + ".", "项目中创建配置映射。");
 }));
 } ]), angular.module("openshiftConsole").controller("RoutesController", [ "$filter", "$routeParams", "$scope", "APIService", "DataService", "LabelFilter", "ProjectsService", function(e, t, n, r, a, o, i) {
 n.projectName = t.project, n.unfilteredRoutes = {}, n.routes = {}, n.labelSuggestions = {}, n.clearFilter = function() {
@@ -7207,7 +7209,7 @@ return _.map(e, "metadata.name");
 });
 e.webhookSecrets = m.groupSecretsByType(t).webhook, e.webhookSecrets.unshift(""), e.secrets.secretsByType = _.each(r, function(e) {
 e.unshift("");
-}), A(), P = S(t.by("metadata.name")), e.valueFromObjects = w.concat(P);
+}), D(), P = S(t.by("metadata.name")), e.valueFromObjects = w.concat(P);
 });
 var n = function(e, n) {
 e.type = n && n.kind ? n.kind : "None";
@@ -7354,7 +7356,7 @@ var t = [].concat(e.triggers.imageChangeTriggers, e.triggers.builderImageChangeT
 return t = _.filter(t, function(e) {
 return _.has(e, "disabled") && !e.disabled || e.present;
 }), t = t.concat(T(e.triggers.webhookTriggers)), t = _.map(t, "data");
-}, A = function() {
+}, D = function() {
 switch (e.secrets.picked = {
 gitSecret: e.buildConfig.spec.source.sourceSecret ? [ e.buildConfig.spec.source.sourceSecret ] : [ {
 name: ""
@@ -7384,7 +7386,7 @@ name: ""
 mountPath: ""
 } ];
 }
-}, D = function(e, t, n) {
+}, A = function(e, t, n) {
 t.name ? e[n] = t : delete e[n];
 }, $ = function(t, n) {
 var r = "Custom" === e.strategyType ? "secretSource" : "secret", a = _.filter(n, function(e) {
@@ -7405,7 +7407,7 @@ break;
 case "JenkinsPipeline":
 "path" === e.jenkinsfileOptions.type ? delete e.updatedBuildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfile : delete e.updatedBuildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath;
 }
-switch (e.sources.images && !_.isEmpty(e.sourceImages) && (e.updatedBuildConfig.spec.source.images[0].paths = R(e.imageSourcePaths), e.updatedBuildConfig.spec.source.images[0].from = E(e.imageOptions.fromSource)), "None" === e.imageOptions.from.type ? delete b(e.updatedBuildConfig).from : b(e.updatedBuildConfig).from = E(e.imageOptions.from), "None" === e.imageOptions.to.type ? delete e.updatedBuildConfig.spec.output.to : e.updatedBuildConfig.spec.output.to = E(e.imageOptions.to), b(e.updatedBuildConfig).env = p.compactEntries(e.envVars), D(e.updatedBuildConfig.spec.source, _.head(e.secrets.picked.gitSecret), "sourceSecret"), D(b(e.updatedBuildConfig), _.head(e.secrets.picked.pullSecret), "pullSecret"), D(e.updatedBuildConfig.spec.output, _.head(e.secrets.picked.pushSecret), "pushSecret"), e.strategyType) {
+switch (e.sources.images && !_.isEmpty(e.sourceImages) && (e.updatedBuildConfig.spec.source.images[0].paths = R(e.imageSourcePaths), e.updatedBuildConfig.spec.source.images[0].from = E(e.imageOptions.fromSource)), "None" === e.imageOptions.from.type ? delete b(e.updatedBuildConfig).from : b(e.updatedBuildConfig).from = E(e.imageOptions.from), "None" === e.imageOptions.to.type ? delete e.updatedBuildConfig.spec.output.to : e.updatedBuildConfig.spec.output.to = E(e.imageOptions.to), b(e.updatedBuildConfig).env = p.compactEntries(e.envVars), A(e.updatedBuildConfig.spec.source, _.head(e.secrets.picked.gitSecret), "sourceSecret"), A(b(e.updatedBuildConfig), _.head(e.secrets.picked.pullSecret), "pullSecret"), A(e.updatedBuildConfig.spec.output, _.head(e.secrets.picked.pushSecret), "pushSecret"), e.strategyType) {
 case "Source":
 case "Docker":
 $(e.updatedBuildConfig.spec.source, e.secrets.picked.sourceSecrets);
@@ -7417,13 +7419,13 @@ $(b(e.updatedBuildConfig), e.secrets.picked.sourceSecrets);
 e.updatedBuildConfig.spec.triggers = N(), k(), s.update(v, e.updatedBuildConfig.metadata.name, e.updatedBuildConfig, e.context).then(function() {
 l.addNotification({
 type: "success",
-message: "Build config " + e.updatedBuildConfig.metadata.name + " was successfully updated."
+message: "构建配置 " + e.updatedBuildConfig.metadata.name + " 已成功更新。"
 }), j();
 }, function(n) {
 e.disableInputs = !1, l.addNotification({
 id: "edit-build-config-error",
 type: "error",
-message: "An error occurred updating build config " + e.updatedBuildConfig.metadata.name + ".",
+message: "更新构建配置 " + e.updatedBuildConfig.metadata.name + " 时发生错误。",
 details: t("getErrorDetails")(n)
 });
 });
@@ -7436,7 +7438,7 @@ n.forms = {}, n.projectName = t.project, n.breadcrumbs = i.getBreadcrumbs({
 name: t.configMap,
 kind: "ConfigMap",
 namespace: t.project,
-subpage: "Edit Config Map"
+subpage: "编辑配置映射"
 });
 var d = function(e) {
 return _.get(e, "metadata.resourceVersion");
@@ -7455,23 +7457,23 @@ n.loaded = !0, n.breadcrumbs = i.getBreadcrumbs({
 name: t.configMap,
 object: e,
 project: r,
-subpage: "Edit Config Map"
+subpage: "编辑配置映射"
 }), n.configMap = e, u.push(o.watchObject(f, t.configMap, a, function(e, t) {
 n.resourceChanged = d(e) !== d(n.configMap), n.resourceDeleted = "DELETED" === t;
 }));
 }, function(n) {
-s.toErrorPage("Could not load config map " + t.configMap + ". " + e("getErrorDetails")(n));
+s.toErrorPage("无法加载配置映射 " + t.configMap + ". " + e("getErrorDetails")(n));
 }), n.updateConfigMap = function() {
 n.forms.editConfigMapForm.$valid && (m(), n.disableInputs = !0, o.update(f, n.configMap.metadata.name, n.configMap, a).then(function() {
 c.addNotification({
 type: "success",
-message: "Config map " + n.configMap.metadata.name + " successfully updated."
+message: "配置映射 " + n.configMap.metadata.name + " 更新成功。"
 }), p();
 }, function(t) {
 n.disableInputs = !1, c.addNotification({
 id: "edit-config-map-error",
 type: "error",
-message: "An error occurred updating the config map.",
+message: "更新配置映射时出错。",
 details: e("getErrorDetails")(t)
 });
 }));
@@ -7487,7 +7489,7 @@ advancedImageOptions: !1
 name: r.name,
 kind: r.kind,
 namespace: r.project,
-subpage: "Edit Deployment Config"
+subpage: "修改部署配置"
 }), e.deploymentConfigStrategyTypes = [ "Recreate", "Rolling", "Custom" ];
 var v = t("orderByDisplayName"), h = t("getErrorDetails"), y = function(t, n) {
 e.alerts["from-value-objects"] = {
@@ -7509,7 +7511,7 @@ case "Custom":
 return "customParams";
 
 default:
-return void Logger.error("Unknown deployment strategy type: " + e);
+return void Logger.error("未知的部署策略类型: " + e);
 }
 };
 p.get(r.project).then(_.spread(function(n, a) {
@@ -7566,7 +7568,7 @@ errorNotification: !1
 }).then(function(t) {
 P = v(t.by("metadata.name")), e.availableConfigMaps = P, e.valueFromObjects = P.concat(j);
 }, function(e) {
-403 !== e.status && y("Could not load config maps", h(e));
+403 !== e.status && y("不能加载配置映射", h(e));
 }), l.list(C, a, null, {
 errorNotification: !1
 }).then(function(t) {
@@ -7582,19 +7584,19 @@ e.unshift("");
 }), w.push(l.watchObject(b, r.deploymentconfig, a, function(t, n) {
 "MODIFIED" === n && (e.alerts["updated/deleted"] = {
 type: "warning",
-message: "This deployment configuration has changed since you started editing it. You'll need to copy any changes you've made and edit again."
+message: "自从您开始编辑这个配置以来，这个配置已经发生了变化。您需要复制您所做的更改并重新编辑。"
 }), "DELETED" === n && (e.alerts["updated/deleted"] = {
 type: "warning",
-message: "This deployment configuration has been deleted."
+message: "此部署配置已被删除。"
 }, e.disableInputs = !0), e.deploymentConfig = t;
 })), e.loaded = !0;
 }, function(n) {
 e.loaded = !0, e.alerts.load = {
 type: "error",
-message: "The deployment configuration details could not be loaded.",
+message: "无法加载部署配置细节。",
 details: t("getErrorDetails")(n)
 };
-}) : d.toErrorPage("You do not have authority to update deployment config " + r.deploymentconfig + ".", "access_denied");
+}) : d.toErrorPage("您没有权限更新部署配置 " + r.deploymentconfig + "。", "access_denied");
 }));
 var I = function() {
 return "Custom" !== e.strategyData.type && "Custom" !== e.originalStrategy && e.strategyData.type !== e.originalStrategy;
@@ -7606,11 +7608,11 @@ resolve: {
 modalConfig: function() {
 return {
 alerts: e.alerts,
-title: "Keep some existing " + e.originalStrategy.toLowerCase() + " strategy parameters?",
+title: "保持现有的一些 " + e.originalStrategy.toLowerCase() + " 策略参数?",
 details: "The timeout parameter and any pre or post lifecycle hooks will be copied from " + e.originalStrategy.toLowerCase() + " strategy to " + e.strategyData.type.toLowerCase() + " strategy. After saving the changes, " + e.originalStrategy.toLowerCase() + " strategy parameters will be removed.",
-okButtonText: "Yes",
+okButtonText: "是",
 okButtonClass: "btn-primary",
-cancelButtonText: "No"
+cancelButtonText: "否"
 };
 }
 }
@@ -7672,7 +7674,7 @@ _.has(e.strategyData, [ e.strategyParamsPropertyName, t, "execNewPod", "env" ]) 
 }), _.has(e, "strategyData.customParams.environment") && (e.strategyData.customParams.environment = g.compactEntries(e.strategyData.customParams.environment)), e.updatedDeploymentConfig.spec.template.spec.imagePullSecrets = _.filter(e.secrets.pullSecrets, "name"), e.updatedDeploymentConfig.spec.strategy = e.strategyData, e.updatedDeploymentConfig.spec.triggers = T(), N(), l.update(b, e.updatedDeploymentConfig.metadata.name, e.updatedDeploymentConfig, e.context).then(function() {
 m.addNotification({
 type: "success",
-message: "Deployment config " + e.updatedDeploymentConfig.metadata.name + " was successfully updated."
+message: "部署配置 " + e.updatedDeploymentConfig.metadata.name + " 已成功更新。"
 });
 var t = d.resourceURL(e.updatedDeploymentConfig);
 n.url(t);
@@ -7680,7 +7682,7 @@ n.url(t);
 e.disableInputs = !1, m.addNotification({
 id: "edit-deployment-config-error",
 type: "error",
-message: "An error occurred updating deployment config " + e.updatedDeploymentConfig.metadata.name + ".",
+message: "更新部署配置时出错 " + e.updatedDeploymentConfig.metadata.name + "。",
 details: t("getErrorDetails")(n)
 });
 });
@@ -7981,12 +7983,12 @@ namespace: i.metadata.namespace
 var a = _.get(n, "metadata.resourceVersion");
 if (_.get(t, "metadata.resourceVersion") === a) return e.alerts["no-changes-applied"] = {
 type: "warning",
-message: "No changes were applied to " + m(r.kind) + " " + r.name + ".",
-details: "Make sure any new fields you may have added are supported API fields."
+message: m(r.kind) + " " + r.name + "没有任何变化。",
+details: "确保您添加的任何新字段都是受支持的API字段。"
 }, void (e.updatingNow = !1);
 u.addNotification({
 type: "success",
-message: m(r.kind, !0) + " " + r.name + " was successfully updated."
+message: m(r.kind, !0) + " " + r.name + " 已成功更新。"
 }), p();
 }, function(n) {
 e.updatingNow = !1, e.error = {
@@ -7995,12 +7997,12 @@ message: t("getErrorDetails")(n)
 })) : e.error = {
 message: o.unsupportedObjectKindOrVersion(n)
 } : e.error = {
-message: "Cannot change resource group (original: " + (a.group || "<none>") + ", modified: " + (s.group || "<none>") + ")."
+message: "无法更改资源组 (修改前： " + (a.group || "<none>") + "，修改后： " + (s.group || "<none>") + ")。"
 } : e.error = {
 message: o.invalidObjectKindOrVersion(n)
 };
 } else e.error = {
-message: "Cannot change resource kind (original: " + i.kind + ", modified: " + (n.kind || "<unspecified>") + ")."
+message: "无法更改资源类型 (修改前： " + i.kind + "，修改后： " + (n.kind || "<unspecified>") + ")。"
 };
 }, e.cancel = function() {
 p();
@@ -8010,10 +8012,10 @@ e.resourceChanged = l(t) !== l(i), e.resourceDeleted = "DELETED" === n;
 errorNotification: !1
 }));
 }, function(e) {
-l.toErrorPage("Could not load " + m(r.kind) + " '" + r.name + "'. " + t("getErrorDetails")(e));
+l.toErrorPage("无法加载 " + m(r.kind) + " '" + r.name + "'. " + t("getErrorDetails")(e));
 }), e.$on("$destroy", function() {
 c.unwatchAll(f);
-})) : l.toErrorPage("You do not have authority to update " + m(r.kind) + " " + r.name + ".", "access_denied");
+})) : l.toErrorPage("您没有权限更新 " + m(r.kind) + " " + r.name + ".", "access_denied");
 }));
 } else l.toErrorPage("Kind or name parameter missing.");
 } ]), angular.module("openshiftConsole").controller("BrowseCategoryController", [ "$scope", "$filter", "$location", "$q", "$routeParams", "$uibModal", "Constants", "DataService", "LabelFilter", "Navigate", "ProjectsService", function(e, t, n, r, a, o, i, s, c, l, u) {
@@ -8071,13 +8073,13 @@ g.hideNotification("create-builder-list-config-maps-error"), g.hideNotification(
 });
 };
 e.$on("$destroy", N);
-var A = i.getPreferredVersion("configmaps"), D = i.getPreferredVersion("limitranges"), $ = i.getPreferredVersion("imagestreams"), B = i.getPreferredVersion("imagestreamtags"), L = i.getPreferredVersion("secrets"), V = i.getPreferredVersion("resourcequotas"), O = i.getPreferredVersion("appliedclusterresourcequotas");
+var D = i.getPreferredVersion("configmaps"), A = i.getPreferredVersion("limitranges"), $ = i.getPreferredVersion("imagestreams"), B = i.getPreferredVersion("imagestreamtags"), L = i.getPreferredVersion("secrets"), V = i.getPreferredVersion("resourcequotas"), O = i.getPreferredVersion("appliedclusterresourcequotas");
 v.get(a.project).then(_.spread(function(t, n) {
 e.project = t, a.sourceURI && (e.sourceURIinParams = !0), e.hasClusterResourceOverrides = d.hasClusterResourceOverrides(t);
 var i = function() {
 e.cpuProblems = d.validatePodLimits(e.limitRanges, "cpu", [ e.container ], t), e.memoryProblems = d.validatePodLimits(e.limitRanges, "memory", [ e.container ], t);
 };
-c.list(D, n).then(function(t) {
+c.list(A, n).then(function(t) {
 e.limitRanges = t.by("metadata.name"), _.isEmpty(e.limitRanges) || e.$watch("container", i, !0);
 });
 var v, y, C = function() {
@@ -8129,7 +8131,7 @@ return r.buildConfig.sourceUrl === _.get(r, "image.metadata.annotations.sampleRe
 e.metricsWarning = !t;
 });
 var o = [], i = [];
-e.valueFromObjects = [], c.list(A, n, null, {
+e.valueFromObjects = [], c.list(D, n, null, {
 errorNotification: !1
 }).then(function(t) {
 o = R(t.by("metadata.name")), e.valueFromObjects = o.concat(i);
@@ -8634,10 +8636,10 @@ hideFilterWidget: !0
 }, n.projectName = t.project, n.serviceName = t.service, n.labels = [], n.routing = {
 name: n.serviceName || ""
 }, n.breadcrumbs = [ {
-title: "Routes",
+title: "路由",
 link: "project/" + n.projectName + "/browse/routes"
 }, {
-title: "Create Route"
+title: "创建路由"
 } ];
 var m = a.getPreferredVersion("routes"), p = a.getPreferredVersion("services"), f = function() {
 l.hideNotification("create-route-error");
@@ -9250,18 +9252,18 @@ name: t.metadata.name
 r.update(i, l.newSecret.pickedServiceAccountToLink, o, l).then(function(e) {
 a.addNotification({
 type: "success",
-message: "Secret " + t.metadata.name + " was created and linked with service account " + e.metadata.name + "."
+message: "密钥 " + t.metadata.name + " 创建成功并链接到服务帐户 " + e.metadata.name + "。"
 }), l.onCreate({
 newSecret: t
 });
 }, function(n) {
 a.addNotification({
 type: "success",
-message: "Secret " + t.metadata.name + " was created."
+message: "密钥 " + t.metadata.name + " 创建成功。"
 }), l.serviceAccountToLink || a.addNotification({
 id: "secret-sa-link-error",
 type: "error",
-message: "An error occurred while linking the secret with service account " + l.newSecret.pickedServiceAccountToLink + ".",
+message: "将密钥与服务帐户 " + l.newSecret.pickedServiceAccountToLink + " 链接时出错。",
 details: e("getErrorDetails")(n)
 }), l.onCreate({
 newSecret: t
@@ -9286,7 +9288,7 @@ var o = u(l.newSecret.data, l.newSecret.authType);
 r.create(n.objectToResourceGroupVersion(o), null, o, l).then(function(e) {
 l.newSecret.linkSecret && l.serviceAccountsNames.contains(l.newSecret.pickedServiceAccountToLink) && t.canI("serviceaccounts", "update") ? m(e) : (a.addNotification({
 type: "success",
-message: "Secret " + o.metadata.name + " was created."
+message: "密钥 " + o.metadata.name + " 创建成功。"
 }), l.onCreate({
 newSecret: e
 }));
@@ -9294,7 +9296,7 @@ newSecret: e
 "AlreadyExists" !== (t.data || {}).reason ? a.addNotification({
 id: "create-secret-error",
 type: "error",
-message: "An error occurred while creating the secret.",
+message: "创建密钥时出错。",
 details: e("getErrorDetails")(t)
 }) : l.nameTaken = !0;
 });
@@ -9401,17 +9403,17 @@ group: r.group
 }, t, u, d).then(function() {
 c.addNotification({
 type: "success",
-message: s + " was marked for deletion."
+message: s + " 删除成功。"
 }), r.success && r.success(), r.options.deleteHPAs && _.each(r.hpaList, p), f();
 }).catch(function(e) {
 m({
 name: t,
 data: {
 type: "error",
-message: _.capitalize(s) + "' could not be deleted.",
+message: _.capitalize(s) + "' 删除失败。",
 details: n("getErrorDetails")(e)
 }
-}), l.error(s + " could not be deleted.", e);
+}), l.error(s + " 删除失败。", e);
 });
 });
 };
@@ -9602,34 +9604,34 @@ _.get(e, "metadata.uid") && (i[e.metadata.uid] = !0);
 e.sortConfig = {
 fields: [ {
 id: "lastTimestamp",
-title: "Time",
+title: "时间",
 sortType: "alpha"
 }, {
-id: "type",
-title: "Severity",
+id: "severity",
+title: "类型",
 sortType: "alpha"
 }, {
 id: "reason",
-title: "Reason",
+title: "原因",
 sortType: "alpha"
 }, {
 id: "message",
-title: "Message",
+title: "内容",
 sortType: "alpha"
 }, {
 id: "count",
-title: "Count",
+title: "数量",
 sortType: "numeric"
 } ],
 isAscending: !0,
 onSortChange: y
 }, t && e.sortConfig.fields.splice(1, 0, {
 id: "involvedObject.name",
-title: "Name",
+title: "名称",
 sortType: "alpha"
 }, {
 id: "involvedObject.kind",
-title: "Kind",
+title: "种类",
 sortType: "alpha"
 });
 }), s.push(r.watch(c, e.projectContext, function(n) {
@@ -9826,9 +9828,9 @@ details: e("getErrorDetails")(n)
 }
 function w() {
 var e = {
-started: "Creating resources in project " + D(p.input.selectedProject),
-success: "Creating resources in project " + D(p.input.selectedProject),
-failure: "Failed to create some resources in project " + D(p.input.selectedProject)
+started: "Creating resources in project " + A(p.input.selectedProject),
+success: "Creating resources in project " + A(p.input.selectedProject),
+failure: "Failed to create some resources in project " + A(p.input.selectedProject)
 }, t = {};
 d.add(e, t, p.input.selectedProject.metadata.name, function() {
 var e = n.defer();
@@ -9863,9 +9865,9 @@ hasErrors: r
 }
 function P() {
 var e = {
-started: "Updating resources in project " + D(p.input.selectedProject),
-success: "Updated resources in project " + D(p.input.selectedProject),
-failure: "Failed to update some resources in project " + D(p.input.selectedProject)
+started: "Updating resources in project " + A(p.input.selectedProject),
+success: "Updated resources in project " + A(p.input.selectedProject),
+failure: "Failed to update some resources in project " + A(p.input.selectedProject)
 }, t = {};
 d.add(e, t, p.input.selectedProject.metadata.name, function() {
 var e = n.defer();
@@ -9948,7 +9950,7 @@ type: "error"
 }).length ? (_.each(E, function(e) {
 e.id = _.uniqueId("from-file-alert-"), c.addNotification(e);
 }), p.disableInputs = !1) : E.length ? (R(E), p.disableInputs = !1) : y();
-}, A = function() {
+}, D = function() {
 if (_.has(p.input.selectedProject, "metadata.uid")) return n.when(p.input.selectedProject);
 var t = p.input.selectedProject.metadata.name, r = p.input.selectedProject.metadata.annotations["new-display-name"], a = e("description")(p.input.selectedProject);
 return m.create(t, r, a);
@@ -9963,7 +9965,7 @@ var e = [];
 p.errorOccurred = !1, _.forEach(p.resourceList, function(t) {
 if (!g(t)) return p.errorOccurred = !0, !1;
 e.push(S(t));
-}), A().then(function(t) {
+}), D().then(function(t) {
 p.input.selectedProject = t, n.all(e).then(function() {
 p.errorOccurred || (1 === p.createResources.length && "Template" === p.resourceList[0].kind ? v() : _.isEmpty(p.updateResources) ? l.getLatestQuotaAlerts(p.createResources, {
 namespace: p.input.selectedProject.metadata.name
@@ -9981,7 +9983,7 @@ details: I(e)
 }, p.cancel = function() {
 T(), s.toProjectOverview(p.input.selectedProject.metadata.name);
 };
-var D = e("displayName");
+var A = e("displayName");
 p.$on("importFileFromYAMLOrJSON", p.create), p.$on("$destroy", T);
 } ]
 };
@@ -10861,10 +10863,10 @@ name: i.currentProjectName
 }
 }, N = function() {
 i.orderingPanelVisible && v.addItem(_.get(i.selectedItem, "resource.metadata.uid"));
-}, A = function(e) {
-return "PartialObjectMetadata" === e.kind;
 }, D = function(e) {
-return A(e) ? d.get(C, e.metadata.name, {
+return "PartialObjectMetadata" === e.kind;
+}, A = function(e) {
+return D(e) ? d.get(C, e.metadata.name, {
 namespace: e.metadata.namespace
 }) : n.when(e);
 };
@@ -10877,7 +10879,7 @@ status: {
 removedFromBrokerCatalog: !0
 }
 }), i.selectedItem = t, i.orderingPanelVisible = !0;
-}) : D(t.resource).then(function(e) {
+}) : A(t.resource).then(function(e) {
 i.selectedItem = e, i.orderingPanelVisible = !0, i.orderKind = "Template";
 }));
 });
@@ -11569,7 +11571,7 @@ namespace: c.project.metadata.name
 a.update(n.kindToResource(t.kind), t.metadata.name, t, h).then(function() {
 i.addNotification({
 type: "success",
-message: "Successfully added " + g + " " + c.apiObject.metadata.name + " to " + v + " " + t.metadata.name + ".",
+message: "成功添加 " + g + " " + c.apiObject.metadata.name + " 到 " + v + " " + t.metadata.name + "中。",
 links: [ {
 href: o.resourceURL(t),
 label: "View " + f(t.kind, !0)
@@ -11579,7 +11581,7 @@ label: "View " + f(t.kind, !0)
 var r = e("getErrorDetails");
 i.addNotification({
 type: "error",
-message: "An error occurred  adding " + g + " " + c.apiObject.metadata.name + " to " + v + " " + t.metadata.name + ". " + r(n)
+message: "将 " + g + " " + c.apiObject.metadata.name + " 添加到 " + v + " " + t.metadata.name + " 时发生错误。 " + r(n)
 });
 }).finally(function() {
 c.disableInputs = !1;
@@ -11825,7 +11827,7 @@ Available: "#d1d1d1"
 }
 };
 R[t.id] ? R[t.id].load(a) : ((n = B(e)).data = a, r(function() {
-D || (R[t.id] = c3.generate(n));
+A || (R[t.id] = c3.generate(n));
 }));
 }
 }
@@ -11841,7 +11843,7 @@ var n, a = c.getSparklineData(t), o = e.chartPrefix + "sparkline";
 E[o] ? E[o].load(a) : ((n = L(e)).data = a, e.chartDataColors && (n.color = {
 pattern: e.chartDataColors
 }), r(function() {
-D || (E[o] = c3.generate(n));
+A || (E[o] = c3.generate(n));
 }));
 }
 }
@@ -11852,7 +11854,7 @@ function h() {
 return 60 * m.options.timeRange.value * 1e3;
 }
 function y() {
-return Math.floor(h() / A) + "ms";
+return Math.floor(h() / D) + "ms";
 }
 function b(e, t, n) {
 var r, a = {
@@ -11867,12 +11869,12 @@ containerName: e.containerMetric ? m.options.selectedContainer.name : "pod"
 }) : null;
 }
 function S() {
-D || (V = 0, _.each(m.metrics, function(e) {
+A || (V = 0, _.each(m.metrics, function(e) {
 g(e), f(e);
 }));
 }
 function C(e) {
-if (!D) if (V++, m.noData) m.metricsError = {
+if (!A) if (V++, m.noData) m.metricsError = {
 status: _.get(e, "status", 0),
 details: _.get(e, "data.errorMsg") || _.get(e, "statusText") || "Status code " + _.get(e, "status", 0)
 }; else if (!(V < 2)) {
@@ -11901,7 +11903,7 @@ isNaN(r) && (r = 0), e.convert && (r = e.convert(r)), t.used = d3.round(r, e.usa
 function j(e, t) {
 m.noData = !1;
 var n = _.initial(t.data);
-e.data ? e.data = _.chain(e.data).takeRight(A).concat(n).value() : e.data = n;
+e.data ? e.data = _.chain(e.data).takeRight(D).concat(n).value() : e.data = n;
 }
 function k() {
 if (w()) {
@@ -11917,7 +11919,7 @@ P(n, a, e);
 }));
 }
 }), t = t.concat(r), a.all(r).then(function(e) {
-D || angular.forEach(e, function(e) {
+A || angular.forEach(e, function(e) {
 e && j(_.find(n.datasets, {
 id: e.metricID
 }), e);
@@ -11929,7 +11931,7 @@ m.loaded = !0;
 }
 }
 m.includedMetrics = m.includedMetrics || [ "cpu", "memory", "network" ];
-var I, R = {}, E = {}, T = n("resources.limits.memory"), N = n("resources.limits.cpu"), A = 30, D = !1;
+var I, R = {}, E = {}, T = n("resources.limits.memory"), N = n("resources.limits.cpu"), D = 30, A = !1;
 m.uniqueID = c.uniqueID(), m.metrics = [], _.includes(m.includedMetrics, "memory") && m.metrics.push({
 label: "Memory",
 units: "MiB",
@@ -12033,7 +12035,7 @@ I && (t.cancel(I), I = null), O && (O(), O = null), angular.forEach(R, function(
 e.destroy();
 }), R = null, angular.forEach(E, function(e) {
 e.destroy();
-}), E = null, D = !0;
+}), E = null, A = !0;
 });
 }
 };
@@ -12095,7 +12097,7 @@ return e[0];
 function u(e) {
 P || (N = 0, t.showAverage = _.size(t.pods) > 5 || w, _.each(t.metrics, function(n) {
 var r, a = o(e, n), i = n.descriptor;
-w && n.compactCombineWith && (i = n.compactCombineWith, n.lastValue && (T[i].lastValue = (T[i].lastValue || 0) + n.lastValue)), S[i] ? (S[i].load(a), t.showAverage ? S[i].legend.hide() : S[i].legend.show()) : ((r = A(n)).data = a, S[i] = c3.generate(r));
+w && n.compactCombineWith && (i = n.compactCombineWith, n.lastValue && (T[i].lastValue = (T[i].lastValue || 0) + n.lastValue)), S[i] ? (S[i].load(a), t.showAverage ? S[i].legend.hide() : S[i].legend.show()) : ((r = D(n)).data = a, S[i] = c3.generate(r));
 }));
 }
 function d() {
@@ -12225,7 +12227,7 @@ t.metricsURL = e;
 }), t.options = {
 rangeOptions: s.getTimeRangeOptions()
 }, t.options.timeRange = _.head(t.options.rangeOptions), t.options.selectedContainer = _.head(t.containers);
-var A = function(e) {
+var D = function(e) {
 var n = s.getDefaultSparklineConfig(e.chartID, e.units, w);
 return _.set(n, "legend.show", !w && !t.showAverage), n;
 };
@@ -12234,11 +12236,11 @@ I = {}, j = null, delete t.metricsError, y();
 }, !0), b = e(y, s.getDefaultUpdateInterval(), !1), t.updateInView = function(e) {
 R = !e, e && (!k || Date.now() > k + s.getDefaultUpdateInterval()) && y();
 };
-var D = a.$on("metrics.charts.resize", function() {
+var A = a.$on("metrics.charts.resize", function() {
 s.redraw(S);
 });
 t.$on("$destroy", function() {
-b && (e.cancel(b), b = null), D && (D(), D = null), angular.forEach(S, function(e) {
+b && (e.cancel(b), b = null), A && (A(), A = null), angular.forEach(S, function(e) {
 e.destroy();
 }), S = null, P = !0;
 });
@@ -12317,17 +12319,17 @@ k(!0), b(), C();
 m.on("resize", R);
 var E, T = function() {
 S = !0, d.scrollBottom(u);
-}, N = document.createDocumentFragment(), A = _.debounce(function() {
+}, N = document.createDocumentFragment(), D = _.debounce(function() {
 l.appendChild(N), N = document.createDocumentFragment(), t.autoScrollActive && T(), t.showScrollLinks || b();
 }, 100, {
 maxWait: 300
-}), D = function(e) {
+}), A = function(e) {
 var t = a.defer();
 return E ? (E.onClose(function() {
 t.resolve();
-}), E.stop()) : t.resolve(), e || (A.cancel(), l && (l.innerHTML = ""), N = document.createDocumentFragment()), t.promise;
+}), E.stop()) : t.resolve(), e || (D.cancel(), l && (l.innerHTML = ""), N = document.createDocumentFragment()), t.promise;
 }, B = function() {
-D().then(function() {
+A().then(function() {
 t.$evalAsync(function() {
 if (t.run) {
 angular.extend(t, {
@@ -12343,14 +12345,14 @@ follow: !0,
 tailLines: 5e3,
 limitBytes: 10485760
 }, t.options), n = 0, r = function(e) {
-n++, N.appendChild(f(n, e)), A();
+n++, N.appendChild(f(n, e)), D();
 };
 (E = c.createStream(v, h, t.context, e)).onMessage(function(a, o, i) {
 t.$evalAsync(function() {
 t.empty = !1, "logs" !== t.state && (t.state = "logs", I());
 }), a && (e.limitBytes && i >= e.limitBytes && (t.$evalAsync(function() {
 t.limitReached = !0, t.loading = !1;
-}), D(!0)), r(a), !t.largeLog && n >= e.tailLines && t.$evalAsync(function() {
+}), A(!0)), r(a), !t.largeLog && n >= e.tailLines && t.$evalAsync(function() {
 t.largeLog = !0;
 }));
 }), E.onClose(function() {
@@ -12410,7 +12412,7 @@ t.autoScrollActive = !t.autoScrollActive, t.autoScrollActive && T();
 goChromeless: d.chromelessLink,
 restartLogs: B
 }), t.$on("$destroy", function() {
-D(), m.off("resize", R), m.off("scroll", C), u && $(u).off("scroll", C);
+A(), m.off("resize", R), m.off("scroll", C), u && $(u).off("scroll", C);
 }), "deploymentconfigs/logs" === v && !h) return t.state = "empty", void (t.emptyStateMessage = "Logs are not available for this replication controller because it was not generated from a deployment configuration.");
 t.$watchGroup([ "name", "options.container", "run" ], B);
 } ],
@@ -13280,7 +13282,7 @@ f.servicePlans = e.by("metadata.name"), C();
 };
 c = {
 id: "bindForm",
-label: "Binding",
+label: "绑定",
 view: "views/directives/bind-service/bind-service-form.html",
 valid: !1,
 allowClickNav: !0,
@@ -13291,7 +13293,7 @@ c.valid = e;
 }
 }, l = {
 id: "bindParameters",
-label: "Parameters",
+label: "参数",
 view: "views/directives/bind-service/bind-parameters.html",
 hidden: !0,
 allowClickNav: !0,
@@ -13302,7 +13304,7 @@ l.valid = e;
 }
 }, u = {
 id: "results",
-label: "Results",
+label: "结果",
 view: "views/directives/bind-service/results.html",
 valid: !0,
 allowClickNav: !1,
@@ -13365,9 +13367,9 @@ t.valid = !!e;
 }, m = function() {
 a && (a(), a = void 0);
 }, p = function() {
-i.nextTitle = "Delete", d();
+i.nextTitle = "删除", d();
 }, f = function() {
-i.nextTitle = "Close", i.wizardComplete = !0, u(), m();
+i.nextTitle = "关闭", i.wizardComplete = !0, u(), m();
 };
 i.$onInit = function() {
 var e;
@@ -13378,7 +13380,7 @@ view: "views/directives/bind-service/delete-binding-select-form.html",
 onShow: p
 }, {
 id: "results",
-label: "Results",
+label: "结果",
 view: "views/directives/bind-service/delete-binding-result.html",
 onShow: f
 } ], o = {
@@ -13593,7 +13595,7 @@ P();
 var y, b = this, S = t("imageForIconClass"), C = t("annotation"), w = t("normalizeIconClass");
 b.selectStep = {
 id: "projectTemplates",
-label: "Selection",
+label: "选择",
 view: "views/directives/process-template-dialog/process-template-select.html",
 hidden: !0 !== b.useProjectTemplate,
 allowed: !0,
@@ -13604,7 +13606,7 @@ b.infoStep.selected = !1, b.selectStep.selected = !0, b.configStep.selected = !1
 }
 }, b.infoStep = {
 id: "info",
-label: "Information",
+label: "信息",
 view: "views/directives/process-template-dialog/process-template-info.html",
 allowed: !0,
 valid: !0,
@@ -13614,7 +13616,7 @@ b.infoStep.selected = !0, b.selectStep.selected = !1, b.configStep.selected = !1
 }
 }, b.configStep = {
 id: "configuration",
-label: "Configuration",
+label: "配置",
 view: "views/directives/process-template-dialog/process-template-config.html",
 valid: !1,
 allowed: !0,
@@ -13626,7 +13628,7 @@ b.configStep.valid = e && !b.noProjectsCantCreate && b.selectedProject, b.result
 }
 }, b.resultsStep = {
 id: "results",
-label: "Results",
+label: "结果",
 view: "views/directives/process-template-dialog/process-template-results.html",
 valid: !0,
 allowed: !1,
@@ -13651,7 +13653,7 @@ info: "所选项目没有可用于导入的模板。"
 fields: [ {
 id: "keyword",
 title: "Keyword",
-placeholder: "Filter by Keyword",
+placeholder: "根据关键字过滤",
 filterType: "text"
 } ],
 inlineResults: !0,
@@ -14214,7 +14216,7 @@ namespace: l.apiObject.metadata.namespace
 var e = l.current;
 if (e) {
 var n, r = e.metadata.name, a = _.get(l, "apiObject.status.latestVersion");
-n = 1 === a ? "This will attempt to stop the in-progress deployment. It may take some time to complete." : "This will attempt to stop the in-progress deployment and rollback to the last successful deployment. It may take some time to complete.", t.open({
+n = 1 === a ? "这将试图阻止正在进行中的部署。这可能需要一段时间才能完成。" : "这将尝试停止正在进行的部署，并回滚到最后一次成功部署。这可能需要一段时间才能完成。", t.open({
 templateUrl: "views/modals/confirm.html",
 controller: "ConfirmModalController",
 resolve: {
@@ -14233,10 +14235,10 @@ e.metadata.uid === l.current.metadata.uid ? (e = l.current, d(e) ? o.cancelRunni
 namespace: e.metadata.namespace
 }) : c.addNotification({
 type: "error",
-message: "Deployment " + r + " is no longer in progress."
+message: "部署 " + r + " 已不再有进展。"
 })) : c.addNotification({
 type: "error",
-message: "Deployment #" + a + " is no longer the latest."
+message: "部署 #" + a + " 不再是最新的。"
 });
 });
 }
@@ -14573,7 +14575,7 @@ cancelButtonText: "Cancel"
 }
 }
 }).result.then(T);
-}, A = function(e) {
+}, D = function(e) {
 b = e.quotaAlerts || [];
 var t = _.filter(b, {
 type: "error"
@@ -14590,7 +14592,7 @@ namespace: n.input.selectedProject.metadata.name
 }), i = function(e) {
 return n.nameTaken = e.nameTaken, r;
 };
-t.then(i, i).then(A, A);
+t.then(i, i).then(D, D);
 }, function(e) {
 n.disableInputs = !1, "AlreadyExists" === e.data.reason ? n.projectNameTaken = !0 : l.addNotification({
 id: "deploy-image-create-project-error",
@@ -15062,7 +15064,7 @@ namespace: e.namespace
 S[a.project] && delete S[a.project][e.uid], b[a.project] && delete b[a.project][e.uid], E(e);
 }, N = function() {
 b[a.project] = {}, S[a.project] = {};
-}, A = function(e) {
+}, D = function(e) {
 return _.reduce(e, function(e, t) {
 return e[t.metadata.uid] = {
 actions: null,
@@ -15075,7 +15077,7 @@ firstTimestamp: t.firstTimestamp,
 event: t
 }, e;
 }, {});
-}, D = function(e) {
+}, A = function(e) {
 return _.reduce(e, function(e, t) {
 return u.isImportantAPIEvent(t) && !u.isCleared(t.metadata.uid) && (e[t.metadata.uid] = t), e;
 }, {});
@@ -15097,7 +15099,7 @@ m && (l.unwatch(m), m = null);
 }, U = function() {
 d && d(), d = null;
 }, F = function(e) {
-b[a.project] = A(D(e.by("metadata.name"))), L();
+b[a.project] = D(A(e.by("metadata.name"))), L();
 }, x = function(e, t) {
 var n = t.namespace || a.project, r = t.id ? n + "/" + t.id : _.uniqueId("notification_") + Date.now();
 t.showInDrawer && !u.isCleared(r) && (S[n] = S[n] || {}, S[n][r] = {

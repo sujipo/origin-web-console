@@ -91,22 +91,22 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
   $templateCache.put('views/_config-file-params.html',
     "<div ng-repeat=\"(serverName, data) in secretData.auths\" class=\"image-source-item\">\n" +
     "<h3>{{serverName}}</h3>\n" +
-    "<dt ng-if-start=\"data.username\">username</dt>\n" +
+    "<dt ng-if-start=\"data.username\">用户名</dt>\n" +
     "<dd ng-if-end class=\"word-break\">{{data.username}}</dd>\n" +
-    "<dt ng-if-start=\"data.password\">password</dt>\n" +
+    "<dt ng-if-start=\"data.password\">密码</dt>\n" +
     "<dd ng-if-end>\n" +
     "<span ng-if=\"view.showSecret\">\n" +
     "<copy-to-clipboard clipboard-text=\"data.password\" display-wide=\"true\"></copy-to-clipboard>\n" +
     "</span>\n" +
     "<span ng-if=\"!view.showSecret\">*****</span>\n" +
     "</dd>\n" +
-    "<dt ng-if-start=\"data.email\">email</dt>\n" +
+    "<dt ng-if-start=\"data.email\">邮箱</dt>\n" +
     "<dd ng-if-end class=\"word-break\">{{data.email}}</dd>\n" +
     "<div ng-if=\"!data.username && !data.password && !data.email\">\n" +
-    "No username and password.\n" +
+    "没有用户名密码。\n" +
     "</div>\n" +
     "</div>\n" +
-    "<h3 ng-if-start=\"secretData.credsStore\">Credentials Store</h3>\n" +
+    "<h3 ng-if-start=\"secretData.credsStore\">存储凭证</h3>\n" +
     "<div ng-if-end>\n" +
     "<span ng-if=\"view.showSecret\">\n" +
     "<copy-to-clipboard clipboard-text=\"secretData.credsStore\" display-wide=\"true\"></copy-to-clipboard>\n" +
@@ -123,51 +123,51 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span class=\"init-container-status-detail\">\n" +
     "<ng-pluralize count=\"pod.status.initContainerStatuses.length\" when=\"{'1': '&nbsp;Init container {{pod.status.initContainerStatuses[0].name}}','other': '&nbsp;{} init containers'}\">\n" +
     "</ng-pluralize>\n" +
-    "completed successfully\n" +
+    "已成功完成\n" +
     "</span>\n" +
     "<span ng-if=\"initContainersTerminated\">\n" +
     "<a class=\"page-header-link\" href=\"\" ng-click=\"toggleInitContainer()\">\n" +
-    "<span ng-if=\"!expandInitContainers\">Show</span>\n" +
-    "<span ng-if=\"expandInitContainers\">Hide</span>\n" +
-    "Details\n" +
+    "<span ng-if=\"!expandInitContainers\">显示</span>\n" +
+    "<span ng-if=\"expandInitContainers\">隐藏</span>\n" +
+    "详情\n" +
     "</a>\n" +
     "</span>\n" +
     "</h4>\n" +
     "<div class=\"animate-if\" ng-if=\"expandInitContainers\" ng-repeat=\"containerStatus in pod.status.initContainerStatuses track by containerStatus.name\">\n" +
-    "<h4>Init container {{containerStatus.name}}</h4>\n" +
+    "<h4>初始化容器 {{containerStatus.name}}</h4>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
-    "<dt>State:</dt>\n" +
+    "<dt>状态:</dt>\n" +
     "<dd>\n" +
     "<kubernetes-object-describe-container-state container-state=\"containerStatus.state\"></kubernetes-object-describe-container-state>\n" +
     "</dd>\n" +
-    "<dt ng-if=\"!(containerStatus.lastState | isEmptyObj)\">Last State</dt>\n" +
+    "<dt ng-if=\"!(containerStatus.lastState | isEmptyObj)\">最后状态</dt>\n" +
     "<dd ng-if=\"!(containerStatus.lastState | isEmptyObj)\">\n" +
     "<kubernetes-object-describe-container-state container-state=\"containerStatus.lastState\"></kubernetes-object-describe-container-state>\n" +
     "</dd>\n" +
-    "<dt>Ready:</dt>\n" +
+    "<dt>就绪:</dt>\n" +
     "<dd>{{containerStatus.ready}}</dd>\n" +
-    "<dt>Restart Count:</dt>\n" +
+    "<dt>重启次数:</dt>\n" +
     "<dd>{{containerStatus.restartCount}}</dd>\n" +
     "</dl>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-repeat=\"containerStatus in pod.status.containerStatuses track by containerStatus.name\">\n" +
-    "<h4>Container {{containerStatus.name}}</h4>\n" +
+    "<h4>容器 {{containerStatus.name}}</h4>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
-    "<dt>State:</dt>\n" +
+    "<dt>状态:</dt>\n" +
     "<dd>\n" +
     "<kubernetes-object-describe-container-state container-state=\"containerStatus.state\"></kubernetes-object-describe-container-state>\n" +
     "</dd>\n" +
-    "<dt ng-if=\"!(containerStatus.lastState | isEmptyObj)\">Last State</dt>\n" +
+    "<dt ng-if=\"!(containerStatus.lastState | isEmptyObj)\">最后状态</dt>\n" +
     "<dd ng-if=\"!(containerStatus.lastState | isEmptyObj)\">\n" +
     "<kubernetes-object-describe-container-state container-state=\"containerStatus.lastState\"></kubernetes-object-describe-container-state>\n" +
     "</dd>\n" +
-    "<dt>Ready:</dt>\n" +
+    "<dt>就绪:</dt>\n" +
     "<dd>{{containerStatus.ready}}</dd>\n" +
-    "<dt>Restart Count:</dt>\n" +
+    "<dt>重启次数:</dt>\n" +
     "<dd>{{containerStatus.restartCount}}</dd>\n" +
     "<div ng-if=\"hasDebugTerminal && showDebugAction(containerStatus) && (podsVersion | canI : 'create')\" class=\"debug-pod-action\">\n" +
-    "<a href=\"\" ng-click=\"debugTerminal(containerStatus.name)\" role=\"button\">Debug in Terminal</a>\n" +
+    "<a href=\"\" ng-click=\"debugTerminal(containerStatus.name)\" role=\"button\">在终端调试</a>\n" +
     "</div>\n" +
     "</dl>\n" +
     "</div>"
@@ -225,14 +225,14 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
 
 
   $templateCache.put('views/_parse-error.html',
-  "<div ng-show=\"error && !hidden\" class=\"alert alert-danger animate-show\">\n" +
-  "<button ng-click=\"hidden = true\" type=\"button\" class=\"close\" aria-hidden=\"true\">\n" +
-  "<span class=\"pficon pficon-close\"></span>\n" +
-  "</button>\n" +
-  "<span class=\"pficon pficon-error-circle-o\"></span>\n" +
-  "<strong>Failed to process the resource.</strong>\n" +
-  "<div class=\"pre-wrap\" ng-if=\"error.message\">{{error.message}}</div>\n" +
-  "</div>"
+    "<div ng-show=\"error && !hidden\" class=\"alert alert-danger animate-show\">\n" +
+    "<button ng-click=\"hidden = true\" type=\"button\" class=\"close\" aria-hidden=\"true\">\n" +
+    "<span class=\"pficon pficon-close\"></span>\n" +
+    "</button>\n" +
+    "<span class=\"pficon pficon-error-circle-o\"></span>\n" +
+    "<strong>处理资源失败。</strong>\n" +
+    "<div class=\"pre-wrap\" ng-if=\"error.message\">{{error.message}}</div>\n" +
+    "</div>"
   );
 
 
@@ -244,7 +244,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span class=\"pficon pficon-image\" aria-hidden=\"true\"></span>\n" +
     "</div>\n" +
     "<div class=\"pod-template-detail word-break\">\n" +
-    "<span class=\"pod-template-key\">Image:</span>\n" +
+    "<span class=\"pod-template-key\">镜像:</span>\n" +
     "<span ng-if=\"!imagesByDockerReference[container.image]\">{{container.image | imageStreamName}}</span>\n" +
     "<span ng-if=\"imagesByDockerReference[container.image]\">\n" +
     "<a ng-href=\"{{imagesByDockerReference[container.image].imageStreamName | navigateResourceURL : 'ImageStream' : imagesByDockerReference[container.image].imageStreamNamespace}}\">{{container.image | imageStreamName}}</a>\n" +
@@ -261,7 +261,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span class=\"fa fa-refresh\" aria-hidden=\"true\"></span>\n" +
     "</div>\n" +
     "<div class=\"pod-template-detail word-break\">\n" +
-    "<span class=\"pod-template-key\">Build:</span>\n" +
+    "<span class=\"pod-template-key\">构造:</span>\n" +
     "<span ng-if=\"build | configURLForResource\">\n" +
     "<a ng-href=\"{{build | configURLForResource}}\">{{build | buildConfigForBuild}}</a>,\n" +
     "</span>\n" +
@@ -276,7 +276,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span class=\"fa fa-code\" aria-hidden=\"true\"></span>\n" +
     "</div>\n" +
     "<div class=\"pod-template-detail word-break\">\n" +
-    "<span class=\"pod-template-key\">Source:</span>\n" +
+    "<span class=\"pod-template-key\">资源:</span>\n" +
     "<span ng-switch=\"build.spec.source.type\">\n" +
     "<span ng-switch-when=\"Git\">\n" +
     "<span ng-if=\"build.spec.revision.git.commit\">\n" +
@@ -303,7 +303,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"pod-template-detail word-break\">\n" +
     "<span class=\"pod-template-key\">\n" +
-    "Command:\n" +
+    "命令:\n" +
     "</span>\n" +
     "<span>\n" +
     "<code class=\"command\">\n" +
@@ -318,7 +318,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span aria-hidden=\"true\" class=\"pficon pficon-port\"></span>\n" +
     "</div>\n" +
     "<div class=\"pod-template-detail word-break\">\n" +
-    "<span class=\"pod-template-key\">Ports:</span>\n" +
+    "<span class=\"pod-template-key\">端口:</span>\n" +
     "<span ng-repeat=\"port in container.ports | orderBy: 'containerPort' | limitToOrAll : detailed ? undefined : 1\">\n" +
     "<span class=\"nowrap\">{{port.containerPort}}/{{port.protocol}}</span><span ng-if=\"port.name\"><span class=\"nowrap\"> ({{port.name}})</span></span><span ng-if=\"port.hostPort\"><span class=\"nowrap\"><span class=\"port-icon\"> &#8594;</span> {{port.hostPort}}</span></span><span ng-if=\"!$last\">, </span>\n" +
     "</span>\n" +
@@ -334,7 +334,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span aria-hidden=\"true\" class=\"fa fa-database\"></span>\n" +
     "</div>\n" +
     "<div class=\"pod-template-detail word-break\">\n" +
-    "<span class=\"pod-template-key\">Mount:</span>\n" +
+    "<span class=\"pod-template-key\">挂载:</span>\n" +
     "<span>\n" +
     "{{mount.name}}<span ng-if=\"mount.subPath\">, subpath {{mount.subPath}}</span>&#8201;&#8594;&#8201;<span>{{mount.mountPath}}</span>\n" +
     "<small class=\"text-muted\">{{mount | volumeMountMode : podTemplate.spec.volumes}}</small>\n" +
@@ -363,7 +363,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<i class=\"fa fa-area-chart\" aria-hidden=\"true\"></i>\n" +
     "</div>\n" +
     "<div class=\"pod-template-detail\">\n" +
-    "<span class=\"pod-template-key\">Memory:</span>\n" +
+    "<span class=\"pod-template-key\">内存:</span>\n" +
     "<span ng-if=\"container.resources.requests.memory && container.resources.limits.memory\">\n" +
     "{{container.resources.requests.memory | usageWithUnits: 'memory'}} to {{container.resources.limits.memory | usageWithUnits: 'memory'}}\n" +
     "</span>\n" +
@@ -400,13 +400,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
   $templateCache.put('views/_pod-template.html',
     " <div ng-if=\"detailed && addHealthCheckUrl && !(podTemplate | hasHealthChecks)\" class=\"alert alert-info\">\n" +
     "<span class=\"pficon pficon-info\" aria-hidden=\"true\"></span>\n" +
-    "<span ng-if=\"podTemplate.spec.containers.length === 1\">Container {{podTemplate.spec.containers[0].name}} does not have health checks</span>\n" +
-    "<span ng-if=\"podTemplate.spec.containers.length > 1\">Not all containers have health checks</span>\n" +
-    "to ensure your application is running correctly.\n" +
-    "<a ng-href=\"{{addHealthCheckUrl}}\" class=\"nowrap\">Add Health Checks</a>\n" +
+    "<span ng-if=\"podTemplate.spec.containers.length === 1\">容器 {{podTemplate.spec.containers[0].name}} 没有健康检查</span>\n" +
+    "<span ng-if=\"podTemplate.spec.containers.length > 1\">不是所有的容器都有健康检查。</span>\n" +
+    "确保您的应用程序正确运行。\n" +
+    "<a ng-href=\"{{addHealthCheckUrl}}\" class=\"nowrap\">添加健康检查</a>\n" +
     "</div>\n" +
     "<div ng-if=\"detailed && podTemplate.spec.initContainers.length\">\n" +
-    "<h4>Init Containers</h4>\n" +
+    "<h4>初始化容器</h4>\n" +
     "<div class=\"pod-template-container\">\n" +
     "<div class=\"pod-template-block\" ng-repeat=\"container in podTemplate.spec.initContainers\">\n" +
     "<pod-template-container pod-template-container=\"container\" images-by-docker-reference=\"imagesByDockerReference\" builds=\"builds\" detailed=\"detailed\"></pod-template-container>\n" +
@@ -414,7 +414,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div>\n" +
-    "<h4 ng-if=\"detailed\">Containers</h4>\n" +
+    "<h4 ng-if=\"detailed\">容器</h4>\n" +
     "<div class=\"pod-template-container\">\n" +
     "<div class=\"pod-template-block\" ng-repeat=\"container in podTemplate.spec.containers\">\n" +
     "<pod-template-container pod-template-container=\"container\" images-by-docker-reference=\"imagesByDockerReference\" builds=\"builds\" detailed=\"detailed\"></pod-template-container>\n" +
@@ -589,12 +589,12 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</h4>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
     "<div ng-if=\"volume.secret\">\n" +
-    "<dt>Type:</dt>\n" +
+    "<dt>类别:</dt>\n" +
     "<dd>\n" +
-    "secret\n" +
-    "<span class=\"small text-muted\">(populated by a secret when the pod is created)</span>\n" +
+    "密钥\n" +
+    "<span class=\"small text-muted\">(当Pod被创建时，一个对应的密钥也被创建)</span>\n" +
     "</dd>\n" +
-    "<dt>Secret:</dt>\n" +
+    "<dt>密钥:</dt>\n" +
     "<dd>\n" +
     "<span ng-if=\"secretsVersion | canI : 'get'\">\n" +
     "<a ng-href=\"{{volume.secret.secretName | navigateResourceURL : 'Secret' : namespace}}\">{{volume.secret.secretName}}</a>\n" +
@@ -604,26 +604,26 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</span>\n" +
     "</dd>\n" +
     "<div ng-repeat=\"item in volume.secret.items\">\n" +
-    "<dt>Key to File:</dt>\n" +
+    "<dt>关键文件:</dt>\n" +
     "<dd>{{item.key}}&#8201;&#8594;&#8201;{{item.path}}</dd>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"volume.persistentVolumeClaim\">\n" +
-    "<dt>Type:</dt>\n" +
+    "<dt>类别:</dt>\n" +
     "<dd>\n" +
-    "persistent volume claim\n" +
+    "持续的卷要求\n" +
     "<span class=\"small text-muted\">(reference to a persistent volume claim)</span>\n" +
     "</dd>\n" +
-    "<dt>Claim name:</dt>\n" +
+    "<dt>声称名称:</dt>\n" +
     "<dd><a ng-href=\"{{volume.persistentVolumeClaim.claimName | navigateResourceURL : 'PersistentVolumeClaim' : namespace}}\">{{volume.persistentVolumeClaim.claimName}}</a></dd>\n" +
-    "<dt>Mode:</dt>\n" +
+    "<dt>模式:</dt>\n" +
     "<dd>\n" +
     "<span ng-if=\"volume.persistentVolumeClaim.readOnly\">read-only</span>\n" +
     "<span ng-if=\"!volume.persistentVolumeClaim.readOnly\">read-write</span>\n" +
     "</dd>\n" +
     "</div>\n" +
     "<div ng-if=\"volume.hostPath\">\n" +
-    "<dt>Type:</dt>\n" +
+    "<dt>类型:</dt>\n" +
     "<dd>\n" +
     "host path\n" +
     "<span class=\"small text-muted\">(bare host directory volume)</span>\n" +
@@ -1067,27 +1067,27 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"resource-details\">\n" +
     "<div class=\"row\">\n" +
     "<div class=\"col-sm-12\">\n" +
-    "<h3>Status</h3>\n" +
+    "<h3>状态</h3>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
-    "<dt>Status:</dt>\n" +
+    "<dt>状态：</dt>\n" +
     "<dd>\n" +
     "<status-icon status=\"build.status.phase\"></status-icon>\n" +
     "<span ng-if=\"!build.status.message || build.status.phase === 'Cancelled'\">{{build.status.phase}}</span>\n" +
     "<span ng-if=\"build.status.message && build.status.phase !== 'Cancelled'\">{{build.status.message}}</span>\n" +
     "<span ng-if=\"build | jenkinsLogURL\">\n" +
     "<span class=\"text-muted\">&ndash;</span>\n" +
-    "<a ng-href=\"{{build | jenkinsLogURL}}\" target=\"_blank\">View Log</a>\n" +
+    "<a ng-href=\"{{build | jenkinsLogURL}}\" target=\"_blank\">查看日志</a>\n" +
     "</span>\n" +
     "</dd>\n" +
-    "<dt>Started:</dt>\n" +
+    "<dt>启动时间：</dt>\n" +
     "<dd>\n" +
     "<span ng-if=\"build.status.startTimestamp\">\n" +
     "<span am-time-ago=\"build.status.startTimestamp\"></span>\n" +
     "<span><span class=\"text-muted\">&ndash;</span> {{build.status.startTimestamp | date : 'medium'}}</span>\n" +
     "</span>\n" +
-    "<span ng-if=\"!build.status.startTimestamp\"><em>not started</em></span>\n" +
+    "<span ng-if=\"!build.status.startTimestamp\"><em>未启动</em></span>\n" +
     "</dd>\n" +
-    "<dt>Duration:</dt>\n" +
+    "<dt>持续时间：</dt>\n" +
     "<dd>\n" +
     "<span ng-switch=\"build.status.phase\" class=\"hide-ng-leave\">\n" +
     "<span ng-switch-when=\"Complete\">{{(build.status.startTimestamp || build.metadata.creationTimestamp) | duration : build.status.completionTimestamp}}</span>\n" +
@@ -1122,13 +1122,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</dd>\n" +
     "</div>\n" +
     "</dl>\n" +
-    "<h3>Configuration <span class=\"small\" ng-if=\"buildConfigName\">created from <a href=\"{{build | configURLForResource}}\">{{buildConfigName}}</a></span></h3>\n" +
+    "<h3>配置 <span class=\"small\" ng-if=\"buildConfigName\">created from <a href=\"{{build | configURLForResource}}\">{{buildConfigName}}</a></span></h3>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
-    "<dt>Build Strategy:</dt>\n" +
+    "<dt>构建策略：</dt>\n" +
     "<dd>{{build.spec.strategy.type | startCase}}</dd>\n" +
-    "<dt ng-if-start=\"(build | buildStrategy).from\">Builder Image:</dt>\n" +
+    "<dt ng-if-start=\"(build | buildStrategy).from\">基础镜像：</dt>\n" +
     "<dd ng-if-end class=\"truncate\">{{(build | buildStrategy).from | imageObjectRef : build.metadata.namespace}}<span ng-if=\"!(build | buildStrategy).from\"><em>none</em></span></dd>\n" +
-    "<dt>Source Type:</dt>\n" +
+    "<dt>源码类型：</dt>\n" +
     "<dd>{{build.spec.source.type}}</dd>\n" +
     "<dt ng-if-start=\"build.spec.source.git.uri\">Source Repo:</dt>\n" +
     "<dd ng-if-end><span class=\"word-break\"><osc-git-link uri=\"build.spec.source.git.uri\" ref=\"build.spec.source.git.ref\" context-dir=\"build.spec.source.contextDir\">{{build.spec.source.git.uri}}</osc-git-link></span></dd>\n" +
@@ -1158,7 +1158,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<dt ng-if-start=\"build.spec.output.pushSecret.name\">Push Secret:</dt>\n" +
     "<dd ng-if-end>{{build.spec.output.pushSecret.name}}</dd>\n" +
     "<dt ng-if-start=\"build.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath\">\n" +
-    "Jenkinsfile Path:\n" +
+    "Jenkinsfile 路径：\n" +
     "</dt>\n" +
     "<dd>\n" +
     "<span ng-if=\"build | jenkinsfileLink\">\n" +
@@ -1169,27 +1169,39 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</span>\n" +
     "</dd>\n" +
     "<div ng-if-end class=\"small\">\n" +
-    "<a href=\"\" ng-click=\"showJenkinsfileExamples()\">What's a Jenkinsfile?</a>\n" +
+    "<a href=\"\" ng-click=\"showJenkinsfileExamples()\">什么是Jenkinsfile？</a>\n" +
     "</div>\n" +
     "<div ng-if-start=\"build.spec.strategy.jenkinsPipelineStrategy.jenkinsfile\" class=\"small pull-right mar-top-sm\">\n" +
-    "<a href=\"\" ng-click=\"showJenkinsfileExamples()\">What's a Jenkinsfile?</a>\n" +
+    "<a href=\"\" ng-click=\"showJenkinsfileExamples()\">什么是Jenkinsfile？</a>\n" +
     "</div>\n" +
     "<dt>\n" +
     "Jenkinsfile:\n" +
     "</dt>\n" +
     "<dd></dd>\n" +
-    "<div ng-if-end ui-ace=\"{\n" +
-    "          mode: 'groovy',\n" +
-    "          theme: 'eclipse',\n" +
-    "          showGutter: false,\n" +
-    "          rendererOptions: {\n" +
-    "            fadeFoldWidgets: true,\n" +
-    "            highlightActiveLine: false,\n" +
-    "            showPrintMargin: false\n" +
-    "          },\n" +
-    "          advanced: {\n" +
-    "            highlightActiveLine: false\n" +
-    "          }\n" +
+    "<div ng-if-end ui-ace=\"{\r" +
+    "\n" +
+    "          mode: 'groovy',\r" +
+    "\n" +
+    "          theme: 'eclipse',\r" +
+    "\n" +
+    "          showGutter: false,\r" +
+    "\n" +
+    "          rendererOptions: {\r" +
+    "\n" +
+    "            fadeFoldWidgets: true,\r" +
+    "\n" +
+    "            highlightActiveLine: false,\r" +
+    "\n" +
+    "            showPrintMargin: false\r" +
+    "\n" +
+    "          },\r" +
+    "\n" +
+    "          advanced: {\r" +
+    "\n" +
+    "            highlightActiveLine: false\r" +
+    "\n" +
+    "          }\r" +
+    "\n" +
     "        }\" readonly=\"readonly\" ng-model=\"build.spec.strategy.jenkinsPipelineStrategy.jenkinsfile\" class=\"ace-bordered ace-inline ace-read-only\"></div>\n" +
     "</dl>\n" +
     "<div ng-if=\"build | hasPostCommitHook\">\n" +
@@ -1208,14 +1220,14 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"row\">\n" +
     "<div class=\"col-lg-6\">\n" +
     "<h3>\n" +
-    "Status\n" +
+    "状态\n" +
     "<small ng-if=\"pod | isDebugPod\">\n" +
-    "debugging\n" +
+    "调试\n" +
     "<a ng-href=\"{{pod | debugPodSourceName | navigateResourceURL : 'Pod' : pod.metadata.namespace}}\">{{pod | debugPodSourceName}}</a>\n" +
     "</small>\n" +
     "</h3>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
-    "<dt>Status:</dt>\n" +
+    "<dt>状态:</dt>\n" +
     "<dd>\n" +
     "<status-icon status=\"pod | podStatus\"></status-icon>\n" +
     "{{pod | podStatus | humanizePodStatus}}<span ng-if=\"pod | podCompletionTime\">, ran for {{(pod | podStartTime) | duration : (pod | podCompletionTime)}}</span>\n" +
@@ -1224,7 +1236,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<dt ng-if-start=\"pod.status.message\">Message:</dt>\n" +
     "<dd ng-if-end>{{pod.status.message}}</dd>\n" +
     "<dt ng-if-start=\"dcName\">\n" +
-    "Deployment:\n" +
+    "部署:\n" +
     "</dt>\n" +
     "<dd ng-if-end>\n" +
     "<a ng-href=\"{{dcName | navigateResourceURL : 'DeploymentConfig' : pod.metadata.namespace}}\">{{dcName}}</a><span ng-if=\"rcName\">,\n" +
@@ -1246,11 +1258,11 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "{{pod.spec.terminationGracePeriodSeconds | humanizeDurationValue : 'seconds'}}\n" +
     "</span>\n" +
     "</dd>\n" +
-    "<dt>IP:</dt>\n" +
+    "<dt>IP地址:</dt>\n" +
     "<dd>{{pod.status.podIP || 'unknown'}}</dd>\n" +
-    "<dt>Node:</dt>\n" +
+    "<dt>节点:</dt>\n" +
     "<dd>{{pod.spec.nodeName || 'unknown'}} <span ng-if=\"pod.status.hostIP && pod.spec.nodeName != pod.status.hostIP\">({{pod.status.hostIP}})</span></dd>\n" +
-    "<dt>Restart Policy:</dt>\n" +
+    "<dt>重启策略:</dt>\n" +
     "<dd>{{pod.spec.restartPolicy || 'Always'}}</dd>\n" +
     "<dt ng-if-start=\"pod.spec.activeDeadlineSeconds\">Active Deadline:</dt>\n" +
     "<dd ng-if-end>\n" +
@@ -1271,16 +1283,16 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"col-lg-6\">\n" +
-    "<h3>Template</h3>\n" +
+    "<h3>模板</h3>\n" +
     "<pod-template pod-template=\"pod\" images-by-docker-reference=\"imagesByDockerReference\" builds=\"builds\" detailed=\"true\">\n" +
     "</pod-template>\n" +
-    "<h4>Volumes</h4>\n" +
+    "<h4>卷</h4>\n" +
     "<volumes ng-if=\"pod.spec.volumes.length\" volumes=\"pod.spec.volumes\" namespace=\"project.metadata.name\"></volumes>\n" +
     "<div ng-if=\"!pod.spec.volumes.length\">none</div>\n" +
     "<p ng-if=\"dcName && (deploymentConfigsVersion | canI : 'update')\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{dcName}}\">Add Storage to {{dcName}}</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{dcName}}\">添加存储到 {{dcName}}</a>\n" +
     "<span class=\"action-divider\" aria-hidden=\"true\">|</span>\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/add-config-volume?kind=DeploymentConfig&name={{dcName}}\">Add Config Files to {{dcName}}</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/add-config-volume?kind=DeploymentConfig&name={{dcName}}\">添加配置文件到 {{dcName}}</a>\n" +
     "</p>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -1292,32 +1304,32 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
   $templateCache.put('views/browse/_replica-set-actions.html',
     "<div ng-if=\"('replicaSets' | canIDoAny)\" class=\"pull-right dropdown\">\n" +
     "<button type=\"button\" class=\"dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs\" data-toggle=\"dropdown\">\n" +
-    "Actions\n" +
+    "动作\n" +
     "<span class=\"caret\"></span>\n" +
     "</button>\n" +
-    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">Actions</span></a>\n" +
+    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">动作</span></a>\n" +
     "<ul class=\"dropdown-menu dropdown-menu-right actions action-button\">\n" +
     "<li ng-if=\"deployment && ({ group: 'apps', resource: 'deployments' } | canI : 'update')\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=Deployment&name={{deployment.metadata.name}}&group=extensions\" role=\"button\">Add Storage</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=Deployment&name={{deployment.metadata.name}}&group=extensions\" role=\"button\">添加存储</a>\n" +
     "</li>\n" +
     "<li ng-if=\"!deployment && ({ group: 'extensions', resource: 'replicasets' } | canI : 'update')\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions\" role=\"button\">Add Storage</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions\" role=\"button\">添加存储</a>\n" +
     "</li>\n" +
     "<li ng-if=\"!autoscalers.length && ({ group: 'autoscaling', resource: 'horizontalpodautoscalers' } | canI : 'create')\">\n" +
-    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions\" ng-if=\"!deployment\" role=\"button\">Add Autoscaler</a>\n" +
-    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=Deployment&name={{deployment.metadata.name}}&group=extensions\" ng-if=\"deployment\" role=\"button\">Add Autoscaler</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions\" ng-if=\"!deployment\" role=\"button\">添加自动伸缩控制器</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=Deployment&name={{deployment.metadata.name}}&group=extensions\" ng-if=\"deployment\" role=\"button\">添加自动伸缩控制器</a>\n" +
     "</li>\n" +
     "<li ng-if=\"deployment && ({ group: 'apps', resource: 'deployments' } | canI : 'update')\">\n" +
-    "<a ng-href=\"project/{{projectName}}/set-limits?kind=Deployment&name={{deployment.metadata.name}}&group=extensions\" role=\"button\">Edit Resource Limits</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/set-limits?kind=Deployment&name={{deployment.metadata.name}}&group=extensions\" role=\"button\">修改资源限制</a>\n" +
     "</li>\n" +
     "<li ng-if=\"!deployment && ({ group: 'extensions', resource: 'replicasets' } | canI : 'update')\">\n" +
-    "<a ng-href=\"project/{{projectName}}/set-limits?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions\" role=\"button\">Edit Resource Limits</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/set-limits?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions\" role=\"button\">修改资源限制</a>\n" +
     "</li>\n" +
     "<li ng-if=\"(!deployment && ({ group: 'extensions', resource: 'replicasets' } | canI : 'update')) || (deployment && ({group: 'apps', resource: 'deployments' } | canI : 'update'))\">\n" +
-    "<a ng-href=\"{{healthCheckURL}}\" role=\"button\">Edit Health Checks</a>\n" +
+    "<a ng-href=\"{{healthCheckURL}}\" role=\"button\">修改健康检查</a>\n" +
     "</li>\n" +
     "<li ng-if=\"{ group: 'extensions', resource: 'replicasets' } | canI : 'update'\">\n" +
-    "<a ng-href=\"{{replicaSet | editYamlURL}}\" role=\"button\">Edit YAML</a>\n" +
+    "<a ng-href=\"{{replicaSet | editYamlURL}}\" role=\"button\">修改 YAML</a>\n" +
     "</li>\n" +
     "<li ng-if=\"{ group: 'extensions', resource: 'replicasets' } | canI : 'delete'\">\n" +
     "\n" +
@@ -1337,7 +1349,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"col-sm-8 col-sm-pull-4\">\n" +
     "<dl class=\"dl-horizontal left\">\n" +
-    "<dt ng-if-start=\"replicaSet | hasDeploymentConfig\">Status:</dt>\n" +
+    "<dt ng-if-start=\"replicaSet | hasDeploymentConfig\">状态:</dt>\n" +
     "<dd ng-if-end>\n" +
     "<status-icon status=\"replicaSet | deploymentStatus\"></status-icon>\n" +
     "{{replicaSet | deploymentStatus}}\n" +
@@ -1366,30 +1378,30 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<button ng-show=\"(replicaSet | deploymentIsInProgress) && !replicaSet.metadata.deletionTimestamp && ('replicationcontrollers' | canI : 'update')\" type=\"button\" ng-click=\"cancelRunningDeployment(replicaSet)\" class=\"btn btn-default btn-xs\">Cancel</button>\n" +
     "</span>\n" +
     "</dd>\n" +
-    "<dt ng-if-start=\"replicaSet | hasDeploymentConfig\">Deployment Config:</dt>\n" +
+    "<dt ng-if-start=\"replicaSet | hasDeploymentConfig\">部署配置:</dt>\n" +
     "<dd ng-if-end>\n" +
     "<a ng-href=\"{{replicaSet | configURLForResource}}\">{{deploymentConfigName}}</a>\n" +
     "</dd>\n" +
-    "<dt ng-if-start=\"deployment\">Deployment:</dt>\n" +
+    "<dt ng-if-start=\"deployment\">部署:</dt>\n" +
     "<dd ng-if-end>\n" +
     "<a ng-href=\"{{deployment | navigateResourceURL}}\">{{deployment.metadata.name}}</a>\n" +
     "</dd>\n" +
-    "<dt ng-if-start=\"replicaSet | annotation:'deploymentStatusReason'\">Status Reason:</dt>\n" +
+    "<dt ng-if-start=\"replicaSet | annotation:'deploymentStatusReason'\">状态描述:</dt>\n" +
     "<dd ng-if-end>\n" +
     "{{replicaSet | annotation:'deploymentStatusReason'}}\n" +
     "</dd>\n" +
-    "<dt ng-if-start=\"replicaSet | deploymentIsInProgress\">Duration:</dt>\n" +
+    "<dt ng-if-start=\"replicaSet | deploymentIsInProgress\">持续时间:</dt>\n" +
     "<dd ng-if-end>\n" +
     "<span ng-switch=\"replicaSet | deploymentStatus\" class=\"hide-ng-leave\">\n" +
     "<span ng-switch-when=\"Running\">running for <duration-until-now timestamp=\"replicaSet.metadata.creationTimestamp\"></duration-until-now></span>\n" +
     "<span ng-switch-default>waiting for <duration-until-now timestamp=\"replicaSet.metadata.creationTimestamp\"></duration-until-now></span>\n" +
     "</span>\n" +
     "</dd>\n" +
-    "<dt>Selectors:</dt>\n" +
+    "<dt>选择器:</dt>\n" +
     "<dd>\n" +
     "<selector selector=\"replicaSet.spec.selector\"></selector>\n" +
     "</dd>\n" +
-    "<dt>Replicas:</dt>\n" +
+    "<dt>副本:</dt>\n" +
     "<dd>\n" +
     "\n" +
     "<replicas status=\"replicaSet.status.replicas\" spec=\"replicaSet.spec.replicas\" disable-scaling=\"!isScalable()\" scale-fn=\"scale(replicas)\" deployment=\"replicaSet\">\n" +
@@ -1402,17 +1414,17 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"row\">\n" +
     "<div class=\"col-lg-6\">\n" +
     "<div class=\"deployment-detail\">\n" +
-    "<h3>Template</h3>\n" +
+    "<h3>模板</h3>\n" +
     "<pod-template pod-template=\"replicaSet.spec.template\" images-by-docker-reference=\"imagesByDockerReference\" builds=\"builds\" detailed=\"true\" add-health-check-url=\"{{((!deploymentConfig || isActive) && ('deploymentconfigs' | canI : 'update')) ? healthCheckURL : ''}}\">\n" +
     "</pod-template>\n" +
-    "<h4>Volumes</h4>\n" +
+    "<h4>卷</h4>\n" +
     "<div ng-if=\"kind === 'ReplicaSet'\">\n" +
     "<div ng-if=\"deployment\">\n" +
     "<volumes volumes=\"replicaSet.spec.template.spec.volumes\" namespace=\"project.metadata.name\"></volumes>\n" +
     "<div ng-if=\"{ group: 'apps', resource: 'deployments' } | canI : 'update'\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=Deployment&name={{deployment.metadata.name}}&group=apps\">Add Storage</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=Deployment&name={{deployment.metadata.name}}&group=apps\">添加存储</a>\n" +
     "<span class=\"action-divider\" aria-hidden=\"true\">|</span>\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/add-config-volume?kind=Deployment&name={{deployment.metadata.name}}&group=apps\">Add Config Files</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/add-config-volume?kind=Deployment&name={{deployment.metadata.name}}&group=apps\">添加配置文件</a>\n" +
     "</div>\n" +
     "<div ng-if=\"!replicaSet.spec.template.spec.volumes.length && !({ group: 'apps', resource: 'deployments' } | canI : 'update')\">none</div>\n" +
     "</div>\n" +
@@ -1420,9 +1432,9 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"resource | canI : 'update'\">\n" +
     "<volumes volumes=\"replicaSet.spec.template.spec.volumes\" namespace=\"project.metadata.name\" can-remove=\"true\" remove-fn=\"removeVolume(volume)\">\n" +
     "</volumes>\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions\">Add Storage</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions\">添加存储</a>\n" +
     "<span class=\"action-divider\" aria-hidden=\"true\">|</span>\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/add-config-volume?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions\">Add Config Files</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/add-config-volume?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions\">添加配置文件</a>\n" +
     "</div>\n" +
     "<div ng-if=\"!(resource | canI : 'update')\">\n" +
     "<volumes volumes=\"replicaSet.spec.template.spec.volumes\" namespace=\"project.metadata.name\"></volumes>\n" +
@@ -1434,9 +1446,9 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"deploymentConfigName\">\n" +
     "<volumes volumes=\"replicaSet.spec.template.spec.volumes\" namespace=\"project.metadata.name\"></volumes>\n" +
     "<div ng-if=\"'deploymentconfigs' | canI : 'update'\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{deploymentConfigName}}\">Add Storage</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{deploymentConfigName}}\">添加存储</a>\n" +
     "<span class=\"action-divider\" aria-hidden=\"true\">|</span>\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/add-config-volume?kind=DeploymentConfig&name={{deploymentConfigName}}\">Add Config Files</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/add-config-volume?kind=DeploymentConfig&name={{deploymentConfigName}}\">添加配置文件</a>\n" +
     "</div>\n" +
     "<div ng-if=\"!replicaSet.spec.template.spec.volumes.length && !('deploymentconfigs' | canI : 'update')\">none</div>\n" +
     "</div>\n" +
@@ -1444,9 +1456,9 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"resource | canI : 'update'\">\n" +
     "<volumes volumes=\"replicaSet.spec.template.spec.volumes\" namespace=\"project.metadata.name\" can-remove=\"true\" remove-fn=\"removeVolume(volume)\">\n" +
     "</volumes>\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=ReplicationController&name={{replicaSet.metadata.name}}\">Add Storage</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=ReplicationController&name={{replicaSet.metadata.name}}\">添加存储</a>\n" +
     "<span class=\"action-divider\" aria-hidden=\"true\">|</span>\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/add-config-volume?kind=ReplicationController&name={{replicaSet.metadata.name}}\">Add Config Files</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/add-config-volume?kind=ReplicationController&name={{replicaSet.metadata.name}}\">添加配置文件</a>\n" +
     "</div>\n" +
     "<div ng-if=\"!(resource | canI : 'update')\">\n" +
     "<volumes volumes=\"replicaSet.spec.template.spec.volumes\" namespace=\"project.metadata.name\"></volumes>\n" +
@@ -1459,35 +1471,35 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "\n" +
     "<div ng-if=\"!deploymentConfigName || autoscalers.length\">\n" +
-    "<h3>Autoscaling</h3>\n" +
+    "<h3>自动缩放</h3>\n" +
     "\n" +
     "<div ng-repeat=\"warning in hpaWarnings\" class=\"alert alert-warning\">\n" +
     "<span class=\"pficon pficon-warning-triangle-o\" aria-hidden=\"true\"></span>\n" +
-    "<span class=\"sr-only\">Warning:</span>\n" +
+    "<span class=\"sr-only\">警告:</span>\n" +
     "{{warning.message}}\n" +
     "\n" +
     "<span ng-if=\"warning.reason === 'NoCPURequest'\">\n" +
     "\n" +
-    "<a ng-href=\"project/{{projectName}}/set-limits?kind=DeploymentConfig&name={{deploymentConfigName}}\" ng-if=\"deploymentConfigName && !deploymentConfigMissing && ('deploymentconfigs' | canI : 'update')\" role=\"button\">Edit Resource\n" +
-    "<span ng-if=\"!('cpu' | isRequestCalculated : project)\">Requests and</span> Limits</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/set-limits?kind=DeploymentConfig&name={{deploymentConfigName}}\" ng-if=\"deploymentConfigName && !deploymentConfigMissing && ('deploymentconfigs' | canI : 'update')\" role=\"button\">修改资源\n" +
+    "<span ng-if=\"!('cpu' | isRequestCalculated : project)\">要求与</span> 限制</a>\n" +
     "\n" +
-    "<a ng-href=\"project/{{projectName}}/set-limits?kind=ReplicationController&name={{replicaSet.metadata.name}}\" ng-if=\"!deploymentConfigName && kind === 'ReplicationController' && (resource | canI : 'update')\" role=\"button\">Edit Resource\n" +
-    "<span ng-if=\"!('cpu' | isRequestCalculated : project)\">Requests and</span> Limits</a>\n" +
-    "<a ng-href=\"project/{{projectName}}/set-limits?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions\" ng-if=\"!deploymentConfigName && kind === 'ReplicaSet' && (resource | canI : 'update')\" role=\"button\">Edit Resource\n" +
-    "<span ng-if=\"!('cpu' | isRequestCalculated : project)\">Requests and</span> Limits</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/set-limits?kind=ReplicationController&name={{replicaSet.metadata.name}}\" ng-if=\"!deploymentConfigName && kind === 'ReplicationController' && (resource | canI : 'update')\" role=\"button\">修改资源\n" +
+    "<span ng-if=\"!('cpu' | isRequestCalculated : project)\">要求与</span> 限制</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/set-limits?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions\" ng-if=\"!deploymentConfigName && kind === 'ReplicaSet' && (resource | canI : 'update')\" role=\"button\">修改资源\n" +
+    "<span ng-if=\"!('cpu' | isRequestCalculated : project)\">要求与</span> 限制</a>\n" +
     "</span>\n" +
     "</div>\n" +
     "\n" +
     "<div ng-if=\"!autoscalers.length\">\n" +
     "<span ng-if=\"{resource: 'horizontalpodautoscalers', group: 'autoscaling'} | canI : 'create'\">\n" +
-    "<a ng-if=\"replicaSet.kind === 'ReplicaSet' && !deployment\" ng-href=\"project/{{projectName}}/edit/autoscaler?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions\" role=\"button\">Add Autoscaler</a>\n" +
-    "<a ng-if=\"replicaSet.kind === 'ReplicaSet' && deployment\" ng-href=\"project/{{projectName}}/edit/autoscaler?kind=Deployment&name={{deployment.metadata.name}}&group=apps\" role=\"button\">Add Autoscaler</a>\n" +
-    "<a ng-if=\"replicaSet.kind === 'ReplicationController' && !deploymentConfigName\" ng-href=\"project/{{projectName}}/edit/autoscaler?kind=ReplicationController&name={{replicaSet.metadata.name}}\" role=\"button\">Add Autoscaler</a>\n" +
-    "<a ng-if=\"replicaSet.kind === 'ReplicationController' && deploymentConfigName\" ng-href=\"project/{{projectName}}/edit/autoscaler?kind=DeploymentConfig&name={{deploymentConfigName}}\" role=\"button\">Add Autoscaler</a>\n" +
+    "<a ng-if=\"replicaSet.kind === 'ReplicaSet' && !deployment\" ng-href=\"project/{{projectName}}/edit/autoscaler?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions\" role=\"button\">添加自动伸缩控制器</a>\n" +
+    "<a ng-if=\"replicaSet.kind === 'ReplicaSet' && deployment\" ng-href=\"project/{{projectName}}/edit/autoscaler?kind=Deployment&name={{deployment.metadata.name}}&group=apps\" role=\"button\">添加自动伸缩控制器</a>\n" +
+    "<a ng-if=\"replicaSet.kind === 'ReplicationController' && !deploymentConfigName\" ng-href=\"project/{{projectName}}/edit/autoscaler?kind=ReplicationController&name={{replicaSet.metadata.name}}\" role=\"button\">添加自动伸缩控制器</a>\n" +
+    "<a ng-if=\"replicaSet.kind === 'ReplicationController' && deploymentConfigName\" ng-href=\"project/{{projectName}}/edit/autoscaler?kind=DeploymentConfig&name={{deploymentConfigName}}\" role=\"button\">添加自动伸缩控制器</a>\n" +
     "</span>\n" +
     "<span ng-if=\"!({resource: 'horizontalpodautoscalers', group: 'autoscaling'} | canI : 'create')\">\n" +
-    "Autoscaling is not enabled. There are no autoscalers for this\n" +
-    "<span ng-if=\"deploymentConfigName\">deployment config or deployment.</span>\n" +
+    "自动缩放不启用。 没有自动缩放器针对这个\n" +
+    "<span ng-if=\"deploymentConfigName\">部署配置或部署。</span>\n" +
     "<span ng-if=\"!deploymentConfigName\">{{replicaSet.kind | humanizeKind}}.</span>\n" +
     "</span>\n" +
     "</div>\n" +
@@ -1508,34 +1520,34 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
   $templateCache.put('views/browse/_replication-controller-actions.html',
     "<div ng-if=\"(('replicationControllers' | canIDoAny) || (!deploymentConfigName && !autoscalers.length && ({ group: 'autoscaling', resource: 'horizontalpodautoscalers' } | canI : 'create')))\" class=\"pull-right dropdown\">\n" +
     "<button type=\"button\" class=\"dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs\" data-toggle=\"dropdown\">\n" +
-    "Actions\n" +
+    "动作\n" +
     "<span class=\"caret\"></span>\n" +
     "</button>\n" +
-    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">Actions</span></a>\n" +
+    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">动作</span></a>\n" +
     "<ul class=\"dropdown-menu dropdown-menu-right actions action-button\">\n" +
     "<li ng-if=\"deploymentConfigName && ('deploymentconfigs' | canI : 'update')\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{deploymentConfigName}}\" role=\"button\">Add Storage</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{deploymentConfigName}}\" role=\"button\">添加存储</a>\n" +
     "</li>\n" +
     "<li ng-if=\"!deploymentConfigName && ('replicationcontrollers' | canI : 'update')\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=ReplicationController&name={{replicaSet.metadata.name}}\" role=\"button\">Add Storage</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=ReplicationController&name={{replicaSet.metadata.name}}\" role=\"button\">添加存储</a>\n" +
     "</li>\n" +
     "<li ng-if=\"!autoscalers.length && ({resource: 'horizontalpodautoscalers', group: 'autoscaling'} | canI : 'create')\">\n" +
     "\n" +
-    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=ReplicationController&name={{replicaSet.metadata.name}}\" ng-if=\"!deploymentConfigName\" role=\"button\">Add Autoscaler</a>\n" +
-    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=DeploymentConfig&name={{deploymentConfigName}}\" ng-if=\"deploymentConfigName\" role=\"button\">Add Autoscaler</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=ReplicationController&name={{replicaSet.metadata.name}}\" ng-if=\"!deploymentConfigName\" role=\"button\">添加自动伸缩控制器</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=DeploymentConfig&name={{deploymentConfigName}}\" ng-if=\"deploymentConfigName\" role=\"button\">添加自动伸缩控制器</a>\n" +
     "</li>\n" +
     "<li ng-if=\"deploymentConfigName && ('deploymentconfigs' | canI : 'update')\">\n" +
-    "<a ng-href=\"project/{{projectName}}/set-limits?kind=DeploymentConfig&name={{deploymentConfigName}}\" role=\"button\">Edit Resource Limits</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/set-limits?kind=DeploymentConfig&name={{deploymentConfigName}}\" role=\"button\">修改资源限制</a>\n" +
     "</li>\n" +
     "<li ng-if=\"!deploymentConfigName && ('replicationcontrollers' | canI : 'update')\">\n" +
-    "<a ng-href=\"project/{{projectName}}/set-limits?kind=ReplicationController&name={{replicaSet.metadata.name}}\" role=\"button\">Edit Resource Limits</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/set-limits?kind=ReplicationController&name={{replicaSet.metadata.name}}\" role=\"button\">修改资源限制</a>\n" +
     "</li>\n" +
     "\n" +
     "<li ng-if=\"(!deploymentConfigName && ('replicationcontrollers' | canI : 'update')) || (deploymentConfigName && ('deploymentconfigs' | canI : 'update'))\">\n" +
-    "<a ng-href=\"{{healthCheckURL}}\" role=\"button\">Edit Health Checks</a>\n" +
+    "<a ng-href=\"{{healthCheckURL}}\" role=\"button\">修改健康检查</a>\n" +
     "</li>\n" +
     "<li ng-if=\"'replicationcontrollers' | canI : 'update'\">\n" +
-    "<a ng-href=\"{{replicaSet | editYamlURL}}\" role=\"button\">Edit YAML</a>\n" +
+    "<a ng-href=\"{{replicaSet | editYamlURL}}\" role=\"button\">修改 YAML</a>\n" +
     "</li>\n" +
     "<li ng-if=\"'replicationcontrollers' | canI : 'delete'\">\n" +
     "<delete-link kind=\"ReplicationController\" type-display-name=\"{{deploymentConfigName ? 'deployment' : 'replication controller'}}\" resource-name=\"{{replicaSet.metadata.name}}\" project-name=\"{{replicaSet.metadata.namespace}}\" alerts=\"alerts\" hpa-list=\"hpaForRS\" redirect-url=\"{{replicaSet | configURLForResource}}\">\n" +
@@ -1557,15 +1569,15 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "\n" +
     "<button class=\"btn btn-default hidden-xs\" ng-if=\"(buildConfigsInstantiateVersion | canI : 'create') && !(buildConfig | isBinaryBuild)\" ng-click=\"startBuild()\">\n" +
     "<span ng-if=\"!(buildConfig | isJenkinsPipelineStrategy)\">\n" +
-    "Start Build\n" +
+    "开始构建\n" +
     "</span>\n" +
     "<span ng-if=\"buildConfig | isJenkinsPipelineStrategy\">\n" +
-    "Start Pipeline\n" +
+    "开启管道\n" +
     "</span>\n" +
     "</button>\n" +
     "\n" +
     "<button type=\"button\" class=\"dropdown-toggle actions-dropdown-btn btn btn-default hidden-xs\" data-toggle=\"dropdown\">\n" +
-    "Actions\n" +
+    "动作\n" +
     "<span class=\"caret\" aria-hidden=\"true\"></span>\n" +
     "</button>\n" +
     "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">Actions</span></a>\n" +
@@ -1573,18 +1585,18 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<li class=\"visible-xs-inline\" ng-if=\"(buildConfigsInstantiateVersion | canI : 'create') && !(buildConfig | isBinaryBuild)\">\n" +
     "<a href=\"\" role=\"button\" ng-click=\"startBuild()\">\n" +
     "<span ng-if=\"!(buildConfig | isJenkinsPipelineStrategy)\">\n" +
-    "Start Build\n" +
+    "开始构建\n" +
     "</span>\n" +
     "<span ng-if=\"buildConfig | isJenkinsPipelineStrategy\">\n" +
-    "Start Pipeline\n" +
+    "开启管道\n" +
     "</span>\n" +
     "</a>\n" +
     "</li>\n" +
     "<li ng-if=\"buildConfigsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{buildConfig | editResourceURL}}\" role=\"button\">Edit</a>\n" +
+    "<a ng-href=\"{{buildConfig | editResourceURL}}\" role=\"button\">修改</a>\n" +
     "</li>\n" +
     "<li ng-if=\"buildConfigsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{buildConfig | editYamlURL}}\" role=\"button\">Edit YAML</a>\n" +
+    "<a ng-href=\"{{buildConfig | editYamlURL}}\" role=\"button\">修改 YAML</a>\n" +
     "</li>\n" +
     "<li ng-if=\"buildConfigsVersion | canI : 'delete'\">\n" +
     "<delete-link kind=\"BuildConfig\" resource-name=\"{{buildConfig.metadata.name}}\" project-name=\"{{buildConfig.metadata.namespace}}\" alerts=\"alerts\">\n" +
@@ -1595,60 +1607,62 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "{{buildConfigName}}\n" +
     "<span class=\"pficon pficon-warning-triangle-o\" ng-if=\"buildConfigPaused || buildConfigDeleted\" aria-hidden=\"true\" data-toggle=\"tooltip\" data-original-title=\"{{buildConfigDeleted ? 'This build configuration no longer exists' : 'Building from build configuration ' + buildConfig.metadata.name + ' has been paused.'}}\">\n" +
     "</span>\n" +
-    "<small class=\"meta\" ng-if=\"buildConfig\">created <span am-time-ago=\"buildConfig.metadata.creationTimestamp\"></span></small>\n" +
+    "<small class=\"meta\" ng-if=\"buildConfig\">创建于 <span am-time-ago=\"buildConfig.metadata.creationTimestamp\"></span></small>\n" +
     "</h1>\n" +
     "<labels labels=\"buildConfig.metadata.labels\" clickable=\"true\" kind=\"builds\" title-kind=\"build configs\" project-name=\"{{buildConfig.metadata.namespace}}\" limit=\"3\"></labels>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"middle-content\" persist-tab-state>\n" +
     "<div class=\"container-fluid\">\n" +
-    "<div ng-if=\"!loaded\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\">加载中...</div>\n" +
     "<div class=\"row\" ng-if=\"loaded\">\n" +
     "<div class=\"col-md-12\" ng-class=\"{ 'hide-tabs' : !buildConfig }\">\n" +
     "<uib-tabset>\n" +
     "<uib-tab active=\"selectedTab.history\">\n" +
-    "<uib-tab-heading>History</uib-tab-heading>\n" +
+    "<uib-tab-heading>历史</uib-tab-heading>\n" +
     "\n" +
-    "<div ng-if=\"!unfilteredBuilds\" class=\"gutter-bottom\">Loading...</div>\n" +
+    "<div ng-if=\"!unfilteredBuilds\" class=\"gutter-bottom\">加载中...</div>\n" +
     "\n" +
     "<div ng-if=\"buildConfig && unfilteredBuilds && (unfilteredBuilds | hashSize) === 0\" class=\"empty-state-message text-center\">\n" +
-    "<h2>No builds.</h2>\n" +
+    "<h2>没有构建。</h2>\n" +
     "<p>\n" +
     "<span ng-if=\"!buildConfig.spec.strategy.jenkinsPipelineStrategy\">\n" +
     "<span ng-if=\"!(buildConfigsInstantiateVersion | canI : 'create')\">\n" +
-    "Builds will create an image from\n" +
+    "构建将创建一个镜像\n" +
     "</span>\n" +
     "<span ng-if=\"buildConfigsInstantiateVersion | canI : 'create'\">\n" +
-    "Start a new build to create an image from\n" +
+    "启动一个新的构建以创建一个镜像\n" +
     "</span>\n" +
     "<span ng-if=\"buildConfig.spec.source.type === 'Git'\">\n" +
-    "source repository\n" +
+    "源码库信息\n" +
     "<span class=\"word-break\"><osc-git-link uri=\"buildConfig.spec.source.git.uri\" ref=\"buildConfig.spec.source.git.ref\" context-dir=\"buildConfig.spec.source.contextDir\">{{buildConfig.spec.source.git.uri}}</osc-git-link></span>\n" +
     "</span>\n" +
     "<span ng-if=\"buildConfig.spec.source.type !== 'Git'\">\n" +
-    "build configuration {{buildConfig.metadata.name}}.\n" +
+    "生成配置 {{buildConfig.metadata.name}}。\n" +
     "</span>\n" +
     "</span>\n" +
     "<span ng-if=\"buildConfig.spec.strategy.jenkinsPipelineStrategy\">\n" +
-    "No pipeline builds have run for {{buildConfigName}}.\n" +
+    "没有管道构建用于 {{buildConfigName}}。\n" +
     "<br>\n" +
     "<span ng-if=\"buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfile\">\n" +
-    "View the <a ng-href=\"{{(buildConfig | navigateResourceURL) + '?tab=configuration'}}\">Jenkinsfile</a> to see what stages will run.\n" +
+    "通过查看 <a ng-href=\"{{(buildConfig | navigateResourceURL) + '?tab=configuration'}}\">Jenkinsfile</a> 文件来查看将要运行的阶段。\n" +
     "</span>\n" +
+    "\n" +
     "<span ng-if=\"buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath\">\n" +
-    "View the file <code>{{buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath}}</code> in the\n" +
-    "<a ng-if=\"buildConfig | jenkinsfileLink\" ng-href=\"buildConfig | jenkinsfileLink\">source repository</a>\n" +
-    "<span ng-if=\"!(buildConfig | jenkinsfileLink)\">source repository</span>\n" +
-    "to see what stages will run.\n" +
+    "通过查看在\n" +
+    "<a ng-if=\"buildConfig | jenkinsfileLink\" ng-href=\"buildConfig | jenkinsfileLink\">源码仓库</a>\n" +
+    "<span ng-if=\"!(buildConfig | jenkinsfileLink)\">源码仓库</span>中的\n" +
+    "<code>{{buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath}}</code>\n" +
+    "来查看将要运行的阶段。\n" +
     "</span>\n" +
     "</span>\n" +
     "</p>\n" +
     "<button class=\"btn btn-primary btn-lg\" ng-click=\"startBuild()\" ng-if=\"(buildConfigsInstantiateVersion | canI : 'create') && !(buildConfig | isBinaryBuild)\">\n" +
     "<span ng-if=\"!(buildConfig | isJenkinsPipelineStrategy)\">\n" +
-    "Start Build\n" +
+    "开始构建\n" +
     "</span>\n" +
     "<span ng-if=\"buildConfig | isJenkinsPipelineStrategy\">\n" +
-    "Start Pipeline\n" +
+    "开启管道\n" +
     "</span>\n" +
     "</button>\n" +
     "</div>\n" +
@@ -1658,33 +1672,33 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"h3\">\n" +
     "<span class=\"last-status\">\n" +
     "<status-icon status=\"latestBuild.status.phase\"></status-icon>\n" +
-    "Build\n" +
+    "构建\n" +
     "\n" +
     "<a ng-href=\"{{latestBuild | navigateResourceURL}}\"><span ng-if=\"latestBuild | annotation : 'buildNumber'\">#{{latestBuild | annotation : 'buildNumber'}}</span><span ng-if=\"!(latestBuild | annotation : 'buildNumber')\">{{latestBuild.metadata.name}}</span></a>\n" +
     "<span ng-switch=\"latestBuild.status.phase\" class=\"hide-ng-leave\">\n" +
-    "<span ng-switch-when=\"Failed\">failed.</span>\n" +
-    "<span ng-switch-when=\"Error\">encountered an error.</span>\n" +
-    "<span ng-switch-when=\"Cancelled\">was cancelled.</span>\n" +
+    "<span ng-switch-when=\"Failed\">失败。</span>\n" +
+    "<span ng-switch-when=\"Error\">遇到一个错误。</span>\n" +
+    "<span ng-switch-when=\"Cancelled\">被取消了。</span>\n" +
     "<span ng-switch-default>is {{latestBuild.status.phase | lowercase}}.</span>\n" +
     "</span>\n" +
     "</span>\n" +
     "<span ng-if=\"latestBuild | buildLogURL\">\n" +
     "\n" +
     "<span ng-if=\"latestBuild | isJenkinsPipelineStrategy\">\n" +
-    "<a ng-href=\"{{latestBuild | buildLogURL}}\" target=\"_blank\">View Log</a>\n" +
+    "<a ng-href=\"{{latestBuild | buildLogURL}}\" target=\"_blank\">查看日志</a>\n" +
     "</span>\n" +
     "\n" +
     "<span ng-if=\"!(latestBuild | isJenkinsPipelineStrategy) && ('builds/log' | canI : 'get')\">\n" +
-    "<a ng-href=\"{{latestBuild | buildLogURL}}\">View Log</a>\n" +
+    "<a ng-href=\"{{latestBuild | buildLogURL}}\">查看日志</a>\n" +
     "</span>\n" +
     "</span>\n" +
     "</div>\n" +
     "<div class=\"last-timestamp meta text-muted\">\n" +
     "<span ng-if=\"!latestBuild.status.startTimestamp\">\n" +
-    "created <span am-time-ago=\"latestBuild.metadata.creationTimestamp\"></span>\n" +
+    "创建于 <span am-time-ago=\"latestBuild.metadata.creationTimestamp\"></span>\n" +
     "</span>\n" +
     "<span ng-if=\"latestBuild.status.startTimestamp\">\n" +
-    "started <span am-time-ago=\"latestBuild.status.startTimestamp\"></span>\n" +
+    "启动于 <span am-time-ago=\"latestBuild.status.startTimestamp\"></span>\n" +
     "</span>\n" +
     "</div>\n" +
     "<build-trends-chart builds=\"builds\"></build-trends-chart>\n" +
@@ -1700,10 +1714,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<table ng-if=\"!(buildConfig | isJenkinsPipelineStrategy)\" class=\"table table-bordered table-mobile\">\n" +
     "<thead>\n" +
     "<tr>\n" +
-    "<th>Build</th>\n" +
-    "<th>Status</th>\n" +
-    "<th>Duration</th>\n" +
-    "<th>Created</th>\n" +
+    "<th>构建</th>\n" +
+    "<th>状态</th>\n" +
+    "<th>持续时间</th>\n" +
+    "<th>创建</th>\n" +
     "</tr>\n" +
     "</thead>\n" +
     "<tbody ng-if=\"(builds | hashSize) == 0\">\n" +
@@ -1748,28 +1762,28 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.configuration\" ng-if=\"buildConfig\">\n" +
-    "<uib-tab-heading>Configuration</uib-tab-heading>\n" +
+    "<uib-tab-heading>配置</uib-tab-heading>\n" +
     "<div class=\"resource-details\">\n" +
     "<div class=\"row\">\n" +
     "<div class=\"col-lg-6\">\n" +
     "\n" +
-    "<h3 class=\"hidden visible-lg visible-xl\">Details</h3>\n" +
+    "<h3 class=\"hidden visible-lg visible-xl\">细节</h3>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
     "<div>\n" +
-    "<dt>Build Strategy:</dt>\n" +
+    "<dt>构建策略：</dt>\n" +
     "<dd>{{buildConfig.spec.strategy.type | startCase}}</dd>\n" +
     "</div>\n" +
     "<div ng-if=\"buildConfig.spec.source\">\n" +
     "<div ng-if=\"buildConfig.spec.source.type == 'Git'\">\n" +
-    "<dt>Source Repo:</dt>\n" +
+    "<dt>源码地址：</dt>\n" +
     "<dd><span class=\"word-break\"><osc-git-link uri=\"buildConfig.spec.source.git.uri\" ref=\"buildConfig.spec.source.git.ref\" context-dir=\"buildConfig.spec.source.contextDir\">{{buildConfig.spec.source.git.uri}}</osc-git-link></span></dd>\n" +
-    "<dt ng-if=\"buildConfig.spec.source.git.ref\">Source Ref:</dt>\n" +
+    "<dt ng-if=\"buildConfig.spec.source.git.ref\">源码版本：</dt>\n" +
     "<dd ng-if=\"buildConfig.spec.source.git.ref\">{{buildConfig.spec.source.git.ref}}</dd>\n" +
-    "<dt ng-if=\"buildConfig.spec.source.contextDir\">Source Context Dir:</dt>\n" +
+    "<dt ng-if=\"buildConfig.spec.source.contextDir\">源码环境目录：</dt>\n" +
     "<dd ng-if=\"buildConfig.spec.source.contextDir\">{{buildConfig.spec.source.contextDir}}</dd>\n" +
     "</div>\n" +
     "<div ng-if=\"buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath\">\n" +
-    "<dt>Jenkinsfile Path:</dt>\n" +
+    "<dt>Jenkinsfile路径：</dt>\n" +
     "<dd ng-if=\"buildConfig | jenkinsfileLink\">\n" +
     "<a ng-href=\"{{buildConfig | jenkinsfileLink}}\">{{buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath}}</a>\n" +
     "</dd>\n" +
@@ -1777,15 +1791,15 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "{{buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath}}\n" +
     "</dd>\n" +
     "<div class=\"small\">\n" +
-    "<a href=\"\" ng-click=\"showJenkinsfileExamples()\">What's a Jenkinsfile?</a>\n" +
+    "<a href=\"\" ng-click=\"showJenkinsfileExamples()\">Jenkinsfile是什么？</a>\n" +
     "</div>\n" +
     "</div>\n" +
     "<dt ng-if-start=\"buildConfig.spec.source.binary.asFile\">Binary Input as File:</dt>\n" +
     "<dd ng-if-end>{{buildConfig.spec.source.binary.asFile}}</dd>\n" +
     "<div ng-if=\"buildConfig.spec.source.type == 'None' && !(buildConfig | isJenkinsPipelineStrategy)\">\n" +
-    "<dt>Source:</dt>\n" +
+    "<dt>源码：</dt>\n" +
     "<dd>\n" +
-    "<i>none</i>\n" +
+    "<i>没有</i>\n" +
     "<span class=\"help action-inline\">\n" +
     "<a href>\n" +
     "<i class=\"pficon pficon-help\" data-toggle=\"tooltip\" aria-hidden=\"true\" data-original-title=\"No source inputs have been defined for this build configuration.\">\n" +
@@ -1795,13 +1809,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</dd>\n" +
     "</div>\n" +
     "<div ng-if=\"buildConfig.spec.source.images\" class=\"image-sources\">\n" +
-    "<dt>Image Sources:</dt>\n" +
+    "<dt>镜像来源：</dt>\n" +
     "<dd></dd>\n" +
     "<div ng-repeat=\"imageSource in imageSources\" class=\"image-source-item\">\n" +
     "<h4>{{imageSource.from | imageObjectRef : buildConfig.metadata.namespace}}</h4>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
     "<div class=\"is-item-description\">\n" +
-    "<dt>Paths:</dt>\n" +
+    "<dt>路径：</dt>\n" +
     "<div ng-repeat=\"(source, destination) in imageSourcesPaths[$index]\" class=\"image-source-paths\">\n" +
     "<dd><span class=\"source-path\">{{source}}</span><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i><span class=\"destination-dir\">{{destination}}</span></dd>\n" +
     "</div>\n" +
@@ -1810,7 +1824,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
-    "<dt ng-if-start=\"buildFrom = (buildConfig | buildStrategy).from\">Builder Image:</dt>\n" +
+    "<dt ng-if-start=\"buildFrom = (buildConfig | buildStrategy).from\">基础镜像：</dt>\n" +
     "<dd ng-if-end>\n" +
     "<a ng-if=\"buildFrom.kind === 'ImageStreamTag' && (!buildFrom.namespace || buildConfig.metadata.namespace === buildFrom.namespace)\" ng-href=\"{{buildFrom.name | navigateResourceURL : 'ImageStreamTag' : buildConfig.metadata.namespace}}\">\n" +
     "{{buildFrom | imageObjectRef : buildConfig.metadata.namespace}}\n" +
@@ -1820,7 +1834,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</span>\n" +
     "</dd>\n" +
     "<div ng-if=\"outputTo = buildConfig.spec.output.to\">\n" +
-    "<dt>Output To:</dt>\n" +
+    "<dt>发布镜像：</dt>\n" +
     "<dd>\n" +
     "<a ng-if=\"outputTo.kind === 'ImageStreamTag' && (!outputTo.namespace || buildConfig.metadata.namespace === outputTo.namespace)\" ng-href=\"{{outputTo.name | navigateResourceURL : 'ImageStreamTag' : buildConfig.metadata.namespace}}\">\n" +
     "{{outputTo | imageObjectRef : buildConfig.metadata.namespace}}\n" +
@@ -1831,7 +1845,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</dd>\n" +
     "</div>\n" +
     "<div class=\"run-policy\">\n" +
-    "<dt>Run Policy:</dt>\n" +
+    "<dt>运行策略：</dt>\n" +
     "<dd>\n" +
     "{{buildConfig.spec.runPolicy | sentenceCase}}\n" +
     "<span class=\"help action-inline\">\n" +
@@ -1847,41 +1861,67 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "\n" +
     "<div ng-if=\"buildConfig.spec.source.dockerfile\">\n" +
     "<dt>Dockerfile:</dt><dd></dd>\n" +
-    "<div ui-ace=\"{\n" +
-    "                          mode: 'dockerfile',\n" +
-    "                          theme: 'dreamweaver',\n" +
-    "                          onLoad: aceLoaded,\n" +
-    "                          highlightActiveLine: false,\n" +
-    "                          showGutter: false,\n" +
-    "                          rendererOptions: {\n" +
-    "                            fadeFoldWidgets: true,\n" +
-    "                            highlightActiveLine: false,\n" +
-    "                            showPrintMargin: false\n" +
-    "                          },\n" +
-    "                          advanced: {\n" +
-    "                            highlightActiveLine: false\n" +
-    "                          }\n" +
+    "<div ui-ace=\"{\r" +
+    "\n" +
+    "                          mode: 'dockerfile',\r" +
+    "\n" +
+    "                          theme: 'dreamweaver',\r" +
+    "\n" +
+    "                          onLoad: aceLoaded,\r" +
+    "\n" +
+    "                          highlightActiveLine: false,\r" +
+    "\n" +
+    "                          showGutter: false,\r" +
+    "\n" +
+    "                          rendererOptions: {\r" +
+    "\n" +
+    "                            fadeFoldWidgets: true,\r" +
+    "\n" +
+    "                            highlightActiveLine: false,\r" +
+    "\n" +
+    "                            showPrintMargin: false\r" +
+    "\n" +
+    "                          },\r" +
+    "\n" +
+    "                          advanced: {\r" +
+    "\n" +
+    "                            highlightActiveLine: false\r" +
+    "\n" +
+    "                          }\r" +
+    "\n" +
     "                        }\" readonly=\"readonly\" ng-model=\"buildConfig.spec.source.dockerfile\" class=\"ace-bordered ace-read-only ace-inline dockerfile-mode mar-top-md\"></div>\n" +
     "</div>\n" +
     "<div ng-if=\"buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfile\">\n" +
     "<div class=\"small pull-right mar-top-sm\">\n" +
-    "<a href=\"\" ng-click=\"showJenkinsfileExamples()\">What's a Jenkinsfile?</a>\n" +
+    "<a href=\"\" ng-click=\"showJenkinsfileExamples()\">Jenkinsfile是什么?</a>\n" +
     "</div>\n" +
     "<dt>\n" +
     "Jenkinsfile:\n" +
     "</dt><dd></dd>\n" +
-    "<div ui-ace=\"{\n" +
-    "                          mode: 'groovy',\n" +
-    "                          theme: 'eclipse',\n" +
-    "                          showGutter: false,\n" +
-    "                          rendererOptions: {\n" +
-    "                            fadeFoldWidgets: true,\n" +
-    "                            highlightActiveLine: false,\n" +
-    "                            showPrintMargin: false\n" +
-    "                          },\n" +
-    "                          advanced: {\n" +
-    "                            highlightActiveLine: false\n" +
-    "                          }\n" +
+    "<div ui-ace=\"{\r" +
+    "\n" +
+    "                          mode: 'groovy',\r" +
+    "\n" +
+    "                          theme: 'eclipse',\r" +
+    "\n" +
+    "                          showGutter: false,\r" +
+    "\n" +
+    "                          rendererOptions: {\r" +
+    "\n" +
+    "                            fadeFoldWidgets: true,\r" +
+    "\n" +
+    "                            highlightActiveLine: false,\r" +
+    "\n" +
+    "                            showPrintMargin: false\r" +
+    "\n" +
+    "                          },\r" +
+    "\n" +
+    "                          advanced: {\r" +
+    "\n" +
+    "                            highlightActiveLine: false\r" +
+    "\n" +
+    "                          }\r" +
+    "\n" +
     "                        }\" readonly=\"readonly\" ng-model=\"buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfile\" class=\"ace-bordered ace-inline ace-read-only\"></div>\n" +
     "</div>\n" +
     "</dl>\n" +
@@ -1891,7 +1931,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"col-lg-6\">\n" +
-    "<h3>Triggers <span class=\"pficon pficon-warning-triangle-o\" ng-if=\"!(secretsVersion | canI : 'list')\" aria-hidden=\"true\" data-toggle=\"tooltip\" data-original-title=\"You do not have access to secrets in this project. Webhook URLs require access to secret information to be used.\"></span><a href=\"{{'build-triggers' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a></h3>\n" +
+    "<h3>触发器 <span class=\"pficon pficon-warning-triangle-o\" ng-if=\"!(secretsVersion | canI : 'list')\" aria-hidden=\"true\" data-toggle=\"tooltip\" data-original-title=\"You do not have access to secrets in this project. Webhook URLs require access to secret information to be used.\"></span><a href=\"{{'build-triggers' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a></h3>\n" +
     "<dl class=\"dl-horizontal left build-triggers\">\n" +
     "<div ng-repeat=\"trigger in buildConfig.spec.triggers | orderBy : 'type' : false : compareTriggers\">\n" +
     "<div ng-switch=\"trigger.type\">\n" +
@@ -1925,7 +1965,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-switch-when=\"ImageChange\">\n" +
     "<dt>\n" +
-    "New Image For:\n" +
+    "镜像变更：\n" +
     "</dt>\n" +
     "<dd ng-init=\"triggerFrom = (trigger.imageChange.from || (buildConfig | buildStrategy).from)\">\n" +
     "<a ng-if=\"triggerFrom.kind === 'ImageStreamTag' && (!triggerFrom.namespace || buildConfig.metadata.namespace === triggerFrom.namespace)\" ng-href=\"{{triggerFrom.name | navigateResourceURL : 'ImageStreamTag' : buildConfig.metadata.namespace}}\">\n" +
@@ -1937,16 +1977,16 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</dd>\n" +
     "</div>\n" +
     "<div ng-switch-when=\"ConfigChange\">\n" +
-    "<dt>Config Change For:</dt>\n" +
-    "<dd>Build config {{buildConfig.metadata.name}}</dd>\n" +
+    "<dt>配置变化：</dt>\n" +
+    "<dd>构建配置 {{buildConfig.metadata.name}}</dd>\n" +
     "</div>\n" +
     "<div ng-switch-default>\n" +
-    "<dt>Other Trigger:</dt>\n" +
+    "<dt>其他触发器：</dt>\n" +
     "<dd>{{trigger.type}}</dd>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
-    "<dt>Manual (CLI):\n" +
+    "<dt>手工操作 (CLI)：\n" +
     "</dt>\n" +
     "<dd>\n" +
     "<copy-to-clipboard clipboard-text=\"'oc start-build ' + buildConfig.metadata.name + ' -n ' + project.metadata.name\"></copy-to-clipboard>\n" +
@@ -1958,26 +1998,26 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</uib-tab>\n" +
     "<uib-tab heading=\"Environment\" active=\"selectedTab.environment\" ng-if=\"buildConfig && !(buildConfig | isJenkinsPipelineStrategy)\">\n" +
-    "<uib-tab-heading>Environment</uib-tab-heading>\n" +
-    "<h3>Environment Variables</h3>\n" +
+    "<uib-tab-heading>环境</uib-tab-heading>\n" +
+    "<h3>环境变量</h3>\n" +
     "<p ng-if=\"BCEnvVarsFromImage.length\">\n" +
-    "The builder image has additional environment variables defined. Variables defined below will overwrite any from the image with the same name.\n" +
-    "<a href=\"\" ng-click=\"expand.imageEnv = true\" ng-if=\"!expand.imageEnv\">Show Image Environment Variables</a>\n" +
-    "<a href=\"\" ng-click=\"expand.imageEnv = false\" ng-if=\"expand.imageEnv\">Hide Image Environment Variables</a>\n" +
+    "构建基础镜像具有定义的其他环境变量。 下面定义的变量将覆盖任何来自同名的镜像。\n" +
+    "<a href=\"\" ng-click=\"expand.imageEnv = true\" ng-if=\"!expand.imageEnv\">显示镜像的环境变量</a>\n" +
+    "<a href=\"\" ng-click=\"expand.imageEnv = false\" ng-if=\"expand.imageEnv\">隐藏镜像的环境变量</a>\n" +
     "</p>\n" +
-    "<key-value-editor ng-if=\"expand.imageEnv\" entries=\"BCEnvVarsFromImage\" key-placeholder=\"Name\" value-placeholder=\"Value\" is-readonly cannot-add cannot-sort cannot-delete show-header></key-value-editor>\n" +
+    "<key-value-editor ng-if=\"expand.imageEnv\" entries=\"BCEnvVarsFromImage\" key-placeholder=\"名称\" value-placeholder=\"值\" is-readonly cannot-add cannot-sort cannot-delete show-header></key-value-editor>\n" +
     "<ng-form name=\"forms.bcEnvVars\" class=\"mar-bottom-xl block\">\n" +
     "<div ng-if=\"buildConfigsVersion | canI : 'update'\">\n" +
     "<confirm-on-exit dirty=\"forms.bcEnvVars.$dirty\"></confirm-on-exit>\n" +
-    "<key-value-editor entries=\"envVars\" key-placeholder=\"Name\" value-placeholder=\"Value\" value-from-selector-options=\"valueFromObjects\" key-validator=\"[A-Za-z_][A-Za-z0-9_]*\" key-validator-error=\"Please enter a valid key\" key-validator-error-tooltip=\"A valid environment variable name is an alphanumeric (a-z and 0-9) string beginning with a letter that may contain underscores.\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\" show-header></key-value-editor>\n" +
-    "<button class=\"btn btn-default\" ng-click=\"saveEnvVars()\" ng-disabled=\"forms.bcEnvVars.$pristine || forms.bcEnvVars.$invalid\">Save</button>\n" +
-    "<a ng-if=\"!forms.bcEnvVars.$pristine\" href=\"\" ng-click=\"clearEnvVarUpdates()\" class=\"mar-left-sm\" style=\"vertical-align: -2px\">Clear Changes</a>\n" +
+    "<key-value-editor entries=\"envVars\" key-placeholder=\"名称\" value-placeholder=\"值\" value-from-selector-options=\"valueFromObjects\" key-validator=\"[A-Za-z_][A-Za-z0-9_]*\" key-validator-error=\"Please enter a valid key\" key-validator-error-tooltip=\"一个有效的环境变量名是一个字母数字(A -z和0-9)字符串，从一个可能包含下划线的字母开始。\" add-row-link=\"添加变量\" add-row-with-selectors-link=\"从配置映射或私密中添加变量\" show-header></key-value-editor>\n" +
+    "<button class=\"btn btn-default\" ng-click=\"saveEnvVars()\" ng-disabled=\"forms.bcEnvVars.$pristine || forms.bcEnvVars.$invalid\">保存</button>\n" +
+    "<a ng-if=\"!forms.bcEnvVars.$pristine\" href=\"\" ng-click=\"clearEnvVarUpdates()\" class=\"mar-left-sm\" style=\"vertical-align: -2px\">明显的变化</a>\n" +
     "</div>\n" +
-    "<key-value-editor ng-if=\"!(buildConfigsVersion | canI : 'update')\" entries=\"envVars\" key-placeholder=\"Name\" value-placeholder=\"Value\" is-readonly cannot-add cannot-sort cannot-delete show-header></key-value-editor>\n" +
+    "<key-value-editor ng-if=\"!(buildConfigsVersion | canI : 'update')\" entries=\"envVars\" key-placeholder=\"名称\" value-placeholder=\"值\" is-readonly cannot-add cannot-sort cannot-delete show-header></key-value-editor>\n" +
     "</ng-form>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.events\" ng-if=\"('events' | canI : 'watch')\">\n" +
-    "<uib-tab-heading>Events</uib-tab-heading>\n" +
+    "<uib-tab-heading>事件</uib-tab-heading>\n" +
     "<events api-objects=\"[ buildConfig ]\" project-context=\"projectContext\" ng-if=\"selectedTab.events\"></events>\n" +
     "</uib-tab>\n" +
     "</uib-tabset>\n" +
@@ -1995,39 +2035,39 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"build\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "<div class=\"pull-right dropdown\" ng-hide=\"!('builds' | canIDoAny)\">\n" +
     "\n" +
-    "<button class=\"btn btn-default hidden-xs\" ng-click=\"cancelBuild()\" ng-if=\"!build.metadata.deletionTimestamp && (build | isIncompleteBuild) && (buildsVersion | canI : 'update')\">Cancel Build</button>\n" +
-    "<button class=\"btn btn-default hidden-xs\" ng-click=\"cloneBuild()\" ng-hide=\"build.metadata.deletionTimestamp || (build | isIncompleteBuild) || !(buildsCloneVersion | canI : 'create') || (build | isBinaryBuild)\" ng-disabled=\"!canBuild\">Rebuild</button>\n" +
+    "<button class=\"btn btn-default hidden-xs\" ng-click=\"cancelBuild()\" ng-if=\"!build.metadata.deletionTimestamp && (build | isIncompleteBuild) && (buildsVersion | canI : 'update')\">取消构建</button>\n" +
+    "<button class=\"btn btn-default hidden-xs\" ng-click=\"cloneBuild()\" ng-hide=\"build.metadata.deletionTimestamp || (build | isIncompleteBuild) || !(buildsCloneVersion | canI : 'create') || (build | isBinaryBuild)\" ng-disabled=\"!canBuild\">重新构建</button>\n" +
     "\n" +
     "<button type=\"button\" class=\"dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs\" data-toggle=\"dropdown\">\n" +
-    "Actions\n" +
+    "操作\n" +
     "<span class=\"caret\" aria-hidden=\"true\"></span>\n" +
     "</button>\n" +
-    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">Actions</span></a>\n" +
+    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">操作</span></a>\n" +
     "<ul class=\"dropdown-menu dropdown-menu-right actions action-button\">\n" +
     "<li ng-if=\"buildConfigsVersion | canI : 'update'\">\n" +
     "<a ng-href=\"{{buildConfig | editResourceURL}}\" role=\"button\">\n" +
     "<span ng-if=\"!(buildConfig | isJenkinsPipelineStrategy)\">\n" +
-    "Edit Configuration\n" +
+    "编辑配置\n" +
     "</span>\n" +
     "<span ng-if=\"buildConfig | isJenkinsPipelineStrategy\">\n" +
-    "Edit Pipeline\n" +
+    "编辑管道\n" +
     "</span>\n" +
     "</a>\n" +
     "</li>\n" +
     "<li class=\"divider\" ng-if=\"buildConfigsVersion | canI : 'update'\"></li>\n" +
     "<li ng-if=\"!build.metadata.deletionTimestamp && (build | isIncompleteBuild) && (buildsVersion | canI : 'update')\" class=\"visible-xs-inline\">\n" +
-    "<a href=\"\" role=\"button\" ng-click=\"cancelBuild()\">Cancel Build</a>\n" +
+    "<a href=\"\" role=\"button\" ng-click=\"cancelBuild()\">取消构建</a>\n" +
     "</li>\n" +
     "<li class=\"visible-xs-inline\" ng-class=\"{ disabled: !canBuild }\" ng-hide=\"build.metadata.deletionTimestamp || (build | isIncompleteBuild) || !(buildsCloneVersion | canI : 'create') || (build | isBinaryBuild)\">\n" +
-    "<a href=\"\" role=\"button\" ng-click=\"cloneBuild()\" ng-attr-aria-disabled=\"{{canBuild ? undefined : 'true'}}\" ng-class=\"{ 'disabled-link': !canBuild }\">Rebuild</a>\n" +
+    "<a href=\"\" role=\"button\" ng-click=\"cloneBuild()\" ng-attr-aria-disabled=\"{{canBuild ? undefined : 'true'}}\" ng-class=\"{ 'disabled-link': !canBuild }\">重新构建</a>\n" +
     "</li>\n" +
     "<li ng-if=\"(buildsVersion | canI : 'update')\">\n" +
-    "<a ng-href=\"{{build | editYamlURL}}\" role=\"button\">Edit YAML</a>\n" +
+    "<a ng-href=\"{{build | editYamlURL}}\" role=\"button\">编辑 YAML</a>\n" +
     "</li>\n" +
     "<li ng-if=\"(buildsVersion | canI : 'delete')\">\n" +
     "<delete-link kind=\"Build\" resource-name=\"{{build.metadata.name}}\" project-name=\"{{build.metadata.namespace}}\" alerts=\"alerts\" redirect-url=\"{{build | configURLForResource}}\">\n" +
@@ -2051,36 +2091,36 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-12\">\n" +
     "<uib-tabset>\n" +
     "<uib-tab active=\"selectedTab.details\">\n" +
-    "<uib-tab-heading>Details</uib-tab-heading>\n" +
+    "<uib-tab-heading>详情</uib-tab-heading>\n" +
     "<build-pipeline build=\"build\" ng-if=\"build | isJenkinsPipelineStrategy\"></build-pipeline>\n" +
     "<ng-include src=\" 'views/browse/_build-details.html' \"></ng-include>\n" +
     "</uib-tab>\n" +
     "<uib-tab heading=\"Environment\" active=\"selectedTab.environment\" ng-if=\"!(build | isJenkinsPipelineStrategy)\">\n" +
-    "<uib-tab-heading>Environment</uib-tab-heading>\n" +
-    "<h3>Environment Variables</h3>\n" +
+    "<uib-tab-heading>环境</uib-tab-heading>\n" +
+    "<h3>环境变量</h3>\n" +
     "<p ng-if=\"buildConfigsVersion | canI : 'update'\">\n" +
     "<span class=\"pficon pficon-info\" aria-hidden=\"true\"></span>\n" +
-    "Environment variables can be edited on the <a ng-href=\"{{build | configURLForResource}}?tab=environment\">build configuration</a>.\n" +
+    "环境变量可以修改在 <a ng-href=\"{{build | configURLForResource}}?tab=environment\">生成配置</a> 的时候。\n" +
     "</p>\n" +
     "<key-value-editor ng-if=\"(build | buildStrategy).env | size\" entries=\"(build | buildStrategy).env\" key-placeholder=\"Name\" value-placeholder=\"Value\" cannot-add cannot-delete cannot-sort is-readonly show-header class=\"mar-bottom-xl block\"></key-value-editor>\n" +
-    "<p ng-if=\"!(build | buildStrategy).env\"><em>The build strategy had no environment variables defined.</em></p>\n" +
+    "<p ng-if=\"!(build | buildStrategy).env\"><em>构建策略没有定义环境变量。</em></p>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.logs\" ng-if=\"!(build | isJenkinsPipelineStrategy) && (buildsLogVersion | canI : 'get')\">\n" +
-    "<uib-tab-heading>Logs</uib-tab-heading>\n" +
+    "<uib-tab-heading>日志</uib-tab-heading>\n" +
     "<log-viewer ng-if=\"selectedTab.logs\" follow-affix-top=\"390\" object=\"build\" context=\"projectContext\" options=\"logOptions\" empty=\"logEmpty\" run=\"logCanRun\">\n" +
-    "<label>Status:</label>\n" +
+    "<label>状态：</label>\n" +
     "<status-icon status=\"build.status.phase\"></status-icon>\n" +
     "<span class=\"space-after\">{{build.status.phase}}</span>\n" +
     "<div ng-if=\"build.status.startTimestamp && !logEmpty\" class=\"log-timestamps\">\n" +
-    "Log from {{build.status.startTimestamp | date : 'medium'}}\n" +
+    "日志从 {{build.status.startTimestamp | date : 'medium'}}\n" +
     "<span ng-if=\"build.status.completionTimestamp\">\n" +
-    "to {{build.status.completionTimestamp | date : 'medium'}}\n" +
+    "到 {{build.status.completionTimestamp | date : 'medium'}}\n" +
     "</span>\n" +
     "</div>\n" +
     "</log-viewer>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.events\" ng-if=\"(eventsVersion | canI : 'watch')\">\n" +
-    "<uib-tab-heading>Events</uib-tab-heading>\n" +
+    "<uib-tab-heading>事件</uib-tab-heading>\n" +
     "<events api-objects=\"eventObjects\" project-context=\"projectContext\" ng-if=\"selectedTab.events\"></events>\n" +
     "</uib-tab>\n" +
     "</uib-tabset>\n" +
@@ -2098,9 +2138,9 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"loaded && error\" class=\"empty-state-message text-center\">\n" +
-    "<h2>The config map could not be loaded.</h2>\n" +
+    "<h2>无法加载配置映射。</h2>\n" +
     "<p>{{error | getErrorDetails}}</p>\n" +
     "</div>\n" +
     "<div ng-if=\"loaded && !error\">\n" +
@@ -2108,23 +2148,23 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"pull-right dropdown\">\n" +
     "\n" +
     "<button ng-if=\"project.metadata.name | canIAddToProject\" type=\"button\" class=\"btn btn-default hidden-xs\" ng-click=\"addToApplication()\">\n" +
-    "Add to Application\n" +
+    "添加到应用程序\n" +
     "</button>\n" +
     "<button ng-if=\"'configmaps' | canIDoAny\" type=\"button\" class=\"dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs\" data-toggle=\"dropdown\">\n" +
-    "Actions\n" +
+    "操作\n" +
     "<span class=\"caret\"></span>\n" +
     "</button>\n" +
     "\n" +
-    "<a href=\"\" ng-if=\"project.metadata.name | canIAddToProject\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\" aria-hidden=\"true\"></i><span class=\"sr-only\">Actions</span></a>\n" +
+    "<a href=\"\" ng-if=\"project.metadata.name | canIAddToProject\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\" aria-hidden=\"true\"></i><span class=\"sr-only\">操作</span></a>\n" +
     "<ul class=\"dropdown-menu dropdown-menu-right actions action-button\">\n" +
     "<li ng-if=\"project.metadata.name | canIAddToProject\" class=\"visible-xs\">\n" +
-    "<a href=\"\" role=\"button\" ng-click=\"addToApplication()\">Add to Application</a>\n" +
+    "<a href=\"\" role=\"button\" ng-click=\"addToApplication()\">添加到应用程序</a>\n" +
     "</li>\n" +
     "<li ng-if=\"configMapsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{configMap | editResourceURL}}\" role=\"button\">Edit</a>\n" +
+    "<a ng-href=\"{{configMap | editResourceURL}}\" role=\"button\">编辑</a>\n" +
     "</li>\n" +
     "<li ng-if=\"configMapsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{configMap | editYamlURL}}\" role=\"button\">Edit YAML</a>\n" +
+    "<a ng-href=\"{{configMap | editYamlURL}}\" role=\"button\">编辑 YAML</a>\n" +
     "</li>\n" +
     "<li ng-if=\"configMapsVersion | canI : 'delete'\">\n" +
     "<delete-link kind=\"ConfigMap\" resource-name=\"{{configMap.metadata.name}}\" project-name=\"{{configMap.metadata.namespace}}\" alerts=\"alerts\">\n" +
@@ -2144,7 +2184,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"configMap\" class=\"row\">\n" +
     "<div class=\"col-sm-12\">\n" +
     "<div ng-if=\"!(configMap.data | hashSize)\" class=\"empty-state-message text-center\">\n" +
-    "<h2>The config map has no items.</h2>\n" +
+    "<h2>此配置映射没有键/值对</h2>\n" +
     "</div>\n" +
     "<div ng-if=\"configMap.data | hashSize\" class=\"table-responsive scroll-shadows-horizontal\">\n" +
     "<table class=\"table table-bordered table-bordered-columns config-map-table key-value-table\">\n" +
@@ -2177,13 +2217,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<div class=\"page-header page-header-bleed-right page-header-bleed-left\">\n" +
     "<div class=\"pull-right\" ng-if=\"project && (configMapsVersion | canI : 'create') && ((configMaps | hashSize) > 0 || filterWithZeroResults)\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/create-config-map\" class=\"btn btn-default\">Create Config Map</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/create-config-map\" class=\"btn btn-default\">创建配置映射</a>\n" +
     "</div>\n" +
     "<h1>\n" +
-    "Config Maps\n" +
+    "配置映射\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'config-maps' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -2201,18 +2241,18 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-12\">\n" +
     "<div ng-if=\"(configMaps | hashSize) == 0\">\n" +
     "<p ng-if=\"!loaded\">\n" +
-    "Loading...\n" +
+    "加载中...\n" +
     "</p>\n" +
     "<div ng-if=\"loaded\" class=\"empty-state-message text-center\">\n" +
     "<div ng-if=\"!filterWithZeroResults\">\n" +
-    "<h2>No config maps.</h2>\n" +
-    "<p>No config maps have been added to project {{projectName}}.</p>\n" +
+    "<h2>没有配置映射。</h2>\n" +
+    "<p>没有配置映射添加到 {{projectName}}项目中。</p>\n" +
     "<p ng-if=\"project && (configMapsVersion | canI : 'create')\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/create-config-map\" class=\"btn btn-primary btn-lg\">Create Config Map</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/create-config-map\" class=\"btn btn-primary btn-lg\">创建配置映射</a>\n" +
     "</p>\n" +
     "</div>\n" +
     "<div ng-if=\"filterWithZeroResults\">\n" +
-    "<h2>The filter is hiding all config maps. <button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"clearFilter()\">Clear All Filters</button></h2>\n" +
+    "<h2>过滤器隐藏所有配置映射。 <button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"clearFilter()\">清除所有过滤条件</button></h2>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -2222,9 +2262,9 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</colgroup>\n" +
     "<thead>\n" +
     "<tr>\n" +
-    "<th>Name</th>\n" +
-    "<th>Created</th>\n" +
-    "<th>Labels</th>\n" +
+    "<th>名称</th>\n" +
+    "<th>创建时间</th>\n" +
+    "<th>标签</th>\n" +
     "</tr>\n" +
     "</thead>\n" +
     "<tbody>\n" +
@@ -2261,47 +2301,47 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"pull-right dropdown\" ng-if=\"deploymentConfig\" ng-hide=\"!('deploymentConfigs' | canIDoAny)\">\n" +
     "\n" +
     "<button ng-if=\"deploymentConfigsInstantiateVersion | canI : 'create'\" class=\"btn btn-default hidden-xs\" ng-click=\"startLatestDeployment()\" ng-disabled=\"!canDeploy()\">\n" +
-    "Deploy\n" +
+    "部署\n" +
     "</button>\n" +
     "\n" +
     "<button type=\"button\" class=\"dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs\" data-toggle=\"dropdown\">\n" +
-    "Actions\n" +
+    "动作\n" +
     "<span class=\"caret\" aria-hidden=\"true\"></span>\n" +
     "</button>\n" +
     "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">Actions</span></a>\n" +
     "<ul class=\"dropdown-menu dropdown-menu-right actions action-button\">\n" +
     "<li class=\"visible-xs-inline\" ng-class=\"{ disabled: !canDeploy() }\" ng-if=\"deploymentConfigsInstantiateVersion | canI : 'create'\">\n" +
-    "<a href=\"\" role=\"button\" ng-attr-aria-disabled=\"{{canDeploy() ? undefined : 'true'}}\" ng-class=\"{ 'disabled-link': !canDeploy() }\" ng-click=\"startLatestDeployment()\">Deploy</a>\n" +
+    "<a href=\"\" role=\"button\" ng-attr-aria-disabled=\"{{canDeploy() ? undefined : 'true'}}\" ng-class=\"{ 'disabled-link': !canDeploy() }\" ng-click=\"startLatestDeployment()\">部署</a>\n" +
     "</li>\n" +
     "<li ng-if=\"deploymentConfigsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{deploymentConfig | editResourceURL}}\" role=\"button\">Edit</a>\n" +
+    "<a ng-href=\"{{deploymentConfig | editResourceURL}}\" role=\"button\">修改</a>\n" +
     "</li>\n" +
     "<li class=\"divider\" ng-if=\"deploymentConfigsVersion | canI : 'update'\"></li>\n" +
     "<li ng-if=\"!deploymentConfig.spec.paused && !updatingPausedState && (deploymentConfigsVersion | canI : 'update')\">\n" +
-    "<a href=\"\" ng-click=\"setPaused(true)\" role=\"button\">Pause Rollouts</a>\n" +
+    "<a href=\"\" ng-click=\"setPaused(true)\" role=\"button\">暂停发布</a>\n" +
     "</li>\n" +
     "<li ng-if=\"deploymentConfig.spec.paused && !updatingPausedState && (deploymentConfigsVersion | canI : 'update')\">\n" +
-    "<a href=\"\" ng-click=\"setPaused(false)\" role=\"button\">Resume Rollouts</a>\n" +
+    "<a href=\"\" ng-click=\"setPaused(false)\" role=\"button\">恢复发布</a>\n" +
     "</li>\n" +
     "<li ng-if=\"deploymentConfigsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}\" role=\"button\">Add Storage</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}\" role=\"button\">添加存储</a>\n" +
     "</li>\n" +
     "<li ng-if=\"!autoscalers.length && (horizontalPodAutoscalersVersion | canI : 'create')\">\n" +
     "\n" +
-    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}\" role=\"button\">Add Autoscaler</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}\" role=\"button\">添加自动伸缩控制器</a>\n" +
     "</li>\n" +
     "<li ng-if=\"autoscalers.length === 1 && (horizontalPodAutoscalersVersion | canI : 'update')\">\n" +
     "\n" +
-    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=HorizontalPodAutoscaler&group=autoscaling&name={{autoscalers[0].metadata.name}}\" role=\"button\">Edit Autoscaler</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=HorizontalPodAutoscaler&group=autoscaling&name={{autoscalers[0].metadata.name}}\" role=\"button\">修改自动伸缩控制器</a>\n" +
     "</li>\n" +
     "<li ng-if=\"deploymentConfigsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"project/{{projectName}}/set-limits?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}\" role=\"button\">Edit Resource Limits</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/set-limits?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}\" role=\"button\">修改资源限制</a>\n" +
     "</li>\n" +
     "<li ng-if=\"deploymentConfigsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{healthCheckURL}}\" role=\"button\">Edit Health Checks</a>\n" +
+    "<a ng-href=\"{{healthCheckURL}}\" role=\"button\">修改健康检查</a>\n" +
     "</li>\n" +
     "<li ng-if=\"deploymentConfigsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{deploymentConfig | editYamlURL}}\" role=\"button\">Edit YAML</a>\n" +
+    "<a ng-href=\"{{deploymentConfig | editYamlURL}}\" role=\"button\">修改 YAML</a>\n" +
     "</li>\n" +
     "<li class=\"divider\" ng-if=\"deploymentConfigsVersion | canI : 'update'\"></li>\n" +
     "<li ng-if=\"deploymentConfigsVersion | canI : 'delete'\">\n" +
@@ -2325,26 +2365,26 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-12\" ng-class=\"{ 'hide-tabs' : !deploymentConfig }\">\n" +
     "<div ng-if=\"deploymentConfig.spec.paused && !updatingPausedState\" class=\"alert alert-info animate-if\">\n" +
     "<span class=\"pficon pficon-info\" aria-hidden=\"true\"></span>\n" +
-    "<strong>{{deploymentConfig.metadata.name}} is paused.</strong>\n" +
-    "This will stop any new rollouts or triggers from running until resumed.\n" +
+    "<strong>{{deploymentConfig.metadata.name}} 已停止发布.</strong>\n" +
+    "在恢复发布之前，任何新的发布或触发器都会停止运行。\n" +
     "<span ng-if=\"!updatingPausedState && (deploymentConfigsVersion | canI : 'update')\" class=\"nowrap\">\n" +
-    "<a href=\"\" ng-click=\"setPaused(false)\" role=\"button\">Resume Rollouts</a>\n" +
+    "<a href=\"\" ng-click=\"setPaused(false)\" role=\"button\">恢复发布</a>\n" +
     "</span>\n" +
     "</div>\n" +
     "<uib-tabset>\n" +
     "<uib-tab active=\"selectedTab.history\">\n" +
-    "<uib-tab-heading>History</uib-tab-heading>\n" +
+    "<uib-tab-heading>历史</uib-tab-heading>\n" +
     "<div ng-if=\"mostRecent\" class=\"deployment-config-summary\">\n" +
     "\n" +
     "<div class=\"h3\">\n" +
     "<span class=\"latest-status\">\n" +
     "<status-icon status=\"mostRecent | deploymentStatus\"></status-icon>\n" +
-    "Deployment\n" +
+    "部署\n" +
     "\n" +
     "<a ng-href=\"{{mostRecent | navigateResourceURL}}\"><span ng-if=\"mostRecent | annotation : 'deploymentVersion'\">#{{mostRecent | annotation : 'deploymentVersion'}}</span><span ng-if=\"!(mostRecent | annotation : 'deploymentVersion')\">{{mostRecent.metadata.name}}</span></a>\n" +
-    "<span ng-if=\"(mostRecent | deploymentStatus) !== 'Failed'\">is</span>\n" +
+    "<span ng-if=\"(mostRecent | deploymentStatus) !== 'Failed'\">状态为</span>\n" +
     "{{mostRecent | deploymentStatus | lowercase}}.\n" +
-    "<a ng-href=\"{{mostRecent | navigateResourceURL}}?tab=logs\">View Log</a>\n" +
+    "<a ng-href=\"{{mostRecent | navigateResourceURL}}?tab=logs\">查看日志</a>\n" +
     "</span>\n" +
     "\n" +
     "</div>\n" +
@@ -2362,10 +2402,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<table class=\"table table-bordered table-mobile\">\n" +
     "<thead>\n" +
     "<tr>\n" +
-    "<th>Deployment</th>\n" +
-    "<th>Status</th>\n" +
-    "<th>Created</th>\n" +
-    "<th>Trigger</th>\n" +
+    "<th>部署</th>\n" +
+    "<th>状态</th>\n" +
+    "<th>创建</th>\n" +
+    "<th>触发</th>\n" +
     "</tr>\n" +
     "</thead>\n" +
     "<tbody ng-if=\"(deployments | hashSize) == 0\">\n" +
@@ -2394,7 +2434,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span am-time-ago=\"deployment.metadata.creationTimestamp\"></span>\n" +
     "</td>\n" +
     "<td data-title=\"Trigger\">\n" +
-    "<span ng-if=\"!deployment.causes.length\">Unknown</span>\n" +
+    "<span ng-if=\"!deployment.causes.length\">未知</span>\n" +
     "<span ng-if=\"deployment.causes.length\">\n" +
     "<span ng-repeat=\"cause in deployment.causes\">\n" +
     "<span ng-switch=\"cause.type\">\n" +
@@ -2403,7 +2443,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<abbr title=\"{{cause.imageTrigger.from | imageObjectRef : null : true}}\">Image</abbr> change\n" +
     "</span>\n" +
     "</span>\n" +
-    "<span ng-switch-when=\"ConfigChange\">Config change</span>\n" +
+    "<span ng-switch-when=\"ConfigChange\">Config Change</span>\n" +
     "<span ng-switch-default>{{cause.type}}</span>\n" +
     "</span>\n" +
     "</span>\n" +
@@ -2414,57 +2454,57 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</table>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.configuration\">\n" +
-    "<uib-tab-heading>Configuration</uib-tab-heading>\n" +
+    "<uib-tab-heading>配置</uib-tab-heading>\n" +
     "<div class=\"resource-details\" ng-if=\"deploymentConfig\">\n" +
     "<div class=\"row\">\n" +
     "<div class=\"col-lg-6\">\n" +
     "\n" +
-    "<h3 class=\"hidden visible-lg visible-xl\">Details</h3>\n" +
+    "<h3 class=\"hidden visible-lg visible-xl\">详情</h3>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
-    "<dt>Selectors:</dt>\n" +
+    "<dt>选择器:</dt>\n" +
     "<dd>\n" +
     "<selector selector=\"deploymentConfig.spec.selector\"></selector>\n" +
     "</dd>\n" +
-    "<dt>Replicas:</dt>\n" +
+    "<dt>副本:</dt>\n" +
     "<dd>\n" +
     "<replicas spec=\"deploymentConfig.spec.replicas\" disable-scaling=\"autoscalers.length || deploymentInProgress\" scale-fn=\"scale(replicas)\" deployment=\"deploymentConfig\"></replicas>\n" +
     "<span ng-if=\"autoscalers.length\">(autoscaled)</span>\n" +
     "</dd>\n" +
-    "<dt ng-if-start=\"deploymentConfig.spec.strategy.type\">Strategy:</dt>\n" +
+    "<dt ng-if-start=\"deploymentConfig.spec.strategy.type\">策略:</dt>\n" +
     "<dd ng-if-end>{{deploymentConfig.spec.strategy.type}}</dd>\n" +
     "<div ng-if=\"deploymentConfig.spec.strategy.rollingParams || deploymentConfig.spec.strategy.recreateParams\">\n" +
-    "<dt>Timeout:</dt>\n" +
-    "<dd>{{strategyParams.timeoutSeconds}} sec</dd>\n" +
-    "<dt ng-if-start=\"deploymentConfig.spec.strategy.rollingParams\">Update Period:</dt>\n" +
-    "<dd>{{strategyParams.updatePeriodSeconds}} sec</dd>\n" +
-    "<dt>Interval:</dt>\n" +
-    "<dd>{{strategyParams.intervalSeconds}} sec</dd>\n" +
-    "<dt>Max Unavailable:</dt>\n" +
+    "<dt>超时:</dt>\n" +
+    "<dd>{{strategyParams.timeoutSeconds}} 秒</dd>\n" +
+    "<dt ng-if-start=\"deploymentConfig.spec.strategy.rollingParams\">更新周期:</dt>\n" +
+    "<dd>{{strategyParams.updatePeriodSeconds}} 秒</dd>\n" +
+    "<dt>间隔:</dt>\n" +
+    "<dd>{{strategyParams.intervalSeconds}} 秒</dd>\n" +
+    "<dt>最大不可用:</dt>\n" +
     "<dd>{{strategyParams.maxUnavailable}}</dd>\n" +
-    "<dt>Max Surge:</dt>\n" +
+    "<dt>最大过载:</dt>\n" +
     "<dd ng-if-end>{{strategyParams.maxSurge}}</dd>\n" +
     "</div>\n" +
     "\n" +
     "</dl>\n" +
-    "<h3>Template</h3>\n" +
+    "<h3>模板</h3>\n" +
     "<pod-template pod-template=\"deploymentConfig.spec.template\" images-by-docker-reference=\"imagesByDockerReference\" builds=\"builds\" detailed=\"true\" add-health-check-url=\"{{(deploymentConfigsVersion | canI : 'update') ? healthCheckURL : ''}}\">\n" +
     "</pod-template>\n" +
-    "<h3>Volumes</h3>\n" +
+    "<h3>容量</h3>\n" +
     "<p ng-if=\"!deploymentConfig.spec.template.spec.volumes.length && !(deploymentConfigsVersion | canI : 'update')\">\n" +
     "none\n" +
     "</p>\n" +
     "<volumes volumes=\"deploymentConfig.spec.template.spec.volumes\" namespace=\"project.metadata.name\" can-remove=\"deploymentConfigsVersion | canI : 'update'\" remove-fn=\"removeVolume(volume)\">\n" +
     "</volumes>\n" +
     "<p ng-if=\"deploymentConfigsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}\">Add Storage</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}\">添加存储</a>\n" +
     "<span class=\"action-divider\" aria-hidden=\"true\">|</span>\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/add-config-volume?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}\">Add Config Files</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/add-config-volume?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}\">添加配置文件</a>\n" +
     "</p>\n" +
-    "<h3>Triggers</h3>\n" +
+    "<h3>触发器</h3>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
-    "<dt>Manual (CLI):\n" +
+    "<dt>手动 (CLI):\n" +
     "<a href=\"{{'deployment-operations' | helpLink}}\" target=\"_blank\">\n" +
-    "<span class=\"learn-more-block\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span>\n" +
+    "<span class=\"learn-more-block\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span>\n" +
     "</a>\n" +
     "</dt>\n" +
     "<dd>\n" +
@@ -2474,14 +2514,14 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span ng-switch=\"trigger.type\">\n" +
     "<span ng-switch-default>{{trigger.type}}</span>\n" +
     "<span ng-switch-when=\"ImageChange\" ng-if=\"trigger.imageChangeParams.from\">\n" +
-    "<dt>New Image For:</dt>\n" +
+    "<dt>新镜像:</dt>\n" +
     "<dd>\n" +
     "{{trigger.imageChangeParams.from | imageObjectRef : deploymentConfig.metadata.namespace}}\n" +
     "<small ng-if=\"!trigger.imageChangeParams.automatic\" class=\"text-muted\">(disabled)</small>\n" +
     "</dd>\n" +
     "</span>\n" +
     "<span ng-switch-when=\"ConfigChange\">\n" +
-    "<dt>Change Of:</dt>\n" +
+    "<dt>内容变更:</dt>\n" +
     "<dd>Config</dd>\n" +
     "</span>\n" +
     "</span>\n" +
@@ -2493,20 +2533,20 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "\n" +
     "<div class=\"col-lg-6\">\n" +
-    "<h3>Autoscaling</h3>\n" +
+    "<h3>自动伸缩控制器</h3>\n" +
     "\n" +
     "<div ng-repeat=\"warning in hpaWarnings\" class=\"alert alert-warning\">\n" +
     "<span class=\"pficon pficon-warning-triangle-o\" aria-hidden=\"true\"></span>\n" +
-    "<span class=\"sr-only\">Warning:</span>\n" +
+    "<span class=\"sr-only\">警告:</span>\n" +
     "{{warning.message}}\n" +
     "\n" +
-    "<a ng-href=\"project/{{projectName}}/set-limits?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}\" ng-if=\"warning.reason === 'NoCPURequest' && (deploymentConfigsVersion | canI : 'update')\" role=\"button\">Edit Resource\n" +
+    "<a ng-href=\"project/{{projectName}}/set-limits?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}\" ng-if=\"warning.reason === 'NoCPURequest' && (deploymentConfigsVersion | canI : 'update')\" role=\"button\">修改资源\n" +
     "<span ng-if=\"!('cpu' | isRequestCalculated : project)\">Requests and</span> Limits</a>\n" +
     "</div>\n" +
     "\n" +
     "<div ng-if=\"!autoscalers.length\">\n" +
-    "<a ng-if=\"horizontalPodAutoscalersVersion | canI : 'create'\" ng-href=\"project/{{projectName}}/edit/autoscaler?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}\" role=\"button\">Add Autoscaler</a>\n" +
-    "<span ng-if=\"!(horizontalPodAutoscalersVersion | canI : 'create')\">Autoscaling is not enabled. There are no autoscalers for this deployment config.</span>\n" +
+    "<a ng-if=\"horizontalPodAutoscalersVersion | canI : 'create'\" ng-href=\"project/{{projectName}}/edit/autoscaler?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}\" role=\"button\">添加自动伸缩控制器</a>\n" +
+    "<span ng-if=\"!(horizontalPodAutoscalersVersion | canI : 'create')\">自动自动伸缩控制器没有启用。部署配置没有自动伸缩控制器的设置。</span>\n" +
     "</div>\n" +
     "\n" +
     "<div ng-repeat=\"hpa in autoscalers\">\n" +
@@ -2514,9 +2554,9 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-if=\"deploymentConfig.spec.strategy.type !== 'Custom'\">\n" +
     "<h3>\n" +
-    "Hooks\n" +
+    "钩子\n" +
     "<span class=\"learn-more-inline\">\n" +
-    "<a ng-href=\"{{'lifecycle_hooks' | helpLink}}\" target=\"_blank\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
+    "<a ng-href=\"{{'lifecycle_hooks' | helpLink}}\" target=\"_blank\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
     "</span>\n" +
     "</h3>\n" +
     "<div ng-if=\"strategyParams.pre\">\n" +
@@ -2529,7 +2569,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<lifecycle-hook deployment-config=\"deploymentConfig\" type=\"post\"></lifecycle-hook>\n" +
     "</div>\n" +
     "<p ng-if=\"!strategyParams.pre && !strategyParams.mid && !strategyParams.post\">\n" +
-    "none\n" +
+    "没有\n" +
     "</p>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -2538,11 +2578,11 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</uib-tab>\n" +
     "<uib-tab heading=\"Environment\" active=\"selectedTab.environment\" ng-if=\"deploymentConfig\">\n" +
-    "<uib-tab-heading>Environment</uib-tab-heading>\n" +
+    "<uib-tab-heading>环境</uib-tab-heading>\n" +
     "<edit-environment-variables api-object=\"deploymentConfig\"></edit-environment-variables>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.events\" ng-if=\"eventsVersion | canI : 'watch'\">\n" +
-    "<uib-tab-heading>Events</uib-tab-heading>\n" +
+    "<uib-tab-heading>事件</uib-tab-heading>\n" +
     "<events api-objects=\"[ deploymentConfig ]\" project-context=\"projectContext\" ng-if=\"selectedTab.events\"></events>\n" +
     "</uib-tab>\n" +
     "</uib-tabset>\n" +
@@ -2564,37 +2604,37 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<h1 class=\"contains-actions\">\n" +
     "<div class=\"pull-right dropdown\" ng-if=\"deployment\" ng-hide=\"!('deployments' | canIDoAny)\">\n" +
     "<button type=\"button\" class=\"dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs\" data-toggle=\"dropdown\">\n" +
-    "Actions\n" +
+    "动作\n" +
     "<span class=\"caret\" aria-hidden=\"true\"></span>\n" +
     "</button>\n" +
-    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">Actions</span></a>\n" +
+    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">动作</span></a>\n" +
     "<ul class=\"dropdown-menu dropdown-menu-right actions action-button\">\n" +
     "<li ng-if=\"!deployment.spec.paused && !updatingPausedState && (deploymentsVersion | canI : 'update')\">\n" +
-    "<a href=\"\" ng-click=\"setPaused(true)\" role=\"button\">Pause Rollouts</a>\n" +
+    "<a href=\"\" ng-click=\"setPaused(true)\" role=\"button\">暂停发布</a>\n" +
     "</li>\n" +
     "<li ng-if=\"deployment.spec.paused && !updatingPausedState && (deploymentsVersion | canI : 'update')\">\n" +
-    "<a href=\"\" ng-click=\"setPaused(false)\" role=\"button\">Resume Rollouts</a>\n" +
+    "<a href=\"\" ng-click=\"setPaused(false)\" role=\"button\">继续发布</a>\n" +
     "</li>\n" +
     "<li class=\"divider\" ng-if=\"!updatingPausedState && (deploymentsVersion | canI : 'update')\"></li>\n" +
     "<li ng-if=\"deploymentsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=Deployment&name={{deployment.metadata.name}}&group=apps\" role=\"button\">Add Storage</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=Deployment&name={{deployment.metadata.name}}&group=apps\" role=\"button\">添加存储</a>\n" +
     "</li>\n" +
     "<li ng-if=\"!autoscalers.length && (horizontalPodAutoscalersVersion | canI : 'create')\">\n" +
     "\n" +
-    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=Deployment&name={{deployment.metadata.name}}&group=apps\" role=\"button\">Add Autoscaler</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=Deployment&name={{deployment.metadata.name}}&group=apps\" role=\"button\">添加自动伸缩控制器</a>\n" +
     "</li>\n" +
     "<li ng-if=\"autoscalers.length === 1 && (horizontalPodAutoscalersVersion | canI : 'update')\">\n" +
     "\n" +
-    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=HorizontalPodAutoscaler&group=autoscaling&name={{autoscalers[0].metadata.name}}\" role=\"button\">Edit Autoscaler</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/edit/autoscaler?kind=HorizontalPodAutoscaler&group=autoscaling&name={{autoscalers[0].metadata.name}}\" role=\"button\">修改自动伸缩控制器</a>\n" +
     "</li>\n" +
     "<li ng-if=\"deploymentsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"project/{{projectName}}/set-limits?kind=Deployment&name={{deployment.metadata.name}}&group=apps\" role=\"button\">Edit Resource Limits</a>\n" +
+    "<a ng-href=\"project/{{projectName}}/set-limits?kind=Deployment&name={{deployment.metadata.name}}&group=apps\" role=\"button\">修改资源限制</a>\n" +
     "</li>\n" +
     "<li ng-if=\"deploymentsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{healthCheckURL}}\" role=\"button\">Edit Health Checks</a>\n" +
+    "<a ng-href=\"{{healthCheckURL}}\" role=\"button\">修改健康检查</a>\n" +
     "</li>\n" +
     "<li ng-if=\"deploymentsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{deployment | editYamlURL}}\" role=\"button\">Edit YAML</a>\n" +
+    "<a ng-href=\"{{deployment | editYamlURL}}\" role=\"button\">修改 YAML</a>\n" +
     "</li>\n" +
     "<li class=\"divider\" ng-if=\"deploymentsVersion | canI : 'update'\"></li>\n" +
     "<li ng-if=\"deploymentsVersion | canI : 'delete'\">\n" +
@@ -2612,20 +2652,20 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"middle-content\" persist-tab-state>\n" +
     "<div class=\"container-fluid\">\n" +
-    "<div ng-if=\"!loaded\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\">加载中...</div>\n" +
     "<div class=\"row\" ng-if=\"loaded\">\n" +
     "<div class=\"col-md-12\" ng-class=\"{ 'hide-tabs' : !deployment }\">\n" +
     "<div ng-if=\"deployment.spec.paused && !updatingPausedState\" class=\"alert alert-info animate-if\">\n" +
     "<span class=\"pficon pficon-info\" aria-hidden=\"true\"></span>\n" +
-    "<strong>{{deployment.metadata.name}} is paused.</strong>\n" +
-    "This pauses any in-progress rollouts and stops new rollouts from running until the deployment is resumed.\n" +
+    "<strong>{{deployment.metadata.name}} 暂停发布.</strong>\n" +
+    "暂停了任何正在进行的部署，并停止运行直到恢复部署为止。\n" +
     "<span ng-if=\"!updatingPausedState && (deploymentsVersion | canI : 'update')\" class=\"nowrap\">\n" +
-    "<a href=\"\" ng-click=\"setPaused(false)\" role=\"button\">Resume Rollouts</a>\n" +
+    "<a href=\"\" ng-click=\"setPaused(false)\" role=\"button\">继续发布</a>\n" +
     "</span>\n" +
     "</div>\n" +
     "<uib-tabset>\n" +
     "<uib-tab active=\"selectedTab.history\">\n" +
-    "<uib-tab-heading>History</uib-tab-heading>\n" +
+    "<uib-tab-heading>历史</uib-tab-heading>\n" +
     "<div class=\"table-filter-extension\">\n" +
     "<div class=\"data-toolbar\">\n" +
     "<div class=\"data-toolbar-filter\">\n" +
@@ -2642,10 +2682,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</colgroup>\n" +
     "<thead>\n" +
     "<tr>\n" +
-    "<th>Version</th>\n" +
-    "<th>Name</th>\n" +
-    "<th>Replicas</th>\n" +
-    "<th>Created</th>\n" +
+    "<th>版本</th>\n" +
+    "<th>名称</th>\n" +
+    "<th>副本</th>\n" +
+    "<th>创建</th>\n" +
     "</tr>\n" +
     "</thead>\n" +
     "<tbody ng-if=\"(replicaSetsForDeployment | size) == 0\">\n" +
@@ -2670,12 +2710,12 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</table>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.configuration\">\n" +
-    "<uib-tab-heading>Configuration</uib-tab-heading>\n" +
+    "<uib-tab-heading>配置</uib-tab-heading>\n" +
     "<div class=\"resource-details\" ng-if=\"deployment\">\n" +
     "<div class=\"row\">\n" +
     "<div class=\"col-lg-6\">\n" +
     "\n" +
-    "<h3 class=\"hidden visible-lg visible-xl\">Details</h3>\n" +
+    "<h3 class=\"hidden visible-lg visible-xl\">详情</h3>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
     "<dt>Selectors:</dt>\n" +
     "<dd>\n" +
@@ -2993,21 +3033,21 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"pod\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "<div class=\"pull-right dropdown\" ng-hide=\"!('pods' | canIDoAny)\">\n" +
     "<button type=\"button\" class=\"dropdown-toggle actions-dropdown-btn btn btn-default hidden-xs\" data-toggle=\"dropdown\">\n" +
-    "Actions\n" +
+    "动作\n" +
     "<span class=\"caret\"></span>\n" +
     "</button>\n" +
-    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">Actions</span></a>\n" +
+    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">动作</span></a>\n" +
     "<ul class=\"dropdown-menu dropdown-menu-right actions action-button\">\n" +
     "<li ng-if=\"(pod | annotation:'deploymentConfig') && (deploymentConfigsVersion | canI : 'update')\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{pod | annotation:'deploymentConfig'}}\" role=\"button\">Add Storage</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{pod | annotation:'deploymentConfig'}}\" role=\"button\">添加存储</a>\n" +
     "</li>\n" +
     "<li ng-if=\"podsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{pod | editYamlURL}}\" role=\"button\">Edit YAML</a>\n" +
+    "<a ng-href=\"{{pod | editYamlURL}}\" role=\"button\">修改 YAML</a>\n" +
     "</li>\n" +
     "<li ng-if=\"podsVersion | canI : 'delete'\">\n" +
     "<delete-link kind=\"Pod\" resource-name=\"{{pod.metadata.name}}\" project-name=\"{{pod.metadata.namespace}}\" alerts=\"alerts\">\n" +
@@ -3031,19 +3071,19 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-12\">\n" +
     "<uib-tabset>\n" +
     "<uib-tab heading=\"Details\" active=\"selectedTab.details\">\n" +
-    "<uib-tab-heading>Details</uib-tab-heading>\n" +
+    "<uib-tab-heading>详情</uib-tab-heading>\n" +
     "<ng-include src=\" 'views/browse/_pod-details.html' \"></ng-include>\n" +
     "</uib-tab>\n" +
     "<uib-tab heading=\"Environment\" active=\"selectedTab.environment\">\n" +
-    "<uib-tab-heading>Environment</uib-tab-heading>\n" +
+    "<uib-tab-heading>环境</uib-tab-heading>\n" +
     "<p ng-if=\"dcName\">\n" +
     "<span class=\"pficon pficon-info\" aria-hidden=\"true\"></span>\n" +
-    "Environment variables can be edited on deployment config\n" +
+    "可以在部署配置上编辑环境变量。\n" +
     "<a ng-href=\"{{dcName | navigateResourceURL : 'DeploymentConfig' : pod.metadata.namespace}}?tab=environment\">{{dcName}}</a>.\n" +
     "</p>\n" +
     "<p ng-if=\"!dcName && controllerRef\">\n" +
     "<span class=\"pficon pficon-info\" aria-hidden=\"true\"></span>\n" +
-    "Environment variables were set by {{controllerRef.kind | humanizeKind}}\n" +
+    "环境变量可以设置为 {{controllerRef.kind | humanizeKind}}\n" +
     "<a ng-href=\"{{controllerRef.name | navigateResourceURL : controllerRef.kind : pod.metadata.namespace}}?tab=environment\">{{controllerRef.name}}</a>.\n" +
     "</p>\n" +
     "<edit-environment-variables api-object=\"pod\" ng-readonly=\"true\"></edit-environment-variables>\n" +
@@ -3054,10 +3094,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</pod-metrics>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.logs\" ng-if=\"podsLogVersion | canI : 'get'\">\n" +
-    "<uib-tab-heading>Logs</uib-tab-heading>\n" +
+    "<uib-tab-heading>日志</uib-tab-heading>\n" +
     "<log-viewer ng-if=\"selectedTab.logs\" follow-affix-top=\"390\" object=\"pod\" context=\"projectContext\" options=\"logOptions\" empty=\"logEmpty\" run=\"logCanRun\" ng-class=\"{'log-viewer-select': pod.spec.containers.length > 1}\">\n" +
     "<span class=\"container-details\">\n" +
-    "<label for=\"selectLogContainer\">Container:</label>\n" +
+    "<label for=\"selectLogContainer\">容器:</label>\n" +
     "<span ng-if=\"pod.spec.containers.length === 1\">\n" +
     "{{pod.spec.containers[0].name}}\n" +
     "</span>\n" +
@@ -3079,26 +3119,26 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</log-viewer>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.terminal\" select=\"terminalTabWasSelected = true\" ng-init=\"containers = pod.status.containerStatuses\">\n" +
-    "<uib-tab-heading>Terminal</uib-tab-heading>\n" +
+    "<uib-tab-heading>终端</uib-tab-heading>\n" +
     "<div ng-if=\"noContainersYet\" class=\"empty-state-message text-center\">\n" +
     "<h2>\n" +
-    "No running containers\n" +
+    "没有运行的容器\n" +
     "</h2>\n" +
     "</div>\n" +
     "<div ng-if=\"!noContainersYet\" class=\"mar-top-xl mar-bottom-xl\">\n" +
     "<div class=\"mar-bottom-md\">\n" +
     "<span class=\"pficon pficon-info\" aria-hidden=\"true\"></span>\n" +
     "<span ng-class=\"{ 'mar-right-md': hasFullscreen }\">\n" +
-    "When you navigate away from this pod, any open terminal connections will be closed. This will kill any foreground processes you started from the&nbsp;terminal.\n" +
+    "当你导航离开这个pod, 任何打开的终端连接都将被关闭。这将杀死从终端开始的任何前台进程。\n" +
     "</span>\n" +
-    "<a href=\"\" ng-if=\"hasFullscreen\" ng-click=\"fullscreenTerminal()\" class=\"nowrap\" aria-hidden=\"true\">Open Fullscreen Terminal</a>\n" +
+    "<a href=\"\" ng-if=\"hasFullscreen\" ng-click=\"fullscreenTerminal()\" class=\"nowrap\" aria-hidden=\"true\">进入全屏模式</a>\n" +
     "</div>\n" +
     "<alerts ng-if=\"selectedTerminalContainer.status === 'disconnected'\" alerts=\"terminalDisconnectAlert\"></alerts>\n" +
     "<div class=\"mar-left-xl\">\n" +
     "<div class=\"row\">\n" +
     "<div class=\"pad-left-none pad-bottom-md col-sm-6 col-lg-4\">\n" +
     "<span ng-if=\"pod.spec.containers.length === 1\">\n" +
-    "<label for=\"selectLogContainer\">Container:</label>\n" +
+    "<label for=\"selectLogContainer\">容器:</label>\n" +
     "{{pod.spec.containers[0].name}}\n" +
     "</span>\n" +
     "<ui-select ng-model=\"selectedTerminalContainer\" on-select=\"onTerminalSelectChange(selectedTerminalContainer)\" ng-if=\"pod.spec.containers.length > 1\" class=\"mar-left-none pad-left-none pad-right-none\">\n" +
@@ -3136,7 +3176,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.events\" ng-if=\"eventsVersion | canI : 'watch'\">\n" +
-    "<uib-tab-heading>Events</uib-tab-heading>\n" +
+    "<uib-tab-heading>事件</uib-tab-heading>\n" +
     "<events api-objects=\"[ pod ]\" project-context=\"projectContext\" ng-if=\"selectedTab.events\"></events>\n" +
     "</uib-tab>\n" +
     "</uib-tabset>\n" +
@@ -3154,7 +3194,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-md\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-md\">加载中...</div>\n" +
     "<div ng-if=\"replicaSet\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "\n" +
@@ -3165,7 +3205,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "{{replicaSet.metadata.name}}\n" +
     "<span ng-if=\"deploymentConfigMissing\" class=\"pficon pficon-warning-triangle-o\" style=\"cursor: help; vertical-align: middle\" data-toggle=\"tooltip\" data-trigger=\"hover\" title=\"The deployment's deployment config is missing.\" aria-hidden=\"true\">\n" +
     "</span>\n" +
-    "<span ng-if=\"deploymentConfigMissing\" class=\"sr-only\">Warning: The deployment's deployment config is missing.</span>\n" +
+    "<span ng-if=\"deploymentConfigMissing\" class=\"sr-only\">警告: 部署的配置丢失了。</span>\n" +
     "<small class=\"meta\">created <span am-time-ago=\"replicaSet.metadata.creationTimestamp\"></span></small>\n" +
     "</h1>\n" +
     "<labels ng-if=\"deploymentConfigName\" labels=\"replicaSet.metadata.labels\" clickable=\"true\" kind=\"deployments\" title-kind=\"deployments for deployment config {{deploymentConfigName}}\" project-name=\"{{replicaSet.metadata.namespace}}\" limit=\"3\" navigate-url=\"{{replicaSet | configURLForResource}}\"></labels>\n" +
@@ -3179,21 +3219,21 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-12\">\n" +
     "<uib-tabset>\n" +
     "<uib-tab active=\"selectedTab.details\">\n" +
-    "<uib-tab-heading>Details</uib-tab-heading>\n" +
+    "<uib-tab-heading>详情</uib-tab-heading>\n" +
     "<div class=\"resource-details\">\n" +
     "<ng-include src=\" 'views/browse/_replica-set-details.html' \"></ng-include>\n" +
     "</div>\n" +
     "</uib-tab>\n" +
     "<uib-tab heading=\"Environment\" active=\"selectedTab.environment\">\n" +
-    "<uib-tab-heading>Environment</uib-tab-heading>\n" +
+    "<uib-tab-heading>环境</uib-tab-heading>\n" +
     "<p ng-if=\"deployment && (deploymentsVersion | canI : 'update')\">\n" +
     "<span class=\"pficon pficon-info\" aria-hidden=\"true\"></span>\n" +
-    "Environment variables can be edited on the deployment\n" +
+    "环境变量可以在部署时修改\n" +
     "<a ng-href=\"{{deployment | navigateResourceURL}}?tab=environment\">{{deployment.metadata.name}}</a>.\n" +
     "</p>\n" +
     "<p ng-if=\"deploymentConfigName && (deploymentConfigsVersion | canI : 'update')\">\n" +
     "<span class=\"pficon pficon-info\" aria-hidden=\"true\"></span>\n" +
-    "Environment variables can be edited on deployment config\n" +
+    "环境变量可以在部署配置上修改\n" +
     "<a ng-href=\"{{replicaSet | configURLForResource}}?tab=environment\">{{deploymentConfigName}}</a>.\n" +
     "</p>\n" +
     "\n" +
@@ -3206,17 +3246,17 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</deployment-metrics>\n" +
     "</uib-tab>\n" +
     "<uib-tab ng-if=\"deploymentConfigName && logOptions.version && (deploymentConfigsLogVersion | canI : 'get')\" active=\"selectedTab.logs\">\n" +
-    "<uib-tab-heading>Logs</uib-tab-heading>\n" +
+    "<uib-tab-heading>日志</uib-tab-heading>\n" +
     "<log-viewer ng-if=\"selectedTab.logs\" follow-affix-top=\"390\" object=\"replicaSet\" context=\"projectContext\" options=\"logOptions\" empty=\"logEmpty\" run=\"logCanRun\">\n" +
     "<span ng-if=\"replicaSet | deploymentStatus\">\n" +
-    "<label>Status:</label>\n" +
+    "<label>状态:</label>\n" +
     "<status-icon status=\"replicaSet | deploymentStatus\"></status-icon>\n" +
     "{{replicaSet | deploymentStatus}}\n" +
     "</span>\n" +
     "</log-viewer>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.events\" ng-if=\"eventsVersion | canI : 'watch'\">\n" +
-    "<uib-tab-heading>Events</uib-tab-heading>\n" +
+    "<uib-tab-heading>事件</uib-tab-heading>\n" +
     "<events api-objects=\"[ replicaSet ]\" project-context=\"projectContext\" ng-if=\"selectedTab.events\"></events>\n" +
     "</uib-tab>\n" +
     "</uib-tabset>\n" +
@@ -3234,21 +3274,21 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"route\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "<div class=\"pull-right dropdown\" ng-hide=\"!('routes' | canIDoAny)\">\n" +
     "<button type=\"button\" class=\"dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs\" data-toggle=\"dropdown\">\n" +
-    "Actions\n" +
+    "动作\n" +
     "<span class=\"caret\" aria-hidden=\"true\"></span>\n" +
     "</button>\n" +
-    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">Actions</span></a>\n" +
+    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">动作</span></a>\n" +
     "<ul class=\"dropdown-menu dropdown-menu-right actions action-button\">\n" +
     "<li ng-if=\"routesVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{route | editResourceURL}}\" role=\"button\">Edit</a>\n" +
+    "<a ng-href=\"{{route | editResourceURL}}\" role=\"button\">修改</a>\n" +
     "</li>\n" +
     "<li ng-if=\"routesVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{route | editYamlURL}}\" role=\"button\">Edit YAML</a>\n" +
+    "<a ng-href=\"{{route | editYamlURL}}\" role=\"button\">修改 YAML</a>\n" +
     "</li>\n" +
     "<li ng-if=\"routesVersion | canI : 'delete'\">\n" +
     "<delete-link kind=\"Route\" resource-name=\"{{route.metadata.name}}\" project-name=\"{{route.metadata.namespace}}\" alerts=\"alerts\">\n" +
@@ -3276,7 +3316,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</span>\n" +
     "<div class=\"meta\">\n" +
     "<status-icon status=\"'Pending'\"></status-icon>\n" +
-    "The route is not accepting traffic yet because it has not been admitted by a router.\n" +
+    "这条线路还没有接受流量，因为它还没有被路由器接收。\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-repeat=\"ingress in route.status.ingress\" ng-init=\"admittedCondition = (ingress | routeIngressCondition : 'Admitted')\" class=\"route-status\">\n" +
@@ -3292,7 +3332,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</span>\n" +
     "</div>\n" +
     "<div class=\"meta\">\n" +
-    "<span ng-if=\"!admittedCondition\">Admission status unknown for router '{{ingress.routerName}}'</span>\n" +
+    "<span ng-if=\"!admittedCondition\">'{{ingress.routerName}}' 路由器的进入状态未知</span>\n" +
     "<span ng-if=\"admittedCondition.status === 'True'\">\n" +
     "<status-icon status=\"'Succeeded'\"></status-icon>\n" +
     "Exposed on router '{{ingress.routerName}}' <span am-time-ago=\"admittedCondition.lastTransitionTime\"></span>\n" +
@@ -3309,11 +3349,11 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
-    "<h4 class=\"mar-top-xl\">Details</h4>\n" +
+    "<h4 class=\"mar-top-xl\">详情</h4>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
     "<dt ng-if-start=\"route.spec.wildcardPolicy && route.spec.wildcardPolicy !== 'None' && route.spec.wildcardPolicy !== 'Subdomain'\">Wildcard Policy:</dt>\n" +
     "<dd ng-if-end>{{route.spec.wildcardPolicy}}</dd>\n" +
-    "<dt>Path:</dt>\n" +
+    "<dt>路径:</dt>\n" +
     "<dd>\n" +
     "<span ng-if=\"route.spec.path\">{{route.spec.path}}</span>\n" +
     "<span ng-if=\"!route.spec.path\"><em>none</em></span>\n" +
@@ -3322,7 +3362,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<dd>\n" +
     "<a ng-href=\"{{route.spec.to.name | navigateResourceURL : route.spec.to.kind : route.metadata.namespace}}\">{{route.spec.to.name}}</a>\n" +
     "</dd>\n" +
-    "<dt>Target Port:</dt>\n" +
+    "<dt>目标端口:</dt>\n" +
     "<dd>\n" +
     "<span ng-if=\"route.spec.port.targetPort\">\n" +
     "{{route.spec.port.targetPort}}\n" +
@@ -3335,9 +3375,9 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</dl>\n" +
     "<div ng-if=\"route.spec.alternateBackends.length\" class=\"row\">\n" +
     "<div class=\"col-sm-12 mar-bottom-lg\">\n" +
-    "<h4>Traffic</h4>\n" +
+    "<h4>通信</h4>\n" +
     "<div class=\"help-block\">\n" +
-    "This route splits traffic across multiple services.\n" +
+    "这条路由将跨多个服务进行通信。\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"col-sm-12 col-md-5 col-md-push-7 mar-bottom-lg\">\n" +
@@ -3347,8 +3387,8 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<table class=\"table table-bordered\">\n" +
     "<thead>\n" +
     "<tr>\n" +
-    "<th>Service</th>\n" +
-    "<th>Weight</th>\n" +
+    "<th>服务</th>\n" +
+    "<th>重要性</th>\n" +
     "</tr>\n" +
     "</thead>\n" +
     "<tbody>\n" +
@@ -3373,7 +3413,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div style=\"margin-bottom: 10px\">\n" +
-    "<h4>TLS Settings</h4>\n" +
+    "<h4>TLS 设置</h4>\n" +
     "<dl class=\"dl-horizontal left\" ng-if=\"route.spec.tls\">\n" +
     "<dt>Termination Type:</dt>\n" +
     "<dd>{{route.spec.tls.termination | humanizeTLSTermination}}</dd>\n" +
@@ -3421,9 +3461,9 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</dl>\n" +
     "<p ng-if=\"!route.spec.tls\">\n" +
-    "TLS is not enabled.\n" +
+    "TLS 没有启用.\n" +
     "<span ng-if=\"routesVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{route | editResourceURL}}\" role=\"button\">Edit</a> this route to enable secure network traffic.\n" +
+    "<a ng-href=\"{{route | editResourceURL}}\" role=\"button\">修改</a> 此路由以启用安全的网络流量。\n" +
     "</span>\n" +
     "</p>\n" +
     "</div>\n" +
@@ -3443,7 +3483,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<div class=\"page-header page-header-bleed-right page-header-bleed-left\">\n" +
     "<div class=\"pull-right\" ng-if=\"project && (routesVersion | canI : 'create') && ((routes | hashSize) > 0 || filterWithZeroResults)\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/create-route\" class=\"btn btn-default\">Create Route</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/create-route\" class=\"btn btn-default\">创建路由</a>\n" +
     "</div>\n" +
     "<h1>\n" +
     "路由\n" +
@@ -3474,7 +3514,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<h2>没有路由</h2>\n" +
     "<p>没有路由添加到项目 {{projectName}}.</p>\n" +
     "<p ng-if=\"project && (routesVersion | canI : 'create') && !filterWithZeroResults\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/create-route\" class=\"btn btn-primary btn-lg\">Create Route</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/create-route\" class=\"btn btn-primary btn-lg\">创建路由</a>\n" +
     "</p>\n" +
     "</div>\n" +
     "<div ng-if=\"filterWithZeroResults\">\n" +
@@ -3492,12 +3532,12 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</colgroup>\n" +
     "<thead>\n" +
     "<tr>\n" +
-    "<th>{{customNameHeader || 'Name'}}</th>\n" +
-    "<th>Hostname</th>\n" +
+    "<th>{{customNameHeader || '名称'}}</th>\n" +
+    "<th>主机名</th>\n" +
     "\n" +
-    "<th>Service</th>\n" +
-    "<th>Target Port</th>\n" +
-    "<th>TLS Termination</th>\n" +
+    "<th>服务</th>\n" +
+    "<th>目标端口</th>\n" +
+    "<th>TLS终端</th>\n" +
     "</tr>\n" +
     "</thead>\n" +
     "<tbody>\n" +
@@ -3560,26 +3600,26 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"secret\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "<div class=\"pull-right dropdown\">\n" +
     "\n" +
     "<button ng-if=\"project.metadata.name | canIAddToProject\" type=\"button\" class=\"btn btn-default hidden-xs\" ng-disabled=\"!secret.data\" ng-click=\"addToApplication()\">\n" +
-    "Add to Application\n" +
+    "添加到应用程序\n" +
     "</button>\n" +
     "<button type=\"button\" class=\"dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs\" data-toggle=\"dropdown\" ng-hide=\"!('secrets' | canIDoAny)\">\n" +
-    "Actions\n" +
+    "操作\n" +
     "<span class=\"caret\"></span>\n" +
     "</button>\n" +
     "\n" +
-    "<a href=\"\" ng-if=\"project.metadata.name | canIAddToProject\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\" aria-hidden=\"true\"></i><span class=\"sr-only\">Actions</span></a>\n" +
+    "<a href=\"\" ng-if=\"project.metadata.name | canIAddToProject\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\" aria-hidden=\"true\"></i><span class=\"sr-only\">操作</span></a>\n" +
     "<ul class=\"dropdown-menu dropdown-menu-right actions action-button\">\n" +
     "<li ng-if=\"(project.metadata.name | canIAddToProject)\" class=\"visible-xs\">\n" +
     "<a href=\"\" role=\"button\" ng-class=\"{ 'disabled-link': !secret.data }\" ng-attr-aria-disabled=\"{{!secret.data ? 'true' : undefined}}\" ng-click=\"addToApplication()\">Add to Application</a>\n" +
     "</li>\n" +
     "<li ng-if=\"secretsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{secret | editYamlURL}}\" role=\"button\">Edit YAML</a>\n" +
+    "<a ng-href=\"{{secret | editYamlURL}}\" role=\"button\">编辑 YAML</a>\n" +
     "</li>\n" +
     "<li ng-if=\"secretsVersion | canI : 'delete'\">\n" +
     "<delete-link kind=\"Secret\" resource-name=\"{{secret.metadata.name}}\" project-name=\"{{secret.metadata.namespace}}\" alerts=\"alerts\">\n" +
@@ -3601,7 +3641,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"resource-details\">\n" +
     "<h2 class=\"mar-top-none\">\n" +
     "{{secret.type}}\n" +
-    "<small class=\"mar-left-sm\"><a href=\"\" ng-if=\"secret.data\" ng-click=\"view.showSecret = !view.showSecret\">{{view.showSecret ? \"Hide\" : \"Reveal\"}} Secret</a></small>\n" +
+    "<small class=\"mar-left-sm\"><a href=\"\" ng-if=\"secret.data\" ng-click=\"view.showSecret = !view.showSecret\">{{view.showSecret ? \"隐藏\" : \"显示\"}}密钥</a></small>\n" +
     "</h2>\n" +
     "<dl class=\"secret-data left\">\n" +
     "<div ng-repeat=\"(secretDataName, secretData) in decodedSecretData\" class=\"image-source-item\">\n" +
@@ -3614,12 +3654,12 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-switch-default>\n" +
     "<dt ng-attr-title=\"{{secretDataName}}\">{{secretDataName}}</dt>\n" +
-    "<dd ng-if=\"view.showSecret && !secretData\"><em>No value</em></dd>\n" +
+    "<dd ng-if=\"view.showSecret && !secretData\"><em>没有值</em></dd>\n" +
     "<dd ng-if=\"view.showSecret && secretData\">\n" +
     "<copy-to-clipboard clipboard-text=\"secretData\" multiline=\"secretData | isMultiline : true\" display-wide=\"true\">\n" +
     "</copy-to-clipboard>\n" +
     "<div ng-if=\"decodedSecretData.$$nonprintable[secretDataName]\" class=\"help-block\">\n" +
-    "This secret value contains non-printable characters and is displayed as a Base64-encoded string.\n" +
+    "此密钥的值包含无法打印的字符并显示为Base64的编码字符串。\n" +
     "</div>\n" +
     "</dd>\n" +
     "<dd ng-if=\"!view.showSecret\">*****</dd>\n" +
@@ -3628,8 +3668,8 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</dl>\n" +
     "<div ng-if=\"!secret.data\" class=\"empty-state-message text-center\">\n" +
-    "<h2>No data.</h2>\n" +
-    "<p>This secret has no data.</p>\n" +
+    "<h2>没有数据。</h2>\n" +
+    "<p>这个密钥没有数据。</p>\n" +
     "</div>\n" +
     "<annotations annotations=\"secret.metadata.annotations\"></annotations>\n" +
     "</div>\n" +
@@ -3654,29 +3694,29 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"serviceInstance\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "<div class=\"pull-right dropdown\" ng-hide=\"!('serviceInstances' | canIDoAny)\">\n" +
     "\n" +
     "<button ng-if=\"editAvailable && (serviceInstancesVersion | canI : 'update')\" class=\"btn btn-default hidden-xs\" ng-click=\"showEditDialog()\">\n" +
-    "Edit\n" +
+    "修改\n" +
     "</button>\n" +
     "\n" +
     "<button type=\"button\" class=\"dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs\" data-toggle=\"dropdown\">\n" +
-    "Actions\n" +
+    "动作\n" +
     "<span class=\"caret\"></span>\n" +
     "</button>\n" +
-    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\" aria-hidden=\"true\"></i><span class=\"sr-only\">Actions</span></a>\n" +
+    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\" aria-hidden=\"true\"></i><span class=\"sr-only\">动作</span></a>\n" +
     "<ul class=\"dropdown-menu dropdown-menu-right actions action-button\">\n" +
     "<li class=\"visible-xs-inline\" ng-if=\"editAvailable && (serviceInstancesVersion  | canI : 'update')\">\n" +
-    "<a href=\"\" role=\"button\" ng-click=\"showEditDialog()\">Edit</a>\n" +
+    "<a href=\"\" role=\"button\" ng-click=\"showEditDialog()\">修改</a>\n" +
     "</li>\n" +
     "<li ng-if=\"serviceInstancesVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{serviceInstance | editYamlURL}}\" role=\"button\">Edit YAML</a>\n" +
+    "<a ng-href=\"{{serviceInstance | editYamlURL}}\" role=\"button\">修改 YAML</a>\n" +
     "</li>\n" +
     "<li ng-if=\"serviceInstancesVersion | canI : 'delete'\">\n" +
-    "<a href=\"\" ng-click=\"deprovision()\" ng-attr-aria-disabled=\"{{serviceInstance.metadata.deletionTimestamp ? 'true' : undefined}}\" ng-class=\"{ 'disabled-link': serviceInstance.metadata.deletionTimestamp }\" role=\"button\">Delete</a>\n" +
+    "<a href=\"\" ng-click=\"deprovision()\" ng-attr-aria-disabled=\"{{serviceInstance.metadata.deletionTimestamp ? 'true' : undefined}}\" ng-class=\"{ 'disabled-link': serviceInstance.metadata.deletionTimestamp }\" role=\"button\">删除</a>\n" +
     "</li>\n" +
     "</ul>\n" +
     "</div>\n" +
@@ -3698,19 +3738,19 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-12\">\n" +
     "<div ng-if=\"serviceInstance.metadata.deletionTimestamp\" class=\"alert word-break alert-warning\">\n" +
     "<span class=\"pficon pficon-warning-triangle-o\" aria-hidden=\"true\"></span>\n" +
-    "<span class=\"sr-only\">warning</span>\n" +
-    "<span class=\"strong\">The service was marked for deletion</span>\n" +
+    "<span class=\"sr-only\">警告</span>\n" +
+    "<span class=\"strong\">该服务标记为删除。</span>\n" +
     "<span class=\"strong\" am-time-ago=\"serviceInstance.metadata.deletionTimestamp\"></span>.\n" +
     "</div>\n" +
     "<uib-tabset>\n" +
     "<uib-tab active=\"selectedTab.details\">\n" +
-    "<uib-tab-heading>Details</uib-tab-heading>\n" +
+    "<uib-tab-heading>详情</uib-tab-heading>\n" +
     "<div class=\"resource-details\">\n" +
     "<div class=\"row\">\n" +
     "<div class=\"col-lg-6\">\n" +
-    "<h3>Status</h3>\n" +
+    "<h3>状态</h3>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
-    "<dt>Status:</dt>\n" +
+    "<dt>状态:</dt>\n" +
     "<dd>\n" +
     "<status-icon status=\"serviceInstance | serviceInstanceStatus\" disable-animation></status-icon>\n" +
     "<span>{{serviceInstance | serviceInstanceStatus | sentenceCase}}</span>\n" +
@@ -3719,17 +3759,17 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<dd ng-if-end class=\"instance-status-message\">{{serviceInstance | serviceInstanceConditionMessage}}</dd>\n" +
     "</dl>\n" +
     "<div class=\"hidden-lg\">\n" +
-    "<h3 ng-if-start=\"serviceClass.spec.description || serviceClass.spec.externalMetadata.longDescription\">Description</h3>\n" +
+    "<h3 ng-if-start=\"serviceClass.spec.description || serviceClass.spec.externalMetadata.longDescription\">描述</h3>\n" +
     "<p class=\"service-description\"><truncate-long-text limit=\"500\" content=\"serviceClass.spec.description\" use-word-boundary=\"true\" expandable=\"true\" linkify=\"true\">\n" +
     "</truncate-long-text></p>\n" +
     "<p ng-if-end class=\"service-description\"><truncate-long-text limit=\"500\" content=\"serviceClass.spec.externalMetadata.longDescription\" use-word-boundary=\"true\" expandable=\"true\" linkify=\"true\">\n" +
     "</truncate-long-text></p>\n" +
     "</div>\n" +
-    "<h3>Plan</h3>\n" +
+    "<h3>计划</h3>\n" +
     "<p ng-bind-html=\"plan.spec.description | linkify : '_blank'\"></p>\n" +
     "<div ng-if=\"parameterSchema.properties\" class=\"config-parameters-form\">\n" +
     "<h3>\n" +
-    "<span>Configuration</span>\n" +
+    "<span>配置</span>\n" +
     "<a ng-if=\"allowParametersReveal\" href=\"\" class=\"hide-show-link\" ng-click=\"toggleShowParameterValues()\" role=\"button\">\n" +
     "{{showParameterValues ? 'Hide Values' : 'Reveal Values'}}\n" +
     "</a>\n" +
@@ -3742,7 +3782,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"col-lg-6\">\n" +
     "<div class=\"hidden-xs hidden-sm hidden-md\">\n" +
-    "<h3 ng-if-start=\"serviceClass.spec.description || serviceClass.spec.externalMetadata.longDescription\">Description</h3>\n" +
+    "<h3 ng-if-start=\"serviceClass.spec.description || serviceClass.spec.externalMetadata.longDescription\">描述</h3>\n" +
     "<p class=\"service-description\"><truncate-long-text limit=\"500\" content=\"serviceClass.spec.description\" use-word-boundary=\"true\" expandable=\"true\" linkify=\"true\">\n" +
     "</truncate-long-text></p>\n" +
     "<p ng-if-end class=\"service-description\"><truncate-long-text limit=\"500\" content=\"serviceClass.spec.externalMetadata.longDescription\" use-word-boundary=\"true\" expandable=\"true\" linkify=\"true\">\n" +
@@ -3756,7 +3796,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.events\" ng-if=\"eventsVersion | canI : 'watch'\">\n" +
-    "<uib-tab-heading>Events</uib-tab-heading>\n" +
+    "<uib-tab-heading>事件</uib-tab-heading>\n" +
     "<events api-objects=\"[ serviceInstance ]\" project-context=\"projectContext\" ng-if=\"selectedTab.events\"></events>\n" +
     "</uib-tab>\n" +
     "</uib-tabset>\n" +
@@ -3780,21 +3820,21 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"service\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "<div class=\"pull-right dropdown\" ng-hide=\"!('services' | canIDoAny)\">\n" +
     "<button type=\"button\" class=\"dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs\" data-toggle=\"dropdown\">\n" +
-    "Actions\n" +
+    "动作\n" +
     "<span class=\"caret\"></span>\n" +
     "</button>\n" +
-    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">Actions</span></a>\n" +
+    "<a href=\"\" class=\"dropdown-toggle actions-dropdown-kebab visible-xs-inline\" data-toggle=\"dropdown\"><i class=\"fa fa-ellipsis-v\"></i><span class=\"sr-only\">动作</span></a>\n" +
     "<ul class=\"dropdown-menu dropdown-menu-right actions action-button\">\n" +
     "<li ng-if=\"routesVersion | canI : 'create'\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/create-route?service={{service.metadata.name}}\" role=\"button\">Create Route</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/create-route?service={{service.metadata.name}}\" role=\"button\">创建路由</a>\n" +
     "</li>\n" +
     "<li ng-if=\"servicesVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{service | editYamlURL}}\" role=\"button\">Edit YAML</a>\n" +
+    "<a ng-href=\"{{service | editYamlURL}}\" role=\"button\">修改 YAML</a>\n" +
     "</li>\n" +
     "<li ng-if=\"servicesVersion | canI : 'delete'\">\n" +
     "<delete-link kind=\"Service\" resource-name=\"{{service.metadata.name}}\" project-name=\"{{service.metadata.namespace}}\" alerts=\"alerts\">\n" +
@@ -3815,28 +3855,28 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-12\">\n" +
     "<uib-tabset>\n" +
     "<uib-tab active=\"selectedTab.details\">\n" +
-    "<uib-tab-heading>Details</uib-tab-heading>\n" +
+    "<uib-tab-heading>详情</uib-tab-heading>\n" +
     "<div class=\"resource-details\">\n" +
     "<dl class=\"dl-horizontal left\">\n" +
-    "<dt>Selectors:</dt>\n" +
+    "<dt>选择器:</dt>\n" +
     "<dd>\n" +
     "<span ng-if=\"!service.spec.selector\"><em>none</em></span>\n" +
     "<span ng-repeat=\"(selectorLabel, selectorValue) in service.spec.selector\"> {{selectorLabel}}={{selectorValue}}<span ng-show=\"!$last\">, </span></span>\n" +
     "</dd>\n" +
-    "<dt>Type:</dt>\n" +
+    "<dt>类别:</dt>\n" +
     "<dd>{{service.spec.type}}</dd>\n" +
-    "<dt>IP:</dt>\n" +
+    "<dt>IP地址:</dt>\n" +
     "<dd>{{service.spec.clusterIP}}</dd>\n" +
-    "<dt>Hostname:</dt>\n" +
+    "<dt>主机名称:</dt>\n" +
     "<dd>\n" +
     "{{service.metadata.name}}.{{service.metadata.namespace}}.svc\n" +
-    "<span data-toggle=\"popover\" data-trigger=\"hover\" data-content=\"{{'This address is only resolvable from within the cluster.'}}\" style=\"cursor: help; padding-left: 5px\">\n" +
+    "<span data-toggle=\"popover\" data-trigger=\"hover\" data-content=\"{{'该地址只能从集群中解析。'}}\" style=\"cursor: help; padding-left: 5px\">\n" +
     "<span class=\"pficon pficon-info\" aria-hidden=\"true\" data-toggle=\"tooltip\" style=\"cursor: help\"></span>\n" +
     "</span>\n" +
     "</dd>\n" +
-    "<dt ng-if-start=\"service.spec.externalName\">External Hostname:</dt>\n" +
+    "<dt ng-if-start=\"service.spec.externalName\">外部主机名:</dt>\n" +
     "<dd ng-if-end>{{service.spec.externalName}}</dd>\n" +
-    "<dt>Session affinity:</dt>\n" +
+    "<dt>会话关联:</dt>\n" +
     "<dd>{{service.spec.sessionAffinity}}</dd>\n" +
     "<dt ng-if-start=\"service.status.loadBalancer.ingress.length\">Ingress Points:</dt>\n" +
     "<dd ng-if-end>\n" +
@@ -3846,20 +3886,20 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<dd ng-if-end>\n" +
     "<span ng-repeat=\"externalIP in service.spec.externalIPs\">{{externalIP}}<span ng-if=\"!$last\">, </span></span>\n" +
     "</dd>\n" +
-    "<dt ng-if-start=\"(routesForService | hashSize) == 0\">Routes:</dt>\n" +
+    "<dt ng-if-start=\"(routesForService | hashSize) == 0\">路由:</dt>\n" +
     "<dd ng-if-end>\n" +
     "<span>\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/create-route?service={{service.metadata.name}}\" ng-if=\"routesVersion | canI : 'create'\">Create route</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/create-route?service={{service.metadata.name}}\" ng-if=\"routesVersion | canI : 'create'\">创建路由</a>\n" +
     "<span ng-if=\"!(routesVersion | canI : 'create')\"><em>None</em></span>\n" +
     "</span>\n" +
     "</dd>\n" +
     "</dl>\n" +
-    "<h3>Traffic</h3>\n" +
+    "<h3>通信转换</h3>\n" +
     "<div>\n" +
     "<traffic-table ports-by-route=\"portsByRoute\" routes=\"routesForService\" services=\"services\" show-node-ports=\"showNodePorts\" custom-name-header=\"'Route'\"></traffic-table>\n" +
     "</div>\n" +
     "<p>\n" +
-    "Learn more about <a ng-href=\"{{'route-types' | helpLink}}\" target=\"_blank\">routes</a> and <a ng-href=\"{{'services' | helpLink}}\" target=\"_blank\">services</a>.\n" +
+    "了解更多关于 <a ng-href=\"{{'route-types' | helpLink}}\" target=\"_blank\">路由</a> 和 <a ng-href=\"{{'services' | helpLink}}\" target=\"_blank\">服务</a>.\n" +
     "</p>\n" +
     "<h3>Pods</h3>\n" +
     "<div>\n" +
@@ -3869,7 +3909,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.events\" ng-if=\"eventsVersion | canI : 'watch'\">\n" +
-    "<uib-tab-heading>Events</uib-tab-heading>\n" +
+    "<uib-tab-heading>事件</uib-tab-heading>\n" +
     "<events api-objects=\"[ service ]\" project-context=\"projectContext\" ng-if=\"selectedTab.events\"></events>\n" +
     "</uib-tab>\n" +
     "</uib-tabset>\n" +
@@ -3965,7 +4005,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.environment\" ng-if=\"statefulSet\">\n" +
-    "<uib-tab-heading>Environment</uib-tab-heading>\n" +
+    "<uib-tab-heading>环境</uib-tab-heading>\n" +
     "<div class=\"resource-environment\">\n" +
     "<edit-environment-variables api-object=\"statefulSet\"></edit-environment-variables>\n" +
     "</div>\n" +
@@ -4067,10 +4107,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<div class=\"page-header page-header-bleed-right page-header-bleed-left\">\n" +
     "<h1>\n" +
-    "Builds\n" +
+    "构建\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'builds' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -4088,15 +4128,15 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-12\">\n" +
     "<div ng-if=\"!(latestByConfig | hashSize) && !(buildsNoConfig | hashSize)\">\n" +
     "<p ng-if=\"!buildsLoaded\">\n" +
-    "Loading...\n" +
+    "加载中...\n" +
     "</p>\n" +
     "<div ng-if=\"buildsLoaded\" class=\"empty-state-message text-center\">\n" +
     "<div ng-if=\"!filterWithZeroResults\">\n" +
-    "<h2>No builds.</h2>\n" +
-    "<p>No builds have been added to project {{projectName}}.</p>\n" +
+    "<h2>没有构建。</h2>\n" +
+    "<p>没有构建添加到项目 {{projectName}}。</p>\n" +
     "</div>\n" +
     "<div ng-if=\"filterWithZeroResults\">\n" +
-    "<h2>The filter is hiding all builds. <button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"clearFilter()\">Clear All Filters</button></h2>\n" +
+    "<h2>过滤器隐藏所有构建。 <button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"clearFilter()\">清除所有过滤器</button></h2>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -4112,13 +4152,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</colgroup>\n" +
     "<thead>\n" +
     "<tr>\n" +
-    "<th>Name</th>\n" +
-    "<th>Last Build</th>\n" +
-    "<th>Status</th>\n" +
-    "<th>Duration</th>\n" +
-    "<th>Created</th>\n" +
-    "<th>Type</th>\n" +
-    "<th ng-class=\"{'hidden-sm' : (latestByConfig | hashSize)}\">Source</th>\n" +
+    "<th>名称</th>\n" +
+    "<th>最新构建</th>\n" +
+    "<th>状态</th>\n" +
+    "<th>持续时间</th>\n" +
+    "<th>创建时间</th>\n" +
+    "<th>类型</th>\n" +
+    "<th ng-class=\"{'hidden-sm' : (latestByConfig | hashSize)}\">来源</th>\n" +
     "</tr>\n" +
     "</thead>\n" +
     "<tbody>\n" +
@@ -4127,7 +4167,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<td ng-if-start=\"!latestBuild\" data-title=\"Name\">\n" +
     "<a href=\"{{buildConfigs[buildConfigName] | navigateResourceURL}}\">{{buildConfigName}}</a>\n" +
     "</td>\n" +
-    "<td data-title=\"Last Build\"><em>No builds</em></td>\n" +
+    "<td data-title=\"Last Build\"><em>没有构建</em></td>\n" +
     "<td class=\"hidden-xs\">&nbsp;</td>\n" +
     "<td class=\"hidden-xs\">&nbsp;</td>\n" +
     "<td class=\"hidden-xs\">&nbsp;</td>\n" +
@@ -4136,7 +4176,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span ng-if=\"source = buildConfigs[buildConfigName].spec.source\">\n" +
     "<span ng-switch=\"source.type\">\n" +
     "<span ng-switch-when=\"None\">\n" +
-    "<i>None</i>\n" +
+    "<i>没有</i>\n" +
     "</span>\n" +
     "<span ng-switch-when=\"Git\">\n" +
     "<osc-git-link uri=\"source.git.uri\" ref=\"source.git.ref\" context-dir=\"source.contextDir\">{{source.git.uri}}</osc-git-link>\n" +
@@ -4151,7 +4191,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "\n" +
     "<td ng-if-start=\"latestBuild && (buildConfigs[buildConfigName] || !unfilteredBuildConfigs[buildConfigName])\" data-title=\"Name\">\n" +
     "<a ng-if=\"buildConfigName\" href=\"{{latestBuild | configURLForResource}}\">{{buildConfigName}}</a>\n" +
-    "<span ng-if=\"buildConfigs && buildConfigName && !buildConfigs[buildConfigName]\" class=\"pficon pficon-warning-triangle-o\" data-toggle=\"tooltip\" title=\"This build config no longer exists\" style=\"cursor: help\"></span>\n" +
+    "<span ng-if=\"buildConfigs && buildConfigName && !buildConfigs[buildConfigName]\" class=\"pficon pficon-warning-triangle-o\" data-toggle=\"tooltip\" title=\"当前构建配置已不存在\" style=\"cursor: help\"></span>\n" +
     "</td>\n" +
     "<td data-title=\"Last Build\">\n" +
     "\n" +
@@ -4183,7 +4223,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span ng-if=\"latestBuild.spec.source\">\n" +
     "<span ng-switch=\"latestBuild.spec.source.type\">\n" +
     "<span ng-switch-when=\"None\">\n" +
-    "<i>none</i>\n" +
+    "<i>没有</i>\n" +
     "</span>\n" +
     "<span ng-switch-when=\"Git\">\n" +
     "<osc-git-link uri=\"latestBuild.spec.source.git.uri\" ref=\"latestBuild.spec.source.git.ref\" context-dir=\"latestBuild.spec.source.contextDir\">{{latestBuild.spec.source.git.uri}}</osc-git-link>\n" +
@@ -4198,7 +4238,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "\n" +
     "<tr ng-repeat=\"latestBuild in buildsNoConfig track by (latestBuild | uid)\">\n" +
     "<td data-title=\"Name\">\n" +
-    "<em>none</em>\n" +
+    "<em>没有</em>\n" +
     "</td>\n" +
     "<td data-title=\"Last Build\">\n" +
     "\n" +
@@ -4225,7 +4265,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span ng-if=\"latestBuild.spec.source\">\n" +
     "<span ng-switch=\"latestBuild.spec.source.type\">\n" +
     "<span ng-switch-when=\"None\">\n" +
-    "<i>none</i>\n" +
+    "<i>没有</i>\n" +
     "</span>\n" +
     "<span ng-switch-when=\"Git\">\n" +
     "<osc-git-link uri=\"latestBuild.spec.source.git.uri\" ref=\"latestBuild.spec.source.git.ref\" context-dir=\"latestBuild.spec.source.contextDir\">{{latestBuild.spec.source.git.uri}}</osc-git-link>\n" +
@@ -4542,16 +4582,16 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-10\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<div class=\"mar-top-xl\">\n" +
-    "<h1>Create Config Map</h1>\n" +
+    "<h1>创建配置映射</h1>\n" +
     "<div class=\"help-block\">\n" +
-    "Config maps hold key-value pairs that can be used in pods to read application configuration.\n" +
+    "配置映射保存的键/值对可用于Pods读取应用程序的配置。\n" +
     "</div>\n" +
     "<form name=\"createConfigMapForm\" class=\"mar-top-xl\">\n" +
     "<fieldset ng-disabled=\"disableInputs\">\n" +
     "<edit-config-map-or-secret model=\"configMap\" type=\"config-map\" show-name-input=\"true\"></edit-config-map-or-secret>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
-    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"createConfigMap()\" ng-disabled=\"createConfigMapForm.$invalid || disableInputs\" value=\"\">Create</button>\n" +
-    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\" role=\"button\">Cancel</a>\n" +
+    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"createConfigMap()\" ng-disabled=\"createConfigMapForm.$invalid || disableInputs\" value=\"\">创建</button>\n" +
+    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\" role=\"button\">关闭</a>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</form>\n" +
@@ -4711,21 +4751,21 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-10\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<div class=\"mar-top-xl\">\n" +
-    "<h1>Create Route</h1>\n" +
+    "<h1>创建路由</h1>\n" +
     "<div class=\"help-block\">\n" +
-    "Routing is a way to make your application publicly visible.\n" +
+    "路由是使应用程序公开可见的一种方法。\n" +
     "</div>\n" +
     "<form name=\"createRouteForm\" class=\"mar-top-xl osc-form\" novalidate>\n" +
-    "<div ng-if=\"!services\">Loading...</div>\n" +
+    "<div ng-if=\"!services\">加载中...</div>\n" +
     "<div ng-if=\"services\">\n" +
     "<fieldset ng-disabled=\"disableInputs\">\n" +
     "<osc-routing model=\"routing\" services=\"services\" show-name-input=\"true\">\n" +
     "</osc-routing>\n" +
-    "<label-editor labels=\"labels\" expand=\"true\" can-toggle=\"false\" help-text=\"Labels for this route.\">\n" +
+    "<label-editor labels=\"标签\" expand=\"true\" can-toggle=\"false\" help-text=\"这条路由的标签\">\n" +
     "</label-editor>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
-    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"createRoute()\" ng-disabled=\"createRouteForm.$invalid || disableInputs || !createRoute\" value=\"\">Create</button>\n" +
-    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\">Cancel</a>\n" +
+    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"createRoute()\" ng-disabled=\"createRouteForm.$invalid || disableInputs || !createRoute\" value=\"\">创建</button>\n" +
+    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\">取消</a>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</div>\n" +
@@ -4750,9 +4790,9 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
     "<div class=\"mar-top-xl\">\n" +
-    "<h1>Create Secret</h1>\n" +
+    "<h1>创建密钥</h1>\n" +
     "<div class=\"help-block\">\n" +
-    "Secrets allow you to authenticate to a private Git repository or a private image registry.\n" +
+    "秘密使您可以对私人Git存储库或私人镜像注册表进行身份验证。\n" +
     "</div>\n" +
     "<create-secret namespace=\"projectName\" alerts=\"alerts\" on-create=\"navigateBack()\" on-cancel=\"navigateBack()\">\n" +
     "</create-secret>\n" +
@@ -5039,7 +5079,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<osc-autoscaling ng-if=\"scaling.autoscale\" model=\"scaling\"></osc-autoscaling>\n" +
     "<div class=\"has-warning\" ng-if=\"showCPURequestWarning\">\n" +
     "<span class=\"help-block\">\n" +
-    "You should configure resource limits below for autoscaling. Autoscaling will not work without a CPU request.\n" +
+    "您应该配置下面的资源限制来自动伸缩。 如果没有CPU请求，自动伸缩将无法工作。\n" +
     "</span>\n" +
     "</div>\n" +
     "</osc-form-section>\n" +
@@ -5443,23 +5483,22 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
 
   $templateCache.put('views/directives/_edit-command.html',
     "<ng-form name=\"form\">\n" +
-    "<div ng-hide=\"input.args.length\"><em>No {{type || 'command'}} set.</em></div>\n" +
+    "<div ng-hide=\"input.args.length\"><em>没有{{type || '命令'}}设置。</em></div>\n" +
     "<div ng-show=\"input.args.length\" as-sortable ng-model=\"input.args\" class=\"command-args has-sort\">\n" +
     "<div class=\"row form-row-has-controls\" ng-repeat=\"arg in input.args\" as-sortable-item>\n" +
     "<div class=\"form-group col-xs-12\">\n" +
     "<input type=\"text\" ng-model=\"arg.value\" ng-if=\"!arg.multiline\" required class=\"form-control\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\n" +
-    "<textarea ng-model=\"arg.value\" ng-if=\"arg.multiline\" rows=\"5\" required class=\"form-control\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\r" +
-    "\n" +
+    "<textarea ng-model=\"arg.value\" ng-if=\"arg.multiline\" rows=\"5\" required class=\"form-control\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\n" +
     "        </textarea>\n" +
     "</div>\n" +
     "<div class=\"form-row-controls\">\n" +
     "<button class=\"sort-row\" type=\"button\" aria-hidden=\"true\" as-sortable-item-handle>\n" +
     "<span class=\"fa fa-bars\"></span>\n" +
-    "<span class=\"sr-only\">Move row</span>\n" +
+    "<span class=\"sr-only\">移动行</span>\n" +
     "</button>\n" +
     "<button class=\"btn-remove close delete-row\" type=\"button\" aria-hidden=\"true\" ng-click=\"removeArg($index)\">\n" +
     "<span class=\"pficon pficon-close\" aria-hidden=\"true\"></span>\n" +
-    "<span class=\"sr-only\">Delete row</span>\n" +
+    "<span class=\"sr-only\">删除行</span>\n" +
     "</button>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -5467,43 +5506,42 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"form-group\">\n" +
     "<label class=\"sr-only\" ng-attr-for=\"{{id}}-add-arg\">\n" +
     "<span ng-if=\"placeholder\">{{placeholder}}</span>\n" +
-    "<span ng-if=\"!placeholder\">Add argument</span>\n" +
+    "<span ng-if=\"!placeholder\">添加参数</span>\n" +
     "</label>\n" +
     "\n" +
     "<span ng-show=\"!multiline\" class=\"input-group\">\n" +
     "<input type=\"text\" ng-model=\"nextArg\" name=\"nextArg\" ng-attr-id=\"{{id}}-add-arg\" on-enter=\"addArg()\" ng-attr-placeholder=\"{{placeholder || 'Add argument'}}\" class=\"form-control\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\n" +
     "<span class=\"input-group-btn\">\n" +
     "\n" +
-    "<a class=\"btn btn-default\" href=\"\" ng-click=\"addArg()\" ng-disabled=\"!nextArg\" ng-attr-aria-disabled=\"!nextArg\" role=\"button\">Add</a>\n" +
+    "<a class=\"btn btn-default\" href=\"\" ng-click=\"addArg()\" ng-disabled=\"!nextArg\" ng-attr-aria-disabled=\"!nextArg\" role=\"button\">添加</a>\n" +
     "</span>\n" +
     "</span>\n" +
     "\n" +
     "<span ng-show=\"multiline\">\n" +
-    "<textarea ng-model=\"nextArg\" name=\"nextArg\" rows=\"10\" ng-attr-id=\"{{id}}-add-arg\" ng-attr-placeholder=\"{{placeholder || 'Add argument'}}\" class=\"form-control\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\r" +
-    "\n" +
+    "<textarea ng-model=\"nextArg\" name=\"nextArg\" rows=\"10\" ng-attr-id=\"{{id}}-add-arg\" ng-attr-placeholder=\"{{placeholder || 'Add argument'}}\" class=\"form-control\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\n" +
     "      </textarea>\n" +
     "<div class=\"mar-top-md\">\n" +
-    "<a class=\"btn btn-default\" href=\"\" ng-click=\"addArg()\" ng-disabled=\"!nextArg\" ng-attr-aria-disabled=\"!nextArg\" role=\"button\">Add</a>\n" +
+    "<a class=\"btn btn-default\" href=\"\" ng-click=\"addArg()\" ng-disabled=\"!nextArg\" ng-attr-aria-disabled=\"!nextArg\" role=\"button\">添加</a>\n" +
     "</div>\n" +
     "</span>\n" +
     "<div class=\"help-block\">\n" +
     "<span ng-if=\"description\">{{description}}</span>\n" +
     "<span ng-if=\"!description\">\n" +
-    "Enter the command to run inside the container. The command is considered successful if its exit code is 0. Drag and drop to reorder arguments.\n" +
+    "输入要在容器内运行的命令。如果该命令的退出代码为0，则认为该命令是成功的。拖放以重新排序参数。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"mar-top-sm mar-bottom-md\">\n" +
-    "<a href=\"\" ng-click=\"multiline = !multiline\">Switch to {{multiline ? 'Single-line' : 'Multiline'}} Editor</a>\n" +
+    "<a href=\"\" ng-click=\"multiline = !multiline\">切换到 {{multiline ? '单行' : '多行'}} 编辑器</a>\n" +
     "<span ng-show=\"input.args.length\">\n" +
     "<span class=\"action-divider\">|</span>\n" +
-    "<a href=\"\" ng-click=\"clear()\" role=\"button\">Clear {{ (type || 'Command') | upperFirst }}</a>\n" +
+    "<a href=\"\" ng-click=\"clear()\" role=\"button\">清除 {{ (type || '命令') | upperFirst }}</a>\n" +
     "</span>\n" +
     "</div>\n" +
     "\n" +
     "<input type=\"hidden\" name=\"command\" ng-model=\"input.args\" ng-required=\"isRequired\">\n" +
     "<div ng-if=\"form.command.$dirty && form.command.$error.required\" class=\"has-error\">\n" +
-    "<span class=\"help-block\">A command is required.</span>\n" +
+    "<span class=\"help-block\">必须填写一条命令。</span>\n" +
     "</div>\n" +
     "</ng-form>"
   );
@@ -5638,7 +5676,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
   $templateCache.put('views/directives/_project-filter.html',
     "<div class=\"filter\">\n" +
     "<div class=\"form-group\">\n" +
-    "<label ng-if=\"!renderOptions || !renderOptions.hideFilterWidget\" class=\"control-label sr-only\">Filter by labels</label>\n" +
+    "<label ng-if=\"!renderOptions || !renderOptions.hideFilterWidget\" class=\"control-label sr-only\">根据标签过滤</label>\n" +
     "<div class=\"navbar-filter-widget\"></div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -5774,16 +5812,16 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\" aria-label=\"Close\" ng-click=\"ctrl.onCancel()\">\n" +
     "<span class=\"pficon pficon-close\"></span>\n" +
     "</button>\n" +
-    "<h1 class=\"modal-title\">Add to Application</h1>\n" +
+    "<h1 class=\"modal-title\">添加到应用程序</h1>\n" +
     "</div>\n" +
     "<form name=\"addToApplicationForm\" novalidate>\n" +
     "<fieldset ng-disabled=\"disableInputs\">\n" +
     "<div class=\"modal-body\">\n" +
-    "<legend>Add this {{ctrl.apiObject.kind | humanizeKind}} to application:</legend>\n" +
+    "<legend>添加这个{{ctrl.apiObject.kind | humanizeKind}}到应用程序：</legend>\n" +
     "<div class=\"form-group\" ng-class=\"{'has-error' : ctrl.addType === 'env' && ctrl.application && !ctrl.canAddRefToApplication}\">\n" +
     "<div class=\"application-select\">\n" +
     "<ui-select autofocus id=\"application\" ng-model=\"ctrl.application\" on-select=\"ctrl.checkApplicationContainersRefs($item)\" required=\"true\" ng-disabled=\"ctrl.disableInputs\">\n" +
-    "<ui-select-match placeholder=\"{{ctrl.applications.length ? 'Select an application' : 'There are no applications in this project'}}\">\n" +
+    "<ui-select-match placeholder=\"{{ctrl.applications.length ? '选择应用程序' : '此项目中没有应用程序'}}\">\n" +
     "<span>\n" +
     "{{$select.selected.metadata.name}}\n" +
     "<small class=\"text-muted\">&ndash; {{$select.selected.kind | humanizeKind : true}}</small>\n" +
@@ -5797,35 +5835,35 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"has-error\" ng-if=\"ctrl.addType === 'env' && ctrl.application && !ctrl.canAddRefToApplication\">\n" +
     "<span class=\"help-block\">\n" +
-    "The {{ctrl.apiObject.kind | humanizeKind}} has already been added to this application.\n" +
+    "{{ctrl.apiObject.kind | humanizeKind}}已被添加到这个应用程序中。\n" +
     "</span>\n" +
     "</div>\n" +
-    "<legend>Add {{ctrl.apiObject.kind | humanizeKind}} as:</legend>\n" +
+    "<legend>将{{ctrl.apiObject.kind | humanizeKind}}添加为：</legend>\n" +
     "<div class=\"radio\">\n" +
     "<label for=\"env\">\n" +
     "<input id=\"env\" type=\"radio\" ng-model=\"ctrl.addType\" value=\"env\">\n" +
-    "Environment variables\n" +
+    "环境变量\n" +
     "</label>\n" +
     "</div>\n" +
     "<div ng-if=\"ctrl.addType === 'env'\" class=\"choice-contents clearfix\">\n" +
     "<div class=\"has-warning\" ng-if=\"ctrl.hasInvalidEnvVars\">\n" +
     "<div class=\"help-block\">\n" +
     "<span class=\"pf-icon pficon-warning-triangle-o\" aria-hidden=\"true\"></span>\n" +
-    "{{ctrl.apiObject.kind | humanizeKind | upperFirst}} <strong>{{ctrl.apiObject.metadata.name}}</strong> contains keys that are not valid environment variable names. Only {{ctrl.apiObject.kind | humanizeKind}} keys with valid names will be added as environment variables.\n" +
+    "{{ctrl.apiObject.kind | humanizeKind | upperFirst}} <strong>{{ctrl.apiObject.metadata.name}}</strong> 包含无效的环境变量名称的键。只有{{ctrl.apiObject.kind | humanizeKind}}的键具有有效名称才会被添加到环境变量中。\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\">\n" +
     "<div class=\"control-label\">\n" +
     "<label>Prefix</label>\n" +
-    "<a href=\"\" class=\"pficon pficon-info field-help\" aria-hidden=\"true\" uib-popover=\"Optionally, you can specify a prefix to use with environment variables.\" popover-trigger=\"focus\">\n" +
+    "<a href=\"\" class=\"pficon pficon-info field-help\" aria-hidden=\"true\" uib-popover=\"可选项, 您可以指定使用环境变量的前缀。\" popover-trigger=\"focus\">\n" +
     "</a>\n" +
     "</div>\n" +
     "<span class=\"control-input\" ng-class=\"{'has-error': addToApplicationForm.envPrefix.$error.pattern && addToApplicationForm.envPrefix.$touched}\">\n" +
     "<input class=\"form-control\" name=\"envPrefix\" id=\"envPrefix\" placeholder=\"(optional)\" type=\"text\" ng-pattern=\"/^[A-Za-z_][A-Za-z0-9_]*$/\" aria-describedby=\"env-prefix-help\" ng-disabled=\"ctrl.addType !== 'env' || !ctrl.application\" ng-model=\"ctrl.envPrefix\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\">\n" +
     "<div class=\"help-block\" ng-show=\"addToApplicationForm.envPrefix.$error.pattern && addToApplicationForm.envPrefix.$touched\">\n" +
-    "Prefix can contain numbers, letters, and underscores, but can not start with a number.\n" +
+    "前缀可以包含数字、字母和下划线，但不能用数字开头。\n" +
     "</div>\n" +
-    "<span class=\"sr-only\" id=\"env-prefix-help\">Optionally, you can specify a prefix to use with environment variables.</span>\n" +
+    "<span class=\"sr-only\" id=\"env-prefix-help\">可选项, 您可以指定使用环境变量的前缀。</span>\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -5838,37 +5876,39 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"ctrl.addType === 'volume'\" class=\"choice-contents clearfix\">\n" +
     "<div class=\"form-group\">\n" +
     "<div class=\"control-label\">\n" +
-    "<label class=\"required\">Mount Path</label>\n" +
-    "<a href=\"\" class=\"pficon pficon-info field-help\" aria-hidden=\"true\" uib-popover=\"Mount Path for the volume. A file will be created in this\n" +
-    "                              directory for each key from the {{ctrl.apiObject.kind | humanizeKind}}.\n" +
-    "                              The file contents will be the value of the key.\" popover-trigger=\"focus\">\n" +
+    "<label class=\"required\">挂载路径</label>\n" +
+    "<a href=\"\" class=\"pficon pficon-info field-help\" aria-hidden=\"true\" uib-popover=\"Volume的挂载路径。将在该目录中为{{ctrl.apiObject.kind | humanizeKind}}中的\r" +
+    "\n" +
+    "                              每个Key创建一个文件。\r" +
+    "\n" +
+    "                              文件的内容将是Key的值。\" popover-trigger=\"focus\">\n" +
     "</a>\n" +
     "</div>\n" +
     "<div class=\"control-input\" ng-class=\"{'has-error': (addToApplicationForm.mountVolume.$error.oscUnique || (addToApplicationForm.mountVolume.$error.pattern && addToApplicationForm.mountVolume.$touched))}\">\n" +
     "<input class=\"form-control\" name=\"mountVolume\" id=\"mountVolume\" type=\"text\" ng-pattern=\"/^\\/.*$/\" osc-unique=\"ctrl.existingMountPaths\" aria-describedby=\"mount-path-help\" ng-disabled=\"ctrl.addType !== 'volume' || !ctrl.application\" ng-required=\"ctrl.addType === 'volume'\" ng-model=\"ctrl.mountVolume\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\">\n" +
     "<div class=\"help-block\" ng-show=\"addToApplicationForm.mountVolume.$error.pattern && addToApplicationForm.mountVolume.$touched\">\n" +
-    "Mount path must be a valid path to a directory starting with <code>/</code>.\n" +
+    "挂载路径必须是从目录 <code>/</code> 开始的有效路径。\n" +
     "</div>\n" +
     "<div class=\"help-block\" ng-show=\"addToApplicationForm.mountVolume.$error.oscUnique\">\n" +
-    "The mount path is already used. Please choose another mount path.\n" +
+    "挂载路径已被使用。请选择另一个安装路径。\n" +
     "</div>\n" +
     "<span class=\"sr-only\" id=\"mount-path-help\">\n" +
-    "Mount Path for the volume. A file will be created in this directory for each key from the {{ctrl.apiObject.kind | humanizeKind}}. The file contents will be the value of the key.\n" +
+    "Volume的挂载路径。将在该目录中为{{ctrl.apiObject.kind | humanizeKind}}中的 每个Key创建一个文件。 文件的内容将是Key的值。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"ctrl.canAddRefToApplication\">\n" +
-    "<legend ng-if-start=\"ctrl.application.spec.template.spec.containers.length > 1\">Containers:</legend>\n" +
+    "<legend ng-if-start=\"ctrl.application.spec.template.spec.containers.length > 1\">容器：</legend>\n" +
     "<div ng-if-end class=\"form-group container-options\">\n" +
     "<div ng-if=\"ctrl.attachAllContainers\">\n" +
-    "The {{ctrl.apiObject.kind | humanizeKind}} will be added to all containers. You can\n" +
-    "<a href=\"\" ng-click=\"ctrl.attachAllContainers = false\">select specific containers</a>\n" +
-    "instead.\n" +
+    "{{ctrl.apiObject.kind | humanizeKind}} 将会被添加到所有容器中。您也可以\n" +
+    "<a href=\"\" ng-click=\"ctrl.attachAllContainers = false\">选择指定容器</a>\n" +
+    "。\n" +
     "</div>\n" +
     "<div ng-if=\"!ctrl.attachAllContainers\" class=\"form-group\">\n" +
-    "<label class=\"sr-only required\">Containers</label>\n" +
-    "<select-containers ng-model=\"ctrl.attachContainers\" pod-template=\"ctrl.application.spec.template\" ng-required=\"true\" help-text=\"Add the {{ctrl.apiObject.kind | humanizeKind}} to the selected containers.\">\n" +
+    "<label class=\"sr-only required\">容器</label>\n" +
+    "<select-containers ng-model=\"ctrl.attachContainers\" pod-template=\"ctrl.application.spec.template\" ng-required=\"true\" help-text=\"添加{{ctrl.apiObject.kind | humanizeKind}}到指定的容器。\">\n" +
     "</select-containers>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -5876,10 +5916,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
     "<button class=\"btn btn-default\" ng-class=\"{'dialog-btn': isDialog}\" ng-click=\"ctrl.onCancel()\">\n" +
-    "Cancel\n" +
+    "关闭\n" +
     "</button>\n" +
     "<button type=\"submit\" class=\"btn btn-primary\" ng-class=\"{'dialog-btn': isDialog}\" ng-click=\"ctrl.addToApplication()\" ng-disabled=\"addToApplicationForm.$invalid || (ctrl.addType === 'env' && !ctrl.canAddRefToApplication)\" value=\"\">\n" +
-    "Save\n" +
+    "保存\n" +
     "</button>\n" +
     "</div>\n" +
     "</fieldset>\n" +
@@ -5896,7 +5936,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
 
   $templateCache.put('views/directives/annotations.html',
     "<p ng-if=\"annotations\" ng-class=\"{'mar-bottom-xl': !expandAnnotations}\">\n" +
-    "<a href=\"\" ng-click=\"toggleAnnotations()\">{{expandAnnotations ? 'Hide Annotations' : 'Show Annotations'}}</a>\n" +
+    "<a href=\"\" ng-click=\"toggleAnnotations()\">{{expandAnnotations ? '隐藏注释' : '显示注释'}}</a>\n" +
     "</p>\n" +
     "<div ng-if=\"expandAnnotations && annotations\" class=\"table-responsive scroll-shadows-horizontal\">\n" +
     "<table class=\"table table-bordered table-bordered-columns key-value-table\">\n" +
@@ -5912,7 +5952,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</table>\n" +
     "</div>\n" +
     "<p ng-if=\"!annotations\" class=\"mar-bottom-xl\">\n" +
-    "There are no annotations on this resource.\n" +
+    "此资源没有注释。\n" +
     "</p>"
   );
 
@@ -6097,7 +6137,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
   $templateCache.put('views/directives/create-secret.html',
     "<ng-form name=\"secretForm\" class=\"create-secret-form\">\n" +
     "<div ng-if=\"!type\" class=\"form-group mar-top-lg\">\n" +
-    "<label for=\"secret-type\">Secret Type</label>\n" +
+    "<label for=\"secret-type\">密钥类型</label>\n" +
     "<ui-select input-id=\"secret-type\" required ng-model=\"newSecret.type\" search-enabled=\"false\" ng-change=\"newSecret.authType = secretAuthTypeMap[newSecret.type].authTypes[0].id\">\n" +
     "<ui-select-match>{{$select.selected | upperFirst}} Secret</ui-select-match>\n" +
     "<ui-select-choices repeat=\"type in secretTypes\">\n" +
@@ -6107,13 +6147,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-if=\"newSecret.type\">\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"secret-name\" class=\"required\">Secret Name</label>\n" +
+    "<label for=\"secret-name\" class=\"required\">密钥名称</label>\n" +
     "<span ng-class=\"{'has-error': nameTaken || (secretForm.name.$invalid && secretForm.name.$touched)}\">\n" +
     "<input class=\"form-control\" id=\"secret-name\" name=\"name\" ng-model=\"newSecret.data.secretName\" type=\"text\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" aria-describedby=\"secret-name-help\" ng-pattern=\"nameValidation.pattern\" ng-maxlength=\"nameValidation.maxlength\" ng-change=\"nameChanged()\" required>\n" +
     "</span>\n" +
     "<div class=\"has-error\" ng-show=\"nameTaken\">\n" +
     "<span class=\"help-block\">\n" +
-    "This name is already in use. Please choose a different name.\n" +
+    "此名称已被使用。请选择另一个的名字。\n" +
     "</span>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"secretForm.name.$invalid\">\n" +
@@ -6121,28 +6161,28 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "{{nameValidation.description}}\n" +
     "</div>\n" +
     "<div ng-show=\"secretForm.name.$error.required && secretForm.name.$touched\" class=\"help-block\">\n" +
-    "Name is required.\n" +
+    "名称不能为空。\n" +
     "</div>\n" +
     "<div ng-show=\"secretForm.name.$error.maxlength && secretForm.name.$touched\" class=\"help-block\">\n" +
-    "Can't be longer than {{nameValidation.maxlength}} characters.\n" +
+    "不能超过 {{nameValidation.maxlength}} 个字符。\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"help-block\" id=\"secret-name-help\">\n" +
-    "Unique name of the new secret.\n" +
+    "新密钥的名称是唯一的。\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"newSecret.type == 'webhook'\">\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"webhook-secret-key\" class=\"required\">Webhook Secret Key</label>\n" +
+    "<label for=\"webhook-secret-key\" class=\"required\">Webhook 密钥</label>\n" +
     "<div class=\"input-group\" ng-class=\"{ 'has-error': secretForm.webhookSecretKey.$invalid && secretForm.webhookSecretKey.$touched}\">\n" +
     "<input class=\"form-control\" id=\"webhook-secret-key\" name=\"webhookSecretKey\" ng-model=\"newSecret.data.webhookSecretKey\" ng-pattern=\"secretReferenceValidation.pattern\" ng-minlength=\"secretReferenceValidation.minLength\" type=\"text\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" aria-describedby=\"webhook-secret-key-help\" required=\"true\">\n" +
     "<span class=\"input-group-btn\">\n" +
-    "<button type=\"button\" class=\"btn btn-default\" ng-click=\"generateWebhookSecretKey()\">Generate</button>\n" +
+    "<button type=\"button\" class=\"btn btn-default\" ng-click=\"generateWebhookSecretKey()\">生成</button>\n" +
     "</span>\n" +
     "</div>\n" +
     "<div class=\"help-block\" id=\"secret-name-help\">\n" +
-    "Value of the secret will be supplied when invoking the webhook.\n" +
-    "<a ng-href=\"{{'webhooks' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "调用Webhook时将提供密钥值。\n" +
+    "<a ng-href=\"{{'webhooks' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"secretForm.webhookSecretKey.$error.pattern && secretForm.webhookSecretKey.$touched\">\n" +
     "<span class=\"help-block\">\n" +
@@ -6151,14 +6191,14 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"secretForm.webhookSecretKey.$error.minlength && secretForm.webhookSecretKey.$touched\">\n" +
     "<span class=\"help-block\">\n" +
-    "The key must have at least {{secretReferenceValidation.minLength}} characters.\n" +
+    "密钥必须至少有 {{secretReferenceValidation.minLength}} 个字符。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"newSecret.type === 'source' || newSecret.type === 'image'\">\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"authentification-type\">Authentication Type</label>\n" +
+    "<label for=\"authentification-type\">认证类型</label>\n" +
     "<ui-select required input-id=\"authentification-type\" ng-model=\"newSecret.authType\" search-enabled=\"false\">\n" +
     "<ui-select-match>{{$select.selected.label}}</ui-select-match>\n" +
     "<ui-select-choices repeat=\"type.id as type in secretAuthTypeMap[newSecret.type].authTypes\">\n" +
@@ -6168,58 +6208,71 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-if=\"newSecret.authType === 'kubernetes.io/basic-auth'\">\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"username\">Username</label>\n" +
+    "<label for=\"username\">用户名</label>\n" +
     "<input class=\"form-control\" id=\"username\" name=\"username\" ng-model=\"newSecret.data.username\" type=\"text\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" aria-describedby=\"username-help\">\n" +
     "<div class=\"help-block\" id=\"username-help\">\n" +
-    "Optional username for Git authentication.\n" +
+    "Git认证的任意用户名。\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\" ng-class=\"{ 'has-error' : secretForm.passwordToken.$invalid && secretForm.passwordToken.$touched }\">\n" +
-    "<label ng-class=\"{ required: !add.cacert && !add.gitconfig }\" for=\"password-token\">Password or Token</label>\n" +
+    "<label ng-class=\"{ required: !add.cacert && !add.gitconfig }\" for=\"password-token\">密码或令牌</label>\n" +
     "<input class=\"form-control\" id=\"password-token\" name=\"passwordToken\" ng-model=\"newSecret.data.passwordToken\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" aria-describedby=\"password-token-help\" type=\"password\" ng-required=\"!add.cacert && !add.gitconfig\">\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"secretForm.passwordToken.$error.required && secretForm.passwordToken.$touched\">\n" +
     "<div class=\"help-block\">\n" +
-    "Password or token is required.\n" +
+    "密码或令牌不能为空。\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"help-block\" id=\"password-token-help\">\n" +
-    "Password or token for Git authentication. Required if a ca.crt or .gitconfig file is not specified.\n" +
+    "Git身份验证的密码或令牌。如果未指定ca.crt或.gitconfig文件，则不能为空。\n" +
     "</div>\n" +
     "<div class=\"form-group\">\n" +
     "<div class=\"checkbox\">\n" +
     "<label>\n" +
     "<input type=\"checkbox\" ng-model=\"add.cacert\">\n" +
-    "Use a custom ca.crt file\n" +
+    "使用自定义 ca.crt 文件\n" +
     "</label>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\" ng-if=\"add.cacert\" id=\"cacert\">\n" +
-    "<label class=\"required\" for=\"cacert\">CA Certificate File</label>\n" +
-    "<osc-file-input id=\"cacert-file-input\" model=\"newSecret.data.cacert\" drop-zone-id=\"cacert\" help-text=\"Upload your ca.crt file.\" required=\"true\"></osc-file-input>\n" +
-    "<div ui-ace=\"{\n" +
-    "            mode: 'txt',\n" +
-    "            theme: 'eclipse',\n" +
-    "            rendererOptions: {\n" +
-    "              fadeFoldWidgets: true,\n" +
-    "              showPrintMargin: false\n" +
-    "            }\n" +
+    "<label class=\"required\" for=\"cacert\">CA证书文件</label>\n" +
+    "<osc-file-input id=\"cacert-file-input\" model=\"newSecret.data.cacert\" drop-zone-id=\"cacert\" help-text=\"上传您的 ca.crt 文件。\" required=\"true\"></osc-file-input>\n" +
+    "<div ui-ace=\"{\r" +
+    "\n" +
+    "            mode: 'txt',\r" +
+    "\n" +
+    "            theme: 'eclipse',\r" +
+    "\n" +
+    "            rendererOptions: {\r" +
+    "\n" +
+    "              fadeFoldWidgets: true,\r" +
+    "\n" +
+    "              showPrintMargin: false\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
     "          }\" ng-model=\"newSecret.data.cacert\" class=\"create-secret-editor ace-bordered\" id=\"cacert-editor\" required></div>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"newSecret.authType === 'kubernetes.io/ssh-auth'\">\n" +
     "<div class=\"form-group\" id=\"private-key\">\n" +
-    "<label for=\"privateKey\" class=\"required\">SSH Private Key</label>\n" +
-    "<osc-file-input id=\"private-key-file-input\" model=\"newSecret.data.privateKey\" drop-zone-id=\"private-key\" help-text=\"Upload your private SSH key file.\"></osc-file-input>\n" +
-    "<div ui-ace=\"{\n" +
-    "            theme: 'eclipse',\n" +
-    "            rendererOptions: {\n" +
-    "              fadeFoldWidgets: true,\n" +
-    "              showPrintMargin: false\n" +
-    "            }\n" +
+    "<label for=\"privateKey\" class=\"required\">SSH私钥</label>\n" +
+    "<osc-file-input id=\"private-key-file-input\" model=\"newSecret.data.privateKey\" drop-zone-id=\"private-key\" help-text=\"上传您的私人ssh密钥文件。\"></osc-file-input>\n" +
+    "<div ui-ace=\"{\r" +
+    "\n" +
+    "            theme: 'eclipse',\r" +
+    "\n" +
+    "            rendererOptions: {\r" +
+    "\n" +
+    "              fadeFoldWidgets: true,\r" +
+    "\n" +
+    "              showPrintMargin: false\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
     "          }\" ng-model=\"newSecret.data.privateKey\" class=\"create-secret-editor ace-bordered\" id=\"private-key-editor\" required></div>\n" +
     "<div class=\"help-block\">\n" +
-    "Private SSH key file for Git authentication.\n" +
+    "用于Git身份验证的专用SSH密钥文件。\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -6228,91 +6281,106 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"checkbox\">\n" +
     "<label>\n" +
     "<input type=\"checkbox\" ng-model=\"add.gitconfig\">\n" +
-    "Use a custom .gitconfig file\n" +
+    "使用自定义 .gitconfig 文件\n" +
     "</label>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\" ng-if=\"add.gitconfig\" id=\"gitconfig\">\n" +
-    "<label class=\"required\" for=\"gitconfig\">Git Configuration File</label>\n" +
-    "<osc-file-input id=\"gitconfig-file-input\" model=\"newSecret.data.gitconfig\" drop-zone-id=\"gitconfig\" help-text=\"Upload your .gitconfig or  file.\" required=\"true\"></osc-file-input>\n" +
-    "<div ui-ace=\"{\n" +
-    "            mode: 'ini',\n" +
-    "            theme: 'eclipse',\n" +
-    "            rendererOptions: {\n" +
-    "              fadeFoldWidgets: true,\n" +
-    "              showPrintMargin: false\n" +
-    "            }\n" +
+    "<label class=\"required\" for=\"gitconfig\">Git配置文件</label>\n" +
+    "<osc-file-input id=\"gitconfig-file-input\" model=\"newSecret.data.gitconfig\" drop-zone-id=\"gitconfig\" help-text=\"上传您的 .gitconfig 或其他文件。\" required=\"true\"></osc-file-input>\n" +
+    "<div ui-ace=\"{\r" +
+    "\n" +
+    "            mode: 'ini',\r" +
+    "\n" +
+    "            theme: 'eclipse',\r" +
+    "\n" +
+    "            rendererOptions: {\r" +
+    "\n" +
+    "              fadeFoldWidgets: true,\r" +
+    "\n" +
+    "              showPrintMargin: false\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
     "          }\" ng-model=\"newSecret.data.gitconfig\" class=\"create-secret-editor ace-bordered\" id=\"gitconfig-editor\" required></div>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"newSecret.authType === 'kubernetes.io/dockercfg'\">\n" +
     "<div class=\"form-group\" ng-class=\"{ 'has-error' : secretForm.dockerServer.$invalid && secretForm.dockerServer.$touched }\">\n" +
-    "<label for=\"docker-server\" class=\"required\">Image Registry Server Address</label>\n" +
+    "<label for=\"docker-server\" class=\"required\">镜像注册服务器地址</label>\n" +
     "<div>\n" +
     "<input class=\"form-control\" id=\"docker-server\" name=\"dockerServer\" ng-model=\"newSecret.data.dockerServer\" type=\"text\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" required>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-show=\"secretForm.dockerServer.$error.required && secretForm.dockerServer.$touched\" class=\"has-error\">\n" +
     "<div class=\"help-block\">\n" +
-    "Image registry server address is required.\n" +
+    "镜像注册服务地址不能为空。\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\" ng-class=\"{ 'has-error' : secretForm.dockerUsername.$invalid && secretForm.dockerUsername.$touched }\">\n" +
-    "<label for=\"docker-username\" class=\"required\">Username</label>\n" +
+    "<label for=\"docker-username\" class=\"required\">用户名</label>\n" +
     "<div>\n" +
     "<input class=\"form-control\" id=\"docker-username\" name=\"dockerUsername\" ng-model=\"newSecret.data.dockerUsername\" type=\"text\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" required>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-show=\"secretForm.dockerUsername.$error.required && secretForm.dockerUsername.$touched\" class=\"has-error\">\n" +
     "<div class=\"help-block\">\n" +
-    "Username is required.\n" +
+    "用户名不能为空。\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\" ng-class=\"{ 'has-error' : secretForm.dockerPassword.$invalid && secretForm.dockerPassword.$touched }\">\n" +
-    "<label for=\"docker-password\" class=\"required\">Password</label>\n" +
+    "<label for=\"docker-password\" class=\"required\">密码</label>\n" +
     "<div>\n" +
     "<input class=\"form-control\" id=\"docker-password\" name=\"dockerPassword\" ng-model=\"newSecret.data.dockerPassword\" type=\"password\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" required>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-show=\"secretForm.dockerPassword.$error.required && secretForm.dockerPassword.$touched\" class=\"has-error\">\n" +
     "<div class=\"help-block\">\n" +
-    "Password is required.\n" +
+    "密码不能为空。\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\" ng-class=\"{ 'has-error' : secretForm.dockerEmail.$invalid && secretForm.dockerEmail.$touched }\">\n" +
-    "<label for=\"docker-email\" class=\"required\">Email</label>\n" +
+    "<label for=\"docker-email\" class=\"required\">电子邮箱</label>\n" +
     "<div>\n" +
     "<input class=\"form-control\" type=\"email\" id=\"docker-email\" name=\"dockerEmail\" ng-model=\"newSecret.data.dockerMail\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" required>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"secretForm.dockerEmail.$invalid\">\n" +
     "<div ng-show=\"secretForm.dockerEmail.$error.email && secretForm.dockerEmail.$touched\" class=\"help-block\">\n" +
-    "Email must be in the form of <var>user@domain</var>.\n" +
+    "电子邮箱的格式必须是 <var>user@domain</var>。\n" +
     "</div>\n" +
     "<div ng-show=\"secretForm.dockerEmail.$error.required && secretForm.dockerEmail.$touched\" class=\"help-block\">\n" +
-    "Email is required.\n" +
+    "电子邮箱不能为空。\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"newSecret.authType === 'kubernetes.io/dockerconfigjson'\">\n" +
     "<div class=\"form-group\" id=\"docker-config\">\n" +
-    "<label for=\"dockerConfig\" class=\"required\">Configuration File</label>\n" +
-    "<osc-file-input id=\"dockercfg-file-input\" model=\"newSecret.data.dockerConfig\" drop-zone-id=\"docker-config\" help-text=\"Upload a .dockercfg or .docker/config.json file\" required=\"true\"></osc-file-input>\n" +
-    "<div ui-ace=\"{\n" +
-    "            mode: 'json',\n" +
-    "            theme: 'eclipse',\n" +
-    "            onChange: aceChanged,\n" +
-    "            rendererOptions: {\n" +
-    "              fadeFoldWidgets: true,\n" +
-    "              showPrintMargin: false\n" +
-    "            }\n" +
+    "<label for=\"dockerConfig\" class=\"required\">配置文件</label>\n" +
+    "<osc-file-input id=\"dockercfg-file-input\" model=\"newSecret.data.dockerConfig\" drop-zone-id=\"docker-config\" help-text=\"上传  .dockercfg or .docker/config.json file\" required=\"true\"></osc-file-input>\n" +
+    "<div ui-ace=\"{\r" +
+    "\n" +
+    "            mode: 'json',\r" +
+    "\n" +
+    "            theme: 'eclipse',\r" +
+    "\n" +
+    "            onChange: aceChanged,\r" +
+    "\n" +
+    "            rendererOptions: {\r" +
+    "\n" +
+    "              fadeFoldWidgets: true,\r" +
+    "\n" +
+    "              showPrintMargin: false\r" +
+    "\n" +
+    "            }\r" +
+    "\n" +
     "          }\" ng-model=\"newSecret.data.dockerConfig\" class=\"create-secret-editor ace-bordered\" id=\"dockerconfig-editor\" required></div>\n" +
     "<div class=\"help-block\">\n" +
-    "File with credentials and other configuration for connecting to a secured image registry.\n" +
+    "带有凭证和其他配置的文件，用于连接到受保护的镜像注册表。\n" +
     "</div>\n" +
     "<div class=\"has-warning\" ng-show=\"invalidConfigFormat\">\n" +
     "<span class=\"help-block\">\n" +
-    "Configuration file should be in JSON format.\n" +
+    "配置文件应该是JSON格式。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -6322,14 +6390,14 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"checkbox\">\n" +
     "<label>\n" +
     "<input type=\"checkbox\" ng-model=\"newSecret.linkSecret\">\n" +
-    "Link secret to a service account.\n" +
-    "<a href=\"{{'managing_secrets' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "将密钥链接到服务帐户。\n" +
+    "<a href=\"{{'managing_secrets' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</label>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"newSecret.linkSecret\">\n" +
     "<div class=\"form-group\">\n" +
-    "<label class=\"required\">Service Account</label>\n" +
+    "<label class=\"required\">服务账户</label>\n" +
     "<ui-select required ng-model=\"newSecret.pickedServiceAccountToLink\">\n" +
     "<ui-select-match placeholder=\"Service Account Name\">{{$select.selected}}</ui-select-match>\n" +
     "<ui-select-choices repeat=\"sa in (serviceAccountsNames | filter : $select.search)\">\n" +
@@ -6346,8 +6414,8 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"buttons gutter-top-bottom\">\n" +
-    "<button class=\"btn btn-primary\" type=\"button\" ng-disabled=\"secretForm.$invalid || secretForm.$pristine || invalidConfigFormat\" ng-click=\"create()\">Create</button>\n" +
-    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "<button class=\"btn btn-primary\" type=\"button\" ng-disabled=\"secretForm.$invalid || secretForm.$pristine || invalidConfigFormat\" ng-click=\"create()\">创建</button>\n" +
+    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">取消</button>\n" +
     "</div>\n" +
     "</ng-form>"
   );
@@ -6362,14 +6430,14 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
 
 
   $templateCache.put('views/directives/delete-link.html',
-    "<a href=\"javascript:void(0)\" ng-click=\"openDeleteModal()\" role=\"button\" ng-attr-aria-disabled=\"{{disableDelete ? 'true' : undefined}}\" ng-class=\"{ 'disabled-link': disableDelete }\">{{label || 'Delete'}}</a>"
+    "<a href=\"javascript:void(0)\" ng-click=\"openDeleteModal()\" role=\"button\" ng-attr-aria-disabled=\"{{disableDelete ? 'true' : undefined}}\" ng-class=\"{ 'disabled-link': disableDelete }\">{{label || '删除'}}</a>"
   );
 
 
   $templateCache.put('views/directives/deploy-image-dialog.html',
     "<pf-wizard wizard-title=\"部署镜像\" on-cancel=\"$ctrl.close()\" on-finish=\"$ctrl.close()\" hide-back-button=\"true\" hide-sidebar=\"true\" next-title=\"$ctrl.nextButtonTitle\" next-callback=\"$ctrl.nextCallback\" current-step=\"$ctrl.currentStep\" on-step-changed=\"$ctrl.stepChanged(step)\" step-class=\"order-service-wizard-step\" wizard-done=\"$ctrl.wizardDone\">\n" +
     "\n" +
-    "<pf-wizard-step step-title=\"Image\" step-id=\"image\" step-priority=\"1\" substeps=\"false\" ok-to-nav-away=\"true\" allow-click-nav=\"false\" next-enabled=\"!!($ctrl.deployForm.$valid || $ctrl.deployImageNewAppCreated)\">\n" +
+    "<pf-wizard-step step-title=\"镜像\" step-id=\"image\" step-priority=\"1\" substeps=\"false\" ok-to-nav-away=\"true\" allow-click-nav=\"false\" next-enabled=\"!!($ctrl.deployForm.$valid || $ctrl.deployImageNewAppCreated)\">\n" +
     "<div class=\"wizard-pf-main-inner-shadow-covers\">\n" +
     "<div class=\"order-service-config\">\n" +
     "<div class=\"wizard-pf-main-form-contents\">\n" +
@@ -6380,7 +6448,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "</pf-wizard-step>\n" +
-    "<pf-wizard-step step-title=\"Results\" step-id=\"results\" step-priority=\"2\" substeps=\"false\" ok-to-nav-away=\"true\" allow-click-nav=\"false\">\n" +
+    "<pf-wizard-step step-title=\"结果\" step-id=\"results\" step-priority=\"2\" substeps=\"false\" ok-to-nav-away=\"true\" allow-click-nav=\"false\">\n" +
     "<div class=\"wizard-pf-main-inner-shadow-covers\">\n" +
     "<div class=\"order-service-config\">\n" +
     "<div class=\"wizard-pf-main-form-contents\">\n" +
@@ -6679,13 +6747,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<fieldset>\n" +
     "\n" +
     "<div ng-show=\"showNameInput\" class=\"form-group\">\n" +
-    "<label for=\"key-value-map-name\" class=\"required\">Name</label>\n" +
+    "<label for=\"key-value-map-name\" class=\"required\">名称</label>\n" +
     "\n" +
     "<div ng-class=\"{ 'has-error': keyValueMapForm.name.$invalid && keyValueMapForm.name.$touched }\">\n" +
     "<input id=\"key-value-map-name\" class=\"form-control\" type=\"text\" name=\"name\" ng-model=\"map.metadata.name\" ng-required=\"showNameInput\" ng-pattern=\"nameValidation.pattern\" ng-maxlength=\"nameValidation.maxlength\" placeholder=\"my-{{type}}\" select-on-focus autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" aria-describedby=\"key-value-map-name-help\">\n" +
     "</div>\n" +
     "<div>\n" +
-    "<span id=\"key-value-map-name-help\" class=\"help-block\">A unique name for the {{type}} within the project.</span>\n" +
+    "<span id=\"key-value-map-name-help\" class=\"help-block\">这个项目中{{type}}的唯一名称。</span>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"keyValueMapForm.name.$error.pattern && keyValueMapForm.name.$touched\">\n" +
     "<span class=\"help-block\">\n" +
@@ -6694,18 +6762,18 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"keyValueMapForm.name.$error.required && keyValueMapForm.name.$touched\">\n" +
     "<span class=\"help-block\">\n" +
-    "Name is required.\n" +
+    "名称不能为空。\n" +
     "</span>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"keyValueMapForm.name.$error.maxlength\">\n" +
     "<span class=\"help-block\">\n" +
-    "Can't be longer than {{nameValidation.maxlength}} characters.\n" +
+    "不能超过{{nameValidation.maxlength}}个字符。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"!data.length\">\n" +
     "<p><em>The {{type}} has no items.</em></p>\n" +
-    "<a href=\"\" ng-click=\"addItem()\">Add Item</a>\n" +
+    "<a href=\"\" ng-click=\"addItem()\">增加条目</a>\n" +
     "</div>\n" +
     "<div ng-repeat=\"item in data\" ng-init=\"keys = getKeys()\">\n" +
     "<div class=\"form-group\">\n" +
@@ -6715,47 +6783,52 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<input class=\"form-control\" name=\"key-{{$id}}\" ng-attr-id=\"key-{{$id}}\" type=\"text\" ng-model=\"item.key\" required ng-pattern=\"/^[-._a-zA-Z0-9]+$/\" ng-maxlength=\"253\" osc-unique=\"keys\" placeholder=\"my.key\" select-on-focus autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" aria-describedby=\"key-{{$id}}-help\">\n" +
     "</div>\n" +
     "<div class=\"help-block\">\n" +
-    "A unique key for this {{type}} entry.\n" +
+    "这个{{type}}的唯一Key。\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"keyValueMapForm['key-' + $id].$error.required && keyValueMapForm['key-' + $id].$touched\">\n" +
     "<span class=\"help-block\">\n" +
-    "Key is required.\n" +
+    "Key不能为空。\n" +
     "</span>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"keyValueMapForm['key-' + $id].$error.oscUnique && keyValueMapForm['key-' + $id].$touched\">\n" +
     "<span class=\"help-block\">\n" +
-    "Duplicate key \"{{item.key}}\". Keys must be unique within the {{type}}.\n" +
+    "重复的Key \"{{item.key}}\"。 在{{type}}内Keys必须是唯一的。\n" +
     "</span>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"keyValueMapForm['key-' + $id].$error.pattern && keyValueMapForm['key-' + $id].$touched\">\n" +
     "<span class=\"help-block\">\n" +
-    "Keys may only consist of letters, numbers, periods, hyphens, and underscores.\n" +
+    "Keys只能由字母、数字、句号、连字符和下划线组成。\n" +
     "</span>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"keyValueMapForm['key-' + $id].$error.maxlength\">\n" +
     "<span class=\"help-block\">\n" +
-    "Keys may not be longer than 253 characters.\n" +
+    "Keys的长度不能超过253个字符。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\" ng-attr-id=\"drop-zone-{{$id}}\">\n" +
     "<label ng-attr-for=\"name-{{$id}}\">Value</label>\n" +
     "<div ng-if=\"isBinaryFile\" class=\"h4\">\n" +
-    "This file contains binary content.\n" +
+    "此文件包含二进制内容。\n" +
     "</div>\n" +
-    "<osc-file-input model=\"item.value\" drop-zone-id=\"drop-zone-{{$id}}\" help-text=\"Enter a value for the {{type}} entry or use the contents of a file.\" read-as-binary-string=\"readAsBinaryString\" is-binary-file=\"isBinaryFile\"></osc-file-input>\n" +
-    "<div ui-ace=\"{\n" +
-    "          theme: 'eclipse',\n" +
-    "          rendererOptions: {\n" +
-    "            showPrintMargin: false\n" +
-    "          }\n" +
+    "<osc-file-input model=\"item.value\" drop-zone-id=\"drop-zone-{{$id}}\" help-text=\"输入{{type}}的值或者使用一个文件中的内容\" read-as-binary-string=\"readAsBinaryString\" is-binary-file=\"isBinaryFile\"></osc-file-input>\n" +
+    "<div ui-ace=\"{\r" +
+    "\n" +
+    "          theme: 'eclipse',\r" +
+    "\n" +
+    "          rendererOptions: {\r" +
+    "\n" +
+    "            showPrintMargin: false\r" +
+    "\n" +
+    "          }\r" +
+    "\n" +
     "        }\" ng-model=\"item.value\" ng-if=\"!isBinaryFile\" class=\"ace-bordered ace-inline-small mar-top-sm\" ng-attr-id=\"value-{{$id}}\"></div>\n" +
     "</div>\n" +
     "<div class=\"mar-bottom-md\">\n" +
-    "<a href=\"\" ng-click=\"removeItem($index)\">Remove Item</a>\n" +
+    "<a href=\"\" ng-click=\"removeItem($index)\">删除条目</a>\n" +
     "<span ng-if=\"$last\">\n" +
     "<span class=\"action-divider\">|</span>\n" +
-    "<a href=\"\" ng-click=\"addItem()\">Add Item</a>\n" +
+    "<a href=\"\" ng-click=\"addItem()\">增加条目</a>\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -6771,12 +6844,12 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"$ctrl.showHeader\" class=\"row form-row-has-controls input-labels\">\n" +
     "<div class=\"col-xs-6\">\n" +
     "<label class=\"input-label\">\n" +
-    "Config Map/Secret\n" +
+    "配置映射/密钥\n" +
     "</label>\n" +
     "</div>\n" +
     "<div class=\"col-xs-6\" ng-if=\"!$ctrl.isEnvFromReadonly() && $ctrl.hasOptions()\">\n" +
     "<label class=\"input-label\">\n" +
-    "Prefix\n" +
+    "前缀\n" +
     "<small class=\"pficon pficon-help tooltip-default-icon\" aria-hidden=\"true\" data-toggle=\"tooltip\" data-original-title=\"Optional prefix added to each environment variable name. A valid prefix is an alphanumeric (a-z and 0-9) string beginning with a letter that may contain underscores.\"></small>\n" +
     "</label>\n" +
     "</div>\n" +
@@ -6786,7 +6859,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"environment-from-input col-xs-6 form-group\">\n" +
     "<div ng-if=\"$ctrl.isEnvFromReadonly(entry) || !$ctrl.hasOptions()\" class=\"faux-input-group\">\n" +
     "<div ng-if=\"!entry.configMapRef.name && !entry.secretRef.name\">\n" +
-    "No config maps or secrets have been added as Environment From.\n" +
+    "环境里没有添加任何配置映射或密钥。\n" +
     "</div>\n" +
     "<div ng-if=\"entry.configMapRef.name || entry.secretRef.name\" class=\"faux-form-control readonly\">\n" +
     "Use all keys and values from\n" +
@@ -6837,17 +6910,17 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"!$ctrl.isEnvFromReadonly(entry) && $ctrl.hasEntries()\" class=\"environment-from-editor-button form-row-controls\">\n" +
     "<button ng-if=\"!$ctrl.cannotSort && $ctrl.entries.length > 1\" class=\"sort-row\" type=\"button\" aria-hidden=\"true\" aria-grabbed=\"false\" as-sortable-item-handle>\n" +
     "<span class=\"fa fa-bars\"></span>\n" +
-    "<span class=\"sr-only\">Move row</span>\n" +
+    "<span class=\"sr-only\">移动行</span>\n" +
     "</button>\n" +
     "<button ng-if=\"!$ctrl.cannotDeleteAny\" class=\"btn-remove close delete-row as-sortable-item-delete\" type=\"button\" aria-hidden=\"true\" ng-click=\"$ctrl.deleteEntry($index, 1)\">\n" +
     "<span class=\"pficon pficon-close\" aria-hidden=\"true\"></span>\n" +
-    "<span class=\"sr-only\">Delete row</span>\n" +
+    "<span class=\"sr-only\">删除行</span>\n" +
     "</button>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"environment-from-entry\" ng-if=\"!$ctrl.isEnvFromReadonly() && $ctrl.hasOptions()\">\n" +
-    "<a href=\"\" class=\"add-row-link\" role=\"button\" ng-click=\"$ctrl.onAddRow()\">Add ALL Values from Config Map or Secret</a>\n" +
+    "<a href=\"\" class=\"add-row-link\" role=\"button\" ng-click=\"$ctrl.onAddRow()\">从配置映射或密钥中添加值</a>\n" +
     "</div>\n" +
     "</div>\n" +
     "<overlay-panel class=\"overlay-panel-as-modal add-config-to-application\" show-panel=\"$ctrl.overlayPanelVisible\" handle-close=\"$ctrl.closeOverlayPanel\">\n" +
@@ -6892,7 +6965,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
-    "<button ng-click=\"$ctrl.closeOverlayPanel()\" type=\"button\" class=\"btn btn-default\">Close</button>\n" +
+    "<button ng-click=\"$ctrl.closeOverlayPanel()\" type=\"button\" class=\"btn btn-default\">关闭</button>\n" +
     "</div>\n" +
     "</overlay-panel>\n" +
     "</ng-form>"
@@ -6903,26 +6976,26 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<form ng-if=\"$ctrl.apiObject\" name=\"$ctrl.form\" class=\"mar-bottom-xl\">\n" +
     "<confirm-on-exit ng-if=\"$ctrl.canIUpdate && !$ctrl.ngReadonly\" dirty=\"$ctrl.form.$dirty\"></confirm-on-exit>\n" +
     "<div ng-repeat=\"container in $ctrl.containers track by container.name\">\n" +
-    "<h3>Container {{container.name}}</h3>\n" +
+    "<h3>容器 {{container.name}}</h3>\n" +
     "<div ng-if=\"!$ctrl.canIUpdate || $ctrl.ngReadonly\">\n" +
     "<span ng-if=\"!container.env.length\">\n" +
-    "No environment variables set in the {{$ctrl.apiObject.kind | humanizeKind}} template for container {{container.name}}.\n" +
+    "{{container.name}}容器 {{$ctrl.apiObject.kind | humanizeKind}}模板 没有环境变量。\n" +
     "</span>\n" +
     "<key-value-editor ng-if=\"container.env.length\" entries=\"container.env\" key-placeholder=\"Name\" value-placeholder=\"Value\" cannot-add cannot-sort cannot-delete is-readonly show-header>\n" +
     "</key-value-editor>\n" +
     "</div>\n" +
-    "<key-value-editor ng-if=\"$ctrl.canIUpdate && !$ctrl.ngReadonly\" entries=\"container.env\" key-placeholder=\"Name\" value-placeholder=\"Value\" value-from-selector-options=\"$ctrl.valueFromObjects\" key-validator=\"[A-Za-z_][A-Za-z0-9_]*\" key-validator-error=\"Please enter a valid key.\" key-validator-error-tooltip=\"A valid environment variable name is an alphanumeric (a-z and 0-9) string beginning with a letter that may contain underscores.\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\" show-header>\n" +
+    "<key-value-editor ng-if=\"$ctrl.canIUpdate && !$ctrl.ngReadonly\" entries=\"container.env\" key-placeholder=\"Name\" value-placeholder=\"Value\" value-from-selector-options=\"$ctrl.valueFromObjects\" key-validator=\"[A-Za-z_][A-Za-z0-9_]*\" key-validator-error=\"Please enter a valid key.\" key-validator-error-tooltip=\"A valid environment variable name is an alphanumeric (a-z and 0-9) string beginning with a letter that may contain underscores.\" add-row-link=\"添加值\" add-row-with-selectors-link=\"从配置映射或密钥中添加值\" show-header>\n" +
     "</key-value-editor>\n" +
     "<h4>\n" +
-    "Environment From\n" +
-    "<span class=\"pficon pficon-help tooltip-default-icon\" aria-hidden=\"true\" data-toggle=\"tooltip\" data-original-title=\"Environment From lets you add all key-value pairs from a config map or secret as environment variables.\"></span>\n" +
+    "环境添加\n" +
+    "<span class=\"pficon pficon-help tooltip-default-icon\" aria-hidden=\"true\" data-toggle=\"tooltip\" data-original-title=\"环境允许您从配置映射或密钥中添加所有键值对作为环境变量。\"></span>\n" +
     "</h4>\n" +
     "<edit-environment-from entries=\"container.envFrom\" env-from-selector-options=\"$ctrl.valueFromObjects\" is-readonly=\"$ctrl.ngReadonly\" show-header>\n" +
     "</edit-environment-from>\n" +
     "</div>\n" +
     "<div class=\"gutter-top-bottom\">\n" +
-    "<button class=\"btn btn-default\" ng-if=\"$ctrl.canIUpdate && !$ctrl.ngReadonly\" ng-click=\"$ctrl.save()\" ng-disabled=\"$ctrl.form.$pristine || $ctrl.form.$invalid\">Save</button>\n" +
-    "<a ng-if=\"!$ctrl.form.$pristine\" href=\"\" ng-click=\"$ctrl.clearChanges()\" class=\"mar-left-sm clear-env-changes-link\">Clear Changes</a>\n" +
+    "<button class=\"btn btn-default\" ng-if=\"$ctrl.canIUpdate && !$ctrl.ngReadonly\" ng-click=\"$ctrl.save()\" ng-disabled=\"$ctrl.form.$pristine || $ctrl.form.$invalid\">保存</button>\n" +
+    "<a ng-if=\"!$ctrl.form.$pristine\" href=\"\" ng-click=\"$ctrl.clearChanges()\" class=\"mar-left-sm clear-env-changes-link\">清除变更</a>\n" +
     "</div>\n" +
     "</form>"
   );
@@ -6931,31 +7004,31 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
   $templateCache.put('views/directives/edit-lifecycle-hook.html',
     "<ng-form name=\"editForm\">\n" +
     "<div ng-switch=\"type\">\n" +
-    "<div class=\"help-block\" ng-switch-when=\"pre\">Pre hooks execute before the deployment begins.</div>\n" +
-    "<div class=\"help-block\" ng-switch-when=\"mid\">Mid hooks execute after the previous deployment is scaled down to zero and before the first pod of the new deployment is created.</div>\n" +
-    "<div class=\"help-block\" ng-switch-when=\"post\">Post hooks execute after the deployment strategy completes.</div>\n" +
+    "<div class=\"help-block\" ng-switch-when=\"pre\">在部署开始前，执行Pre钩子。</div>\n" +
+    "<div class=\"help-block\" ng-switch-when=\"mid\">在之前的部署被缩减为零，并在创建新部署的第一个pod之前，执行Mid钩子。</div>\n" +
+    "<div class=\"help-block\" ng-switch-when=\"post\">在部署策略完成后，执行Post钩子</div>\n" +
     "</div>\n" +
     "<div class=\"gutter-top\" ng-if=\"hookParams\">\n" +
     "<fieldset ng-disabled=\"view.isDisabled\">\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"actionType\" class=\"required\">Lifecycle Action</label><br/>\n" +
+    "<label for=\"actionType\" class=\"required\">生命周期动作</label><br/>\n" +
     "<label class=\"radio-inline\">\n" +
     "<input type=\"radio\" name=\"{{type}}-action-newpod\" ng-model=\"action.type\" value=\"execNewPod\" aria-describedby=\"action-help\">\n" +
-    "Run a specific command in a new pod\n" +
+    "在一个新的pod中运行一个特定的命令\n" +
     "</label>\n" +
     "<label class=\"radio-inline\">\n" +
     "<input type=\"radio\" name=\"{{type}}-action-images\" ng-model=\"action.type\" value=\"tagImages\" aria-describedby=\"action-help\">\n" +
-    "Tag image if the deployment succeeds\n" +
+    "如果部署成功，将为镜像打上标签。\n" +
     "</label>\n" +
     "<div id=\"action-help\" class=\"help-block\">\n" +
-    "<span ng-if=\"action.type === 'execNewPod'\">Runs a command in a new pod using the container from the deployment template. You can add additional environment variables and volumes.</span>\n" +
-    "<span ng-if=\"action.type === 'tagImages'\">Tags the current image as an image stream tag if the deployment succeeds.</span>\n" +
+    "<span ng-if=\"action.type === 'execNewPod'\">使用来自部署模板的容器在新的pod中运行一个命令。您可以添加额外的环境变量和卷。</span>\n" +
+    "<span ng-if=\"action.type === 'tagImages'\">如果部署成功，则为当前镜像打上镜像流标签。</span>\n" +
     "<a href=\"{{'new_pod_exec' | helpLink}}\" aria-hidden=\"true\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\"></i></span></a>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"action.type === 'execNewPod'\">\n" +
     "<div class=\"form-group\">\n" +
-    "<label class=\"required\">Container Name</label>\n" +
+    "<label class=\"required\">容器名称</label>\n" +
     "<ui-select ng-model=\"hookParams.execNewPod.containerName\" required>\n" +
     "<ui-select-match>{{$select.selected}}</ui-select-match>\n" +
     "<ui-select-choices repeat=\"container in (availableContainers | filter : $select.search)\" ng-disabled=\"view.isDisabled\">\n" +
@@ -6964,18 +7037,18 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</ui-select>\n" +
     "</div>\n" +
     "<div class=\"form-group\">\n" +
-    "<label class=\"required\">Command</label>\n" +
+    "<label class=\"required\">命令</label>\n" +
     "<edit-command args=\"hookParams.execNewPod.command\" is-required=\"true\"></edit-command>\n" +
     "</div>\n" +
     "<div class=\"form-group\">\n" +
-    "<label>Environment Variables</label>\n" +
-    "<key-value-editor entries=\"hookParams.execNewPod.env\" key-validator=\"[a-zA-Z_][a-zA-Z0-9_]*\" key-validator-error-tooltip=\"A valid environment variable name is an alphanumeric (a-z and 0-9) string beginning with a letter that may contain underscores.\" value-from-selector-options=\"valueFromObjects\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\" add-row-link=\"Add Value\"></key-value-editor>\n" +
+    "<label>环境变量</label>\n" +
+    "<key-value-editor entries=\"hookParams.execNewPod.env\" key-validator=\"[a-zA-Z_][a-zA-Z0-9_]*\" key-validator-error-tooltip=\"一个有效的环境变量名是一个字母数字(A -z和0-9)字符串，从一个可能包含下划线的字母开始。\" value-from-selector-options=\"valueFromObjects\" add-row-with-selectors-link=\"从配置映射或密钥中添加值\" add-row-link=\"添加值\"></key-value-editor>\n" +
     "<div class=\"help-block\">\n" +
-    "Environment variables to supply to the hook pod's container.\n" +
+    "环境变量提供给pod的容器钩子\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\">\n" +
-    "<label>Volumes</label>\n" +
+    "<label>卷</label>\n" +
     "<ui-select multiple=\"multiple\" placeholder=\"Select volume\" ng-model=\"hookParams.execNewPod.volumes\" ng-disabled=\"view.isDisabled\">\n" +
     "<ui-select-match>{{$item}}</ui-select-match>\n" +
     "<ui-select-choices repeat=\"volume in availableVolumes | filter : $select.search\">\n" +
@@ -6983,7 +7056,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</ui-select-choices>\n" +
     "</ui-select>\n" +
     "<div class=\"help-block\">\n" +
-    "List of named volumes to copy to the hook pod.\n" +
+    "要复制到钩子pod的指定卷的列表。\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -6991,7 +7064,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-repeat=\"tagImage in hookParams.tagImages\">\n" +
     "<div ng-if=\"hookParams.tagImages.length === 1\">\n" +
     "<div class=\"form-group\">\n" +
-    "<label class=\"required\">Container Name</label>\n" +
+    "<label class=\"required\">容器名称</label>\n" +
     "<ui-select ng-model=\"tagImage.containerName\" ng-disabled=\"view.isDisabled\" required>\n" +
     "<ui-select-match>{{$select.selected}}</ui-select-match>\n" +
     "<ui-select-choices repeat=\"container in (availableContainers | filter : $select.search)\">\n" +
@@ -6999,25 +7072,25 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</ui-select-choices>\n" +
     "</ui-select>\n" +
     "<div class=\"help-block\">\n" +
-    "Use the image for this container as the source of the tag.\n" +
+    "使用此容器的镜像作为标记的源。\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\">\n" +
-    "<label class=\"required\">Tag As</label>\n" +
+    "<label class=\"required\">定义标签</label>\n" +
     "<istag-select model=\"istagHook\" allow-custom-tag=\"true\" select-required=\"true\" select-disabled=\"view.isDisabled\"></istag-select>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"read-only-tag-image\" ng-if=\"hookParams.tagImages.length > 1\">\n" +
     "<p class=\"read-only-info\" ng-if=\"$first\">\n" +
     "<span class=\"pficon pficon-info\" aria-hidden=\"true\"></span>\n" +
-    "More than one image tag is defined. To change image tags, use the YAML editor.\n" +
+    "定义了多个镜像标签。 要变更镜像标签, 请用YAML编辑器.\n" +
     "</p>\n" +
     "{{tagImage.containerName}}&nbsp;&rarr;&nbsp;{{tagImage.to.namespace || namespace}}/{{tagImage.to.name}}\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group failure-policy\">\n" +
-    "<label class=\"required picker-label\">Failure Policy</label>\n" +
+    "<label class=\"required picker-label\">失败策略</label>\n" +
     "<ui-select ng-model=\"hookParams.failurePolicy\" search-enabled=\"false\" ng-disabled=\"view.isDisabled\">\n" +
     "<ui-select-match>{{$select.selected}}</ui-select-match>\n" +
     "<ui-select-choices repeat=\"failurePolicyTypes in lifecycleHookFailurePolicyTypes\">\n" +
@@ -7025,24 +7098,24 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</ui-select-choices>\n" +
     "</ui-select>\n" +
     "<div ng-switch=\"hookParams.failurePolicy\">\n" +
-    "<div class=\"help-block\" ng-switch-when=\"Retry\">Retry the hook until it succeeds.</div>\n" +
-    "<div class=\"help-block\" ng-switch-when=\"Abort\">Fail the deployment if the hook fails.</div>\n" +
-    "<div class=\"help-block\" ng-switch-when=\"Ignore\">Ignore hook failures and continue the deployment.</div>\n" +
+    "<div class=\"help-block\" ng-switch-when=\"Retry\">重试钩子，直到成功。</div>\n" +
+    "<div class=\"help-block\" ng-switch-when=\"Abort\">如果钩子失败，部署失败。</div>\n" +
+    "<div class=\"help-block\" ng-switch-when=\"Ignore\">忽略钩子故障并继续部署。</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</div>\n" +
     "<span>\n" +
-    "<a href=\"\" role=\"button\" ng-if=\"!hookParams\" ng-click=\"addHook()\">Add {{type | upperFirst}} Lifecycle Hook</a>\n" +
-    "<a href=\"\" role=\"button\" ng-if=\"hookParams\" ng-click=\"removeHook()\">Remove {{type | upperFirst}} Lifecycle Hook</a>\n" +
+    "<a href=\"\" role=\"button\" ng-if=\"!hookParams\" ng-click=\"addHook()\">添加 {{type | upperFirst}} 生命周期钩子</a>\n" +
+    "<a href=\"\" role=\"button\" ng-if=\"hookParams\" ng-click=\"removeHook()\">移除 {{type | upperFirst}} 生命周期钩子</a>\n" +
     "</span>\n" +
     "</ng-form>"
   );
 
 
   $templateCache.put('views/directives/events-badge.html',
-    "<a ng-href=\"project/{{projectContext.projectName}}/browse/events\" class=\"events-badge visible-xs\"><span class=\"event-label\">Events</span><span ng-if=\"warningCount\" class=\"mar-left-md\"><span class=\"pficon pficon-warning-triangle-o mar-right-sm\" aria-hidden=\"true\"></span><span class=\"sr-only\">Warning</span><span class=\"event-count\">{{warningCount}}</span></span><span ng-if=\"normalCount\" class=\"mar-left-md\"><span class=\"pficon pficon-info mar-right-sm\" aria-hidden=\"true\"></span><span class=\"sr-only\">Normal</span><span class=\"event-count\">{{normalCount}}</span></span></a>\n" +
-    "<a href=\"\" ng-click=\"expandSidebar()\" ng-if=\"sidebarCollapsed\" class=\"events-badge hidden-xs\"><span class=\"events-sidebar-expand fa fa-arrow-circle-o-left mar-right-md\"><span class=\"sr-only\">Expand event sidebar</span></span><span class=\"event-label\">Events</span><span ng-if=\"warningCount\" class=\"mar-left-md\"><span class=\"pficon pficon-warning-triangle-o mar-right-sm\" aria-hidden=\"true\"></span><span class=\"sr-only\">Warning</span><span class=\"event-count\">{{warningCount}}</span></span><span ng-if=\"normalCount\" class=\"mar-left-md\"><span class=\"pficon pficon-info mar-right-sm\" aria-hidden=\"true\"></span><span class=\"sr-only\">Normal</span><span class=\"event-count\">{{normalCount}}</span></span></a>"
+    "<a ng-href=\"project/{{projectContext.projectName}}/browse/events\" class=\"events-badge visible-xs\"><span class=\"event-label\">事件</span><span ng-if=\"warningCount\" class=\"mar-left-md\"><span class=\"pficon pficon-warning-triangle-o mar-right-sm\" aria-hidden=\"true\"></span><span class=\"sr-only\">Warning</span><span class=\"event-count\">{{warningCount}}</span></span><span ng-if=\"normalCount\" class=\"mar-left-md\"><span class=\"pficon pficon-info mar-right-sm\" aria-hidden=\"true\"></span><span class=\"sr-only\">Normal</span><span class=\"event-count\">{{normalCount}}</span></span></a>\n" +
+    "<a href=\"\" ng-click=\"expandSidebar()\" ng-if=\"sidebarCollapsed\" class=\"events-badge hidden-xs\"><span class=\"events-sidebar-expand fa fa-arrow-circle-o-left mar-right-md\"><span class=\"sr-only\">Expand event sidebar</span></span><span class=\"event-label\">事件</span><span ng-if=\"warningCount\" class=\"mar-left-md\"><span class=\"pficon pficon-warning-triangle-o mar-right-sm\" aria-hidden=\"true\"></span><span class=\"sr-only\">Warning</span><span class=\"event-count\">{{warningCount}}</span></span><span ng-if=\"normalCount\" class=\"mar-left-md\"><span class=\"pficon pficon-info mar-right-sm\" aria-hidden=\"true\"></span><span class=\"sr-only\">Normal</span><span class=\"event-count\">{{normalCount}}</span></span></a>"
   );
 
 
@@ -7051,27 +7124,27 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"sidebar-header right-header\">\n" +
     "<div>\n" +
     "<h2>\n" +
-    "<span class=\"events-sidebar-collapse\"><a href=\"\" class=\"fa fa-arrow-circle-o-right\" title=\"Collapse event sidebar\" ng-click=\"collapseSidebar()\"><span class=\"sr-only\">Collapse event sidebar</span></a></span>\n" +
-    "Events\n" +
+    "<span class=\"events-sidebar-collapse\"><a href=\"\" class=\"fa fa-arrow-circle-o-right\" title=\"关闭事件侧栏\" ng-click=\"collapseSidebar()\"><span class=\"sr-only\">关闭事件侧栏</span></a></span>\n" +
+    "事件\n" +
     "<small ng-if=\"warningCount\" class=\"warning-count\">\n" +
     "<span class=\"pficon pficon-warning-triangle-o\"></span>\n" +
     "{{warningCount}}\n" +
     "<span class=\"hidden-xs hidden-sm\">\n" +
-    "<span ng-if=\"warningCount === 1\">warning</span>\n" +
-    "<span ng-if=\"warningCount > 1\">warnings</span>\n" +
+    "<span ng-if=\"warningCount === 1\">警告</span>\n" +
+    "<span ng-if=\"warningCount > 1\">警告</span>\n" +
     "</span>\n" +
     "</small>\n" +
     "</h2>\n" +
     "</div>\n" +
     "<div ng-if=\"events | hashSize\" class=\"event-details-link\">\n" +
-    "<a ng-href=\"project/{{projectContext.projectName}}/browse/events\">View Details</a>\n" +
+    "<a ng-href=\"project/{{projectContext.projectName}}/browse/events\">查看详细信息</a>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"right-content\">\n" +
     "<ellipsis-pulser color=\"dark\" size=\"sm\" msg=\"Loading\" ng-if=\"!events\" class=\"events\"></ellipsis-pulser>\n" +
     "<div ng-if=\"events\" class=\"events\">\n" +
     "<div ng-if=\"!(events | hashSize)\" class=\"event\">\n" +
-    "<em>No events.</em>\n" +
+    "<em>没有事件。</em>\n" +
     "</div>\n" +
     "<div ng-repeat=\"event in events track by (event | uid)\" class=\"event animate-repeat\" ng-class=\"{'highlight': highlightedEvents[event.involvedObject.kind + '/' + event.involvedObject.name]}\">\n" +
     "<span class=\"sr-only\">{{event.type}}</span>\n" +
@@ -7117,7 +7190,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
 
   $templateCache.put('views/directives/events.html',
     "<div ng-if=\"!events\">\n" +
-    "Loading...\n" +
+    "加载中...\n" +
     "</div>\n" +
     "<div ng-if=\"events\" class=\"events\">\n" +
     "<div class=\"table-filter-extension\">\n" +
@@ -7126,7 +7199,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"form-group filter-controls has-clear\">\n" +
     "<div class=\"search-pf-input-group\">\n" +
     "<label for=\"events-filter\" class=\"sr-only\">Filter</label>\n" +
-    "<input type=\"search\" placeholder=\"Filter by keyword\" class=\"form-control\" id=\"events-filter\" ng-model=\"filter.text\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\n" +
+    "<input type=\"search\" placeholder=\"根据关键字过滤\" class=\"form-control\" id=\"events-filter\" ng-model=\"filter.text\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\n" +
     "<button type=\"button\" class=\"clear\" aria-hidden=\"true\" ng-if=\"filter.text\" ng-click=\"filter.text = ''\">\n" +
     "<span class=\"pficon pficon-close\"></span>\n" +
     "</button>\n" +
@@ -7135,7 +7208,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</form>\n" +
     "<div class=\"vertical-divider\"></div>\n" +
     "<div class=\"sort-group\">\n" +
-    "<span class=\"sort-label\">Sort by</span>\n" +
+    "<span class=\"sort-label\">排序方式</span>\n" +
     "<pf-sort config=\"sortConfig\" class=\"sort-controls\"></pf-sort>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -7143,34 +7216,34 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<table class=\"table table-bordered table-condensed table-mobile table-layout-fixed events-table\">\n" +
     "<thead>\n" +
     "<tr>\n" +
-    "<th id=\"time\">Time</th>\n" +
+    "<th id=\"time\">时间</th>\n" +
     "\n" +
     "<th id=\"kind-name\" ng-if=\"showKindAndName\">\n" +
-    "<span class=\"hidden-xs-inline visible-sm-inline visible-md-inline hidden-lg-inline\">Kind and Name</span>\n" +
-    "<span class=\"visible-lg-inline\">Name</span>\n" +
+    "<span class=\"hidden-xs-inline visible-sm-inline visible-md-inline hidden-lg-inline\">类型和名称</span>\n" +
+    "<span class=\"visible-lg-inline\">名称</span>\n" +
     "</th>\n" +
     "<th id=\"kind\" ng-if=\"showKindAndName\" class=\"hidden-sm hidden-md\">\n" +
-    "<span class=\"visible-lg-inline\">Kind</span>\n" +
+    "<span class=\"visible-lg-inline\">类型</span>\n" +
     "</th>\n" +
-    "<th id=\"severity\" class=\"hidden-xs hidden-sm hidden-md\"><span class=\"sr-only\">Severity</span></th>\n" +
-    "<th id=\"reason\" class=\"hidden-sm hidden-md\"><span class=\"visible-lg-inline\">Reason</span></th>\n" +
-    "<th id=\"message\"><span class=\"hidden-xs-inline visible-sm-inline visible-md-inline hidden-lg-inline\">Reason and </span>Message</th>\n" +
+    "<th id=\"severity\" class=\"hidden-xs hidden-sm hidden-md\"><span class=\"sr-only\">严重程度</span></th>\n" +
+    "<th id=\"reason\" class=\"hidden-sm hidden-md\"><span class=\"visible-lg-inline\">原因</span></th>\n" +
+    "<th id=\"message\"><span class=\"hidden-xs-inline visible-sm-inline visible-md-inline hidden-lg-inline\">原因和</span>内容</th>\n" +
     "</tr>\n" +
     "</thead>\n" +
     "<tbody ng-if=\"(filteredEvents | hashSize) === 0\">\n" +
     "<tr>\n" +
     "<td class=\"hidden-lg\" colspan=\"{{showKindAndName ? 3 : 2}}\">\n" +
-    "<span ng-if=\"(events | hashSize) === 0\"><em>No events to show.</em></span>\n" +
+    "<span ng-if=\"(events | hashSize) === 0\"><em>没有事件可显示。</em></span>\n" +
     "<span ng-if=\"(events | hashSize) > 0\">\n" +
-    "All events hidden by filter.\n" +
-    "<button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"filter.text = ''\">Clear All Filters</button>\n" +
+    "所有事件都隐藏在过滤器中。\n" +
+    "<button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"filter.text = ''\">清除所有过滤器</button>\n" +
     "</span>\n" +
     "</td>\n" +
     "<td class=\"hidden-xs hidden-sm hidden-md\" colspan=\"{{showKindAndName ? 6 : 4}}\">\n" +
-    "<span ng-if=\"(events | hashSize) === 0\"><em>No events to show.</em></span>\n" +
+    "<span ng-if=\"(events | hashSize) === 0\"><em>没有事件可显示。</em></span>\n" +
     "<span ng-if=\"(events | hashSize) > 0\">\n" +
-    "All events hidden by filter.\n" +
-    "<button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"filter.text = ''\">Clear All Filters</button>\n" +
+    "所有事件都隐藏在过滤器中。\n" +
+    "<button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"filter.text = ''\">清除所有过滤器</button>\n" +
     "</span>\n" +
     "</td>\n" +
     "</tr>\n" +
@@ -7275,7 +7348,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "</pf-wizard-step>\n" +
-    "<pf-wizard-step step-title=\"Results\" step-id=\"results\" step-priority=\"3\" substeps=\"false\" ok-to-nav-away=\"true\" allow-click-nav=\"false\" prev-enabled=\"false\">\n" +
+    "<pf-wizard-step step-title=\"结果\" step-id=\"results\" step-priority=\"3\" substeps=\"false\" ok-to-nav-away=\"true\" allow-click-nav=\"false\" prev-enabled=\"false\">\n" +
     "<div class=\"wizard-pf-main-inner-shadow-covers\">\n" +
     "<div class=\"order-service-config\">\n" +
     "<div class=\"wizard-pf-main-form-contents\">\n" +
@@ -7294,7 +7367,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<select-project ng-if=\"!project\" selected-project=\"input.selectedProject\" name-taken=\"projectNameTaken\"></select-project>\n" +
     "<span ng-show=\"!noProjectsCantCreate\">\n" +
     "<p>\n" +
-    "Create or replace resources from their YAML or JSON definitions. If adding a template, you'll have the option to process the template.\n" +
+    "创建或替换来自YAML或JSON定义的资源。 如果添加一个模板，您可以有选择的处理该模板。\n" +
     "</p>\n" +
     "<parse-error error=\"error\" ng-show=\"error\"></parse-error>\n" +
     "<div class=\"row\">\n" +
@@ -7628,15 +7701,18 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
 
 
   $templateCache.put('views/directives/label-editor.html',
-    "<osc-form-section header=\"Labels\" about-title=\"Labels\" about=\"Labels are used to organize, group, or select objects and resources, such as pods.\" expand=\"expand\" can-toggle=\"canToggle\">\n" +
+    "<osc-form-section header=\"标签\" about-title=\"标签\" about=\"标签用于组织、组或选择对象和资源，如pod。\" expand=\"expand\" can-toggle=\"canToggle\">\n" +
     "<div ng-if=\"helpText && ((labels | hashSize) !== 0 || $parent.expand)\" class=\"help-block\">\n" +
     "{{helpText}}\n" +
     "</div>\n" +
     "<div ng-show=\"expand\" ng-class=\"{ 'gutter-top': !helpText }\">\n" +
-    "<key-value-editor entries=\"labels\" key-placeholder=\"Name\" key-maxlength=\"63\" key-validator-regex=\"validator.key\" value-placeholder=\"Value\" value-maxlength=\"63\" value-validator-regex=\"validator.value\" key-validator-error-tooltip=\"A valid object label has the form [domain/]name where a name is an alphanumeric (a-z, and 0-9) string,\n" +
-    "                                   with a maximum length of 63 characters, with the '-' character allowed anywhere except the first or last\n" +
-    "                                   character. A domain is a sequence of names separated by the '.' character with a maximum length of 253 characters.\" value-validator-error-tooltip=\"A valid label value is an alphanumeric (a-z, and 0-9) string, with a maximum length of 63 characters, with the '-'\n" +
-    "                                     character allowed anywhere except the first or last character.\" add-row-link=\"Add Label\"></key-value-editor>\n" +
+    "<key-value-editor entries=\"labels\" key-placeholder=\"Name\" key-maxlength=\"63\" key-validator-regex=\"validator.key\" value-placeholder=\"Value\" value-maxlength=\"63\" value-validator-regex=\"validator.value\" key-validator-error-tooltip=\"有效的对象标签具有[域/]名称的形式，其中名称是由字母数字（a-z和0-9）组成的字符串，\r" +
+    "\n" +
+    "                                   最大长度为63个字符，其中“-”字符允许使用在除第一个或最后一个字符之外的任何位置。\r" +
+    "\n" +
+    "                                   域是由“.”字符分隔的一系列名称。最大长度为253个字符。\" value-validator-error-tooltip=\"一个有效的标签值是由字母数字（A-Z和0-9）组成的字符串，最大长度为63个字符，\r" +
+    "\n" +
+    "                                     除了第一个字符和最后一个字符外，任何字符都可以使用“-”。\" add-row-link=\"添加标签\"></key-value-editor>\n" +
     "</div>\n" +
     "<div ng-hide=\"expand\">\n" +
     "<key-value-editor entries=\"labels\" key-placeholder=\"Labels\" cannot-sort cannot-delete cannot-add is-readonly></key-value-editor>\n" +
@@ -7761,24 +7837,24 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<form action=\"{{kibanaAuthUrl}}\" method=\"POST\">\n" +
     "<input type=\"hidden\" name=\"redirect\" value=\"{{kibanaArchiveUrl}}\">\n" +
     "<input type=\"hidden\" name=\"access_token\" value=\"{{access_token}}\">\n" +
-    "<button class=\"btn btn-link\">View Archive</button>\n" +
+    "<button class=\"btn btn-link\">查看存档</button>\n" +
     "</form>\n" +
     "<span ng-if=\"state && state !== 'empty'\" class=\"action-divider\">|</span>\n" +
     "</span>\n" +
     "<span ng-if=\"canSave && state && state !== 'empty'\">\n" +
     "<a href=\"\" ng-click=\"saveLog()\" role=\"button\">\n" +
-    "Save\n" +
+    "保存\n" +
     "<i class=\"fa fa-download\"></i></a>\n" +
     "<span ng-if=\"state && state !== 'empty'\" class=\"action-divider\">|</span>\n" +
     "</span>\n" +
     "<a ng-if=\"state && state !== 'empty'\" href=\"\" ng-click=\"goChromeless(options, fullLogUrl)\" role=\"button\">\n" +
-    "Expand\n" +
+    "展开\n" +
     "<i class=\"fa fa-external-link\"></i></a>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"largeLog\" class=\"alert alert-info log-size-warning\">\n" +
     "<span class=\"pficon pficon-info\" aria-hidden=\"true\"></span>\n" +
-    "Only the previous {{options.tailLines || 5000}} log lines and new log messages will be displayed because of the large log size.\n" +
+    "由于日志数量太多，只显示前{{options.tailLines || 5000}}条日志和新日志。\n" +
     "</div>\n" +
     "\n" +
     "<div ng-if=\"(!state)\">\n" +
@@ -7786,7 +7862,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<ellipsis-pulser ng-if=\"chromeless\" color=\"light\" size=\"sm\" display=\"inline\" msg=\"Loading log\" class=\"log-pending-ellipsis\"></ellipsis-pulser>\n" +
     "</div>\n" +
     "<div class=\"empty-state-message text-center\" ng-if=\"state=='empty'\" ng-class=\"{'log-fixed-height': fixedHeight}\">\n" +
-    "<h2>Logs are not available.</h2>\n" +
+    "<h2>日志不可用。</h2>\n" +
     "<p>\n" +
     "{{emptyStateMessage}}\n" +
     "</p>\n" +
@@ -7795,7 +7871,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<input type=\"hidden\" name=\"redirect\" value=\"{{kibanaArchiveUrl}}\">\n" +
     "<input type=\"hidden\" name=\"access_token\" value=\"{{access_token}}\">\n" +
     "<button class=\"btn btn-primary btn-lg\">\n" +
-    "View Archive\n" +
+    "查看存档\n" +
     "</button>\n" +
     "</form>\n" +
     "</div>\n" +
@@ -7806,11 +7882,11 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"log-view\" ng-attr-id=\"{{logViewerID}}\" ng-class=\"{'log-fixed-height': fixedHeight}\">\n" +
     "<div id=\"{{logViewerID}}-affixedFollow\" class=\"log-scroll log-scroll-top\">\n" +
     "<a ng-if=\"loading\" href=\"\" ng-click=\"toggleAutoScroll()\">\n" +
-    "<span ng-if=\"!autoScrollActive\">Follow</span>\n" +
-    "<span ng-if=\"autoScrollActive\">Stop Following</span>\n" +
+    "<span ng-if=\"!autoScrollActive\">追踪</span>\n" +
+    "<span ng-if=\"autoScrollActive\">停止追踪</span>\n" +
     "</a>\n" +
     "<a ng-if=\"!loading\" href=\"\" ng-show=\"showScrollLinks\" ng-click=\"onScrollBottom()\">\n" +
-    "Go to End\n" +
+    "前往底部\n" +
     "</a>\n" +
     "</div>\n" +
     "<div class=\"log-view-output\" id=\"{{logViewerID}}-fixed-scrollable\">\n" +
@@ -7818,24 +7894,24 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<tbody id=\"{{logViewerID}}-logContent\"></tbody>\n" +
     "</table>\n" +
     "<div ng-if=\"(!loading) && (!limitReached) && (!errorWhileRunning) && state=='logs'\" class=\"log-end-msg\">\n" +
-    "End of log\n" +
+    "日志结束\n" +
     "</div>\n" +
     "</div>\n" +
     "\n" +
     "<ellipsis-pulser color=\"light\" size=\"md\" ng-show=\"loading\"></ellipsis-pulser>\n" +
     "<div ng-show=\"showScrollLinks\" class=\"log-scroll log-scroll-bottom\">\n" +
-    "<a href=\"\" ng-click=\"onScrollTop()\">Go to Top</a>\n" +
+    "<a href=\"\" ng-click=\"onScrollTop()\">前往顶部</a>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "\n" +
     "<div ng-if=\"limitReached\" class=\"text-muted\">\n" +
-    "The maximum web console log size has been reached. Use the command-line interface or\n" +
-    "<a href=\"\" ng-click=\"restartLogs()\">reload</a> the log to see new messages.\n" +
+    "已达到Web控制台最大日志数量。请使用命令行或者\n" +
+    "<a href=\"\" ng-click=\"restartLogs()\">重新加载</a>日志来查看最新信息。\n" +
     "</div>\n" +
     "<div ng-if=\"errorWhileRunning\" class=\"text-muted\">\n" +
-    "An error occurred loading the log.\n" +
-    "<a href=\"\" ng-click=\"restartLogs()\">Reload</a>\n" +
+    "加载日志时出错。\n" +
+    "<a href=\"\" ng-click=\"restartLogs()\">重新加载</a>\n" +
     "</div>"
   );
 
@@ -7973,11 +8049,11 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"row mar-top-md panel-counter\">\n" +
     "<div class=\"col-xs-6\">\n" +
-    "{{notificationGroup.totalUnread}} Unread\n" +
+    "{{notificationGroup.totalUnread}} 未读\n" +
     "</div>\n" +
     "<div class=\"col-xs-6 text-right\">\n" +
     "<a title=\"All Events\" ng-href=\"project/{{$ctrl.customScope.projectName}}/browse/events\" ng-click=\"$ctrl.customScope.close()\">\n" +
-    "View All Events\n" +
+    "查看所有事件\n" +
     "</a>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -7988,7 +8064,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
   $templateCache.put('views/directives/notifications/notification-body.html',
     "<div class=\"drawer-pf-notification-inner\" ng-class=\"{ 'is-clickable': notification.unread }\" ng-click=\"notification.unread && $ctrl.customScope.markRead(notification)\">\n" +
     "<button class=\"btn btn-link pull-right drawer-pf-notification-close\" type=\"button\" ng-if=\"!notification.actions.length\" ng-click=\"$ctrl.customScope.clear(notification, $index, notificationGroup)\">\n" +
-    "<span class=\"sr-only\">Clear notification</span>\n" +
+    "<span class=\"sr-only\">清除通知</span>\n" +
     "<span aria-hidden=\"true\" class=\"pficon pficon-close\"></span>\n" +
     "</button>\n" +
     "<div uib-dropdown class=\"dropdown pull-right dropdown-kebab-pf\" ng-if=\"notification.actions.length\">\n" +
@@ -8026,13 +8102,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span ng-if=\"!$last\" class=\"toast-action-divider\">|</span>\n" +
     "</span>\n" +
     "</span>\n" +
-    "<span class=\"sr-only\">Message Unread. </span>\n" +
+    "<span class=\"sr-only\">未读消息。 </span>\n" +
     "<a ng-if=\"notification.unread\" href=\"\" class=\"sr-only sr-only-focusable\" ng-click=\"$ctrl.customScope.markRead(notification)\">\n" +
     "<span>Mark Read</span>\n" +
     "</a>\n" +
     "</div>\n" +
     "<div ng-if=\"notification.event.count > 1\" class=\"text-muted small\">\n" +
-    "{{notification.event.count}} times in the last\n" +
+    "{{notification.event.count}} 次已发生\n" +
     "<duration-until-now timestamp=\"notification.event.firstTimestamp\" omit-single=\"true\" precision=\"1\"></duration-until-now>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -8051,7 +8127,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
   $templateCache.put('views/directives/notifications/notification-counter.html',
     "<li class=\"drawer-pf-trigger\" ng-if=\"!$ctrl.hide\">\n" +
     "\n" +
-    "<a href=\"\" class=\"nav-item-iconic\" ng-click=\"$ctrl.onClick()\"><span class=\"fa fa-bell\" title=\"Notifications\" aria-hidden=\"true\"></span><span ng-if=\"$ctrl.showUnreadNotificationsIndicator\" class=\"badge badge-pf-bordered\"> </span><span class=\"sr-only\">Notifications</span></a>\n" +
+    "<a href=\"\" class=\"nav-item-iconic\" ng-click=\"$ctrl.onClick()\"><span class=\"fa fa-bell\" title=\"通告\" aria-hidden=\"true\"></span><span ng-if=\"$ctrl.showUnreadNotificationsIndicator\" class=\"badge badge-pf-bordered\"> </span><span class=\"sr-only\">通告</span></a>\n" +
     "</li>"
   );
 
@@ -8065,98 +8141,98 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<ng-form name=\"form\">\n" +
     "<div class=\"autoscaling-form\">\n" +
     "<div ng-show=\"showNameInput\" class=\"form-group\">\n" +
-    "<label for=\"hpa-name\" class=\"required\">Autoscaler Name</label>\n" +
+    "<label for=\"hpa-name\" class=\"required\">自动伸缩控制器名称</label>\n" +
     "<span ng-class=\"{ 'has-error': form.name.$touched && form.name.$invalid }\">\n" +
     "<input id=\"hpa-name\" class=\"form-control\" type=\"text\" name=\"name\" ng-model=\"autoscaling.name\" ng-required=\"showNameInput\" ng-readonly=\"nameReadOnly\" ng-pattern=\"nameValidation.pattern\" ng-maxlength=\"nameValidation.maxlength\" select-on-focus autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" aria-describedby=\"hpa-name-help\">\n" +
     "</span>\n" +
     "<div>\n" +
     "<span id=\"hpa-name-help\" class=\"help-block\">\n" +
-    "A unique name for the horizontal pod autoscaler within the project.\n" +
+    "在项目中的pod中，自动伸缩控制器名称必须唯一。\n" +
     "</span>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"form.name.$invalid && form.name.$touched\">\n" +
     "<span ng-if=\"form.name.$error.required\" class=\"help-block\">\n" +
-    "Name is required.\n" +
+    "名称为必填项。\n" +
     "</span>\n" +
     "<span ng-show=\"form.name.$error.pattern\" class=\"help-block\">\n" +
     "{{nameValidation.description}}\n" +
     "</span>\n" +
     "<span ng-show=\"form.name.$error.maxlength\" class=\"help-block\">\n" +
     "<span class=\"help-block\">\n" +
-    "Can't be longer than {{nameValidation.maxlength}} characters.\n" +
+    "不能超过最大长度 {{nameValidation.maxlength}} 字符。\n" +
     "</span>\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\">\n" +
-    "<label>Min Pods</label>\n" +
+    "<label>最小Pod数量</label>\n" +
     "<span ng-class=\"{ 'has-error': form.minReplicas.$dirty && form.minReplicas.$invalid }\">\n" +
     "<input type=\"number\" class=\"form-control\" min=\"1\" name=\"minReplicas\" ng-model=\"autoscaling.minReplicas\" pattern=\"\\d*\" select-on-focus aria-describedby=\"min-replicas-help\">\n" +
     "</span>\n" +
     "<div id=\"min-replicas-help\" class=\"help-block\">\n" +
-    "The lower limit for the number of pods that can be set by the autoscaler. If not specified, defaults to 1.\n" +
+    "自动伸缩控制器可设置的最小Pod数量。 如果没有指定，则默认为1。\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"form.minReplicas.$dirty && form.minReplicas.$invalid\">\n" +
     "<span ng-if=\"form.minReplicas.$error.number\" class=\"help-block\">\n" +
-    "Min pods must be a number.\n" +
+    "最小Pod数量必须是一个整数。\n" +
     "</span>\n" +
     "<span ng-if=\"form.minReplicas.$error.pattern\" class=\"help-block\">\n" +
-    "Min pods must be a whole number.\n" +
+    "最小Pod数量必须是一个完整的数字。\n" +
     "</span>\n" +
     "<span ng-if=\"form.minReplicas.$error.min\" class=\"help-block\">\n" +
-    "Min pods must be greater than or equal to 1.\n" +
+    "最小Pod数量必须大于等于1。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\">\n" +
-    "<label class=\"required\">Max Pods</label>\n" +
+    "<label class=\"required\">最大Pod数量</label>\n" +
     "<span ng-class=\"{ 'has-error': (form.minReplicas.$dirty || form.maxReplicas.$dirty) && form.maxReplicas.$invalid }\">\n" +
     "<input type=\"number\" class=\"form-control\" name=\"maxReplicas\" required min=\"{{autoscaling.minReplicas || 1}}\" ng-model=\"autoscaling.maxReplicas\" pattern=\"\\d*\" select-on-focus aria-describedby=\"max-replicas-help\">\n" +
     "</span>\n" +
     "<div id=\"max-replicas-help\" class=\"help-block\">\n" +
-    "The upper limit for the number of pods that can be set by the autoscaler.\n" +
+    "自动伸缩控制器可设置的最大Pod数量。\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"(form.minReplicas.$dirty || form.maxReplicas.$dirty) && form.maxReplicas.$invalid\">\n" +
     "<span ng-if=\"form.maxReplicas.$error.number\" class=\"help-block\">\n" +
-    "Max pods must be a number.\n" +
+    "最大Pod数量必须是一个整数。\n" +
     "</span>\n" +
     "<span ng-if=\"form.minReplicas.$error.pattern\" class=\"help-block\">\n" +
-    "Min pods must be a whole number.\n" +
+    "最大Pod数量必须是一个完整的数字。\n" +
     "</span>\n" +
     "<span class=\"help-block\" ng-if=\"form.maxReplicas.$error.min\">\n" +
-    "Max pods must be greater than or equal to\n" +
-    "<span ng-if=\"autoscaling.minReplicas\">min pods, which is</span>\n" +
-    "{{autoscaling.minReplicas || 1}}.\n" +
+    "最大Pod数量必须大于等于\n" +
+    "<span ng-if=\"autoscaling.minReplicas\">最小Pod数量（</span>\n" +
+    "{{autoscaling.minReplicas || 1}}）。\n" +
     "</span>\n" +
     "<span class=\"help-block\" ng-if=\"form.maxReplicas.$error.required\">\n" +
-    "Max pods is a required field.\n" +
+    "最大Pod数量必须填写。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-show=\"showRequestInput\" class=\"form-group\">\n" +
     "<label>\n" +
-    "CPU Request Target\n" +
+    "CPU要求目标\n" +
     "</label>\n" +
     "<div class=\"input-group\" ng-class=\"{ 'has-error': form.targetCPU.$invalid && form.targetCPU.$touched }\">\n" +
     "<input type=\"number\" class=\"form-control\" min=\"1\" name=\"targetCPU\" ng-model=\"autoscaling.targetCPU\" pattern=\"\\d*\" select-on-focus aria-describedby=\"target-cpu-help\">\n" +
     "<span class=\"input-group-addon\">%</span>\n" +
     "</div>\n" +
     "<div id=\"target-cpu-help\" class=\"help-block\">\n" +
-    "The percentage of the CPU request that each pod should ideally be using. Pods will be added or removed periodically when CPU usage exceeds or drops below this target value.\n" +
+    "每个pod应该使用的CPU请求的百分比。当CPU使用率超过或低于此目标值时，将会定期添加或删除pod。\n" +
     "</div>\n" +
     "<div class=\"learn-more-block\">\n" +
-    "<a ng-href=\"{{'compute_resources' | helpLink}}\" target=\"_blank\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
+    "<a ng-href=\"{{'compute_resources' | helpLink}}\" target=\"_blank\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"has-error mar-top-md\" ng-show=\"form.targetCPU.$touched && form.targetCPU.$invalid\">\n" +
     "<span ng-if=\"form.targetCPU.$error.number\" class=\"help-block\">\n" +
-    "Target CPU percentage must be a number.\n" +
+    "目标CPU百分比必须是一个整数。\n" +
     "</span>\n" +
     "<span ng-if=\"form.targetCPU.$error.pattern\" class=\"help-block\">\n" +
-    "Target CPU percentage must be a whole number.\n" +
+    "目标CPU百分比必须是一个完整的数字。\n" +
     "</span>\n" +
     "<span ng-if=\"form.targetCPU.$error.min\" class=\"help-block\">\n" +
-    "Target CPU percentage must be greater than 1.\n" +
+    "目标CPU百分比必须大于等于1。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -8168,13 +8244,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
   $templateCache.put('views/directives/osc-file-input.html',
     "<div class=\"osc-file-input\">\n" +
     "<div ng-attr-id=\"{{dropMessageID}}\" class=\"drag-and-drop-zone\">\n" +
-    "<p>Drop file here</p>\n" +
+    "<p>请将文件拖拽到此处</p>\n" +
     "</div>\n" +
     "<div class=\"input-group\">\n" +
     "<input type=\"text\" class=\"form-control\" ng-model=\"fileName\" readonly=\"readonly\" ng-show=\"supportsFileUpload\" ng-disabled=\"disabled\" ng-attr-aria-describedby=\"{{helpText ? helpID : undefined}}\">\n" +
     "<span class=\"input-group-btn\">\n" +
     "<span class=\"btn btn-default btn-file\" ng-show=\"supportsFileUpload\" ng-attr-disabled=\"{{ (disabled || readonly) || undefined }}\">\n" +
-    "Browse&hellip;\n" +
+    "浏览&hellip;\n" +
     "<input type=\"file\" ng-disabled=\"disabled || readonly\" class=\"form-control\">\n" +
     "</span>\n" +
     "</span>\n" +
@@ -8183,11 +8259,12 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span ng-attr-id=\"{{helpID}}\" class=\"help-block\">{{::helpText}}</span>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"uploadError\">\n" +
-    "<span class=\"help-block\">There was an error reading the file. Please copy the file content into the text area.</span>\n" +
+    "<span class=\"help-block\">读取文件时出错。请将文件内容复制到文本区域。</span>\n" +
     "</div>\n" +
-    "<textarea class=\"form-control\" rows=\"5\" ng-show=\"(showTextArea && !isBinaryFile) || !supportsFileUpload\" ng-model=\"model\" ng-required=\"required\" ng-disabled=\"disabled\" ng-readonly=\"readonly\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" ng-attr-aria-describedby=\"{{helpText ? helpID : undefined}}\">\n" +
+    "<textarea class=\"form-control\" rows=\"5\" ng-show=\"(showTextArea && !isBinaryFile) || !supportsFileUpload\" ng-model=\"model\" ng-required=\"required\" ng-disabled=\"disabled\" ng-readonly=\"readonly\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" ng-attr-aria-describedby=\"{{helpText ? helpID : undefined}}\">\r" +
+    "\n" +
     "  </textarea>\n" +
-    "<a href=\"\" ng-show=\"(model || fileName) && !disabled && !readonly && !hideClear\" ng-click=\"cleanInputValues()\">Clear Value</a>\n" +
+    "<a href=\"\" ng-show=\"(model || fileName) && !disabled && !readonly && !hideClear\" ng-click=\"cleanInputValues()\">清除内容</a>\n" +
     "</div>"
   );
 
@@ -8428,7 +8505,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"row\">\n" +
     "<div class=\"form-group\" ng-class=\"{ 'col-sm-6': showWeight, 'col-sm-12': !showWeight }\">\n" +
     "<label for=\"{{id}}-service-select\" class=\"required\">\n" +
-    "Service\n" +
+    "服务\n" +
     "</label>\n" +
     "<ui-select ng-model=\"model.name\" input-id=\"{{id}}-service-select\" aria-describedby=\"{{id}}-service-help\" required>\n" +
     "<ui-select-match>{{$select.selected}}</ui-select-match>\n" +
@@ -8438,18 +8515,18 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</ui-select>\n" +
     "<div>\n" +
     "<span ng-attr-id=\"{{id}}-service-help\" class=\"help-block\">\n" +
-    "<span ng-if=\"!isAlternate\">Service to route to.</span>\n" +
-    "<span ng-if=\"isAlternate\">Alternate service for route traffic.</span>\n" +
+    "<span ng-if=\"!isAlternate\">服务路线。</span>\n" +
+    "<span ng-if=\"isAlternate\">为路由通信提供替代服务。</span>\n" +
     "</span>\n" +
     "</div>\n" +
     "<div ng-if=\"model.name && !allServices[model.name]\" class=\"has-warning\">\n" +
     "<span class=\"help-block\">\n" +
-    "Service {{model.name}} does not exist.\n" +
+    "服务 {{model.name}} 不存在。\n" +
     "</span>\n" +
     "</div>\n" +
     "<div ng-if=\"(optionNames | size) === 0\" class=\"has-error\">\n" +
     "<span class=\"help-block\">\n" +
-    "There are no <span ng-if=\"is-alternate\">additional</span> services in your project to expose with a route.\n" +
+    "在您的项目中没有 <span ng-if=\"is-alternate\">additional</span> 的服务来公开一条路由。\n" +
     "</span>\n" +
     "</div>\n" +
     "<div ng-if=\"warnUnnamedPort\" class=\"has-warning\">\n" +
@@ -8486,12 +8563,12 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<fieldset ng-disabled=\"routingDisabled\">\n" +
     "\n" +
     "<div ng-show=\"showNameInput\" class=\"form-group\">\n" +
-    "<label for=\"route-name\" class=\"required\">Name</label>\n" +
+    "<label for=\"route-name\" class=\"required\">名称</label>\n" +
     "<span ng-class=\"{ 'has-error': routeForm.name.$invalid && routeForm.name.$touched && !routingDisabled }\">\n" +
     "<input id=\"route-name\" class=\"form-control\" type=\"text\" name=\"name\" ng-model=\"route.name\" ng-required=\"showNameInput\" ng-pattern=\"nameValidation.pattern\" ng-maxlength=\"nameValidation.maxlength\" placeholder=\"my-route\" select-on-focus autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" aria-describedby=\"route-name-help\">\n" +
     "</span>\n" +
     "<div>\n" +
-    "<span id=\"route-name-help\" class=\"help-block\">A unique name for the route within the project.</span>\n" +
+    "<span id=\"route-name-help\" class=\"help-block\">在项目中路由名称必须唯一。</span>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"routeForm.name.$error.pattern && routeForm.name.$touched && !routingDisabled\">\n" +
     "<span class=\"help-block\">\n" +
@@ -8506,55 +8583,55 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"host\">Hostname</label>\n" +
+    "<label for=\"host\">主机名</label>\n" +
     "<span ng-class=\"{ 'has-error': routeForm.host.$invalid && routeForm.host.$touched && !routingDisabled }\">\n" +
     "<input id=\"host\" class=\"form-control\" type=\"text\" name=\"host\" ng-model=\"route.host\" ng-pattern=\"hostnamePattern\" ng-maxlength=\"hostnameMaxLength\" ng-readonly=\"isHostnameReadOnly()\" placeholder=\"www.example.com\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" aria-describedby=\"route-host-help\">\n" +
     "</span>\n" +
     "<div>\n" +
     "<span id=\"route-host-help\" class=\"help-block\">\n" +
     "<p>\n" +
-    "Public hostname for the route.\n" +
+    "路线的公共主机名。\n" +
     "<span ng-if=\"!hostReadOnly\">\n" +
-    "If not specified, a hostname is generated.\n" +
+    "如果没有指定，将自行生成一个主机名。\n" +
     "</span>\n" +
     "<span ng-if=\"!disableWildcards\">\n" +
-    "You can use <var>*.example.com</var> with routers that support wildcard subdomains.\n" +
+    "您可以用 <var>*.example.com</var> 形式来支持通配符子域的路由器。\n" +
     "</span>\n" +
     "</p>\n" +
-    "<p ng-if=\"(existingRoute || canICreateCustomHosts) && !canIUpdateCustomHosts\">The hostname can't be changed after the route is created.</p>\n" +
+    "<p ng-if=\"(existingRoute || canICreateCustomHosts) && !canIUpdateCustomHosts\">在创建路由后，主机名不能更改。</p>\n" +
     "</span>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"routeForm.host.$error.pattern && routeForm.host.$touched && !routingDisabled\">\n" +
     "<span class=\"help-block\">\n" +
-    "Hostname must consist of lower-case letters, numbers, periods, and hyphens. It must start and end with a letter or number.\n" +
-    "<span ng-if=\"!disableWildcards\">Wildcard subdomains may start with <var>*.</var></span>\n" +
+    "主机名必须由小写字母、数字、句点和连字符组成。 它必须以字母或数字开头和结尾。\n" +
+    "<span ng-if=\"!disableWildcards\">通配符子域可能以 <var>*.</var> 开头</span>\n" +
     "</span>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"routeForm.host.$error.maxlength && routeForm.host.$touched && !routingDisabled\">\n" +
     "<span class=\"help-block\">\n" +
-    "Can't be longer than {{hostnameMaxLength}} characters.\n" +
+    "不能超过 {{hostnameMaxLength}} 个字符。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"path\">Path</label>\n" +
+    "<label for=\"path\">路径</label>\n" +
     "<span ng-class=\"{ 'has-error': routeForm.path.$invalid && routeForm.path.$touched && !routingDisabled }\">\n" +
     "<input id=\"path\" class=\"form-control\" type=\"text\" name=\"path\" ng-model=\"route.path\" ng-pattern=\"/^\\/.*$/\" ng-disabled=\"route.tls.termination === 'passthrough'\" placeholder=\"/\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" aria-describedby=\"route-path-help\">\n" +
     "</span>\n" +
     "<div>\n" +
     "<span id=\"route-path-help\" class=\"help-block\">\n" +
-    "Path that the router watches to route traffic to the service.\n" +
+    "路由器监视路由到服务的路径。\n" +
     "</span>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"routeForm.path.$error.pattern && routeForm.path.$touched && !routingDisabled\">\n" +
     "<span class=\"help-block\">\n" +
-    "Path must start with <code>/</code>\n" +
+    "路径必须以 <code>/</code> 开头\n" +
     "</span>\n" +
     "</div>\n" +
     "<div class=\"has-warning\" ng-show=\"route.path && route.tls.termination === 'passthrough'\">\n" +
     "<span class=\"help-block\">\n" +
-    "Path value will not be used. Paths cannot be set for passthrough TLS.\n" +
+    "路径值将不会被使用。 不能为贯通TLS设置路径。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -8565,7 +8642,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "\n" +
     "<div ng-if=\"route.portOptions.length\" class=\"form-group\">\n" +
-    "<label for=\"routeTargetPort\">Target Port</label>\n" +
+    "<label for=\"routeTargetPort\">目标端口</label>\n" +
     "<ui-select ng-if=\"route.portOptions.length\" ng-model=\"route.targetPort\" input-id=\"routeTargetPort\" search-enabled=\"false\" aria-describedby=\"target-port-help\">\n" +
     "<ui-select-match>{{$select.selected.label}}</ui-select-match>\n" +
     "<ui-select-choices repeat=\"portOption.port as portOption in route.portOptions\">\n" +
@@ -8574,7 +8651,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</ui-select>\n" +
     "<div>\n" +
     "<span id=\"target-port-help\" class=\"help-block\">\n" +
-    "Target port for traffic.\n" +
+    "目标端口为了通信\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -8585,10 +8662,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"checkbox\">\n" +
     "<label>\n" +
     "<input type=\"checkbox\" ng-model=\"options.alternateServices\" aria-describedby=\"secure-route-help\">\n" +
-    "Split traffic across multiple services\n" +
+    "多个服务将分割流量。\n" +
     "</label>\n" +
     "<div class=\"help-block\">\n" +
-    "Routes can direct traffic to multiple services for A/B testing. Each service has a weight controlling how much traffic it gets.\n" +
+    "路由可以将流量直接发送到多个服务，以进行A/B测试。 每个服务都有一个权重来控制它所获得的流量。\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -8597,26 +8674,26 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</osc-routing-service>\n" +
     "<div class=\"row form-group-actions\">\n" +
     "<div class=\"col-sm-6\">\n" +
-    "<button type=\"button\" class=\"btn btn-link\" ng-click=\"route.alternateServices.splice($index, 1)\">Remove Service</button>\n" +
+    "<button type=\"button\" class=\"btn btn-link\" ng-click=\"route.alternateServices.splice($index, 1)\">移除服务</button>\n" +
     "<span ng-if=\"$last && route.alternateServices.length < alternateServiceOptions.length\">\n" +
     "<span class=\"action-divider\">|</span>\n" +
-    "<button type=\"button\" class=\"btn btn-link\" ng-click=\"addAlternateService()\">Add Another Service</button>\n" +
+    "<button type=\"button\" class=\"btn btn-link\" ng-click=\"addAlternateService()\">添加另一个服务</button>\n" +
     "</span>\n" +
     "</div>\n" +
     "<div ng-if=\"route.alternateServices.length === 1 && controls.hideSlider\" class=\"col-sm-6\">\n" +
-    "<button type=\"button\" class=\"btn btn-link\" ng-click=\"controls.hideSlider = false\">Edit Weights Using Percentage Slider</button>\n" +
+    "<button type=\"button\" class=\"btn btn-link\" ng-click=\"controls.hideSlider = false\">使用百分比滑块编辑权重</button>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-repeat=\"duplicate in duplicateServices\" class=\"has-error mar-bottom-lg\">\n" +
     "<span class=\"help-block\">\n" +
-    "Service {{duplicate.metadata.name}} cannot be added twice.\n" +
+    "服务 {{duplicate.metadata.name}} 不能重复添加.\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "\n" +
     "<div ng-if=\"route.alternateServices.length === 1 && !controls.hideSlider\">\n" +
-    "<h3>Service Weights</h3>\n" +
+    "<h3>服务权重</h3>\n" +
     "<div class=\"form-group\">\n" +
     "<div class=\"weight-slider-values\">\n" +
     "<div>\n" +
@@ -8629,7 +8706,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span class=\"weight-percentage visible-xs-inline\">{{weightAsPercentage(route.alternateServices[0].weight, true)}}</span>\n" +
     "</div>\n" +
     "</div>\n" +
-    "<label class=\"sr-only\" for=\"weight-slider\">Service {{route.to.service.metadata.name}} Weight</label>\n" +
+    "<label class=\"sr-only\" for=\"weight-slider\">服务 {{route.to.service.metadata.name}} 权重</label>\n" +
     "<input id=\"weight-slider\" type=\"range\" min=\"0\" max=\"100\" step=\"1\" list=\"ticks\" ng-model=\"controls.rangeSlider\" aria-describedby=\"weight-slider-help\" class=\"mar-top-md\">\n" +
     "<datalist id=\"ticks\">\n" +
     "<option>0</option>\n" +
@@ -8639,25 +8716,25 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<option>100</option>\n" +
     "</datalist>\n" +
     "<div class=\"help-block\" id=\"weight-slider-help\">\n" +
-    "Percentage of traffic sent to each service. Drag the slider to adjust the values or\n" +
-    "<button type=\"button\" class=\"btn btn-link\" ng-click=\"controls.hideSlider = true\">edit weights as integers</button>.\n" +
+    "发送给每个服务的流量百分比。拖动滑块来调整值或者\n" +
+    "<button type=\"button\" class=\"btn btn-link\" ng-click=\"controls.hideSlider = true\">直接修改权重值</button>.\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
-    "<h3>Security</h3>\n" +
+    "<h3>安全</h3>\n" +
     "<div class=\"checkbox\">\n" +
     "<label>\n" +
     "<input type=\"checkbox\" ng-model=\"options.secureRoute\" aria-describedby=\"secure-route-help\">\n" +
-    "Secure route\n" +
+    "安全路由\n" +
     "</label>\n" +
     "<div class=\"help-block\" id=\"secure-route-help\">\n" +
-    "Routes can be secured using several TLS termination types for serving certificates.\n" +
+    "可以使用多个TLS终端类型来保护路由，以获取服务证书。\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-show=\"options.secureRoute\">\n" +
     "\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"tlsTermination\">TLS Termination</label>\n" +
+    "<label for=\"tlsTermination\">TLS 终端</label>\n" +
     "<ui-select ng-model=\"route.tls.termination\" input-id=\"tlsTermination\" search-enabled=\"false\">\n" +
     "<ui-select-match>{{$select.selected | humanizeTLSTermination}}</ui-select-match>\n" +
     "<ui-select-choices repeat=\"option in ['edge', 'passthrough', 'reencrypt']\">\n" +
@@ -8665,12 +8742,12 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</ui-select-choices>\n" +
     "</ui-select>\n" +
     "<div class=\"learn-more-block help-block\">\n" +
-    "<a href=\"{{'route-types' | helpLink}}\" target=\"_blank\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
+    "<a href=\"{{'route-types' | helpLink}}\" target=\"_blank\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
     "</div>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"insecureTraffic\">Insecure Traffic</label>\n" +
+    "<label for=\"insecureTraffic\">不安全的通信</label>\n" +
     "\n" +
     "<input type=\"hidden\" name=\"insecureTraffic\">\n" +
     "<ui-select ng-model=\"route.tls.insecureEdgeTerminationPolicy\" name=\"insecureTraffic\" input-id=\"insecureTraffic\" aria-describedby=\"route-insecure-policy-help\" search-enabled=\"false\">\n" +
@@ -8681,28 +8758,28 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</ui-select>\n" +
     "<div>\n" +
     "<span id=\"route-insecure-policy-help\" class=\"help-block\">\n" +
-    "Policy for traffic on insecure schemes like HTTP.\n" +
+    "不安全方案的流量策略有HTTP。\n" +
     "</span>\n" +
     "</div>\n" +
     "<div ng-if=\"routeForm.insecureTraffic.$error.passthrough\" class=\"has-warning\">\n" +
     "<span class=\"help-block\">\n" +
-    "Passthrough routes can't use the insecure traffic policy <var>Allow</var>.\n" +
+    "贯穿路由不能使用不安全的交通政策-<var>允许</var>。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "\n" +
-    "<h3>Certificates</h3>\n" +
+    "<h3>证书</h3>\n" +
     "<div class=\"help-block\">\n" +
-    "TLS certificates for edge and re-encrypt termination. If not specified, the router's default certificate is used.\n" +
+    "TLS证书为了移动和重新加密终端. 如果没有指定，则使用路由器的默认证书。\n" +
     "</div>\n" +
     "<div ng-if=\"showCertificatesNotUsedWarning\" class=\"has-warning\">\n" +
     "<span class=\"help-block\">\n" +
-    "The certificate or key you've set will not be used.\n" +
+    "您设置的证书或密钥将不会被使用。\n" +
     "<span ng-if=\"!route.tls.termination\">\n" +
-    "The route is unsecured.\n" +
+    "该路由不安全\n" +
     "</span>\n" +
     "<span ng-if=\"route.tls.termination === 'passthrough'\">\n" +
-    "Custom certificates cannot be used with passthrough termination.\n" +
+    "自定义证书不能用于贯穿终端。\n" +
     "</span>\n" +
     "</span>\n" +
     "</div>\n" +
@@ -8710,27 +8787,27 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div>\n" +
     "<div class=\"form-group\" id=\"certificate-file\">\n" +
     "<label>Certificate</label>\n" +
-    "<osc-file-input model=\"route.tls.certificate\" drop-zone-id=\"certificate-file\" show-text-area=\"true\" help-text=\"The PEM format certificate. Upload file by dragging & dropping, selecting it, or pasting from the clipboard.\" ng-readonly=\"areCertificateInputsReadOnly()\" ng-disabled=\"areCertificateInputsDisabled()\">\n" +
+    "<osc-file-input model=\"route.tls.certificate\" drop-zone-id=\"certificate-file\" show-text-area=\"true\" help-text=\"PEM格式的证书。通过拖放、选择或粘贴剪贴板来上传文件。\" ng-readonly=\"areCertificateInputsReadOnly()\" ng-disabled=\"areCertificateInputsDisabled()\">\n" +
     "</osc-file-input>\n" +
     "</div>\n" +
     "<div class=\"form-group\" id=\"private-key-file\">\n" +
-    "<label>Private Key</label>\n" +
-    "<osc-file-input model=\"route.tls.key\" drop-zone-id=\"private-key-file\" show-text-area=\"true\" help-text=\"The PEM format key. Upload file by dragging & dropping, selecting it, or pasting from the clipboard.\" ng-readonly=\"areCertificateInputsReadOnly()\" ng-disabled=\"areCertificateInputsDisabled()\">\n" +
+    "<label>私Key</label>\n" +
+    "<osc-file-input model=\"route.tls.key\" drop-zone-id=\"private-key-file\" show-text-area=\"true\" help-text=\"PEM格式的关键。通过拖放、选择或粘贴剪贴板来上传文件。\" ng-readonly=\"areCertificateInputsReadOnly()\" ng-disabled=\"areCertificateInputsDisabled()\">\n" +
     "</osc-file-input>\n" +
     "</div>\n" +
     "<div class=\"form-group\" id=\"ca-certificate-file\">\n" +
-    "<label>CA Certificate</label>\n" +
-    "<osc-file-input model=\"route.tls.caCertificate\" drop-zone-id=\"ca-certificate-file\" show-text-area=\"true\" help-text=\"The PEM format CA certificate chain. Upload file by dragging & dropping, selecting it, or pasting from the clipboard.\" ng-readonly=\"areCertificateInputsReadOnly()\" ng-disabled=\"areCertificateInputsDisabled()\">\n" +
+    "<label>CA证书</label>\n" +
+    "<osc-file-input model=\"route.tls.caCertificate\" drop-zone-id=\"ca-certificate-file\" show-text-area=\"true\" help-text=\"PEM格式CA证书链。通过拖放、选择或粘贴剪贴板来上传文件。\" ng-readonly=\"areCertificateInputsReadOnly()\" ng-disabled=\"areCertificateInputsDisabled()\">\n" +
     "</osc-file-input>\n" +
     "</div>\n" +
     "<div class=\"form-group\" id=\"dest-ca-certificate-file\">\n" +
-    "<label>Destination CA Certificate</label>\n" +
-    "<osc-file-input model=\"route.tls.destinationCACertificate\" show-text-area=\"true\" drop-zone-id=\"dest-ca-certificate-file\" help-text=\"The PEM format CA certificate chain to validate the endpoint certificate for re-encrypt termination. Upload file by dragging & dropping, selecting it, or pasting from the clipboard.\" ng-readonly=\"areCertificateInputsReadOnly()\" ng-disabled=\"isDestinationCACertInputDisabled()\">\n" +
+    "<label>目的CA证书</label>\n" +
+    "<osc-file-input model=\"route.tls.destinationCACertificate\" show-text-area=\"true\" drop-zone-id=\"dest-ca-certificate-file\" help-text=\"PEM格式CA证书链验证端点证书的重新加密终端。通过拖放、选择或粘贴剪贴板来上传文件。\" ng-readonly=\"areCertificateInputsReadOnly()\" ng-disabled=\"isDestinationCACertInputDisabled()\">\n" +
     "</osc-file-input>\n" +
     "\n" +
     "<div ng-if=\"route.tls.destinationCACertificate && route.tls.termination !== 'reencrypt' && !showCertificatesNotUsedWarning\" class=\"has-warning\">\n" +
     "<span class=\"help-block\">\n" +
-    "The destination CA certificate will be removed from the route. Destination CA certificates are only used for re-encrypt termination.\n" +
+    "目的CA证书将从路由中删除。 目的CA证书仅用于重新加密终端。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -8748,7 +8825,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"basic-secrets\">\n" +
     "<div class=\"input-labels\">\n" +
     "<label class=\"input-label\">\n" +
-    "{{displayType | startCase}} Secret\n" +
+    "{{displayType | startCase}} 密钥\n" +
     "</label>\n" +
     "</div>\n" +
     "<div ng-repeat=\"pickedSecret in pickedSecrets\" class=\"row form-row-has-controls\">\n" +
@@ -8764,33 +8841,33 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"remove-secret form-row-controls\">\n" +
     "<button class=\"btn-remove close delete-row\" type=\"button\" aria-hidden=\"true\" ng-click=\"removeSecret($index)\">\n" +
     "<span class=\"pficon pficon-close\" aria-hidden=\"true\"></span>\n" +
-    "<span class=\"sr-only\">Remove build secret</span>\n" +
+    "<span class=\"sr-only\">删除建立密钥</span>\n" +
     "</button>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"help-blocks\" ng-switch=\"displayType\">\n" +
     "<div class=\"help-block\" ng-switch-when=\"source\">\n" +
-    "Secret with credentials for pulling your source code.\n" +
-    "<a href=\"{{'git_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "为您的源代码获取凭证的密钥。\n" +
+    "<a href=\"{{'git_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</div>\n" +
     "<div class=\"help-block\" ng-switch-when=\"pull\">\n" +
-    "Secret for authentication when pulling images from a secured registry.\n" +
-    "<a href=\"{{'pull_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "从安全注册表中提取镜像时进行身份验证的密钥。\n" +
+    "<a href=\"{{'pull_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</div>\n" +
     "<div class=\"help-block\" ng-switch-when=\"push\">\n" +
-    "Secret for authentication when pushing images to a secured registry.\n" +
-    "<a href=\"{{'pull_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "在将镜像推送到安全注册中心时进行身份验证的密钥。\n" +
+    "<a href=\"{{'pull_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"osc-secret-actions\" ng-if=\"!disableInput\">\n" +
     "<span ng-if=\"canAddSourceSecret()\">\n" +
-    "<a href=\"\" role=\"button\" ng-click=\"addSourceSecret()\">Add Another Secret</a>\n" +
+    "<a href=\"\" role=\"button\" ng-click=\"addSourceSecret()\">添加其它密钥</a>\n" +
     "<span ng-if=\"secretsVersion | canI : 'create'\" class=\"action-divider\">|</span>\n" +
     "</span>\n" +
-    "<a href=\"\" ng-if=\"secretsVersion | canI : 'create'\" role=\"button\" ng-click=\"openCreateSecretModal()\">Create New Secret</a>\n" +
+    "<a href=\"\" ng-if=\"secretsVersion | canI : 'create'\" role=\"button\" ng-click=\"openCreateSecretModal()\">创建新的密钥</a>\n" +
     "</div>\n" +
     "</ng-form>"
   );
@@ -8896,11 +8973,11 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"checkbox\">\n" +
     "<label>\n" +
     "<input type=\"checkbox\" ng-disabled=\"disabled\" ng-model=\"deployment.spec.paused\" aria-describedby=\"pause-help\">\n" +
-    "Pause rollouts for this {{deployment.kind | humanizeKind}}\n" +
+    "暂停发布，仅修改{{deployment.kind | humanizeKind}}\n" +
     "</label>\n" +
     "<div id=\"pause-help\" class=\"help-block\">\n" +
-    "Pausing lets you make changes without triggering a rollout. You can resume rollouts at any time.\n" +
-    "<span ng-if=\"!alwaysVisible\">If unchecked, a new rollout will start on save.</span>\n" +
+    "暂停发布可以让您在不触发发布的情况下进行更改。您可以在任何时候恢复发布。\n" +
+    "<span ng-if=\"!alwaysVisible\">如果不选择，将会启动一个新的发布。</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>"
@@ -9052,12 +9129,12 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</colgroup>\n" +
     "<thead>\n" +
     "<tr>\n" +
-    "<th>{{customNameHeader || 'Name'}}</th>\n" +
-    "<th>Status</th>\n" +
-    "<th>Containers Ready</th>\n" +
-    "<th>Container Restarts</th>\n" +
-    "<th>Age</th>\n" +
-    "<th ng-if=\"activePods\">Receiving Traffic</th>\n" +
+    "<th>{{customNameHeader || '名称'}}</th>\n" +
+    "<th>状态</th>\n" +
+    "<th>容器情况</th>\n" +
+    "<th>容器重启</th>\n" +
+    "<th>时间</th>\n" +
+    "<th ng-if=\"activePods\">接受通讯</th>\n" +
     "</tr>\n" +
     "</thead>\n" +
     "<tbody ng-if=\"!sortedPods.length\">\n" +
@@ -9218,11 +9295,11 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span ng-show=\"!$ctrl.noProjectsCantCreate\">\n" +
     "<template-options is-dialog=\"$ctrl.isDialog\" parameters=\"$ctrl.template.parameters\" expand=\"true\" can-toggle=\"false\">\n" +
     "</template-options>\n" +
-    "<label-editor labels=\"$ctrl.labels\" expand=\"true\" can-toggle=\"false\" help-text=\"Each label is applied to each created resource.\">\n" +
+    "<label-editor labels=\"$ctrl.labels\" expand=\"true\" can-toggle=\"false\" help-text=\"每个标签都应用与每个创建的资源。\">\n" +
     "</label-editor>\n" +
     "<div ng-if=\"!$ctrl.isDialog\" class=\"buttons gutter-top-bottom\">\n" +
-    "<button class=\"btn btn-primary btn-lg\" ng-click=\"$ctrl.createFromTemplate()\" ng-disabled=\"$ctrl.templateForm.$invalid || $ctrl.disableInputs\">Create</button>\n" +
-    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"$ctrl.cancel()\" role=\"button\">Cancel</a>\n" +
+    "<button class=\"btn btn-primary btn-lg\" ng-click=\"$ctrl.createFromTemplate()\" ng-disabled=\"$ctrl.templateForm.$invalid || $ctrl.disableInputs\">创建</button>\n" +
+    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"$ctrl.cancel()\" role=\"button\">取消</a>\n" +
     "</div>\n" +
     "</span>\n" +
     "</ng-form>\n" +
@@ -9389,17 +9466,17 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     " <table class=\"table table-bordered table-mobile\">\n" +
     "<thead>\n" +
     "<tr>\n" +
-    "<th>{{customNameHeader || 'Route'}}<span ng-if=\"showNodePorts\"> / Node Port</span></th>\n" +
+    "<th>{{customNameHeader || '路由'}}<span ng-if=\"showNodePorts\"> / 节点端口</span></th>\n" +
     "<th role=\"presentation\"></th>\n" +
-    "<th>Service Port</th>\n" +
+    "<th>服务端口</th>\n" +
     "<th role=\"presentation\"></th>\n" +
-    "<th>Target Port</th>\n" +
-    "<th>Hostname</th>\n" +
-    "<th>TLS Termination</th>\n" +
+    "<th>目标端口</th>\n" +
+    "<th>主机名</th>\n" +
+    "<th>TLS终端</th>\n" +
     "</tr>\n" +
     "</thead>\n" +
     "<tbody ng-if=\"(portsByRoute | hashSize) == 0\">\n" +
-    "<tr><td colspan=\"7\"><em>No routes or ports to show</em></td></tr>\n" +
+    "<tr><td colspan=\"7\"><em>没有路由或端口显示。</em></td></tr>\n" +
     "</tbody>\n" +
     "<tbody ng-if=\"(portsByRoute | hashSize) > 0\">\n" +
     "<tr ng-repeat-start=\"(routeName,ports) in portsByRoute\" style=\"display: none\"></tr>\n" +
@@ -9470,7 +9547,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
   $templateCache.put('views/directives/ui-ace-yaml.html',
     "<ng-form name=\"$ctrl.form\">\n" +
     "<div class=\"form-group\" id=\"yaml-file\">\n" +
-    "<osc-file-input ng-if=\"$ctrl.showFileInput\" model=\"$ctrl.fileUpload\" drop-zone-id=\"yaml-file\" help-text=\"Upload a file by dragging & dropping, selecting it, or pasting from the clipboard.\" ng-disabled=\"false\" hide-clear=\"true\" on-file-added=\"$ctrl.onFileAdded\"></osc-file-input>\n" +
+    "<osc-file-input ng-if=\"$ctrl.showFileInput\" model=\"$ctrl.fileUpload\" drop-zone-id=\"yaml-file\" help-text=\"通过拖放、选择或粘贴剪贴板来上传文件。\" ng-disabled=\"false\" hide-clear=\"true\" on-file-added=\"$ctrl.onFileAdded\"></osc-file-input>\n" +
     "<div class=\"edit-yaml-errors\">\n" +
     "\n" +
     "<div ng-if=\"firstError = $ctrl.annotations.error[0]\">\n" +
@@ -9522,34 +9599,35 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-10\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<div ng-if=\"!targetKind || !targetName || !project\" class=\"mar-top-md\">\n" +
-    "Loading...\n" +
+    "加载中...\n" +
     "</div>\n" +
     "<form name=\"form\" ng-submit=\"save()\" class=\"osc-form\" ng-show=\"targetKind && targetName\">\n" +
     "<h1>\n" +
-    "Autoscale {{targetKind | humanizeKind : true}} {{targetName}}\n" +
+    "自动伸缩控制器 {{targetKind | humanizeKind : true}} {{targetName}}\n" +
     "</h1>\n" +
     "<div class=\"help-block\">\n" +
-    "Scale replicas automatically based on CPU usage.\n" +
+    "基于CPU的使用率自动缩放副本。\n" +
     "</div>\n" +
     "<div class=\"learn-more-block\" ng-class=\"{ 'gutter-bottom': metricsWarning || showCPURequestWarning }\">\n" +
-    "<a href=\"{{'pod_autoscaling' | helpLink}}\" target=\"_blank\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden> </i></a>\n" +
+    "<a href=\"{{'pod_autoscaling' | helpLink}}\" target=\"_blank\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden> </i></a>\n" +
     "</div>\n" +
     "\n" +
     "<div ng-if=\"metricsWarning\" class=\"alert alert-warning\">\n" +
     "<span class=\"pficon pficon-warning-triangle-o\" aria-hidden=\"true\"></span>\n" +
-    "<span class=\"sr-only\">Warning:</span>\n" +
-    "Metrics might not be configured by your cluster administrator. Metrics are required for autoscaling.\n" +
+    "<span class=\"sr-only\">警告:</span>\n" +
+    "度量标准可能不是由您的集群管理员配置的。 度量是自动伸缩所需的。\n" +
     "</div>\n" +
     "\n" +
     "<div ng-if=\"showCPURequestWarning\" class=\"alert alert-warning\">\n" +
     "<span class=\"pficon pficon-warning-triangle-o\" aria-hidden=\"true\"></span>\n" +
-    "<span class=\"sr-only\">Warning:</span>\n" +
-    "This {{targetKind | humanizeKind}} does not have any containers with a CPU\n" +
-    "<span ng-if=\"'cpu' | isRequestCalculated : project\">limit</span>\n" +
-    "<span ng-if=\"!('cpu' | isRequestCalculated : project)\">request</span>\n" +
-    "set. Autoscaling will not work without a CPU\n" +
-    "<span ng-if=\"'cpu' | isRequestCalculated : project\">limit.</span>\n" +
-    "<span ng-if=\"!('cpu' | isRequestCalculated : project)\">request.</span>\n" +
+    "<span class=\"sr-only\">警告:</span>\n" +
+    "这个 {{targetKind | humanizeKind}} 没有任何带有CPU\n" +
+    "<span ng-if=\"'cpu' | isRequestCalculated : project\">限制</span>\n" +
+    "<span ng-if=\"!('cpu' | isRequestCalculated : project)\">请求</span>\n" +
+    "集的容器。如果没有CPU\n" +
+    "<span ng-if=\"'cpu' | isRequestCalculated : project\">限制</span>\n" +
+    "<span ng-if=\"!('cpu' | isRequestCalculated : project)\">请求</span>\n" +
+    "，自动伸缩将无法工作。\n" +
     "</div>\n" +
     "\n" +
     "<div ng-if=\"usesV2Metrics\" class=\"alert alert-warning\">\n" +
@@ -9588,8 +9666,8 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<alerts alerts=\"alerts\"></alerts>\n" +
     "<div ng-if=\"!loaded\">Loading...</div>\n" +
     "<h1>\n" +
-    "Edit Build Config {{buildConfig.metadata.name}}\n" +
-    "<small>&mdash; {{strategyType | startCase}} Build Strategy</small>\n" +
+    "编辑构建配置 {{buildConfig.metadata.name}}\n" +
+    "<small>&mdash; {{strategyType | startCase}} 构建策略</small>\n" +
     "</h1>\n" +
     "<fieldset ng-disabled=\"disableInputs\">\n" +
     "<form class=\"edit-form\" name=\"form\" novalidate ng-submit=\"save()\">\n" +
@@ -9598,14 +9676,19 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<dl class=\"dl-horizontal left\">\n" +
     "<div ng-if=\"sources.git\">\n" +
     "<div class=\"row\">\n" +
-    "<div ng-class=\"{\n" +
-    "                        'col-lg-8': view.advancedOptions,\n" +
+    "<div ng-class=\"{\r" +
+    "\n" +
+    "                        'col-lg-8': view.advancedOptions,\r" +
+    "\n" +
     "                        'col-lg-12': !view.advancedOptions}\">\n" +
     "<div class=\"form-group\">\n" +
     "<label for=\"sourceUrl\" class=\"required\">Git Repository URL</label>\n" +
-    "<div ng-class=\"{\n" +
-    "                            'has-warning': form.sourceUrl.$touched && !sourceURLPattern.test(updatedBuildConfig.spec.source.git.uri),\n" +
-    "                            'has-error': form.sourceUrl.$touched && form.sourceUrl.$error.required\n" +
+    "<div ng-class=\"{\r" +
+    "\n" +
+    "                            'has-warning': form.sourceUrl.$touched && !sourceURLPattern.test(updatedBuildConfig.spec.source.git.uri),\r" +
+    "\n" +
+    "                            'has-error': form.sourceUrl.$touched && form.sourceUrl.$error.required\r" +
+    "\n" +
     "                          }\">\n" +
     "\n" +
     "<input class=\"form-control\" id=\"sourceUrl\" name=\"sourceUrl\" ng-model=\"updatedBuildConfig.spec.source.git.uri\" type=\"text\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" aria-describedby=\"source-url-help\" required>\n" +
@@ -9649,13 +9732,20 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"sources.dockerfile\">\n" +
     "<div class=\"form-group\">\n" +
     "<label for=\"buildFrom\">Dockerfile</label>\n" +
-    "<div ui-ace=\"{\n" +
-    "                        mode: 'dockerfile',\n" +
-    "                        theme: 'dreamweaver',\n" +
-    "                        rendererOptions: {\n" +
-    "                          fadeFoldWidgets: true,\n" +
-    "                          showPrintMargin: false\n" +
-    "                        }\n" +
+    "<div ui-ace=\"{\r" +
+    "\n" +
+    "                        mode: 'dockerfile',\r" +
+    "\n" +
+    "                        theme: 'dreamweaver',\r" +
+    "\n" +
+    "                        rendererOptions: {\r" +
+    "\n" +
+    "                          fadeFoldWidgets: true,\r" +
+    "\n" +
+    "                          showPrintMargin: false\r" +
+    "\n" +
+    "                        }\r" +
+    "\n" +
     "                      }\" ng-model=\"updatedBuildConfig.spec.source.dockerfile\" class=\"ace-bordered ace-inline dockerfile-mode\"></div>\n" +
     "</div>\n" +
     "<div class=\"form-group\" ng-if=\"updatedBuildConfig.spec.strategy.dockerStrategy.dockerfilePath && view.advancedOptions\">\n" +
@@ -9732,7 +9822,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"updatedBuildConfig | isJenkinsPipelineStrategy\" class=\"section\">\n" +
-    "<h3 ng-class=\"{ 'with-divider': !sources.none }\">Jenkins Pipeline Configuration</h3>\n" +
+    "<h3 ng-class=\"{ 'with-divider': !sources.none }\">Jenkins Pipeline 配置</h3>\n" +
     "<div class=\"form-group\" ng-if=\"buildConfig.spec.source.type === 'Git'\">\n" +
     "<label for=\"jenkinsfile-type\">Jenkinsfile Type</label>\n" +
     "<ui-select search-enabled=\"false\" ng-model=\"jenkinsfileOptions.type\" input-id=\"jenkinsfile-type\" aria-describedby=\"jenkinsfile-type-help\">\n" +
@@ -9742,41 +9832,48 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</ui-select-choices>\n" +
     "</ui-select>\n" +
     "<div class=\"help-block\" id=\"jenkinsfile-type-help\">\n" +
-    "Use a Jenkinsfile from the source repository or specify the Jenkinsfile content directly in the build configuration.\n" +
+    "使用源码仓库中的Jenkinsfile或 直接在构建配置中指定Jenkinsfile内容。\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"jenkinsfileOptions.type === 'path'\" class=\"form-group\">\n" +
-    "<label for=\"jenkinsfilePath\">Jenkinsfile Source Path</label>\n" +
+    "<label for=\"jenkinsfilePath\">Jenkinsfile 源码路径</label>\n" +
     "<input class=\"form-control\" id=\"jenkinsfilePath\" name=\"jenkinsfilePath\" type=\"text\" ng-model=\"updatedBuildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" aria-describedby=\"jenkinsfile-path-help\">\n" +
     "<div class=\"help-block\" id=\"jenkinsfile-path-help\">\n" +
-    "Optional path to the Jenkinsfile relative to the context dir. Defaults to the Jenkinsfile in context dir.\n" +
+    "Jenkinsfile相对于上下文目录的可选路径。 默认为上下文目录中的Jenkinsfile。\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"jenkinsfileOptions.type === 'inline'\">\n" +
     "<label>Jenkinsfile</label>\n" +
-    "<div ui-ace=\"{\n" +
-    "                    mode: 'groovy',\n" +
-    "                    theme: 'eclipse',\n" +
-    "                    rendererOptions: {\n" +
-    "                      fadeFoldWidgets: true,\n" +
-    "                      showPrintMargin: false\n" +
-    "                    }\n" +
+    "<div ui-ace=\"{\r" +
+    "\n" +
+    "                    mode: 'groovy',\r" +
+    "\n" +
+    "                    theme: 'eclipse',\r" +
+    "\n" +
+    "                    rendererOptions: {\r" +
+    "\n" +
+    "                      fadeFoldWidgets: true,\r" +
+    "\n" +
+    "                      showPrintMargin: false\r" +
+    "\n" +
+    "                    }\r" +
+    "\n" +
     "                  }\" ng-model=\"updatedBuildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfile\" class=\"ace-bordered ace-inline\"></div>\n" +
     "</div>\n" +
     "<div class=\"mar-top-md mar-bottom-md\">\n" +
-    "<a ng-if=\"!view.jenkinsfileExamples\" href=\"\" ng-click=\"view.jenkinsfileExamples = true\">What's a Jenkinsfile?</a>\n" +
+    "<a ng-if=\"!view.jenkinsfileExamples\" href=\"\" ng-click=\"view.jenkinsfileExamples = true\">什么是Jenkinsfile？</a>\n" +
     "</div>\n" +
     "<div ng-if=\"view.jenkinsfileExamples\" class=\"editor-examples\">\n" +
     "<div class=\"pull-right mar-top-md\">\n" +
-    "<a href=\"\" ng-click=\"view.jenkinsfileExamples = false\">Hide examples</a>\n" +
+    "<a href=\"\" ng-click=\"view.jenkinsfileExamples = false\">隐藏示例</a>\n" +
     "</div>\n" +
-    "<h4>Jenkinsfile Examples</h4>\n" +
+    "<h4>Jenkinsfile 示例</h4>\n" +
     "<ng-include src=\"'views/edit/jenkinsfile-examples.html'\"></ng-include>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"sources.none && !(updatedBuildConfig | isJenkinsPipelineStrategy)\">\n" +
     "<div class=\"form-group\">\n" +
-    "<i>No source inputs have been defined for this build configuration.</i>\n" +
+    "<i>当前构建配置没有定于源码输入。</i>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"strategyType !== 'JenkinsPipeline'\" class=\"section\">\n" +
@@ -9912,15 +10009,15 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"section mar-bottom-lg\" ng-if=\"view.advancedOptions\">\n" +
-    "<h3 class=\"with-divider\">Run Policy\n" +
+    "<h3 class=\"with-divider\">运行策略\n" +
     "<span class=\"help action-inline\">\n" +
     "<a href=\"\">\n" +
-    "<i class=\"pficon pficon-help\" data-toggle=\"tooltip\" aria-hidden=\"true\" data-original-title=\"The build run policy describes the order in which the builds created from the build configuration should run.\"></i>\n" +
+    "<i class=\"pficon pficon-help\" data-toggle=\"tooltip\" aria-hidden=\"true\" data-original-title=\"运行策略是描述从构建配置创建的构建应该运行的顺序。\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h3>\n" +
     "<div class=\"form-group\">\n" +
-    "<label class=\"sr-only\">Run policy type</label>\n" +
+    "<label class=\"sr-only\">运行策略类型</label>\n" +
     "<ui-select required ng-model=\"updatedBuildConfig.spec.runPolicy\" search-enabled=\"false\">\n" +
     "<ui-select-match>{{$select.selected | sentenceCase}}</ui-select-match>\n" +
     "<ui-select-choices repeat=\"type in runPolicyTypes\">\n" +
@@ -9929,10 +10026,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</ui-select>\n" +
     "</div>\n" +
     "<div ng-switch=\"updatedBuildConfig.spec.runPolicy\">\n" +
-    "<div class=\"help-block\" ng-switch-when=\"Serial\">Builds triggered from this Build Configuration will run one at the time, in the order they have been triggered.</div>\n" +
-    "<div class=\"help-block\" ng-switch-when=\"Parallel\">Builds triggered from this Build Configuration will run all at the same time. The order in which they will finish is not guaranteed.</div>\n" +
-    "<div class=\"help-block\" ng-switch-when=\"SerialLatestOnly\">Builds triggered from this Build Configuration will run one at the time. When a currently running build completes, the next build that will run is the latest build created. Other queued builds will be cancelled.</div>\n" +
-    "<div class=\"help-block\" ng-switch-default>Builds triggered from this Build Configuration will run using the {{updatedBuildConfig.spec.runPolicy | sentenceCase}} policy.</div>\n" +
+    "<div class=\"help-block\" ng-switch-when=\"Serial\">由此策略触发的构建将按照它们被触发的顺序执行。</div>\n" +
+    "<div class=\"help-block\" ng-switch-when=\"Parallel\">由此策略触发的构建将同时运行。无法保证它们的完成顺序。</div>\n" +
+    "<div class=\"help-block\" ng-switch-when=\"SerialLatestOnly\">由此策略触发的构建将在此时只运行一个。当前正在运行的构建完成时，将运行最新创建的构建。其它队列中的构建将会被取消。</div>\n" +
+    "<div class=\"help-block\" ng-switch-default>由此策略触发的构建将使用 {{updatedBuildConfig.spec.runPolicy | sentenceCase}} 策略运行。</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"!(updatedBuildConfig | isJenkinsPipelineStrategy)\" class=\"section\">\n" +
@@ -9966,13 +10063,20 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<fieldset>\n" +
     "<div ng-if=\"buildHookSelection.type.id === 'script' || buildHookSelection.type.id === 'scriptArgs'\">\n" +
     "<label class=\"required\">Script</label>\n" +
-    "<div ui-ace=\"{\n" +
-    "                            mode: 'sh',\n" +
-    "                            theme: 'eclipse',\n" +
-    "                            rendererOptions: {\n" +
-    "                              fadeFoldWidgets: true,\n" +
-    "                              showPrintMargin: false\n" +
-    "                            }\n" +
+    "<div ui-ace=\"{\r" +
+    "\n" +
+    "                            mode: 'sh',\r" +
+    "\n" +
+    "                            theme: 'eclipse',\r" +
+    "\n" +
+    "                            rendererOptions: {\r" +
+    "\n" +
+    "                              fadeFoldWidgets: true,\r" +
+    "\n" +
+    "                              showPrintMargin: false\r" +
+    "\n" +
+    "                            }\r" +
+    "\n" +
     "                          }\" ng-model=\"updatedBuildConfig.spec.postCommit.script\" required class=\"ace-bordered ace-inline\">\n" +
     "</div>\n" +
     "</div>\n" +
@@ -9991,13 +10095,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"gutter-top\">\n" +
-    "<a href=\"\" ng-click=\"view.advancedOptions = !view.advancedOptions\" role=\"button\">{{view.advancedOptions ? 'Hide' : 'Show'}} advanced options</a>\n" +
+    "<a href=\"\" ng-click=\"view.advancedOptions = !view.advancedOptions\" role=\"button\">{{view.advancedOptions ? '隐藏' : '显示'}}高级选项</a>\n" +
     "</div>\n" +
     "<div class=\"buttons gutter-top-bottom\">\n" +
     "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-disabled=\"form.$invalid || form.$pristine || disableInputs\">\n" +
-    "Save\n" +
+    "保存\n" +
     "</button>\n" +
-    "<button class=\"btn btn-default btn-lg\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "<button class=\"btn btn-default btn-lg\" ng-click=\"cancel()\">取消</button>\n" +
     "</div>\n" +
     "</form>\n" +
     "</fieldset>\n" +
@@ -10017,28 +10121,28 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-10\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<div class=\"mar-top-xl\">\n" +
-    "<h1>Edit Config Map {{configMap.metadata.name}}</h1>\n" +
+    "<h1>编辑配置映射 {{configMap.metadata.name}}</h1>\n" +
     "<div class=\"help-block\">\n" +
-    "Config maps hold key-value pairs that can be used in pods to read application configuration.\n" +
+    "配置映射保存的键/值对可用于Pods读取应用程序的配置。\n" +
     "</div>\n" +
     "<div class=\"mar-top-xl\">\n" +
-    "<div ng-if=\"!loaded\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\">加载中...</div>\n" +
     "<form ng-if=\"loaded\" name=\"forms.editConfigMapForm\">\n" +
     "<div ng-if=\"resourceChanged && !resourceDeleted && !updatingNow\" class=\"alert alert-warning\">\n" +
     "<span class=\"pficon pficon-warning-triangle-o\" aria-hidden=\"true\"></span>\n" +
     "<span class=\"sr-only\">Warning:</span>\n" +
-    "Config map {{configMap.metadata.name}} has changed since you started editing it. You'll need to copy any changes you've made and edit the config map again.\n" +
+    "配置映射{{configMap.metadata.name}}自从您开始编辑就已发生了变化。 您需要复制您所做的所有修改并再次编辑配置映射。\n" +
     "</div>\n" +
     "<div ng-if=\"resourceDeleted\" class=\"alert alert-warning\">\n" +
     "<span class=\"pficon pficon-warning-triangle-o\" aria-hidden=\"true\"></span>\n" +
     "<span class=\"sr-only\">Warning:</span>\n" +
-    "Config map {[configMap.metadata.name}} has been deleted since you started editing it.\n" +
+    "配置映射 {[configMap.metadata.name}} 自从您开始编辑就已被删除。\n" +
     "</div>\n" +
     "<fieldset ng-disabled=\"disableInputs\">\n" +
     "<edit-config-map-or-secret model=\"configMap\" type=\"config map\"></edit-config-map-or-secret>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
-    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"updateConfigMap()\" ng-disabled=\"forms.editConfigMapForm.$invalid || forms.editConfigMapForm.$pristine || disableInputs || resourceChanged || resourceDeleted\" value=\"\">Save</button>\n" +
-    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\" role=\"button\">Cancel</a>\n" +
+    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"updateConfigMap()\" ng-disabled=\"forms.editConfigMapForm.$invalid || forms.editConfigMapForm.$pristine || disableInputs || resourceChanged || resourceDeleted\" value=\"\">保存</button>\n" +
+    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\" role=\"button\">关闭</a>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</form>\n" +
@@ -10063,16 +10167,16 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"!loaded\">Loading...</div>\n" +
     "<div ng-if=\"loaded\">\n" +
     "<h1>\n" +
-    "Edit Deployment Config {{deploymentConfig.metadata.name}}\n" +
+    "修改部署配置 {{deploymentConfig.metadata.name}}\n" +
     "</h1>\n" +
     "<fieldset ng-disabled=\"disableInputs\">\n" +
     "<form class=\"edit-form\" name=\"form\" novalidate>\n" +
     "<div class=\"section\">\n" +
-    "<h3>Deployment Strategy</h3>\n" +
+    "<h3>部署策略</h3>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
     "{{strategyParamsName}}\n" +
     "<div class=\"form-group strategy-name\">\n" +
-    "<label class=\"picker-label\">Strategy Type</label>\n" +
+    "<label class=\"picker-label\">策略类型</label>\n" +
     "<ui-select ng-model=\"strategyData.type\" search-enabled=\"false\" ng-change=\"strategyChanged()\">\n" +
     "<ui-select-match>{{$select.selected}}</ui-select-match>\n" +
     "<ui-select-choices repeat=\"strategyType in deploymentConfigStrategyTypes\">\n" +
@@ -10082,56 +10186,56 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div>\n" +
     "<span ng-switch=\"strategyData.type\">\n" +
     "<span class=\"help-block\" ng-switch-when=\"Recreate\">\n" +
-    "The recreate strategy has basic rollout behavior and supports lifecycle hooks for injecting code into the deployment process.\n" +
-    "<a ng-href=\"{{'recreate_strategy' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "Recreate策略具有基本的上线行为，并支持将代码注入到部署过程中的生命周期钩子。\n" +
+    "<a ng-href=\"{{'recreate_strategy' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</span>\n" +
     "<span class=\"help-block\" ng-switch-when=\"Rolling\">\n" +
-    "The rolling strategy will wait for pods to pass their readiness check, scale down old components and then scale up.\n" +
-    "<a ng-href=\"{{'rolling_strategy' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "Rolling策略先等待Pods准备检查，缩减旧的部件，然后再扩大规模。\n" +
+    "<a ng-href=\"{{'rolling_strategy' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</span>\n" +
     "<span class=\"help-block\" ng-switch-when=\"Custom\">\n" +
-    "The custom strategy allows you to specify container image that will provide your own deployment behavior.\n" +
-    "<a ng-href=\"{{'custom_strategy' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "Custom策略允许您指定将提供您自己的部署行为的容器镜像。\n" +
+    "<a ng-href=\"{{'custom_strategy' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</span>\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"strategyData.type === 'Custom'\">\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"image-name\">Image Name</label>\n" +
+    "<label for=\"image-name\">镜像名称</label>\n" +
     "<div>\n" +
     "<input class=\"form-control\" id=\"image-name\" name=\"imageName\" ng-model=\"strategyData.customParams.image\" type=\"text\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" aria-describedby=\"image-name-help\">\n" +
     "</div>\n" +
-    "<div class=\"help-block\" id=\"image-name-help\">An image that can carry out the deployment.</div>\n" +
+    "<div class=\"help-block\" id=\"image-name-help\">可部署的镜像。</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\">\n" +
-    "<label>Command</label>\n" +
+    "<label>命令</label>\n" +
     "<edit-command args=\"strategyData.customParams.command\"></edit-command>\n" +
     "</div>\n" +
     "<div class=\"form-group\">\n" +
-    "<label>Environment Variables</label>\n" +
-    "<key-value-editor entries=\"strategyData.customParams.environment\" key-validator=\"[a-zA-Z_][a-zA-Z0-9_]*\" key-validator-error-tooltip=\"A valid environment variable name is an alphanumeric (a-z and 0-9) string beginning with a letter that may contain underscores.\" value-from-selector-options=\"valueFromObjects\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\"></key-value-editor>\n" +
+    "<label>环境变量</label>\n" +
+    "<key-value-editor entries=\"strategyData.customParams.environment\" key-validator=\"[a-zA-Z_][a-zA-Z0-9_]*\" key-validator-error-tooltip=\"一个有效的环境变量名是一个字母数字(A -z和0-9)字符串，从一个可能包含下划线的字母开始。\" value-from-selector-options=\"valueFromObjects\" add-row-link=\"添加值\" add-row-with-selectors-link=\"从配置映射或密钥中添加值\"></key-value-editor>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"strategyData.type !== 'Custom'\">\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"strategy-timeout\">Timeout</label>\n" +
+    "<label for=\"strategy-timeout\">超时</label>\n" +
     "<span class=\"input-group\" ng-class=\"{ 'has-error': form.strategyTimeout.$invalid && form.strategyTimeout.$touched }\">\n" +
     "<input id=\"strategy-timeout\" type=\"number\" name=\"strategyTimeout\" ng-model=\"strategyData[strategyParamsPropertyName].timeoutSeconds\" placeholder=\"600\" pattern=\"\\d*\" min=\"0\" select-on-focus class=\"form-control\" aria-describedby=\"strategy-timeout-help\">\n" +
-    "<span class=\"input-group-addon\">seconds</span>\n" +
+    "<span class=\"input-group-addon\">秒</span>\n" +
     "</span>\n" +
     "<div class=\"help-block\" id=\"strategy-timeout-help\">\n" +
-    "How long to wait for a pod to scale up before giving up.\n" +
+    "Pod 运行超时时间。\n" +
     "</div>\n" +
     "<div ng-if=\"form.strategyTimeout.$invalid && form.strategyTimeout.$touched\" class=\"has-error\">\n" +
     "<div ng-if=\"form.strategyTimeout.$error.number\" class=\"help-block\">\n" +
-    "Must be a number.\n" +
+    "必须是一个数字。\n" +
     "</div>\n" +
     "<div ng-if=\"form.strategyTimeout.$error.min\" class=\"help-block\">\n" +
-    "Timeout can't be negative.\n" +
+    "超时不能是负数。\n" +
     "</div>\n" +
     "<span ng-if=\"form.strategyTimeout.$error.pattern && !form.strategyTimeout.$error.min\" class=\"help-block\">\n" +
-    "Must be a whole number.\n" +
+    "必须是一个整数。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -10139,73 +10243,73 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "\n" +
     "<div ng-show=\"view.advancedStrategyOptions\">\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"update-period\">Update Period</label>\n" +
+    "<label for=\"update-period\">更新周期</label>\n" +
     "<span class=\"input-group\" ng-class=\"{ 'has-error': form.updatePeriod.$invalid && form.updatePeriod.$touched }\">\n" +
     "<input id=\"update-period\" type=\"number\" placeholder=\"1\" name=\"updatePeriod\" ng-model=\"strategyData[strategyParamsPropertyName].updatePeriodSeconds\" pattern=\"\\d*\" min=\"0\" select-on-focus class=\"form-control\" aria-describedby=\"update-period-help\">\n" +
-    "<span class=\"input-group-addon\">seconds</span>\n" +
+    "<span class=\"input-group-addon\">秒</span>\n" +
     "</span>\n" +
     "<div class=\"help-block\" id=\"update-period-help\">\n" +
-    "Time to wait between retrying to run individual pod.\n" +
+    "在重新尝试运行单个pod之间等待时间。\n" +
     "</div>\n" +
     "<div ng-if=\"form.updatePeriod.$invalid && form.updatePeriod.$touched\" class=\"has-error\">\n" +
     "<div ng-if=\"form.updatePeriod.$error.number\" class=\"help-block\">\n" +
-    "Must be a number.\n" +
+    "必须是一个数字。\n" +
     "</div>\n" +
     "<div ng-if=\"form.updatePeriod.$error.min\" class=\"help-block\">\n" +
-    "Update period can't be negative.\n" +
+    "更新周期不可能是负数。\n" +
     "</div>\n" +
     "<span ng-if=\"form.updatePeriod.$error.pattern && !form.updatePeriod.$error.min\" class=\"help-block\">\n" +
-    "Must be a whole number.\n" +
+    "必须是一个整数。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"interval\">Interval</label>\n" +
+    "<label for=\"interval\">时间间隔</label>\n" +
     "<span class=\"input-group\" ng-class=\"{ 'has-error': form.interval.$invalid && form.interval.$touched }\">\n" +
     "<input id=\"interval\" type=\"number\" placeholder=\"1\" name=\"interval\" ng-model=\"strategyData[strategyParamsPropertyName].intervalSeconds\" pattern=\"\\d*\" min=\"0\" select-on-focus class=\"form-control\" aria-describedby=\"interval-help\">\n" +
-    "<span class=\"input-group-addon\">seconds</span>\n" +
+    "<span class=\"input-group-addon\">秒</span>\n" +
     "</span>\n" +
     "<div class=\"help-block\" id=\"interval-help\">\n" +
-    "Time to wait between polling deployment status after running a pod.\n" +
+    "在运行一个pod之后，在轮询部署状态之间等待时间。\n" +
     "</div>\n" +
     "<div ng-if=\"form.interval.$invalid && form.interval.$touched\" class=\"has-error\">\n" +
     "<div ng-if=\"form.interval.$error.number\" class=\"help-block\">\n" +
-    "Must be a number.\n" +
+    "必须是一个数字。\n" +
     "</div>\n" +
     "<div ng-if=\"form.interval.$error.min\" class=\"help-block\">\n" +
-    "Interval can't be negative.\n" +
+    "时间间隔不能是负数。\n" +
     "</div>\n" +
     "<span ng-if=\"form.interval.$error.pattern && !form.interval.$error.min\" class=\"help-block\">\n" +
-    "Must be a whole number.\n" +
+    "必须是一个整数。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"max-unavailable\">Maximum Number of Unavailable Pods</label>\n" +
+    "<label for=\"max-unavailable\">最大不可用 Pods</label>\n" +
     "<div ng-class=\"{ 'has-error': form.maxUnavailable.$invalid && form.maxUnavailable.$touched }\">\n" +
     "<input id=\"max-unavailable\" type=\"text\" placeholder=\"25%\" name=\"maxUnavailable\" ng-model=\"strategyData[strategyParamsPropertyName].maxUnavailable\" ng-pattern=\"/^\\d+%?$/\" select-on-focus class=\"form-control\" aria-describedby=\"max-unavailable-help\">\n" +
     "</div>\n" +
     "<div class=\"help-block\" id=\"max-unavailable-help\">\n" +
-    "The maximum number of pods that can be unavailable during the rolling deployment. This can be either a percentage (10%) or a whole number (1).\n" +
+    "在滚动部署期间可能无法使用的最大pods数。这可以是一个百分比(10%)或者一个整数(1)。\n" +
     "</div>\n" +
     "<div ng-if=\"form.maxUnavailable.$invalid && form.maxUnavailable.$touched && form.maxUnavailable.$error.pattern\" class=\"has-error\">\n" +
     "<span class=\"help-block\">\n" +
-    "Must be a non-negative whole number or percentage.\n" +
+    "必须是非负整数或百分数。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"max-surge\">Maximum Number of Surge Pods</label>\n" +
+    "<label for=\"max-surge\">最大激增比 Pods</label>\n" +
     "<div ng-class=\"{ 'has-error': form.maxSurge.$invalid && form.maxSurge.$touched }\">\n" +
     "<input id=\"max-surge\" type=\"text\" placeholder=\"25%\" name=\"maxSurge\" ng-model=\"strategyData[strategyParamsPropertyName].maxSurge\" ng-pattern=\"/^\\d+%?$/\" select-on-focus class=\"form-control\" aria-describedby=\"max-surge-help\">\n" +
     "</div>\n" +
     "<div class=\"help-block\" id=\"max-surge-help\">\n" +
-    "The maximum number of pods that can be scheduled above the original number of pods while the rolling deployment is in progress. This can be either a percentage (10%) or a whole number (1).\n" +
+    "当滚动部署正在进行时，可以在初始数量的pod之上调度的最大pod数。这可以是百分比(10%)或整数(1)。\n" +
     "</div>\n" +
     "<div ng-if=\"form.maxSurge.$invalid && form.maxSurge.$touched && form.maxSurge.$error.pattern\" class=\"has-error\">\n" +
     "<span class=\"help-block\">\n" +
-    "Must be a non-negative whole number or percentage.\n" +
+    "必须是非负整数或百分数。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -10214,17 +10318,17 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-show=\"view.advancedStrategyOptions\">\n" +
     "<div class=\"lifecycle-hooks\">\n" +
     "<div class=\"lifecycle-hook\" id=\"pre-lifecycle-hook\">\n" +
-    "<h3>Pre Lifecycle Hook</h3>\n" +
+    "<h3>Pre 生命周期钩子</h3>\n" +
     "<edit-lifecycle-hook model=\"strategyData[strategyParamsPropertyName].pre\" type=\"pre\" available-volumes=\"volumeNames\" available-containers=\"containerNames\" available-secrets=\"availableSecrets\" available-config-maps=\"availableConfigMaps\" namespace=\"projectName\">\n" +
     "</edit-lifecycle-hook>\n" +
     "</div>\n" +
     "<div ng-if=\"strategyData.type !== 'Rolling'\" class=\"lifecycle-hook\" id=\"mid-lifecycle-hook\">\n" +
-    "<h3>Mid Lifecycle Hook</h3>\n" +
+    "<h3>Mid 生命周期钩子</h3>\n" +
     "<edit-lifecycle-hook model=\"strategyData[strategyParamsPropertyName].mid\" type=\"mid\" available-volumes=\"volumeNames\" available-containers=\"containerNames\" available-secrets=\"availableSecrets\" available-config-maps=\"availableConfigMaps\" namespace=\"projectName\">\n" +
     "</edit-lifecycle-hook>\n" +
     "</div>\n" +
     "<div class=\"lifecycle-hook\" id=\"post-lifecycle-hook\">\n" +
-    "<h3>Post Lifecycle Hook</h3>\n" +
+    "<h3>Post 生命周期钩子</h3>\n" +
     "<edit-lifecycle-hook model=\"strategyData[strategyParamsPropertyName].post\" type=\"post\" available-volumes=\"volumeNames\" available-containers=\"containerNames\" available-secrets=\"availableSecrets\" available-config-maps=\"availableConfigMaps\" namespace=\"projectName\">\n" +
     "</edit-lifecycle-hook>\n" +
     "</div>\n" +
@@ -10232,43 +10336,43 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"mar-top-lg\" ng-if=\"strategyData.type !== 'Custom'\">\n" +
-    "<div ng-if=\"!view.advancedStrategyOptions\">To set additional parameters or edit lifecycle hooks, view <a href=\"\" ng-click=\"view.advancedStrategyOptions = true\">advanced strategy options.</a></div>\n" +
-    "<a ng-if=\"view.advancedStrategyOptions\" href=\"\" ng-click=\"view.advancedStrategyOptions = false\">Hide Advanced Strategy Options</a>\n" +
+    "<div ng-if=\"!view.advancedStrategyOptions\">要设置附加参数或编辑生命周期钩子， 请查看 <a href=\"\" ng-click=\"view.advancedStrategyOptions = true\">高级战略选项</a></div>\n" +
+    "<a ng-if=\"view.advancedStrategyOptions\" href=\"\" ng-click=\"view.advancedStrategyOptions = false\">隐藏高级战略选项</a>\n" +
     "</div>\n" +
     "</dl>\n" +
     "</div>\n" +
     "<div class=\"section\">\n" +
-    "<h3 class=\"with-divider\">Images</h3>\n" +
+    "<h3 class=\"with-divider\">镜像</h3>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
     "<div ng-repeat=\"(containerName, containerConfig) in containerConfigByName\">\n" +
     "<div class=\"container-name\">\n" +
-    "<h4>Container {{containerName}}</h4>\n" +
+    "<h4>容器 {{containerName}}</h4>\n" +
     "</div>\n" +
     "<div class=\"checkbox form-group\">\n" +
     "<label>\n" +
     "<input type=\"checkbox\" ng-model=\"containerConfig.hasDeploymentTrigger\">\n" +
-    "Deploy images from an image stream tag\n" +
+    "从镜像流标签中部署镜像\n" +
     "</label>\n" +
     "</div>\n" +
     "<div ng-if=\"containerConfig.hasDeploymentTrigger\">\n" +
-    "<label class=\"required\">Image Stream Tag</label>\n" +
+    "<label class=\"required\">镜像流标签</label>\n" +
     "<istag-select model=\"containerConfig.triggerData.istag\" select-required=\"true\" select-disabled=\"disableInputs\" include-shared-namespace=\"true\"></istag-select>\n" +
     "<div class=\"checkbox form-group\">\n" +
     "<label>\n" +
     "<input type=\"checkbox\" ng-model=\"containerConfig.triggerData.automatic\">\n" +
-    "Automatically start a new deployment when the image changes\n" +
+    "当镜像发生变化时，自动启动一个新的部署\n" +
     "</label>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"!containerConfig.hasDeploymentTrigger\" class=\"form-group\">\n" +
-    "<label for=\"container-{{$index}}-image-name\" class=\"required\">Image Name</label>\n" +
+    "<label for=\"container-{{$index}}-image-name\" class=\"required\">镜像名称</label>\n" +
     "<input class=\"form-control\" id=\"container-{{$index}}-image-name\" name=\"container{{$index}}ImageName\" ng-model=\"containerConfig.image\" type=\"text\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" required>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"checkbox form-group\">\n" +
     "<label>\n" +
     "<input type=\"checkbox\" ng-model=\"triggers.hasConfigTrigger\">\n" +
-    "Automatically start a new deployment when the deployment configuration changes\n" +
+    "在部署配置更改时自动启动新的部署\n" +
     "</label>\n" +
     "</div>\n" +
     "\n" +
@@ -10279,27 +10383,27 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"mar-top-lg\">\n" +
-    "<div ng-if=\"!view.advancedImageOptions\">To set secrets for pulling your images from private image registries, view <a href=\"\" ng-click=\"view.advancedImageOptions = true\">advanced image options.</a></div>\n" +
-    "<a ng-if=\"view.advancedImageOptions\" href=\"\" ng-click=\"view.advancedImageOptions = false\">Hide Advanced Image Options</a>\n" +
+    "<div ng-if=\"!view.advancedImageOptions\">要从私有注册镜像中提取镜像的密钥, 请查看 <a href=\"\" ng-click=\"view.advancedImageOptions = true\">高级镜像选项</a></div>\n" +
+    "<a ng-if=\"view.advancedImageOptions\" href=\"\" ng-click=\"view.advancedImageOptions = false\">隐藏高级镜像选项</a>\n" +
     "</div>\n" +
     "</dl>\n" +
     "</div>\n" +
     "<div class=\"section\">\n" +
-    "<h3 class=\"with-divider\">Environment Variables</h3>\n" +
+    "<h3 class=\"with-divider\">环境变量</h3>\n" +
     "<div ng-repeat=\"(containerName, containerConfig) in containerConfigByName\">\n" +
     "<div class=\"container-name\">\n" +
-    "<h4>Container {{containerName}}</h4>\n" +
+    "<h4>容器 {{containerName}}</h4>\n" +
     "</div>\n" +
-    "<key-value-editor ng-if=\"containerConfig\" entries=\"containerConfig.env\" value-from-selector-options=\"valueFromObjects\" key-validator=\"[a-zA-Z_][a-zA-Z0-9_]*\" key-validator-error-tooltip=\"A valid environment variable name is an alphanumeric (a-z and 0-9) string beginning with a letter that may contain underscores.\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\"></key-value-editor>\n" +
+    "<key-value-editor ng-if=\"containerConfig\" entries=\"containerConfig.env\" value-from-selector-options=\"valueFromObjects\" key-validator=\"[a-zA-Z_][a-zA-Z0-9_]*\" key-validator-error-tooltip=\"一个有效的环境变量名是一个字母数字(A -z和0-9)字符串，从一个可能包含下划线的字母开始。\" add-row-link=\"添加值\" add-row-with-selectors-link=\"从配置映射或密钥中添加值\"></key-value-editor>\n" +
     "</div>\n" +
     "</div>\n" +
     "<pause-rollouts-checkbox deployment=\"updatedDeploymentConfig\" always-visible=\"true\">\n" +
     "</pause-rollouts-checkbox>\n" +
     "<div class=\"buttons gutter-top-bottom\">\n" +
     "<button ng-click=\"save()\" class=\"btn btn-primary btn-lg\" ng-disabled=\"form.$invalid || form.$pristine || disableInputs\">\n" +
-    "Save\n" +
+    "保存\n" +
     "</button>\n" +
-    "<button ng-click=\"cancel()\" class=\"btn btn-default btn-lg\">Cancel</button>\n" +
+    "<button ng-click=\"cancel()\" class=\"btn btn-default btn-lg\">取消</button>\n" +
     "</div>\n" +
     "</form>\n" +
     "</fieldset>\n" +
@@ -10321,7 +10425,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<div ng-show=\"!containers.length\" class=\"mar-top-md\">Loading...</div>\n" +
     "<form ng-show=\"containers.length\" name=\"form\" class=\"health-checks-form\" novalidate>\n" +
-    "<h1>Health Checks: {{name}}</h1>\n" +
+    "<h1>健康检查: {{name}}</h1>\n" +
     "<div class=\"help-block\">\n" +
     "Container health is periodically checked using readiness and liveness probes.\n" +
     "<div class=\"learn-more-block\">\n" +
@@ -10435,22 +10539,22 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"middle-content\">\n" +
     "<div class=\"container gutter-top\">\n" +
     "<div class=\"col-md-12\">\n" +
-    "<h1 style=\"margin-bottom: 5px\">Edit Project {{project.metadata.name}}</h1>\n" +
-    "<div class=\"help-block mar-bottom-lg\">Update the display name and description of your project. The project's unique name cannot be modified.</div>\n" +
+    "<h1 style=\"margin-bottom: 5px\">修改项目 {{project.metadata.name}}</h1>\n" +
+    "<div class=\"help-block mar-bottom-lg\">更新项目的显示名称和描述。无法修改项目的惟一名称。</div>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
     "<form name=\"editProjectForm\">\n" +
     "<fieldset ng-disabled=\"disableInputs\">\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"displayName\">Display Name</label>\n" +
+    "<label for=\"displayName\">显示名称</label>\n" +
     "<input class=\"form-control input-lg\" name=\"displayName\" id=\"displayName\" placeholder=\"My Project\" type=\"text\" ng-model=\"editableFields.displayName\">\n" +
     "</div>\n" +
     "<div class=\"form-group\">\n" +
-    "<label for=\"description\">Description</label>\n" +
+    "<label for=\"description\">描述</label>\n" +
     "<textarea class=\"form-control input-lg\" name=\"description\" id=\"description\" placeholder=\"A short description.\" ng-model=\"editableFields.description\"></textarea>\n" +
     "</div>\n" +
     "<div class=\"button-group\">\n" +
-    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"update()\" ng-disabled=\"editProjectForm.$invalid || disableInputs\" value=\"\">Save</button>\n" +
-    "<a class=\"btn btn-default btn-lg\" href=\"#\" back>Cancel</a>\n" +
+    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"update()\" ng-disabled=\"editProjectForm.$invalid || disableInputs\" value=\"\">保存</button>\n" +
+    "<a class=\"btn btn-default btn-lg\" href=\"#\" back>取消</a>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</form>\n" +
@@ -10469,17 +10573,17 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-10\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<h1>Edit Route {{routeName}}</h1>\n" +
+    "<h1>修改路由 {{routeName}}</h1>\n" +
     "<div ng-if=\"loading\">\n" +
-    "Loading...\n" +
+    "加载中...\n" +
     "</div>\n" +
     "<form name=\"form\" novalidate>\n" +
     "<fieldset ng-disabled=\"disableInputs\" ng-if=\"!loading\">\n" +
     "<osc-routing model=\"routing\" services=\"services\" show-name-input=\"false\" existing-route=\"true\">\n" +
     "</osc-routing>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
-    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"updateRoute()\" ng-disabled=\"form.$invalid || disableInputs\" value=\"\">Save</button>\n" +
-    "<button class=\"btn btn-default btn-lg\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"updateRoute()\" ng-disabled=\"form.$invalid || disableInputs\" value=\"\">保存</button>\n" +
+    "<button class=\"btn btn-default btn-lg\" ng-click=\"cancel()\">取消</button>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</form>\n" +
@@ -10497,26 +10601,28 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!updated.resource\" class=\"pad-top-md\">Loading...</div>\n" +
+    "<div ng-if=\"!updated.resource\" class=\"pad-top-md\">加载中...</div>\n" +
     "<div ng-if=\"updated.resource\">\n" +
-    "<h1 class=\"truncate\">Edit <span class=\"hidden-xs\">{{updated.resource.kind | humanizeKind : true}}</span> {{updated.resource.metadata.name}}</h1>\n" +
+    "<h1 class=\"truncate\">编辑 <span class=\"hidden-xs\">{{updated.resource.kind | humanizeKind : true}}</span> {{updated.resource.metadata.name}}</h1>\n" +
     "<parse-error error=\"error\" ng-if=\"error\"></parse-error>\n" +
     "<div ng-if=\"resourceChanged && !resourceDeleted && !updatingNow\" class=\"alert alert-warning\">\n" +
     "<span class=\"pficon pficon-warning-triangle-o\" aria-hidden=\"true\"></span>\n" +
-    "<span class=\"sr-only\">Warning:</span>\n" +
-    "{{updated.resource.kind | humanizeKind | upperFirst}} <strong>{{updated.resource.metadata.name}}</strong> has changed since you started editing it. You'll need to copy any changes you've made and edit the {{updated.resource.kind | humanizeKind}} again.\n" +
+    "<span class=\"sr-only\">警告：</span>\n" +
+    "{{updated.resource.kind | humanizeKind | upperFirst}} <strong>{{updated.resource.metadata.name}}</strong>\n" +
+    "自从您开始编辑就已发生了变化。您需要复制您所做的所有修改并再次编辑 {{updated.resource.kind | humanizeKind}} 。\n" +
     "</div>\n" +
     "<div ng-if=\"resourceDeleted\" class=\"alert alert-warning\">\n" +
     "<span class=\"pficon pficon-warning-triangle-o\" aria-hidden=\"true\"></span>\n" +
     "<span class=\"sr-only\">Warning:</span>\n" +
-    "{{updated.resource.kind | humanizeKind | upperFirst}} <strong>{{updated.resource.metadata.name}}</strong> has been deleted since you started editing it.\n" +
+    "{{updated.resource.kind | humanizeKind | upperFirst}} <strong>{{updated.resource.metadata.name}}</strong>\n" +
+    "自从您开始编辑就已被删除。\n" +
     "</div>\n" +
     "<confirm-on-exit dirty=\"modified\"></confirm-on-exit>\n" +
     "<form name=\"editor.form\">\n" +
     "<ui-ace-yaml resource=\"updated.resource\" ng-required=\"true\"></ui-ace-yaml>\n" +
     "<div class=\"button-group mar-top-xl\">\n" +
-    "<button class=\"btn btn-lg btn-primary\" type=\"button\" ng-click=\"save()\" ng-disabled=\"editor.form.$pristine || editor.form.$invalid || resourceChanged || resourceDeleted || updatingNow\">Save</button>\n" +
-    "<button class=\"btn btn-lg btn-default\" type=\"button\" ng-disabled=\"updatingNow\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "<button class=\"btn btn-lg btn-primary\" type=\"button\" ng-click=\"save()\" ng-disabled=\"editor.form.$pristine || editor.form.$invalid || resourceChanged || resourceDeleted || updatingNow\">保存</button>\n" +
+    "<button class=\"btn btn-lg btn-default\" type=\"button\" ng-disabled=\"updatingNow\" ng-click=\"cancel()\">关闭</button>\n" +
     "</div>\n" +
     "</form>\n" +
     "</div>\n" +
@@ -10532,7 +10638,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<div class=\"page-header page-header-bleed-right page-header-bleed-left\">\n" +
-    "<h1>Events</h1>\n" +
+    "<h1>事件</h1>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -10556,10 +10662,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<div class=\"page-header page-header-bleed-right page-header-bleed-left\">\n" +
     "<h1>\n" +
-    "Image Streams\n" +
+    "镜像\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'image-streams' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -10577,15 +10683,15 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-12\">\n" +
     "<div ng-if=\"(imageStreams | hashSize) == 0\">\n" +
     "<p ng-if=\"!imageStreamsLoaded\">\n" +
-    "Loading...\n" +
+    "加载中...\n" +
     "</p>\n" +
     "<div ng-if=\"imageStreamsLoaded\" class=\"empty-state-message text-center\">\n" +
     "<div ng-if=\"!filterWithZeroResults\">\n" +
-    "<h2>No image streams.</h2>\n" +
-    "<p>No image streams have been added to project {{projectName}}.</p>\n" +
+    "<h2>没有镜像</h2>\n" +
+    "<p>没有镜像添加到项目 {{projectName}}。</p>\n" +
     "</div>\n" +
     "<div ng-if=\"filterWithZeroResults\">\n" +
-    "<h2>The filter is hiding all image streams. <button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"clearFilter()\">Clear All Filters</button></h2>\n" +
+    "<h2>过滤器隐藏所有镜像。<button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"clearFilter()\">清除所有过滤器</button></h2>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -10598,10 +10704,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</colgroup>\n" +
     "<thead>\n" +
     "<tr>\n" +
-    "<th>Name</th>\n" +
+    "<th>名字</th>\n" +
     "<th>Docker Repo</th>\n" +
-    "<th>Tags</th>\n" +
-    "<th>Updated</th>\n" +
+    "<th>标签</th>\n" +
+    "<th>更新时间</th>\n" +
     "</tr>\n" +
     "</thead>\n" +
     "<tbody>\n" +
@@ -10716,7 +10822,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "成员\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'roles' | helpLink}}\" target=\"_blank\">\n" +
-    "查看更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -10738,7 +10844,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<p>\n" +
     "{{subjectKind.description}}\n" +
     "<a ng-if=\"subjectKind.helpLinkKey\" target=\"_blank\" ng-href=\"{{subjectKind.helpLinkKey | helpLink}}\" class=\"learn-more-inline\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</p>\n" +
     "</div>\n" +
@@ -10755,7 +10861,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-if=\"(subjectKind.subjects | hashSize) === 0\" class=\"membership-empty\">\n" +
     "<p>\n" +
-    "<em>There are no {{ subjectKind.name | humanizeKind }}s with access to this project.</em>\n" +
+    "<em>没有 {{ subjectKind.name | humanizeKind }} 可以访问项目</em>\n" +
     "</p>\n" +
     "</div>\n" +
     "<div ng-repeat=\"subject in subjectKind.subjects\" class=\"item-row highlight-hover\">\n" +
@@ -10784,7 +10890,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"mode.edit\" class=\"col-add-role\">\n" +
     "<div class=\"col-add-role-inputs\">\n" +
     "<ui-select ng-if=\"filteredRoles.length\" ng-model=\"subject.newRole\" theme=\"bootstrap\" search-enabled=\"true\" title=\"Select a new role for {{subject.name}}\" class=\"select-role\">\n" +
-    "<ui-select-match placeholder=\"Select a role\">\n" +
+    "<ui-select-match placeholder=\"选择角色\">\n" +
     "<span ng-bind=\"subject.newRole.metadata.name\"></span>\n" +
     "</ui-select-match>\n" +
     "<ui-select-choices repeat=\"role as role in filteredRoles | filter: excludeExistingRoles(subject.roles) | filter: { metadata: { name: $select.search } } track by (role | uid)\">\n" +
@@ -10795,7 +10901,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</ui-select-choices>\n" +
     "</ui-select>\n" +
     "<button ng-disabled=\"disableAddForm || (!subject.newRole)\" ng-click=\"addRoleTo(subject.name, subjectKind.name, subject.newRole, subject.namespace)\" class=\"btn btn-default add-role-to\">\n" +
-    "Add\n" +
+    "添加\n" +
     "</button>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -10837,7 +10943,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-add-role\">\n" +
     "<div ng-show=\"mode.edit\" class=\"col-add-role-inputs\">\n" +
     "<ui-select ng-if=\"filteredRoles.length\" ng-model=\"newBinding.newRole\" theme=\"bootstrap\" search-enabled=\"true\" title=\"new {{subjectKind.name}} role\" class=\"select-role\">\n" +
-    "<ui-select-match placeholder=\"Select a role\">\n" +
+    "<ui-select-match placeholder=\"选择角色\">\n" +
     "<span ng-bind=\"newBinding.newRole.metadata.name\"></span>\n" +
     "</ui-select-match>\n" +
     "<ui-select-choices repeat=\"role as role in filteredRoles | filter: { metadata: { name: $select.search } } track by (role | uid)\">\n" +
@@ -10848,7 +10954,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</ui-select-choices>\n" +
     "</ui-select>\n" +
     "<button ng-disabled=\"disableAddForm || (!newBinding.name) || (!newBinding.newRole)\" ng-click=\"addRoleTo(newBinding.name, newBinding.kind, newBinding.newRole, newBinding.namespace)\" class=\"btn btn-default add-role-to\">\n" +
-    "Add\n" +
+    "添加\n" +
     "</button>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -10859,7 +10965,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"checkbox\">\n" +
     "<label>\n" +
     "<input type=\"checkbox\" class=\"toggle-hidden\" ng-click=\"toggleRoles($event)\" ng-checked=\"toggle.roles\">\n" +
-    "Show hidden roles</label>&nbsp;<a href=\"\" class=\"action-inline\" data-toggle=\"popover\" data-trigger=\"hover focus\" data-content=\"System roles are hidden by default and do not typically need to be managed.\"><i class=\"pficon pficon-help\"></i></a>\n" +
+    "显示隐藏角色</label>&nbsp;<a href=\"\" class=\"action-inline\" data-toggle=\"popover\" data-trigger=\"hover focus\" data-content=\"默认情况下隐藏通常不需要管理的系统角色。\"><i class=\"pficon pficon-help\"></i></a>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -10963,22 +11069,22 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\" aria-label=\"Close\" ng-click=\"cancel()\">\n" +
     "<span class=\"pficon pficon-close\"></span>\n" +
     "</button>\n" +
-    "<h1 class=\"modal-title\">Confirm Save</h1>\n" +
+    "<h1 class=\"modal-title\">确认保存</h1>\n" +
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
-    "<p>Save partial log for <strong>{{object.metadata.name}}</strong>?</p>\n" +
+    "<p>保存部分日志针对 <strong>{{object.metadata.name}}</strong>?</p>\n" +
     "<div class=\"mar-bottom-xl\">\n" +
-    "The log might not be complete. Continuing will save only the content currently displayed.\n" +
-    "<span ng-if=\"command\">To get the complete log, run the command</span>\n" +
+    "日志可能不完整。继续将只保存当前显示的内容。\n" +
+    "<span ng-if=\"command\">为了得到完整的日志, 运行命令</span>\n" +
     "</div>\n" +
     "<copy-to-clipboard ng-if=\"command\" display-wide=\"true\" clipboard-text=\"command\"></copy-to-clipboard>\n" +
     "<div class=\"mar-top-xl\">\n" +
-    "Learn more about the <a href=\"command-line\" target=\"_blank\">command line tools</a>.\n" +
+    "了解更多 <a href=\"command-line\" target=\"_blank\">命令行工具</a>.\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
-    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">Cancel</button>\n" +
-    "<button class=\"btn btn-primary\" type=\"button\" ng-click=\"save()\">Save</button>\n" +
+    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">取消</button>\n" +
+    "<button class=\"btn btn-primary\" type=\"button\" ng-click=\"save()\">保存</button>\n" +
     "</div>\n" +
     "</div>"
   );
@@ -11034,7 +11140,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span class=\"pficon pficon-close\"></span>\n" +
     "</button>\n" +
     "<h1 class=\"modal-title\">\n" +
-    "Create {{type | capitalize}} Secret\n" +
+    "创建 {{type | capitalize}} 密钥\n" +
     "<span ng-switch=\"type\">\n" +
     "<a ng-switch-when=\"webhook\" ng-href=\"{{'webhook_secrets' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "<a ng-switch-when=\"source\" ng-href=\"{{'git_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
@@ -11115,10 +11221,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\" aria-label=\"Close\" ng-click=\"cancel()\">\n" +
     "<span class=\"pficon pficon-close\"></span>\n" +
     "</button>\n" +
-    "<h1 class=\"modal-title\">Confirm Delete</h1>\n" +
+    "<h1 class=\"modal-title\">确认删除</h1>\n" +
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
-    "<p>Are you sure you want to delete the {{typeDisplayName || (kind | humanizeKind)}} '<strong>{{displayName ? displayName : resourceName}}</strong>'?</p>\n" +
+    "<p>您确定要删除 {{typeDisplayName || (kind | humanizeKind)}} '<strong>{{displayName ? displayName : resourceName}}</strong>'吗？</p>\n" +
     "<p>\n" +
     "<span ng-if=\"kind === 'DeploymentConfig'\">\n" +
     "This will delete the deployment config, all rollout history, and any running pods.\n" +
@@ -11135,7 +11241,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span ng-if=\"isProject\">\n" +
     "This will <strong>delete all resources</strong> associated with the project {{displayName ? displayName : resourceName}}.\n" +
     "</span>\n" +
-    "<strong>It cannot be undone.</strong> Make sure this is something you really want to do!\n" +
+    "<strong>此操作无法撤销！</strong> 请确定您是否要删除！\n" +
     "</p>\n" +
     "<div ng-show=\"typeNameToConfirm\">\n" +
     "<p>Type the name of the {{typeDisplayName || (kind | humanizeKind)}} to confirm.</p>\n" +
@@ -11164,7 +11270,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"checkbox\">\n" +
     "<label>\n" +
     "<input type=\"checkbox\" ng-model=\"options.deleteHPAs\">\n" +
-    "Delete\n" +
+    "删除\n" +
     "<span ng-if=\"hpaList.length === 1\">\n" +
     "Horizontal Pod Autoscaler '<strong>{{hpaList[0].metadata.name}}</strong>'\n" +
     "</span>\n" +
@@ -11176,8 +11282,8 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
-    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel();\">Cancel</button>\n" +
-    "<button ng-disabled=\"typeNameToConfirm && confirmName !== resourceName && confirmName !== displayName\" class=\"btn btn-danger\" type=\"submit\" ng-click=\"delete();\">Delete</button>\n" +
+    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel();\">取消</button>\n" +
+    "<button ng-disabled=\"typeNameToConfirm && confirmName !== resourceName && confirmName !== displayName\" class=\"btn btn-danger\" type=\"submit\" ng-click=\"delete();\">删除</button>\n" +
     "</div>\n" +
     "</form>\n" +
     "</div>"
@@ -11208,12 +11314,12 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\" aria-label=\"Close\" ng-click=\"cancel()\">\n" +
     "<span class=\"pficon pficon-close\"></span>\n" +
     "</button>\n" +
-    "<h1 class=\"modal-title\">Session Timeout Warning</h1>\n" +
+    "<h1 class=\"modal-title\">会话超时预警</h1>\n" +
     "</div>\n" +
     "<form>\n" +
     "<div class=\"modal-body\">\n" +
-    "<p>Your session is about to expire due to inactivity.</p>\n" +
-    "<p>You will be logged out in <strong><time-remaining-from-now end-timestamp=\"endTimestamp\" countdown-duration=\"\"></time-remaining-from-now></strong> seconds.</p>\n" +
+    "<p>由于不活动，您的会话即将到期。</p>\n" +
+    "<p>你即将被登出在 <strong><time-remaining-from-now end-timestamp=\"endTimestamp\" countdown-duration=\"\"></time-remaining-from-now></strong> 秒以后。</p>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
     "<button class=\"btn btn-default\" type=\"submit\" ng-click=\"logout();\">退出系统</button>\n" +
@@ -11230,18 +11336,18 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\" aria-label=\"Close\" ng-click=\"cancel()\">\n" +
     "<span class=\"pficon pficon-close\"></span>\n" +
     "</button>\n" +
-    "<h1 class=\"modal-title\">{{updateTemplate ? \"Update\" : \"Add\"}} Template</h1>\n" +
+    "<h1 class=\"modal-title\">{{updateTemplate ? \"更新\" : \"添加\"}} 模板</h1>\n" +
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
-    "<p>What would you like to do?</p>\n" +
+    "<p>你想做什么?</p>\n" +
     "<div class=\"form-group\">\n" +
     "<div class=\"checkbox\">\n" +
     "<label>\n" +
     "<input type=\"checkbox\" ng-model=\"templateOptions.process\" aria-descirbedby=\"process-template-help\">\n" +
-    "<strong>Process the template</strong>\n" +
+    "<strong>处理模板</strong>\n" +
     "</label>\n" +
     "<div id=\"process-template-help\" class=\"help-block\">\n" +
-    "Create the objects defined in the template. You will have an opportunity to fill in template parameters.\n" +
+    "创建在模板中定义的对象。您将有机会填写模板参数。\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -11249,17 +11355,17 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"checkbox\">\n" +
     "<label>\n" +
     "<input type=\"checkbox\" ng-model=\"templateOptions.add\" aria-descirbedby=\"save-template-help\">\n" +
-    "<strong>{{updateTemplate ? \"Update\" : \"Save\"}} template</strong>\n" +
+    "<strong>{{updateTemplate ? \"更新\" : \"保存\"}} 模板</strong>\n" +
     "</label>\n" +
     "<div id=\"save-template-help\" class=\"help-block\">\n" +
-    "{{updateTemplate ? \"This will overwrite the current version of the template.\" : \"Save the template to the project. This will make the template available to anyone who can view the project.\"}}\n" +
+    "{{updateTemplate ? \"这将覆盖模板的当前版本。\" : \"将模板保存到项目中。 这将使可以查看该项目的任何人都可以使用该模板。\"}}\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
-    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel();\">Cancel</button>\n" +
-    "<button class=\"btn btn-primary\" type=\"button\" ng-click=\"continue();\" ng-disabled=\"!templateOptions.process && !templateOptions.add\">Continue</button>\n" +
+    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel();\">取消</button>\n" +
+    "<button class=\"btn btn-primary\" type=\"button\" ng-click=\"continue();\" ng-disabled=\"!templateOptions.process && !templateOptions.add\">继续</button>\n" +
     "</div>\n" +
     "</div>"
   );
@@ -11294,7 +11400,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"radio\" ng-show=\"availableProjects.length >= 1\">\n" +
     "<label>\n" +
     "<input type=\"radio\" ng-model=\"homePagePreference\" value=\"project-overview\">\n" +
-    "Overview Page for{{availableProjects.length === 1 ? ' ' + (selectedProject | displayName) : ':'}}\n" +
+    "概述页面{{availableProjects.length === 1 ? ' ' + (selectedProject | displayName) : ':'}}\n" +
     "</label>\n" +
     "<div class=\"select-project-container\" ng-if=\"availableProjects.length > 1\">\n" +
     "<select-project is-required=\"homePagePreference === 'project-overview'\" skip-can-add-validation=\"true\" on-project-selected=\"onProjectSelected\" on-open=\"onOpen\" available-projects=\"availableProjects\" selected-project=\"selectedProject\" hide-create-project=\"true\" hide-label=\"true\">\n" +
@@ -11319,13 +11425,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<div class=\"page-header page-header-bleed-right page-header-bleed-left\">\n" +
     "<h1>\n" +
-    "Monitoring\n" +
+    "监视\n" +
     "<events-badge project-context=\"projectContext\" ng-if=\"projectContext\" class=\"pull-right\" sidebar-collapsed=\"renderOptions.collapseEventsSidebar\"></events-badge>\n" +
     "</h1>\n" +
     "</div>\n" +
     "<div class=\"data-toolbar\">\n" +
-    "<ui-select class=\"data-toolbar-dropdown\" ng-model=\"kindSelector.selected\" theme=\"bootstrap\" search-enabled=\"true\" ng-disabled=\"kindSelector.disabled\" title=\"Choose a resource\">\n" +
-    "<ui-select-match placeholder=\"Choose a resource\">{{$select.selected.label ? $select.selected.label : ($select.selected.kind | humanizeKind : true)}}</ui-select-match>\n" +
+    "<ui-select class=\"data-toolbar-dropdown\" ng-model=\"kindSelector.selected\" theme=\"bootstrap\" search-enabled=\"true\" ng-disabled=\"kindSelector.disabled\" title=\"选择资源类型\">\n" +
+    "<ui-select-match placeholder=\"选择资源类型\">{{$select.selected.label ? $select.selected.label : ($select.selected.kind | humanizeKind : true)}}</ui-select-match>\n" +
     "<ui-select-choices repeat=\"kind in kinds | filter : {kind: $select.search} : matchKind\">\n" +
     "<div ng-bind-html=\"(kind.label ? kind.label : (kind.kind | humanizeKind : true)) | highlight: $select.search\"></div>\n" +
     "</ui-select-choices>\n" +
@@ -11335,8 +11441,8 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<form role=\"form\" class=\"search-pf has-button\">\n" +
     "<div class=\"form-group filter-controls has-clear\">\n" +
     "<div class=\"search-pf-input-group\">\n" +
-    "<label for=\"name-filter\" class=\"sr-only\">Filter by name</label>\n" +
-    "<input type=\"search\" placeholder=\"Filter by name\" class=\"form-control\" id=\"name-filter\" ng-model=\"filters.text\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\n" +
+    "<label for=\"name-filter\" class=\"sr-only\">根据名称过滤</label>\n" +
+    "<input type=\"search\" placeholder=\"根据名称过滤\" class=\"form-control\" id=\"name-filter\" ng-model=\"filters.text\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\n" +
     "<button type=\"button\" class=\"clear\" aria-hidden=\"true\" ng-if=\"filters.text\" ng-click=\"filters.text = ''\">\n" +
     "<span class=\"pficon pficon-close\"></span>\n" +
     "</button>\n" +
@@ -11346,7 +11452,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"checkbox nowrap\">\n" +
     "<label>\n" +
-    "<input type=\"checkbox\" ng-model=\"filters.hideOlderResources\">Hide older resources\n" +
+    "<input type=\"checkbox\" ng-model=\"filters.hideOlderResources\">隐藏旧资源\n" +
     "</label>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -11362,8 +11468,8 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"list-pf-container\">\n" +
     "<ellipsis-pulser color=\"dark\" size=\"sm\" msg=\"Loading pods\" ng-if=\"!podsLoaded\"></ellipsis-pulser>\n" +
     "<em>\n" +
-    "<div ng-if=\"(pods | size) > 0\">The current filters are hiding all pods.</div>\n" +
-    "<span ng-if=\"podsLoaded && (pods | size) === 0\">There are no pods in this project.</span>\n" +
+    "<div ng-if=\"(pods | size) > 0\">当前过滤器隐藏所有Pods。</div>\n" +
+    "<span ng-if=\"podsLoaded && (pods | size) === 0\">当前项目中没有Pods。</span>\n" +
     "</em>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -11410,7 +11516,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"list-pf-container\">\n" +
     "<log-viewer ng-if=\"podsLogVersion | canI : 'get'\" object=\"pod\" context=\"projectContext\" options=\"logOptions.pods[pod.metadata.name]\" empty=\"logEmpty.pods[pod.metadata.name]\" run=\"logCanRun.pods[pod.metadata.name]\" fixed-height=\"250\" full-log-url=\"(pod | navigateResourceURL) + '?view=chromeless'\" ng-class=\"{'log-viewer-select': pod.spec.containers.length > 1}\">\n" +
     "<span class=\"container-details\">\n" +
-    "<label for=\"selectLogContainer\">Container:</label>\n" +
+    "<label for=\"selectLogContainer\">容器：</label>\n" +
     "<span ng-if=\"pod.spec.containers.length === 1\">\n" +
     "{{pod.spec.containers[0].name}}\n" +
     "</span>\n" +
@@ -11432,14 +11538,14 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"kindSelector.selected.kind === 'All' || kindSelector.selected.kind === 'ReplicationControllers'\">\n" +
-    "<h2>Deployments</h2>\n" +
+    "<h2>部署</h2>\n" +
     "<div class=\"list-pf\" ng-class=\"{'list-pf-empty': !(filteredReplicationControllers | size) && !(filteredReplicaSets | size)}\">\n" +
     "<div class=\"list-pf-item\" ng-if=\"!(filteredReplicationControllers | size) && !(filteredReplicaSets | size)\">\n" +
     "<div class=\"list-pf-container\">\n" +
     "<ellipsis-pulser color=\"dark\" size=\"sm\" msg=\"Loading deployments\" ng-if=\"!replicationControllersLoaded\"></ellipsis-pulser>\n" +
     "<em>\n" +
-    "<div ng-if=\"(replicationControllers | size) > 0 || (replicaSets | size) > 0\">The current filters are hiding all deployments.</div>\n" +
-    "<span ng-if=\"replicationControllersLoaded && !(replicationControllers | size) && replicaSetsLoaded && !(replicaSets | size)\">There are no deployments in this project.</span>\n" +
+    "<div ng-if=\"(replicationControllers | size) > 0 || (replicaSets | size) > 0\">当前过滤器隐藏所有部署。</div>\n" +
+    "<span ng-if=\"replicationControllersLoaded && !(replicationControllers | size) && replicaSetsLoaded && !(replicaSets | size)\">当前项目中没有部署。</span>\n" +
     "</em>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -11563,14 +11669,14 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"kindSelector.selected.kind === 'All' || kindSelector.selected.kind === 'StatefulSets'\">\n" +
-    "<h2>Stateful Sets</h2>\n" +
+    "<h2>状态集</h2>\n" +
     "<div class=\"list-pf\" ng-class=\"{'list-pf-empty': !(filteredStatefulSets | size)}\">\n" +
     "<div class=\"list-pf-item\" ng-if=\"!(filteredStatefulSets | size)\">\n" +
     "<div class=\"list-pf-container\">\n" +
     "<ellipsis-pulser color=\"dark\" size=\"sm\" msg=\"Loading stateful sets\" ng-if=\"!statefulSetsLoaded\"></ellipsis-pulser>\n" +
     "<em>\n" +
-    "<div ng-if=\"(statefulSets | size) > 0\">The current filters are hiding all stateful sets.</div>\n" +
-    "<span ng-if=\"statefulSetsLoaded && (statefulSets | size) === 0\">There are no stateful sets in this project.</span>\n" +
+    "<div ng-if=\"(statefulSets | size) > 0\">当前过滤器隐藏所有状态集。</div>\n" +
+    "<span ng-if=\"statefulSetsLoaded && (statefulSets | size) === 0\">当前项目中没有状态集。</span>\n" +
     "</em>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -11615,7 +11721,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"list-pf-expansion collapse\" ng-if=\"expanded.statefulSets[set.metadata.name]\" ng-class=\"{'in': expanded.statefulSets[set.metadata.name]}\">\n" +
     "<div class=\"list-pf-container\">\n" +
-    "Logs are not available for stateful sets.\n" +
+    "状态集的日志不可用。\n" +
     "<span ng-if=\"podsByOwnerUID[set.metadata.uid] | size\">\n" +
     "To see application logs, view the logs for one of the stateful sets's\n" +
     "<a ng-href=\"{{set | donutURL : podsByOwnerUID[set.metadata.uid]}}\">pods</a>.\n" +
@@ -11630,14 +11736,14 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"kindSelector.selected.kind === 'All' || kindSelector.selected.kind === 'Builds'\" class=\"mar-bottom-xl\">\n" +
-    "<h2>Builds</h2>\n" +
+    "<h2>构建</h2>\n" +
     "<div class=\"list-pf\" ng-class=\"{'list-pf-empty': !(filteredBuilds | size)}\">\n" +
     "<div class=\"list-pf-item\" ng-if=\"!(filteredBuilds | size)\">\n" +
     "<div class=\"list-pf-container\">\n" +
     "<ellipsis-pulser color=\"dark\" size=\"sm\" msg=\"Loading builds\" ng-if=\"!buildsLoaded\"></ellipsis-pulser>\n" +
     "<em>\n" +
-    "<div ng-if=\"(builds | size) > 0\">The current filters are hiding all builds.</div>\n" +
-    "<span ng-if=\"buildsLoaded && (builds | size) === 0\">There are no builds in this project.</span>\n" +
+    "<div ng-if=\"(builds | size) > 0\">当前过滤器隐藏所有构建。</div>\n" +
+    "<span ng-if=\"buildsLoaded && (builds | size) === 0\">当前项目中没有构建。</span>\n" +
     "</em>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -11771,11 +11877,11 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"middle-header header-toolbar\">\n" +
     "<div class=\"container-fluid\">\n" +
     "<div class=\"page-header page-header-bleed-right page-header-bleed-left\">\n" +
-    "<h1>Other Resources</h1>\n" +
+    "<h1>其他资源</h1>\n" +
     "</div>\n" +
     "<div class=\"data-toolbar other-resources-toolbar\">\n" +
     "<ui-select class=\"data-toolbar-dropdown\" ng-model=\"kindSelector.selected\" theme=\"bootstrap\" search-enabled=\"true\" ng-disabled=\"kindSelector.disabled\" title=\"Choose a resource\">\n" +
-    "<ui-select-match placeholder=\"Choose a resource to list...\">{{$select.selected.kind | humanizeKind : true}}</ui-select-match>\n" +
+    "<ui-select-match placeholder=\"选择需要列出的资源...\">{{$select.selected.kind | humanizeKind : true}}</ui-select-match>\n" +
     "<ui-select-choices repeat=\"kind in kinds | filter : {kind: $select.search} : matchKind | orderBy : 'kind'\">\n" +
     "<div ng-bind-html=\"(kind.kind | humanizeKind : true) | highlight: $select.search\"></div>\n" +
     "<small ng-if=\"isDuplicateKind(kind.kind)\" ng-bind-html=\"kind.group | highlight: $select.search\" class=\"text-muted\"></small>\n" +
@@ -11794,17 +11900,17 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-12\">\n" +
     "<div ng-if=\"(resources | hashSize) == 0\">\n" +
     "<p ng-if=\"!kindSelector.selected\">\n" +
-    "<em>Select a resource from the list above...</em>\n" +
+    "<em>请从上面列表中选择一种资源...</em>\n" +
     "</p>\n" +
     "<div ng-if=\"kindSelector.selected\" class=\"empty-state-message text-center\">\n" +
     "<div ng-if=\"!filterWithZeroResults\">\n" +
-    "<h2>No {{resourceName}}.</h2>\n" +
+    "<h2>没有 {{resourceName}}。</h2>\n" +
     "<p>\n" +
-    "No {{resourceName}} have been added to project {{projectName}}.\n" +
+    "当前 {{projectName}} 项目中没有添加 {{resourceName}}。\n" +
     "</p>\n" +
     "</div>\n" +
     "<div ng-if=\"filterWithZeroResults\">\n" +
-    "<h2>The filter is hiding all {{resourceName}}. <button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"clearFilter()\">Clear All Filters</button></h2>\n" +
+    "<h2>过滤器隐藏所有 {{resourceName}}. <button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"clearFilter()\">清除所有过滤条件</button></h2>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -11817,10 +11923,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</colgroup>\n" +
     "<thead>\n" +
     "<tr>\n" +
-    "<th>Name</th>\n" +
-    "<th>Created</th>\n" +
-    "<th>Labels</th>\n" +
-    "<th><span class=\"sr-only\">Actions</span></th>\n" +
+    "<th>名称</th>\n" +
+    "<th>创建时间</th>\n" +
+    "<th>标签</th>\n" +
+    "<th><span class=\"sr-only\">操作</span></th>\n" +
     "</tr>\n" +
     "</thead>\n" +
     "<tbody>\n" +
@@ -11833,12 +11939,12 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<td data-title=\"Actions\" class=\"text-xs-left text-right\">\n" +
     "<span uib-dropdown ng-hide=\"!(selectedResource | canI : 'update') && !(selectedResource | canI : 'delete')\">\n" +
     "<button type=\"button\" class=\"dropdown-toggle btn btn-default\" data-toggle=\"dropdown\">\n" +
-    "Actions\n" +
+    "操作\n" +
     "<span class=\"caret\"></span>\n" +
     "</button>\n" +
     "<ul uib-dropdown-menu class=\"dropdown-menu-right\" aria-labelledby=\"{{resource.metadata.name}}_actions\">\n" +
     "<li ng-if=\"selectedResource | canI : 'update'\">\n" +
-    "<a ng-href=\"{{resource | editYamlURL : getReturnURL()}}\" role=\"button\">Edit YAML</a>\n" +
+    "<a ng-href=\"{{resource | editYamlURL : getReturnURL()}}\" role=\"button\">编辑 YAML</a>\n" +
     "</li>\n" +
     "<li ng-if=\"selectedResource | canI : 'delete'\">\n" +
     "<delete-link kind=\"{{kindSelector.selected.kind}}\" group=\"{{kindSelector.selected.group}}\" resource-name=\"{{resource.metadata.name}}\" project-name=\"{{resource.metadata.namespace}}\" stay-on-current-page=\"true\" success=\"loadKind\">\n" +
@@ -11895,7 +12001,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"overview.showLoading\" class=\"container-fluid loading-message\">\n" +
-    "Loading...\n" +
+    "加载中...\n" +
     "</div>\n" +
     "<div ng-if=\"!overview.showGetStarted && !overview.showLoading\">\n" +
     "<div class=\"middle-header\">\n" +
@@ -11918,8 +12024,8 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<form role=\"form\" class=\"search-pf has-button\">\n" +
     "<div class=\"form-group filter-controls has-clear\">\n" +
     "<div class=\"search-pf-input-group\">\n" +
-    "<label for=\"name-filter\" class=\"sr-only\">Filter by name</label>\n" +
-    "<input type=\"text\" class=\"form-control\" ng-model=\"overview.filterText\" placeholder=\"Filter by name\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" ng-disabled=\"overview.disableFilter\">\n" +
+    "<label for=\"name-filter\" class=\"sr-only\">根据名称过滤</label>\n" +
+    "<input type=\"text\" class=\"form-control\" ng-model=\"overview.filterText\" placeholder=\"根据名称过滤\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" ng-disabled=\"overview.disableFilter\">\n" +
     "<button type=\"button\" class=\"clear\" aria-hidden=\"true\" ng-if=\"overview.filterText && !overview.disableFilter\" ng-click=\"overview.filterText = ''\">\n" +
     "<span class=\"pficon pficon-close\"></span>\n" +
     "</button>\n" +
@@ -11930,7 +12036,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"vertical-divider\"></div>\n" +
     "<div class=\"view-by-options\">\n" +
-    "<span class=\"data-toolbar-label\">List by</span>\n" +
+    "<span class=\"data-toolbar-label\">列表</span>\n" +
     "<ui-select class=\"data-toolbar-dropdown\" ng-model=\"overview.viewBy\" search-enabled=\"false\">\n" +
     "<ui-select-match>{{$select.selected.label}}</ui-select-match>\n" +
     "<ui-select-choices repeat=\"option.id as option in overview.viewByOptions\">\n" +
@@ -11954,15 +12060,15 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<alerts alerts=\"overview.state.alerts\"></alerts>\n" +
     "<div ng-if=\"overview.everythingFiltered && overview.viewBy !== 'pipeline'\">\n" +
     "<div class=\"empty-state-message text-center h2\">\n" +
-    "The filter is hiding all resources.\n" +
-    "<button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"overview.clearFilter()\">Clear All Filters</button>\n" +
+    "过滤器在隐藏所有资源。\n" +
+    "<button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"overview.clearFilter()\">清除所有过滤器</button>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"!overview.everythingFiltered || overview.viewBy === 'pipeline'\">\n" +
     "<div ng-if=\"overview.viewBy === 'app'\" ng-repeat=\"app in overview.apps\">\n" +
     "<div ng-if=\"app\" class=\"app-heading\">\n" +
     "<h2>\n" +
-    "<div class=\"component-label\">Application</div>\n" +
+    "<div class=\"component-label\">应用</div>\n" +
     "<span ng-bind-html=\"app | highlightKeywords : overview.state.filterKeywords\"></span>\n" +
     "</h2>\n" +
     "<div class=\"overview-routes\" ng-if=\"overview.routesToDisplayByApp[app] | size\">\n" +
@@ -11978,7 +12084,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<h2 ng-if=\"!app\">\n" +
-    "Other Resources\n" +
+    "其他资源\n" +
     "</h2>\n" +
     "<div class=\"list-pf\">\n" +
     "<overview-list-row ng-repeat=\"deploymentConfig in overview.filteredDeploymentConfigsByApp[app] track by (deploymentConfig | uid)\" ng-init=\"dcName = deploymentConfig.metadata.name\" api-object=\"deploymentConfig\" current=\"overview.currentByDeploymentConfig[dcName]\" previous=\"overview.getPreviousReplicationController(deploymentConfig)\" state=\"overview.state\">\n" +
@@ -12001,10 +12107,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"overview.filteredDeploymentConfigs | hashSize\">\n" +
     "<h2>\n" +
     "<span ng-if=\"overview.deployments | hashSize\">\n" +
-    "Deployment Configs\n" +
+    "部署配置\n" +
     "</span>\n" +
     "<span ng-if=\"!(overview.deployments | hashSize)\">\n" +
-    "Deployments\n" +
+    "部署\n" +
     "</span>\n" +
     "</h2>\n" +
     "<div class=\"list-pf\">\n" +
@@ -12013,35 +12119,35 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"overview.filteredDeployments | hashSize\">\n" +
-    "<h2>Deployments</h2>\n" +
+    "<h2>部署</h2>\n" +
     "<div class=\"list-pf\">\n" +
     "<overview-list-row ng-repeat=\"deployment in overview.filteredDeployments track by (deployment | uid)\" api-object=\"deployment\" current=\"overview.currentByDeploymentUID[deployment.metadata.uid]\" previous=\"overview.replicaSetsByDeploymentUID[deployment.metadata.uid][1]\" state=\"overview.state\">\n" +
     "</overview-list-row>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"overview.filteredReplicationControllers | hashSize\">\n" +
-    "<h2>Replication Controllers</h2>\n" +
+    "<h2>副本控制器</h2>\n" +
     "<div class=\"list-pf\">\n" +
     "<overview-list-row ng-repeat=\"replicationController in overview.filteredReplicationControllers track by (replicationController | uid)\" api-object=\"replicationController\" state=\"overview.state\">\n" +
     "</overview-list-row>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"overview.filteredReplicaSets | hashSize\">\n" +
-    "<h2>Replica Sets</h2>\n" +
+    "<h2>副本集</h2>\n" +
     "<div class=\"list-pf\">\n" +
     "<overview-list-row ng-repeat=\"replicaSet in overview.filteredReplicaSets track by (replicaSet | uid)\" api-object=\"replicaSet\" state=\"overview.state\">\n" +
     "</overview-list-row>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"overview.filteredStatefulSets | hashSize\">\n" +
-    "<h2>Stateful Sets</h2>\n" +
+    "<h2>状态集</h2>\n" +
     "<div class=\"list-pf\">\n" +
     "<overview-list-row ng-repeat=\"statefulSet in overview.filteredStatefulSets track by (statefulSet | uid)\" api-object=\"statefulSet\" state=\"overview.state\">\n" +
     "</overview-list-row>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"overview.filteredDaemonSets | hashSize\">\n" +
-    "<h2>Daemon Sets</h2>\n" +
+    "<h2>守护程序集</h2>\n" +
     "<div class=\"list-pf\">\n" +
     "<overview-list-row ng-repeat=\"daemonSet in overview.filteredDaemonSets track by (daemonSet | uid)\" api-object=\"daemonSet\" state=\"overview.state\">\n" +
     "</overview-list-row>\n" +
@@ -12058,19 +12164,19 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"overview.viewBy === 'pipeline'\">\n" +
     "\n" +
     "<div ng-if=\"!overview.pipelineBuildConfigs.length\" class=\"empty-state-message text-center\">\n" +
-    "<h2>No pipelines.</h2>\n" +
+    "<h2>没有管道。</h2>\n" +
     "<div ng-if=\"project.metadata.name | canIAddToProject\">\n" +
     "<p>\n" +
-    "No pipelines have been added to project {{projectName}}.\n" +
+    "没有管道被添加到项目 {{projectName}}.\n" +
     "<br>\n" +
-    "Learn more about\n" +
-    "<a ng-href=\"{{ 'pipeline-builds' | helpLink}}\" target=\"_blank\">Pipeline Builds</a>\n" +
-    "and the\n" +
-    "<a ng-href=\"{{ 'pipeline-plugin' | helpLink}}\" target=\"_blank\">OpenShift Pipeline Plugin</a>.\n" +
+    "了解更多关于\n" +
+    "<a ng-href=\"{{ 'pipeline-builds' | helpLink}}\" target=\"_blank\">管道建设</a>\n" +
+    "和\n" +
+    "<a ng-href=\"{{ 'pipeline-plugin' | helpLink}}\" target=\"_blank\">OpenShift 管道插件</a>.\n" +
     "</p>\n" +
     "<p ng-if=\"(project.metadata.name | canIAddToProject) && overview.samplePipelineURL\">\n" +
     "<a ng-href=\"{{overview.samplePipelineURL}}\" class=\"btn btn-lg btn-primary\">\n" +
-    "Create Sample Pipeline\n" +
+    "创建简单管道\n" +
     "</a>\n" +
     "</p>\n" +
     "</div>\n" +
@@ -12080,22 +12186,22 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-if=\"(overview.pipelineBuildConfigs | hashSize) && !(overview.filteredPipelineBuildConfigs | hashSize)\">\n" +
     "<div class=\"empty-state-message text-center h2\">\n" +
-    "All pipelines are filtered.\n" +
-    "<button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"overview.clearFilter()\">Clear All Filters</button>\n" +
+    "所有管道将被过滤\n" +
+    "<button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"overview.clearFilter()\">清除所有过滤器</button>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-repeat=\"pipeline in overview.filteredPipelineBuildConfigs track by (pipeline | uid)\">\n" +
     "<div ng-if=\"overview.buildConfigsInstantiateVersion | canI : 'create'\" class=\"pull-right\">\n" +
     "<button class=\"btn btn-default\" ng-if=\"overview.buildConfigsInstantiateVersion | canI : 'create'\" ng-click=\"overview.startBuild(pipeline)\">\n" +
-    "Start Pipeline\n" +
+    "开启管道\n" +
     "</button>\n" +
     "</div>\n" +
     "<h2>\n" +
-    "<div class=\"component-label\">Pipeline</div>\n" +
+    "<div class=\"component-label\">管道</div>\n" +
     "<span ng-bind-html=\"pipeline.metadata.name | highlightKeywords : overview.state.filterKeywords\"></span>\n" +
     "</h2>\n" +
     "<div ng-if=\"!(overview.recentPipelinesByBuildConfig[pipeline.metadata.name] | hashSize)\" class=\"mar-bottom-lg\">\n" +
-    "No pipeline runs.\n" +
+    "没有管道运行。\n" +
     "</div>\n" +
     "<div ng-if=\"overview.recentPipelinesByBuildConfig[pipeline.metadata.name] | hashSize\" class=\"build-pipelines\">\n" +
     "<div ng-repeat=\"pipeline in overview.recentPipelinesByBuildConfig[pipeline.metadata.name] track by (pipeline | uid)\" class=\"row build-pipeline-wrapper animate-repeat\">\n" +
@@ -12105,7 +12211,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"!overview.deploymentConfigsByPipeline[pipeline.metadata.name].length\" class=\"mar-bottom-lg\">\n" +
-    "This pipeline is not associated with any deployments.\n" +
+    "此管道与任何部署无关。\n" +
     "</div>\n" +
     "<div ng-if=\"overview.deploymentConfigsByPipeline[pipeline.metadata.name].length\" class=\"list-pf\">\n" +
     "<overview-list-row ng-repeat=\"dcName in overview.deploymentConfigsByPipeline[pipeline.metadata.name]\" api-object=\"overview.deploymentConfigs[dcName]\" current=\"overview.currentByDeploymentConfig[dcName]\" previous=\"overview.getPreviousReplicationController(deploymentConfig)\" state=\"overview.state\" hide-pipelines=\"true\">\n" +
@@ -12114,7 +12220,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "\n" +
     "<div class=\"list-pf\" ng-if=\"overview.pipelineViewHasOtherResources && !overview.hidePipelineOtherResources\">\n" +
-    "<h2>Other Resources</h2>\n" +
+    "<h2>其他资源</h2>\n" +
     "<overview-list-row ng-repeat=\"deploymentConfig in overview.deploymentConfigsNoPipeline track by (deploymentConfig | uid)\" ng-init=\"dcName = deploymentConfig.metadata.name\" api-object=\"deploymentConfig\" current=\"overview.currentByDeploymentConfig[dcName]\" previous=\"overview.getPreviousReplicationController(deploymentConfig)\" state=\"overview.state\">\n" +
     "</overview-list-row>\n" +
     "<overview-list-row ng-repeat=\"deployment in overview.deployments track by (deployment | uid)\" api-object=\"deployment\" current=\"overview.currentByDeploymentUID[deployment.metadata.uid]\" previous=\"overview.replicaSetsByDeploymentUID[deployment.metadata.uid][1]\" state=\"overview.state\">\n" +
@@ -12133,7 +12239,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "\n" +
     "<div ng-if=\"(overview.filteredMobileClients | size) && AEROGEAR_MOBILE_ENABLED\">\n" +
-    "<h2>Mobile Clients</h2>\n" +
+    "<h2>移动客户端</h2>\n" +
     "<div class=\"list-pf\">\n" +
     "<mobile-client-row ng-repeat=\"mobileapp in overview.filteredMobileClients track by (mobileapp | uid)\" api-object=\"mobileapp\" state=\"overview.state\"></mobile-client-row>\n" +
     "</div>\n" +
@@ -12141,7 +12247,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "\n" +
     "<div ng-if=\"overview.filteredServiceInstances.length && !overview.hidePipelineOtherResources\">\n" +
     "<h2>\n" +
-    "Provisioned Services\n" +
+    "提供服务\n" +
     "</h2>\n" +
     "<div class=\"list-pf\">\n" +
     "<service-instance-row ng-repeat=\"serviceInstance in overview.filteredServiceInstances track by (serviceInstance | uid)\" api-object=\"serviceInstance\" bindings=\"overview.bindingsByInstanceRef[serviceInstance.metadata.name]\" state=\"overview.state\"></service-instance-row>\n" +
@@ -12184,7 +12290,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
 
   $templateCache.put('views/overview/_builds.html',
     "<div ng-if=\"overviewBuilds.buildConfigs.length\" class=\"expanded-section\">\n" +
-    "<div class=\"component-label section-label hidden-xs\">Builds</div>\n" +
+    "<div class=\"component-label section-label hidden-xs\">构建</div>\n" +
     "<div ng-repeat=\"buildConfig in overviewBuilds.buildConfigs track by (buildConfig | uid)\" class=\"row\">\n" +
     "<div class=\"col-sm-5 col-md-6\">\n" +
     "<h3 class=\"mar-top-xs\">\n" +
@@ -12193,11 +12299,11 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"col-sm-7 col-md-6 overview-builds-msg\">\n" +
     "<div ng-if=\"!(overviewBuilds.recentBuildsByBuildConfig[buildConfig.metadata.name] | hashSize)\">\n" +
-    "No builds.\n" +
+    "没有构建。\n" +
     "</div>\n" +
     "<div ng-repeat=\"build in overviewBuilds.recentBuildsByBuildConfig[buildConfig.metadata.name] track by (build | uid)\" class=\"mar-bottom-sm animate-repeat\">\n" +
     "<span ng-if=\"overviewBuilds.showLogs(build)\" class=\"small pull-right view-full-log\">\n" +
-    "<a ng-if=\"!!['New', 'Pending'].indexOf(build.status.phase) && (build | buildLogURL)\" ng-href=\"{{build | buildLogURL}}\">View Full Log</a>\n" +
+    "<a ng-if=\"!!['New', 'Pending'].indexOf(build.status.phase) && (build | buildLogURL)\" ng-href=\"{{build | buildLogURL}}\">查看全部日志</a>\n" +
     "</span>\n" +
     "<span ng-switch=\"build.status.phase\" class=\"hide-ng-leave\">\n" +
     "<span ng-switch-when=\"Failed\" class=\"status-icon\">\n" +
@@ -12208,16 +12314,16 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</span>\n" +
     "</span>\n" +
     "<span>\n" +
-    "Build\n" +
+    "构建\n" +
     "<a ng-href=\"{{build | navigateResourceURL}}\"><span ng-if=\"build | annotation : 'buildNumber'\">#{{build | annotation : 'buildNumber'}}</span><span ng-if=\"!(build | annotation : 'buildNumber')\">{{build.metadata.name}}</span></a>\n" +
     "<span ng-switch=\"build.status.phase\" class=\"hide-ng-leave\">\n" +
-    "<span ng-switch-when=\"Failed\">failed</span>\n" +
-    "<span ng-switch-when=\"Error\">encountered an error</span>\n" +
-    "<span ng-switch-when=\"Cancelled\">was cancelled</span>\n" +
-    "<span ng-switch-default>is {{build.status.phase | lowercase}}</span>\n" +
+    "<span ng-switch-when=\"Failed\">失败</span>\n" +
+    "<span ng-switch-when=\"Error\">遇到一个错误</span>\n" +
+    "<span ng-switch-when=\"Cancelled\">被取消了</span>\n" +
+    "<span ng-switch-default>状态为 {{build.status.phase | lowercase}}</span>\n" +
     "</span>\n" +
     "<ellipsis-pulser ng-if=\"build | isIncompleteBuild\" color=\"dark\" size=\"sm\" display=\"inline\" msg=\"\"></ellipsis-pulser>\n" +
-    "<small class=\"text-muted mar-left-md\">created <span am-time-ago=\"build.metadata.creationTimestamp\"></span></small>\n" +
+    "<small class=\"text-muted mar-left-md\">创建于 <span am-time-ago=\"build.metadata.creationTimestamp\"></span></small>\n" +
     "</span>\n" +
     "<div ng-if=\"overviewBuilds.showLogs(build)\" class=\"animate-if\">\n" +
     "<mini-log api-object=\"build\" context=\"overviewBuilds.context\"></mini-log>\n" +
@@ -12236,40 +12342,36 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-switch-when=\"DeploymentConfig\">\n" +
     "<div uib-dropdown class=\"dropdown-kebab-pf\">\n" +
     "<button uib-dropdown-toggle class=\"btn btn-link dropdown-toggle\">\n" +
-    "<i class=\"fa fa-ellipsis-v\" aria-hidden=\"true\"></i><span class=\"sr-only\">Actions</span>\n" +
+    "<i class=\"fa fa-ellipsis-v\" aria-hidden=\"true\"></i><span class=\"sr-only\">动作</span>\n" +
     "</button>\n" +
     "<ul class=\"dropdown-menu dropdown-menu-right\" uib-dropdown-menu role=\"menu\">\n" +
     "<li ng-if=\"row.showStartPipelineAction()\" role=\"menuitem\">\n" +
-    "<a href=\"\" ng-click=\"row.startBuild(row.pipelines[0])\">Start Pipeline</a>\n" +
+    "<a href=\"\" ng-click=\"row.startBuild(row.pipelines[0])\">开始运行管道</a>\n" +
     "</li>\n" +
     "<li ng-if=\"row.showStartBuildAction()\" role=\"menuitem\">\n" +
-    "<a href=\"\" ng-click=\"row.startBuild(row.buildConfigs[0])\">Start Build</a>\n" +
+    "<a href=\"\" ng-click=\"row.startBuild(row.buildConfigs[0])\">开始构造</a>\n" +
     "</li>\n" +
     "<li ng-if=\"row.deploymentConfigsInstantiateVersion | canI : 'create'\" role=\"menuitem\">\n" +
-    "<a href=\"\" ng-if=\"row.canDeploy()\" ng-click=\"row.startDeployment()\">Deploy</a>\n" +
+    "<a href=\"\" ng-if=\"row.canDeploy()\" ng-click=\"row.startDeployment()\">部署</a>\n" +
     "<a href=\"\" ng-if=\"!(row.canDeploy())\" class=\"disabled-link\" aria-disabled=\"true\">\n" +
-    "Deploy <span ng-if=\"row.isPaused()\">(Paused)</span>\n" +
+    "部署 <span ng-if=\"row.isPaused()\">(Paused)</span>\n" +
     "</a>\n" +
     "</li>\n" +
     "<li ng-if=\"row.deploymentConfigsVersion | canI : 'update'\" role=\"menuitem\">\n" +
-    "<a ng-href=\"{{row.apiObject | editResourceURL}}\">Edit</a>\n" +
+    "<a ng-href=\"{{row.apiObject | editResourceURL}}\">修改</a>\n" +
     "</li>\n" +
-    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\r" +
-    "\n" +
-    "                      && row.state.bindableServiceInstances.length\r" +
-    "\n" +
+    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\n" +
+    "                      && row.state.bindableServiceInstances.length\n" +
     "                      && (row.serviceBindingsVersion | canI : 'create')\" role=\"menuitem\">\n" +
-    "<a href=\"\" ng-click=\"row.showOverlayPanel('bindService', {target: row.apiObject})\">Create Binding</a>\n" +
+    "<a href=\"\" ng-click=\"row.showOverlayPanel('bindService', {target: row.apiObject})\">创建联排</a>\n" +
     "</li>\n" +
-    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\r" +
-    "\n" +
-    "                      && row.state.deleteableBindingsByApplicationUID[row.apiObject.metadata.uid].length\r" +
-    "\n" +
+    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\n" +
+    "                      && row.state.deleteableBindingsByApplicationUID[row.apiObject.metadata.uid].length\n" +
     "                      && (row.serviceBindingsVersion | canI : 'delete')\" role=\"menuitem\">\n" +
-    "<a href=\"\" ng-click=\"row.showOverlayPanel('unbindService', {target: row.apiObject})\">Delete Binding</a>\n" +
+    "<a href=\"\" ng-click=\"row.showOverlayPanel('unbindService', {target: row.apiObject})\">删除联排</a>\n" +
     "</li>\n" +
     "<li ng-if=\"row.current && (row.deploymentConfigsLogVersion | canI : 'get')\" role=\"menuitem\">\n" +
-    "<a ng-href=\"{{row.current | navigateResourceURL}}?tab=logs\">View Logs</a>\n" +
+    "<a ng-href=\"{{row.current | navigateResourceURL}}?tab=logs\">查看日志</a>\n" +
     "</li>\n" +
     "</ul>\n" +
     "</div>\n" +
@@ -12277,14 +12379,14 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-switch-when=\"Pod\">\n" +
     "<div uib-dropdown class=\"dropdown-kebab-pf\">\n" +
     "<button uib-dropdown-toggle class=\"btn btn-link dropdown-toggle\">\n" +
-    "<i class=\"fa fa-ellipsis-v\" aria-hidden=\"true\"></i><span class=\"sr-only\">Actions</span>\n" +
+    "<i class=\"fa fa-ellipsis-v\" aria-hidden=\"true\"></i><span class=\"sr-only\">动作</span>\n" +
     "</button>\n" +
     "<ul class=\"dropdown-menu dropdown-menu-right\" uib-dropdown-menu role=\"menu\">\n" +
     "<li role=\"menuitem\" ng-if=\"row.podsVersion | canI : 'update'\">\n" +
-    "<a ng-href=\"{{row.apiObject | editYamlURL}}\">Edit YAML</a>\n" +
+    "<a ng-href=\"{{row.apiObject | editYamlURL}}\">修改 YAML</a>\n" +
     "</li>\n" +
     "<li role=\"menuitem\" ng-if=\"(row.podsLogVersion | canI : 'get')\">\n" +
-    "<a ng-href=\"{{row.apiObject | navigateResourceURL}}?tab=logs\">View Logs</a>\n" +
+    "<a ng-href=\"{{row.apiObject | navigateResourceURL}}?tab=logs\">查看日志</a>\n" +
     "</li>\n" +
     "</ul>\n" +
     "</div>\n" +
@@ -12292,28 +12394,24 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-switch-default>\n" +
     "<div uib-dropdown class=\"dropdown-kebab-pf\">\n" +
     "<button uib-dropdown-toggle class=\"btn btn-link dropdown-toggle\">\n" +
-    "<i class=\"fa fa-ellipsis-v\" aria-hidden=\"true\"></i><span class=\"sr-only\">Actions</span>\n" +
+    "<i class=\"fa fa-ellipsis-v\" aria-hidden=\"true\"></i><span class=\"sr-only\">动作</span>\n" +
     "</button>\n" +
     "<ul class=\"dropdown-menu dropdown-menu-right\" uib-dropdown-menu role=\"menu\">\n" +
     "<li role=\"menuitem\" ng-if=\"row.rgv | canI : 'update'\">\n" +
-    "<a ng-href=\"{{row.apiObject | editYamlURL}}\">Edit YAML</a>\n" +
+    "<a ng-href=\"{{row.apiObject | editYamlURL}}\">修改 YAML</a>\n" +
     "</li>\n" +
-    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\r" +
-    "\n" +
-    "                      && row.state.bindableServiceInstances.length\r" +
-    "\n" +
+    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\n" +
+    "                      && row.state.bindableServiceInstances.length\n" +
     "                      && (row.serviceBindingsVersion | canI : 'create')\" role=\"menuitem\">\n" +
-    "<a href=\"\" ng-click=\"row.showOverlayPanel('bindService', {target: row.apiObject})\">Create Binding</a>\n" +
+    "<a href=\"\" ng-click=\"row.showOverlayPanel('bindService', {target: row.apiObject})\">创建联排</a>\n" +
     "</li>\n" +
-    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\r" +
-    "\n" +
-    "                      && row.state.deleteableBindingsByApplicationUID[row.apiObject.metadata.uid].length\r" +
-    "\n" +
+    "<li ng-if=\"('pod_presets' | enableTechPreviewFeature)\n" +
+    "                      && row.state.deleteableBindingsByApplicationUID[row.apiObject.metadata.uid].length\n" +
     "                      && (row.serviceBindingsVersion | canI : 'delete')\" role=\"menuitem\">\n" +
-    "<a href=\"\" ng-click=\"row.showOverlayPanel('unbindService', {target: row.apiObject})\">Delete Binding</a>\n" +
+    "<a href=\"\" ng-click=\"row.showOverlayPanel('unbindService', {target: row.apiObject})\">删除联排</a>\n" +
     "</li>\n" +
     "<li ng-if=\"(pod = row.firstPod(row.current)) && (row.podsLogVersion | canI : 'get')\" role=\"menuitem\">\n" +
-    "<a ng-href=\"{{pod | navigateResourceURL}}?tab=logs\">View Logs</a>\n" +
+    "<a ng-href=\"{{pod | navigateResourceURL}}?tab=logs\">查看日志</a>\n" +
     "</li>\n" +
     "</ul>\n" +
     "</div>\n" +
@@ -12328,11 +12426,11 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<a href=\"\" ng-click=\"row.toggleExpand($event, true)\" class=\"toggle-expand-link\">\n" +
     "<span ng-if=\"row.expanded\">\n" +
     "<span class=\"fa fa-angle-down\" aria-hidden=\"true\"></span>\n" +
-    "<span class=\"sr-only\">Collapse</span>\n" +
+    "<span class=\"sr-only\">收缩</span>\n" +
     "</span>\n" +
     "<span ng-if=\"!row.expanded\">\n" +
     "<span class=\"fa fa-angle-right\" aria-hidden=\"true\"></span>\n" +
-    "<span class=\"sr-only\">Expand</span>\n" +
+    "<span class=\"sr-only\">展开</span>\n" +
     "</span>\n" +
     "</a>"
   );
@@ -12365,24 +12463,24 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-if=\"row.apiObject.kind === 'DeploymentConfig' && !row.current && !row.expanded\" class=\"list-pf-details hidden-xs hidden-sm\">\n" +
     "<span>\n" +
-    "No deployments for <a ng-href=\"{{row.apiObject | navigateResourceURL}}\">{{row.apiObject.metadata.name}}</a>\n" +
+    "没有部署在项目 <a ng-href=\"{{row.apiObject | navigateResourceURL}}\">{{row.apiObject.metadata.name}}</a>\n" +
     "</span>\n" +
     "</div>\n" +
     "<div ng-if=\"row.isDeploymentInProgress()\" class=\"list-pf-details deployment-in-progress-msg\">\n" +
     "<div ng-if=\"row.apiObject.kind === 'DeploymentConfig'\">\n" +
     "<span class=\"mar-right-sm\">\n" +
     "<span class=\"hidden-xs\">\n" +
-    "{{row.apiObject.spec.strategy.type}} deployment is {{row.current | deploymentStatus | lowercase}}&thinsp;<ellipsis-pulser color=\"dark\" size=\"sm\" display=\"inline\" msg=\"\"></ellipsis-pulser>\n" +
+    "{{row.apiObject.spec.strategy.type}} 部署为 {{row.current | deploymentStatus | lowercase}}&thinsp;<ellipsis-pulser color=\"dark\" size=\"sm\" display=\"inline\" msg=\"\"></ellipsis-pulser>\n" +
     "</span>\n" +
     "\n" +
     "<span class=\"hidden visible-xs-inline nowrap\">\n" +
     "<ellipsis-pulser color=\"dark\" size=\"sm\" display=\"inline\" msg=\"Deploying\"></ellipsis-pulser>\n" +
     "</span>\n" +
     "</span>\n" +
-    "<a ng-href=\"project/{{row.apiObject.metadata.namespace}}/browse/events\">View Events</a>\n" +
+    "<a ng-href=\"project/{{row.apiObject.metadata.namespace}}/browse/events\">查看事件</a>\n" +
     "<span ng-if=\"row.replicationControllersVersion | canI : 'update'\">\n" +
     "<span class=\"action-divider\">|</span>\n" +
-    "<a href=\"\" ng-click=\"row.cancelDeployment()\" role=\"button\">Cancel</a>\n" +
+    "<a href=\"\" ng-click=\"row.cancelDeployment()\" role=\"button\">取消</a>\n" +
     "</span>\n" +
     "</div>\n" +
     "<div ng-if=\"row.apiObject.kind === 'Deployment'\">\n" +
@@ -12423,38 +12521,38 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
 
 
   $templateCache.put('views/overview/_list-row-empty-state.html',
-    "<h2>No deployments.</h2>\n" +
+    "<h2>没有部署。</h2>\n" +
     "<div ng-if=\"row.imageChangeTriggers.length\">\n" +
-    "A new deployment will start automatically when\n" +
+    "一个新的部署将会自动运行，当\n" +
     "<span ng-if=\"row.imageChangeTriggers.length === 1\">\n" +
-    "an image is pushed to\n" +
+    "一个镜像被拉入\n" +
     "<a ng-href=\"{{row.urlForImageChangeTrigger(row.imageChangeTriggers[0])}}\">\n" +
     "{{row.imageChangeTriggers[0].imageChangeParams.from | imageObjectRef : row.apiObject.metadata.namespace}}</a>.\n" +
     "</span>\n" +
     "<span ng-if=\"row.imageChangeTriggers.length > 1\">\n" +
-    "one of the images referenced by this deployment config changes.\n" +
+    "部署配置关联的所有镜像有一个变更。\n" +
     "</span>\n" +
     "</div>\n" +
     "<div ng-if=\"!row.imageChangeTriggers.length\">\n" +
     "<p>\n" +
-    "No deployments for {{row.apiObject.kind | humanizeKind}}\n" +
+    "没有部署在 {{row.apiObject.kind | humanizeKind}}\n" +
     "<a ng-href=\"{{row.apiObject | navigateResourceURL}}\">{{row.apiObject.metadata.name}}</a>.\n" +
     "</p>\n" +
     "<div ng-if=\"row.apiObject.kind === 'DeploymentConfig'\">\n" +
     "<div ng-if=\"pipeline = row.pipelines[0]\">\n" +
     "<p>\n" +
-    "This deployment config is part of the pipeline\n" +
+    "这个部署配置是管道的一部分\n" +
     "<a ng-href=\"{{pipeline | navigateResourceURL}}\">{{pipeline.metadata.name}}</a>.\n" +
     "</p>\n" +
     "<div ng-if=\"row.showStartPipelineAction()\">\n" +
     "<button class=\"btn btn-primary\" ng-click=\"row.startBuild(pipeline)\">\n" +
-    "Start Pipeline\n" +
+    "开启管道\n" +
     "</button>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"!row.pipelines.length\">\n" +
     "<button ng-if=\"row.deploymentConfigsInstantiateVersion | canI : 'create'\" class=\"btn btn-primary\" ng-click=\"row.startDeployment()\">\n" +
-    "Start Deployment\n" +
+    "开始部署\n" +
     "</button>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -12467,34 +12565,24 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"list-pf-content\">\n" +
     "<alerts alerts=\"row.notifications\"></alerts>\n" +
     "<div ng-if=\"row.current\">\n" +
-    "<div class=\"row-expanded-top\" ng-class=\"{\r" +
-    "\n" +
-    "        'metrics-active': row.state.showMetrics,\r" +
-    "\n" +
-    "        'metrics-not-active': !row.state.showMetrics\r" +
-    "\n" +
+    "<div class=\"row-expanded-top\" ng-class=\"{\n" +
+    "        'metrics-active': row.state.showMetrics,\n" +
+    "        'metrics-not-active': !row.state.showMetrics\n" +
     "      }\">\n" +
-    "<div ng-if=\"row.state.breakpoint !== 'xxs' && row.state.breakpoint !== 'xs'\" class=\"overview-pod-template\" ng-class=\"{\r" +
-    "\n" +
-    "          'ng-enter': row.previous,\r" +
-    "\n" +
-    "          'hidden-sm hidden-md': row.previous\r" +
-    "\n" +
+    "<div ng-if=\"row.state.breakpoint !== 'xxs' && row.state.breakpoint !== 'xs'\" class=\"overview-pod-template\" ng-class=\"{\n" +
+    "          'ng-enter': row.previous,\n" +
+    "          'hidden-sm hidden-md': row.previous\n" +
     "        }\">\n" +
-    "<h4 class=\"component-label section-label\">Containers</h4>\n" +
+    "<h4 class=\"component-label section-label\">容器</h4>\n" +
     "<pod-template pod-template=\"row.current | podTemplate\" images-by-docker-reference=\"row.state.imagesByDockerReference\" builds=\"row.state.builds\" class=\"hide-ng-leave\">\n" +
     "</pod-template>\n" +
     "<init-containers-summary api-object=\"row.apiObject\"></init-containers-summary>\n" +
     "</div>\n" +
-    "<div class=\"overview-animation-block\" ng-class=\"{\r" +
-    "\n" +
-    "        'animation-in-progress': row.previous\r" +
-    "\n" +
+    "<div class=\"overview-animation-block\" ng-class=\"{\n" +
+    "        'animation-in-progress': row.previous\n" +
     "      }\">\n" +
-    "<div ng-if=\"row.state.showMetrics && !row.previous\" class=\"overview-metrics\" ng-class=\"{\r" +
-    "\n" +
-    "          'ng-enter': row.previous\r" +
-    "\n" +
+    "<div ng-if=\"row.state.showMetrics && !row.previous\" class=\"overview-metrics\" ng-class=\"{\n" +
+    "          'ng-enter': row.previous\n" +
     "        }\">\n" +
     "<div ng-if=\"row.apiObject.kind === 'Pod'\">\n" +
     "<deployment-metrics pods=\"[row.apiObject]\" containers=\"row.apiObject.spec.containers\" profile=\"compact\" alerts=\"row.state.alerts\" class=\"overview-metrics\">\n" +
@@ -12507,12 +12595,9 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<h4 class=\"h5\">Average Usage <small>Last 15 Minutes</small></h4>\n" +
     "</div>\n" +
     "</div>\n" +
-    "<div class=\"overview-deployment-donut\" ng-class=\"{\r" +
-    "\n" +
-    "            'ng-enter': row.previous,\r" +
-    "\n" +
-    "            'stacked-template': row.state.breakpoint !== 'lg'\r" +
-    "\n" +
+    "<div class=\"overview-deployment-donut\" ng-class=\"{\n" +
+    "            'ng-enter': row.previous,\n" +
+    "            'stacked-template': row.state.breakpoint !== 'lg'\n" +
     "        }\">\n" +
     "<div ng-if=\"row.previous\" class=\"previous-donut\">\n" +
     "<deployment-donut rc=\"row.previous\" deployment-config=\"row.apiObject\" pods=\"row.getPods(row.previous)\" hpa=\"row.hpa\" limit-ranges=\"row.state.limitRanges\" project=\"row.state.project\" quotas=\"row.state.quotas\" cluster-quotas=\"row.state.clusterQuotas\" scalable=\"false\">\n" +
@@ -12546,17 +12631,17 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "\n" +
     "<uib-tabset ng-if=\"row.current || (row.services | size) || row.recentPipelines.length || row.buildConfigs.length\" class=\"list-row-tabset\">\n" +
     "<uib-tab active=\"row.selectedTab.networking\" ng-if=\"row.services | size\">\n" +
-    "<uib-tab-heading>Networking</uib-tab-heading>\n" +
+    "<uib-tab-heading>联网</uib-tab-heading>\n" +
     "<overview-networking row-services=\"row.services\" all-services=\"row.state.allServices\" routes-by-service=\"row.state.routesByService\">\n" +
     "</overview-networking>\n" +
     "</uib-tab>\n" +
     "<uib-tab ng-if=\"row.current\" active=\"row.selectedTab.containers\">\n" +
-    "<uib-tab-heading>Containers</uib-tab-heading>\n" +
+    "<uib-tab-heading>容器</uib-tab-heading>\n" +
     "<pod-template pod-template=\"row.current | podTemplate\" images-by-docker-reference=\"row.state.imagesByDockerReference\" builds=\"row.state.builds\"></pod-template>\n" +
     "<init-containers-summary api-object=\"row.apiObject\"></init-containers-summary>\n" +
     "</uib-tab>\n" +
     "<uib-tab ng-if=\"row.current && row.state.showMetrics && row.state.breakpoint === 'xxs'\" active=\"row.selectedTab.metrics\">\n" +
-    "<uib-tab-heading>Metrics</uib-tab-heading>\n" +
+    "<uib-tab-heading>度量</uib-tab-heading>\n" +
     "\n" +
     "<div ng-if=\"row.selectedTab.metrics\">\n" +
     "<div ng-if=\"row.apiObject.kind === 'Pod'\">\n" +
@@ -12573,7 +12658,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</uib-tab>\n" +
     "<uib-tab ng-if=\"!row.hidePipelines && row.recentPipelines.length\" active=\"row.selectedTab.pipelines\">\n" +
     "<uib-tab-heading>\n" +
-    "Pipelines\n" +
+    "管道\n" +
     "<span class=\"build-count\">\n" +
     "<build-counts builds=\"row.recentPipelines\"></build-counts>\n" +
     "</span>\n" +
@@ -12583,7 +12668,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</uib-tab>\n" +
     "<uib-tab ng-if=\"row.buildConfigs.length\" active=\"row.selectedTab.builds\">\n" +
     "<uib-tab-heading>\n" +
-    "Builds\n" +
+    "构建\n" +
     "<span class=\"build-count\">\n" +
     "<build-counts builds=\"row.recentBuilds\"></build-counts>\n" +
     "</span>\n" +
@@ -12592,7 +12677,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</overview-builds>\n" +
     "</uib-tab>\n" +
     "<uib-tab ng-if=\"row.showBindings && (row.bindings | size)\" active=\"row.selectedTab.bindings\">\n" +
-    "<uib-tab-heading>Bindings</uib-tab-heading>\n" +
+    "<uib-tab-heading>绑定</uib-tab-heading>\n" +
     "<overview-service-bindings component-label=\"Service Bindings\" ref-api-object=\"row.apiObject\" namespace=\"row.apiObject.metadata.namespace\" bindings=\"row.bindings\" bindable-service-instances=\"row.state.bindableServiceInstances\" service-classes=\"row.state.serviceClasses\" service-instances=\"row.state.serviceInstances\" create-binding=\"row.showOverlayPanel('bindService', {target: row.apiObject})\">\n" +
     "</overview-service-bindings>\n" +
     "</uib-tab>\n" +
@@ -12707,16 +12792,16 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"list-pf-container\">\n" +
     "<div class=\"expanded-section\">\n" +
     "<div class=\"empty-state-message text-center\">\n" +
-    "<p>Add a mobile service to your project. Or connect to external service.</p>\n" +
+    "<p>为您的项目添加移动服务。或连接到外部服务。</p>\n" +
     "<div class=\"empty-state-message-main-action\">\n" +
     "\n" +
     "<button class=\"btn btn-primary btn-lg\" ng-click=\"row.browseCatalog()\">\n" +
-    "Browse Mobile Services\n" +
+    "浏览移动服务\n" +
     "</button>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"loading\">\n" +
-    "Loading...\n" +
+    "加载中...\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -12727,11 +12812,11 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
 
   $templateCache.put('views/overview/_networking.html',
     "<div ng-if=\"networking.rowServices | size\" class=\"expanded-section networking-section\">\n" +
-    "<div class=\"component-label section-label hidden-xs\">Networking</div>\n" +
+    "<div class=\"component-label section-label hidden-xs\">联网</div>\n" +
     "<div ng-repeat=\"service in networking.rowServices\" class=\"row\">\n" +
     "<div class=\"col-sm-5 col-md-6\">\n" +
     "<div class=\"resource-label\">\n" +
-    "Service - Internal Traffic\n" +
+    "服务 - 内部通讯\n" +
     "</div>\n" +
     "<h3>\n" +
     "<a ng-href=\"{{service | navigateResourceURL}}\">{{service.metadata.name}}</a>\n" +
@@ -12742,17 +12827,17 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "{{portMapping.targetPort}}\n" +
     "</span>\n" +
     "<span ng-if=\"service.spec.ports.length >= 2\">\n" +
-    "and\n" +
+    "和\n" +
     "<span class=\"nowrap\">\n" +
     "{{service.spec.ports.length - 1}}\n" +
-    "<span ng-if=\"service.spec.ports.length > 2\">others</span>\n" +
-    "<span ng-if=\"service.spec.ports.length === 2\">other</span>\n" +
+    "<span ng-if=\"service.spec.ports.length > 2\">其它</span>\n" +
+    "<span ng-if=\"service.spec.ports.length === 2\">其它</span>\n" +
     "</span>\n" +
     "</span>\n" +
     "</div>\n" +
     "<div class=\"col-sm-7 col-md-6 overview-routes\">\n" +
     "<div class=\"resource-label\">\n" +
-    "Routes - External Traffic\n" +
+    "路由 - 外部通讯\n" +
     "</div>\n" +
     "<div ng-if=\"networking.routesByService[service.metadata.name] | size\">\n" +
     "<div ng-repeat=\"route in networking.routesByService[service.metadata.name] track by (route | uid)\" class=\"overview-routes\">\n" +
@@ -12767,7 +12852,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<route-warnings route=\"route\" services=\"networking.allServices\"></route-warnings>\n" +
     "</h3>\n" +
     "<div class=\"overview-route\">\n" +
-    "Route <a ng-href=\"{{route | navigateResourceURL}}\">{{route.metadata.name}}</a><span ng-if=\"route.spec.port.targetPort\">, target port {{route.spec.port.targetPort}}</span>\n" +
+    "路由 <a ng-href=\"{{route | navigateResourceURL}}\">{{route.metadata.name}}</a><span ng-if=\"route.spec.port.targetPort\">, 目标端口 {{route.spec.port.targetPort}}</span>\n" +
     "</div>\n" +
     "<div ng-if=\"route | hasAlternateBackends\">\n" +
     "<route-service-bar-chart route=\"route\" highlight-service=\"service.metadata.name\"></route-service-bar-chart>\n" +
@@ -12777,9 +12862,9 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"!(networking.routesByService[service.metadata.name] | size)\">\n" +
     "<a ng-if=\"'routes' | canI : 'create'\" ng-href=\"project/{{service.metadata.namespace}}/create-route?service={{service.metadata.name}}\">\n" +
     "<span class=\"pficon pficon-add-circle-o\" aria-hidden=\"true\"></span>\n" +
-    "Create Route\n" +
+    "创建路由\n" +
     "</a>\n" +
-    "<span ng-if=\"!('routes' | canI : 'create')\" class=\"text-muted\">No Routes</span>\n" +
+    "<span ng-if=\"!('routes' | canI : 'create')\" class=\"text-muted\">没有路由</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -12845,13 +12930,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<p ng-if=\"!$ctrl.refApiObject.metadata.deletionTimestamp && ($ctrl.bindableServiceInstances | size) && ({resource: 'servicebindings', group: 'servicecatalog.k8s.io'} | canI : 'create')\">\n" +
     "<a href=\"\" ng-click=\"$ctrl.createBinding()\" role=\"button\">\n" +
     "<span class=\"pficon pficon-add-circle-o\" aria-hidden=\"true\"></span>\n" +
-    "Create Binding\n" +
+    "创建绑定\n" +
     "</a>\n" +
     "</p>\n" +
     "<p ng-if=\"($ctrl.refApiObject.kind !== 'ServiceInstance')  && !($ctrl.bindableServiceInstances | size)\">\n" +
-    "<span>You must have a bindable service in your namespace in order to create bindings.</span>\n" +
+    "<span>为了创建绑定，您必须在名称空间中有一个可绑定的服务。</span>\n" +
     "<div>\n" +
-    "<a href=\"catalog\">Browse Catalog</a>\n" +
+    "<a href=\"catalog\">浏览目录</a>\n" +
     "</div>\n" +
     "</p>\n" +
     "</div>"
@@ -12890,10 +12975,8 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"list-pf-details\" ng-if=\"!row.expanded\">\n" +
-    "<span ng-if=\"!row.bindings.length\r" +
-    "\n" +
-    "                    && row.isBindable\r" +
-    "\n" +
+    "<span ng-if=\"!row.bindings.length\n" +
+    "                    && row.isBindable\n" +
     "                    && (row.serviceBindingsVersion | canI : 'create')\" class=\"hidden-xs hidden-sm\">\n" +
     "<a href=\"\" ng-click=\"row.showOverlayPanel('bindService', {target: row.apiObject})\">\n" +
     "<span class=\"pficon pficon-add-circle-o\" aria-hidden=\"true\"></span>\n" +
@@ -12938,7 +13021,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<a href=\"\" ng-click=\"row.showOverlayPanel('unbindService', {target: row.apiObject})\">Delete Binding</a>\n" +
     "</li>\n" +
     "<li role=\"menuitem\">\n" +
-    "<a href=\"\" ng-click=\"row.deprovision()\" role=\"button\" ng-if=\"row.serviceInstancesVersion | canI : 'delete'\">Delete</a>\n" +
+    "<a href=\"\" ng-click=\"row.deprovision()\" role=\"button\" ng-if=\"row.serviceInstancesVersion | canI : 'delete'\">删除</a>\n" +
     "</li>\n" +
     "</ul>\n" +
     "</div>\n" +
@@ -13053,10 +13136,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<div class=\"page-header page-header-bleed-right page-header-bleed-left\">\n" +
     "<h1>\n" +
-    "Pipelines\n" +
+    "管道\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'pipeline-builds' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -13070,22 +13153,22 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-12\">\n" +
     "<div ng-if=\"!(buildConfigs | hashSize)\" class=\"mar-top-lg\">\n" +
     "<div ng-if=\"!buildConfigsLoaded\">\n" +
-    "Loading...\n" +
+    "加载中...\n" +
     "</div>\n" +
     "<div ng-if=\"buildConfigsLoaded\" class=\"empty-state-message text-center\">\n" +
-    "<h2>No pipelines.</h2>\n" +
+    "<h2>没有管道。</h2>\n" +
     "<div ng-if=\"project.metadata.name | canIAddToProject\">\n" +
     "<p>\n" +
-    "No pipelines have been added to project {{projectName}}.\n" +
+    "没有管道添加到 {{projectName}} 项目中。\n" +
     "<br>\n" +
-    "Learn more about\n" +
+    "了解更多关于\n" +
     "<a ng-href=\"{{ 'pipeline-builds' | helpLink}}\" target=\"_blank\">Pipeline Builds</a>\n" +
-    "and the\n" +
-    "<a ng-href=\"{{ 'pipeline-plugin' | helpLink}}\" target=\"_blank\">OpenShift Pipeline Plugin</a>.\n" +
+    "跟\n" +
+    "<a ng-href=\"{{ 'pipeline-plugin' | helpLink}}\" target=\"_blank\">OpenShift Pipeline Plugin</a>。\n" +
     "</p>\n" +
     "<p ng-if=\"(project.metadata.name | canIAddToProject) && createSampleURL\">\n" +
     "<a ng-href=\"{{createSampleURL}}\" class=\"btn btn-primary btn-lg\">\n" +
-    "Create Sample Pipeline\n" +
+    "创建示例管道\n" +
     "</a>\n" +
     "</p>\n" +
     "</div>\n" +
@@ -13098,7 +13181,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"buildConfig\">\n" +
     "<div class=\"pull-right\">\n" +
     "<button class=\"btn btn-default\" ng-if=\"buildConfigsInstantiateVersion | canI : 'create'\" ng-click=\"startBuild(buildConfig)\">\n" +
-    "Start Pipeline\n" +
+    "开始管道\n" +
     "</button>\n" +
     "</div>\n" +
     "<h2 class=\"mar-top-none\">\n" +
@@ -13106,7 +13189,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<small>created <span am-time-ago=\"buildConfig.metadata.creationTimestamp\"></span></small>\n" +
     "</h2>\n" +
     "<div ng-if=\"buildConfig.spec.source.git.uri\">\n" +
-    "Source Repository:\n" +
+    "源码仓库：\n" +
     "<span class=\"word-break\" ng-if=\"buildConfigs[buildConfigName].spec.source.type == 'Git'\"><osc-git-link uri=\"buildConfigs[buildConfigName].spec.source.git.uri\" ref=\"buildConfigs[buildConfigName].spec.source.git.ref\" context-dir=\"buildConfigs[buildConfigName].spec.source.contextDir\">{{buildConfigs[buildConfigName].spec.source.git.uri}}</osc-git-link></span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -13116,42 +13199,43 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "\n" +
     "<div ng-if=\"buildConfigsLoaded\" class=\"alert alert-warning\">\n" +
     "<span class=\"pficon pficon-warning-triangle-o\" aria-hidden=\"true\"></span>\n" +
-    "<span class=\"sr-only\">Warning:</span>\n" +
-    "Build config <strong>{{buildConfigName}}</strong> no longer exists.\n" +
+    "<span class=\"sr-only\">警告：</span>\n" +
+    "构建配置 <strong>{{buildConfigName}}</strong> 不再存在。\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"buildsLoaded && !(interestingBuildsByConfig[buildConfigName] | hashSize)\">\n" +
     "<p class=\"mar-bottom-xxl\">\n" +
-    "No pipeline builds have run for {{buildConfigName}}.\n" +
+    "没有管道构建用于 {{buildConfigName}}。\n" +
     "<span ng-if=\"buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfile\">\n" +
-    "View the <a ng-href=\"{{(buildConfig | navigateResourceURL) + '?tab=configuration'}}\">Jenkinsfile</a> to see what stages will run.\n" +
+    "通过查看 <a ng-href=\"{{(buildConfig | navigateResourceURL) + '?tab=configuration'}}\">Jenkinsfile</a> 文件来查看将要运行的阶段。\n" +
     "</span>\n" +
     "<span ng-if=\"buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath\">\n" +
-    "View the file <code>{{buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath}}</code> in the\n" +
-    "<a ng-if=\"buildConfig | jenkinsfileLink\" ng-href=\"buildConfig | jenkinsfileLink\">source repository</a>\n" +
-    "<span ng-if=\"!(buildConfig | jenkinsfileLink)\">source repository</span>\n" +
-    "to see what stages will run.\n" +
+    "通过查看在\n" +
+    "<a ng-if=\"buildConfig | jenkinsfileLink\" ng-href=\"buildConfig | jenkinsfileLink\">源码仓库</a>\n" +
+    "<span ng-if=\"!(buildConfig | jenkinsfileLink)\">源码仓库</span>\n" +
+    "中的 <code>{{buildConfig.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath}}</code>\n" +
+    "来查看将要运行的阶段。\n" +
     "</span>\n" +
     "</p>\n" +
     "</div>\n" +
     "<div ng-if=\"interestingBuildsByConfig[buildConfigName] | hashSize\">\n" +
     "<div ng-if=\"!(statsByConfig[buildConfigName].avgDuration | isNil)\" class=\"hidden-xs pull-right text-muted\">\n" +
-    "Average Duration: {{statsByConfig[buildConfigName].avgDuration | timeOnlyDuration}}\n" +
+    "平均持续时间： {{statsByConfig[buildConfigName].avgDuration | timeOnlyDuration}}\n" +
     "</div>\n" +
     "<h4>\n" +
-    "Recent Runs\n" +
+    "近期运行\n" +
     "<small ng-if=\"!(statsByConfig[buildConfigName].avgDuration | isNil)\" class=\"visible-xs-block mar-top-xs text-muted\">\n" +
-    "Average Duration: {{statsByConfig[buildConfigName].avgDuration | timeOnlyDuration}}\n" +
+    "平均持续时间： {{statsByConfig[buildConfigName].avgDuration | timeOnlyDuration}}\n" +
     "</small>\n" +
     "</h4>\n" +
     "<div ng-repeat=\"build in (interestingBuildsByConfig[buildConfigName] | orderObjectsByDate : true) track by (build | uid)\" class=\"animate-repeat\">\n" +
     "<build-pipeline build=\"build\"></build-pipeline>\n" +
     "</div>\n" +
     "<div ng-if=\"buildConfig\" class=\"mar-top-sm mar-bottom-xl\">\n" +
-    "<a ng-href=\"{{buildConfigs[buildConfigName] | navigateResourceURL}}\">View Pipeline Runs</a>\n" +
+    "<a ng-href=\"{{buildConfigs[buildConfigName] | navigateResourceURL}}\">查看管道运行</a>\n" +
     "<span ng-if=\"buildConfigsVersion | canI : 'update'\">\n" +
     "<span class=\"action-divider\">|</span>\n" +
-    "<a ng-href=\"{{buildConfig | editResourceURL}}\" role=\"button\">Edit Pipeline</a>\n" +
+    "<a ng-href=\"{{buildConfig | editResourceURL}}\" role=\"button\">编辑管道</a>\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -13306,7 +13390,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<a class=\"tile-target\" ng-href=\"project/{{project.metadata.name}}\" title=\"{{project | displayName}}\">\n" +
     "<span ng-bind-html=\"project | displayName | highlightKeywords : keywords\"></span>\n" +
     "</a>\n" +
-    "<span ng-if=\"project.status.phase != 'Active'\" data-toggle=\"tooltip\" title=\"This project has been marked for deletion.\" class=\"pficon pficon-warning-triangle-o\"></span>\n" +
+    "<span ng-if=\"project.status.phase != 'Active'\" data-toggle=\"tooltip\" title=\"这个项目已标记为删除。\" class=\"pficon pficon-warning-triangle-o\"></span>\n" +
     "</h2>\n" +
     "<small class=\"project-date\">\n" +
     "<span ng-if=\"project | displayName : true\"><span ng-bind-html=\"project.metadata.name | highlightKeywords : keywords\"></span> &ndash;</span>\n" +
@@ -13336,13 +13420,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</a>\n" +
     "</li>\n" +
     "<li role=\"menuitem\">\n" +
-    "<delete-project label=\"Delete Project\" project=\"project\" type-name-to-confirm=\"true\" stay-on-current-page=\"true\" success=\"onDeleteProject\">\n" +
+    "<delete-project label=\"删除项目\" project=\"project\" type-name-to-confirm=\"true\" stay-on-current-page=\"true\" success=\"onDeleteProject\">\n" +
     "</delete-project>\n" +
     "</li>\n" +
     "</ul>\n" +
     "</div>\n" +
     "</div>\n" +
-    "<origin-modal-popup shown=\"editProjectPanelShown && editingProject === project\" ng-class=\"{'with-description': (project | description | size)}\" modal-title=\"Edit Project\" on-close=\"closeEditProjectPanel\">\n" +
+    "<origin-modal-popup shown=\"editProjectPanelShown && editingProject === project\" ng-class=\"{'with-description': (project | description | size)}\" modal-title=\"修改项目\" on-close=\"closeEditProjectPanel\">\n" +
     "<edit-project project=\"project\" is-dialog=\"true\" redirect-action=\"onEditProject\" on-cancel=\"closeEditProjectPanel\"></edit-project>\n" +
     "</origin-modal-popup>\n" +
     "</div>\n" +
@@ -13389,7 +13473,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span ng-if=\"clusterQuotas.length\">集群 </span>配额\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'quota' | helpLink}}\" target=\"_blank\">\n" +
-    "查看更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -13453,9 +13537,12 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</td>\n" +
     "</tr>\n" +
     "\n" +
-    "<tr ng-repeat=\"resourceType in orderedTypesByClusterQuota[quota.metadata.name]\" ng-if=\"resourceType !== 'resourcequotas'\" ng-class=\"{\n" +
-    "                        warning: isAtLimit(quota, resourceType),\n" +
-    "                        disabled: (quota.status.total.hard[resourceType] || quota.spec.quota.hard[resourceType]) === '0'\n" +
+    "<tr ng-repeat=\"resourceType in orderedTypesByClusterQuota[quota.metadata.name]\" ng-if=\"resourceType !== 'resourcequotas'\" ng-class=\"{\r" +
+    "\n" +
+    "                        warning: isAtLimit(quota, resourceType),\r" +
+    "\n" +
+    "                        disabled: (quota.status.total.hard[resourceType] || quota.spec.quota.hard[resourceType]) === '0'\r" +
+    "\n" +
     "                      }\">\n" +
     "<td>\n" +
     "{{resourceType | humanizeQuotaResource : true}}\n" +
@@ -13535,9 +13622,12 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</td>\n" +
     "</tr>\n" +
     "\n" +
-    "<tr ng-repeat=\"resourceType in orderedTypesByQuota[quota.metadata.name]\" ng-if=\"resourceType !== 'resourcequotas'\" ng-class=\"{\n" +
-    "                        warning: isAtLimit(quota, resourceType),\n" +
-    "                        disabled: (quota.status.hard[resourceType] || quota.spec.hard[resourceType]) === '0'\n" +
+    "<tr ng-repeat=\"resourceType in orderedTypesByQuota[quota.metadata.name]\" ng-if=\"resourceType !== 'resourcequotas'\" ng-class=\"{\r" +
+    "\n" +
+    "                        warning: isAtLimit(quota, resourceType),\r" +
+    "\n" +
+    "                        disabled: (quota.status.hard[resourceType] || quota.spec.hard[resourceType]) === '0'\r" +
+    "\n" +
     "                      }\">\n" +
     "<td>\n" +
     "{{resourceType | humanizeQuotaResource : true}}\n" +
@@ -13630,13 +13720,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<div class=\"page-header page-header-bleed-right page-header-bleed-left\">\n" +
     "<div class=\"pull-right\" ng-if=\"project && (secretsVersion | canI : 'create') && secrets.length\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/create-secret\" class=\"btn btn-default\">Create Secret</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/create-secret\" class=\"btn btn-default\">创建密钥</a>\n" +
     "</div>\n" +
     "<h1>\n" +
-    "Secrets\n" +
+    "密钥\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'secrets' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -13654,18 +13744,18 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-12\">\n" +
     "<div ng-if=\"(secrets | size) === 0\">\n" +
     "<p ng-if=\"!secretsLoaded\">\n" +
-    "Loading...\n" +
+    "加载中...\n" +
     "</p>\n" +
     "<div ng-if=\"secretsLoaded\" class=\"empty-state-message text-center\">\n" +
     "<div ng-if=\"!filterWithZeroResults\">\n" +
-    "<h2>No secrets.</h2>\n" +
-    "<p>No secrets have been added to project {{projectName}}.</p>\n" +
+    "<h2>没有密钥。</h2>\n" +
+    "<p>没有密钥添加到 {{projectName}} 项目中。</p>\n" +
     "<p ng-if=\"project && (secretsVersion | canI : 'create')\">\n" +
-    "<a ng-href=\"project/{{project.metadata.name}}/create-secret\" class=\"btn btn-primary btn-lg\">Create Secret</a>\n" +
+    "<a ng-href=\"project/{{project.metadata.name}}/create-secret\" class=\"btn btn-primary btn-lg\">创建密钥</a>\n" +
     "</p>\n" +
     "</div>\n" +
     "<div ng-if=\"filterWithZeroResults\">\n" +
-    "<h2>The filter is hiding all secrets. <button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"clearFilter()\">Clear All Filters</button></h2>\n" +
+    "<h2>过滤器隐藏所有密钥。 <button type=\"button\" class=\"btn btn-link inline-btn-link\" ng-click=\"clearFilter()\">清除所有过滤条件</button></h2>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -13677,9 +13767,9 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</colgroup>\n" +
     "<thead>\n" +
     "<tr>\n" +
-    "<th>Name</th>\n" +
-    "<th>Type</th>\n" +
-    "<th>Created</th>\n" +
+    "<th>名称</th>\n" +
+    "<th>类型</th>\n" +
+    "<th>创建时间</th>\n" +
     "</tr>\n" +
     "</thead>\n" +
     "<tbody>\n" +
@@ -13845,12 +13935,12 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</colgroup>\n" +
     "<thead>\n" +
     "<tr>\n" +
-    "<th>Name</th>\n" +
-    "<th>Cluster IP</th>\n" +
-    "<th>External IP</th>\n" +
-    "<th>Ports</th>\n" +
-    "<th>Selector</th>\n" +
-    "<th>Age</th>\n" +
+    "<th>名称</th>\n" +
+    "<th>集群IP</th>\n" +
+    "<th>外部IP</th>\n" +
+    "<th>端口</th>\n" +
+    "<th>选择器</th>\n" +
+    "<th>时间</th>\n" +
     "</tr>\n" +
     "</thead>\n" +
     "<tbody>\n" +
