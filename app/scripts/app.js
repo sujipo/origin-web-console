@@ -585,7 +585,7 @@ angular
     $(window).on('storage', function (event) {
       if (event.originalEvent.key === lastInteractionKey) {
         restartCheckInteractionInterval();
-      } else if (event.originalEvent.key === inactivityLogoutKey) {
+      } else if (event.originalEvent.key === inactivityLogoutKey && localStorage.getItem(inactivityLogoutKey) === 'true') {
         logout();
       }
     });
@@ -652,6 +652,11 @@ angular
         });
     }
     Logger.info("AEROGEAR_MOBILE_ENABLED: " + $rootScope.AEROGEAR_MOBILE_ENABLED);
-  });
+  })
+  .run(['$rootScope', 'APIService', 'KubevirtVersions',
+    function ($rootScope, APIService, KubevirtVersions) {
+    // Entities needs to be renamed in 3.11, https://groups.google.com/forum/#!topic/kubevirt-dev/CU_VskPIisg
+    // $rootScope.KUBEVIRT_ENABLED = !!APIService.apiInfo(KubevirtVersions.offlineVirtualMachine);
+  }]);
 
 pluginLoader.addModule('openshiftConsole');

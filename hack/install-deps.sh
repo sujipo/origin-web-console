@@ -2,7 +2,7 @@
 
 set -e
 
-OPENSHIFT_JVM_VERSION=v1.2.6
+OPENSHIFT_JVM_VERSION=v1.3.0
 
 STARTTIME=$(date +%s)
 
@@ -29,7 +29,7 @@ function cmd() {
 # so we can amend our path to look into the local node_modules for the
 # correct binaries.
 repo_root="$( dirname "${BASH_SOURCE}" )/.."
-export PATH="${PATH}:${repo_root}/node_modules/bower/bin:${repo_root}/node_modules/grunt-cli/bin"
+export PATH="${repo_root}/node_modules/bower/bin:${repo_root}/node_modules/grunt-cli/bin:${PATH}"
 
 # Install bower if needed
 if ! which bower > /dev/null 2>&1 ; then
@@ -52,5 +52,13 @@ cmd "rm -rf openshift-jvm"
 cmd "mkdir -p openshift-jvm"
 unset CURL_CA_BUNDLE
 curl -s https://codeload.github.com/hawtio/openshift-jvm/tar.gz/${OPENSHIFT_JVM_VERSION}-build | tar -xz -C openshift-jvm --strip-components=1
+
+# Fix branding for OCP
+indexHtml='openshift-jvm/index.html'
+# TODO Check and make sure these replacements made it into openshift-jvm/index.html
+sed -i.bak 's/class="navbar-brand"/class="navbar-brand" style="padding-top: 6px; padding-bottom: 5px;"/' $indexHtml
+sed -i.bak 's/img\/logo-origin-thin\.svg"/..\/images\/logo-OCP-console-hdr-thin\.svg" style="height: 13px;"/' $indexHtml
+sed -i.bak 's/<title>openshift-jvm<\/title>/<title>OpenShift Container Platform JVM Console<\/title>/' $indexHtml
+rm -f ${indexHtml}.bak
 
 ret=$?; ENDTIME=$(date +%s); echo "$0 took $(($ENDTIME - $STARTTIME)) seconds"; exit "$ret"

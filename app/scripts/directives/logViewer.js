@@ -8,9 +8,10 @@ angular.module('openshiftConsole')
     '$window',
     '$filter',
     '$q',
-    'AuthService',
+    'AggregatedLoggingService',
     'APIService',
     'APIDiscovery',
+    'AuthService',
     'DataService',
     'HTMLService',
     'ModalsService',
@@ -21,9 +22,10 @@ angular.module('openshiftConsole')
              $window,
              $filter,
              $q,
-             AuthService,
+             AggregatedLoggingService,
              APIService,
              APIDiscovery,
+             AuthService,
              DataService,
              HTMLService,
              ModalsService,
@@ -313,11 +315,40 @@ angular.module('openshiftConsole')
                   streamer = DataService.createStream(logSubresource, name, $scope.context, options);
 
                   var lastLineNumber = 0;
-                  var addLine = function(text) {
-                    lastLineNumber++;
-                    // Append the line to the document fragment buffer.
-                    buffer.appendChild(buildLogLineNode(lastLineNumber, text));
-                    update();
+                  var lastIncompleteToken = '';
+
+                  // Returns true if string is newline terminated, false otherwise
+                  var isCompleteLine = function(string) {
+                    return /\n$/.test(string);
+                  };
+
+                  // Tokenizes text into newline terminated tokens, includes final
+                  // non-newline terminated token if it exists. This will return
+                  // an extra empty string when 'text' is newline terminated.
+                  var tokenize = function(text) {
+                    return text.match(/^.*(\n|$)/gm);
+                  };
+
+                  // Concatenates the token with the previous incomplete token,
+                  // then appends it to the buffer if it is newline terminated,
+                  // or updates the last incomplete token accordingly.
+                  var handleToken = function(token) {
+                    var next = lastIncompleteToken + token;
+                    if(isCompleteLine(token)) {
+                      lastIncompleteToken = '';
+                      lastLineNumber++;
+                      // Append the line to the document fragment buffer.
+                      buffer.appendChild(buildLogLineNode(lastLineNumber, next));
+                      update();
+                    } else {
+                      lastIncompleteToken = next;
+                    }
+                  };
+
+                  // Break WebSocket message into tokens, then pass on to token handler.
+                  var ingest = function(text) {
+                    var tokens = tokenize(text);
+                    _.each(tokens, handleToken);
                   };
 
                   streamer.onMessage(function(msg, raw, cumulativeBytes) {
@@ -343,7 +374,7 @@ angular.module('openshiftConsole')
                       stopStreaming(true);
                     }
 
-                    addLine(msg);
+                    ingest(msg);
 
                     // Warn the user if we might be showing a partial log.
                     if (!$scope.largeLog && lastLineNumber >= options.tailLines) {
@@ -406,34 +437,21 @@ angular.module('openshiftConsole')
                   return;
                 }
 
-                // 3 things needed:
-                // - kibanaAuthUrl to authorize user
-                // - access_token
-                // - kibanaArchiveUrl for the final destination once auth'd
-                angular.extend($scope, {
-                  kibanaAuthUrl: $sce.trustAsResourceUrl(URI(url)
-                                                          .segment('auth').segment('token')
-                                                          .normalizePathname().toString()),
-                  access_token: AuthService.UserStore().getToken()
-                });
-
-                $scope.$watchGroup(['context.project.metadata.name', 'options.container', 'name'], function() {
-                  angular.extend($scope, {
-                    // The archive URL violates angular's built in same origin policy.
-                    // Need to explicitly tell it to trust this location or it will throw errors.
-                    kibanaArchiveUrl: $sce.trustAsResourceUrl(logLinks.archiveUri({
-                                        namespace: $scope.context.project.metadata.name,
-                                        namespaceUid: $scope.context.project.metadata.uid,
-                                        podname: name,
-                                        containername: $scope.options.container,
-                                        backlink: URI.encode($window.location.href)
-                                      }, $filter('annotation')($scope.context.project,'loggingDataPrefix')))
+                AggregatedLoggingService.isOperationsUser().then(function(canViewOperationsLogs) {
+                  $scope.$watchGroup(['context.project.metadata.name', 'options.container', 'name'], function() {
+                    angular.extend($scope, {
+                      kibanaArchiveUrl: logLinks.archiveUri({
+                        baseURL: url,
+                        namespace: $scope.context.project.metadata.name,
+                        namespaceUid: $scope.context.project.metadata.uid,
+                        podname: name,
+                        containername: $scope.options.container,
+                        backlink: URI.encode($window.location.href)
+                      }, $filter('annotation')($scope.context.project,'loggingDataPrefix'), canViewOperationsLogs)
+                    });
                   });
                 });
               });
-
-
-
 
             // PUBLIC API ----------------------------------------------------
 

@@ -12,7 +12,7 @@ if (angular.isUndefined(window.OPENSHIFT_CONSTANTS)) {
 
 angular.extend(window.OPENSHIFT_CONSTANTS, {
   // Maps links to specific topics in external documentation.
-  HELP_BASE_URL: "https://docs.openshift.org/latest/",
+  HELP_BASE_URL: "https://docs.openshift.com/container-platform/3.11/",
   HELP: {
     "cli":                     "cli_reference/index.html",
     "get_started_cli":         "cli_reference/get_started_cli.html",
@@ -24,6 +24,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
     "deployment-operations":   "cli_reference/basic_cli_operations.html#build-and-deployment-cli-operations",
     "route-types":             "architecture/networking/routes.html#route-types",
     "persistent_volumes":      "dev_guide/persistent_volumes.html",
+    "expanding_persistent_volumes":      "dev_guide/expanding_persistent_volumes.html",
     "compute_resources":       "dev_guide/compute_resources.html",
     "pod_autoscaling":         "dev_guide/pod_autoscaling.html",
     "application_health":      "dev_guide/application_health.html",
@@ -64,7 +65,33 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
 
   // Maps links names to URL's where the CLI tools can be downloaded, may point directly to files or to external pages in a CDN, for example.
   CLI: {
-    "Latest Release":          "https://github.com/openshift/origin/releases/latest"
+    "Latest Release":          "https://access.redhat.com/downloads/content/290"
+  },
+
+  // Change the minishift link to the CDK for enterprise.
+  CATALOG_HELP_RESOURCES: {
+    links: [
+      {
+        title: 'Documentation',
+        help: ''
+      },
+      {
+        title: 'Interactive Learning Portal',
+        href: 'https://learn.openshift.com'
+      },
+      {
+        title: 'Container Development Kit',
+        href: 'https://developers.redhat.com/products/cdk/overview/'
+      },
+      {
+        title: 'YouTube',
+        href: 'https://www.youtube.com/user/rhopenshift'
+      },
+      {
+        title: 'Blog',
+        href: 'https://blog.openshift.com'
+      }
+    ]
   },
 
   // Optional default CPU target percentage for horizontal pod autoscalers
@@ -605,6 +632,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
     'icon-cordova': 'cordova.png',
     'icon-datagrid': 'datagrid.svg',
     'icon-datavirt': 'datavirt.svg',
+    'icon-debian': 'debian.svg',
     'icon-decisionserver': 'decisionserver.svg',
     'icon-django': 'django.svg',
     'icon-dotnet': 'dotnet.svg',
@@ -612,6 +640,8 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
     'icon-eap': 'eap.svg',
     'icon-elastic': 'elastic.svg',
     'icon-erlang': 'erlang.svg',
+    'icon-fedora': 'fedora.svg',
+    'icon-freebsd': 'freebsd.svg',
     'icon-git': 'git.svg',
     'icon-github': 'github.svg',
     'icon-gitlab': 'gitlab.svg',
@@ -627,18 +657,22 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
     'icon-joomla': 'joomla.svg',
     'icon-jruby': 'jruby.svg',
     'icon-js': 'js.svg',
+    'icon-kubevirt': 'kubevirt.svg',
     'icon-laravel': 'laravel.svg',
     'icon-load-balancer': 'load-balancer.svg',
     'icon-mariadb': 'mariadb.svg',
     'icon-mediawiki': 'mediawiki.svg',
     'icon-memcached': 'memcached.svg',
     'icon-mongodb': 'mongodb.svg',
+    'icon-mssql': 'mssql.svg',
     'icon-mysql-database': 'mysql-database.svg',
     'icon-nginx': 'nginx.svg',
     'icon-nodejs': 'nodejs.svg',
     'icon-openjdk': 'openjdk.svg',
     'icon-openshift': 'openshift.svg',
     'icon-openstack': 'openstack.svg',
+    'icon-other-linux': 'other-linux.svg',
+    'icon-other-unknown': 'other-unknown.svg',
     'icon-perl': 'perl.svg',
     'icon-phalcon': 'phalcon.svg',
     'icon-php': 'php.svg',
@@ -659,10 +693,14 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
     'icon-spring': 'spring.svg',
     'icon-sso': 'sso.svg',
     'icon-stackoverflow': 'stackoverflow.svg',
+    'icon-suse': 'suse.svg',
     'icon-symfony': 'symfony.svg',
     'icon-tomcat': 'tomcat.svg',
+    'icon-ubuntu': 'ubuntu.svg',
     'icon-wildfly': 'wildfly.svg',
+    'icon-windows': 'windows.svg',
     'icon-wordpress': 'wordpress.svg',
+    'icon-xamarin': 'xamarin.svg',
     'icon-zend': 'zend.svg'
   },
 
