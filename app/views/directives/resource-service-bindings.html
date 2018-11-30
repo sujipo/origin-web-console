@@ -13,13 +13,13 @@
               !$ctrl.apiObject.metadata.deletionTimestamp">
     <a href="" ng-click="$ctrl.createBinding()" role="button">
       <span class="pficon pficon-add-circle-o" aria-hidden="true"></span>
-      Create Binding
+      创建绑定
     </a>
   </div>
   <div ng-if="!$ctrl.apiObject.metadata.deletionTimestamp && !($ctrl.bindableServiceInstances | size)">
-    <span>You must have a bindable service in your namespace in order to create bindings.</span>
+    <span>要创建绑定，名称空间中必须有一个可绑定的服务。</span>
     <div>
-      <a ng-href="{{project | catalogURL}}">Browse Catalog</a>
+      <a ng-href="{{project | catalogURL}}">应用商店</a>
     </div>
   </div>
   <div ng-if="!($ctrl.bindings | size) && ($ctrl.bindableServiceInstances | size) && !($ctrl.serviceBindingsVersion | canI : 'create')">

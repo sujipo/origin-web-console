@@ -1,8 +1,7 @@
 <select-project ng-if="!project" selected-project="input.selectedProject" name-taken="projectNameTaken"></select-project>
 <span ng-show="!noProjectsCantCreate">
   <p>
-    Create or replace resources from their YAML or JSON definitions. If adding a template, you'll have
-    the option to process the template.
+    从它们的YAML或JSON定义创建或替换资源。 如果添加一个模板，您将拥有处理模板的选项。
   </p>
   <parse-error error="error" ng-show="error"></parse-error>
   <div class="row">
@@ -15,13 +14,13 @@
             ng-click="create()"
             ng-disabled="form.$invalid"
             class="btn btn-primary btn-lg">
-            Create
+            创建
           </button>
           <a class="btn btn-default btn-lg"
             href=""
             role="button"
             ng-click="cancel()">
-            Cancel
+            取消
           </a>
         </div>
       </form>

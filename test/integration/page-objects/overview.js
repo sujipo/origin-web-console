@@ -14,7 +14,7 @@ class OverviewPage extends Page {
     // The project bar uses `ng-show` instead of `ng-if,` so make sure it's
     // visible before continuing.
     h.waitForVisibility(element(by.css('.project-bar')));
-    let button = element(by.cssContainingText('.add-to-project .dropdown-toggle', 'Add to Project'));
+    let button = element(by.cssContainingText('.add-to-project .dropdown-toggle', '添加到项目'));
     h.waitForElem(button);
     button.click();
   }

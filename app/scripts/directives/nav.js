@@ -349,7 +349,7 @@ angular.module('openshiftConsole')
           projectPicker.empty();
           projectPicker.append(projectPickerOptions);
           projectPicker.append($('<option data-divider="true"></option>'));
-          projectPicker.append($('<option value="">View All Projects</option>'));
+          projectPicker.append($('<option value="">查看所有项目</option>'));
           projectPicker.selectpicker('refresh');
         };
 

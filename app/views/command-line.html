@@ -4,17 +4,17 @@
       <div class="row">
         <div class="col-md-12">
           <div class="command-line">
-            <h1 id="cli">Command Line Tools</h1>
+            <h1 id="cli">命令行工具</h1>
             <p>
-              With the OpenShift command line interface (CLI), you can create applications and manage OpenShift projects from a terminal.
+              使用OpenShift命令行接口 (CLI), 您可以从终端创建应用程序并管理OpenShift项目。
               <span ng-if="cliDownloadURLPresent">
-                You can download the <code>oc</code> client tool using the links below. For more information about downloading and installing it, please refer to the <a target="_blank" href="{{'get_started_cli' | helpLink}}">Get Started with the CLI</a> documentation.
+                你可以使用以下链接下载 <code>oc</code> 客户端工具。 有关下载和安装它的更多信息， 请参阅<a target="_blank" href="{{'get_started_cli' | helpLink}}">开始使用CLI</a> 文档。
               </span>
               <span ng-if="!cliDownloadURLPresent">
-                Refer to the <a target="_blank" href="{{'get_started_cli' | helpLink}}">Get Started with the CLI</a> documentation for instructions about downloading and installing the <code>oc</code> client tool.
+                参阅 <a target="_blank" href="{{'get_started_cli' | helpLink}}">开始使用CLI</a> 文档了解有关<code>oc</code>客户端下载和安装的说明。
               </span>
               <div ng-if="cliDownloadURLPresent">
-                <label class="cli-download-label">Download <code>oc</code>:</label>
+                <label class="cli-download-label">下载 <code>oc</code>:</label>
                 <div ng-repeat="(key, value) in cliDownloadURL">
                   <!--
                      Use target="_self" so that the Angular router doesn't rewrite the link when the download is served using an extension.
@@ -28,30 +28,30 @@
               </div>
             </p>
             <p>
-              After downloading and installing it, you can start by logging in. You are currently logged into this console as <strong>{{user.metadata.name}}</strong>. If you want to log into the CLI using the same session token:
+              下载并安装之后，您可以开始登录。您目前以 <strong>{{user.metadata.name}}</strong>身份登录到此控制台。如果您想使用相同的会话令牌登录CLI:
               <copy-to-clipboard ng-if="sessionToken" display-wide="true" clipboard-text="'oc login ' + loginBaseURL + ' --token=' + sessionToken" input-text="'oc login ' + loginBaseURL + ' --token=<hidden>'"></copy-to-clipboard>
               <copy-to-clipboard ng-if="!sessionToken" display-wide="true" clipboard-text="'oc login ' + loginBaseURL"></copy-to-clipboard>
             </p>
 
             <div ng-if="sessionToken" class="alert alert-warning">
               <span class="pficon pficon-warning-triangle-o" aria-hidden="true"></span>
-              <strong>A token is a form of a password.</strong>
-              Do not share your API token. To reveal your token, press the copy to clipboard button and then paste the clipboard contents.
+              <strong>令牌是密码的一种形式。</strong>
+              不要共享API令牌。若要显示令牌，请按“复制到剪贴板”按钮，然后粘贴剪贴板内容。
             </div>
 
-            <p>After you login to your account you will get a list of projects that you can switch between:
+            <p>当你登入你的帐户后，你会得到一个项目列表，你可以在以下项目之间切换:
               <copy-to-clipboard display-wide="true" clipboard-text="'oc project <project-name>'"></copy-to-clipboard>
             </p>
 
-            <p>If you do not have any existing projects, you can create one:
+            <p>如果您没有任何现有的项目，您可以创建一个:
               <copy-to-clipboard display-wide="true" clipboard-text="'oc new-project <project-name>'"></copy-to-clipboard>
             </p>
 
-            <p>To show a high level overview of the current project:
+            <p>展示当前项目的高水平概述:
               <copy-to-clipboard display-wide="true" clipboard-text="'oc status'"></copy-to-clipboard>
             </p>
 
-            <p>For other information about the command line tools, check the <a target="_blank" href="{{'cli' | helpLink}}">CLI Reference</a> and <a target="_blank" href="{{'basic_cli_operations' | helpLink}}">Basic CLI Operations</a>.</p>
+            <p>有关命令行工具的其他信息， 请查看 <a target="_blank" href="{{'cli' | helpLink}}">CLI参考</a> 和 <a target="_blank" href="{{'basic_cli_operations' | helpLink}}">基础CLI操作</a>.</p>
           </div>
         </div>
       </div>

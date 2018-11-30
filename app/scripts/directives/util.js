@@ -110,24 +110,24 @@ angular.module('openshiftConsole')
       scope: {
         clipboardText: "@"
       },
-      template: '<a href="" data-clipboard-text="">Copy Login Command</a>',
+      template: '<a href="" data-clipboard-text="">拷贝登录命令</a>',
       link: function($scope, element) {
         var clipboard = new Clipboard( element.get(0) );
         clipboard.on('success', function () {
           NotificationsService.addNotification({
             id: 'copy-login-command-success',
             type: 'success',
-            message: 'Login command copied.'
+            message: '登录命令已复制。'
           });
 
           var tokenWarningAlertID = 'openshift/token-warning';
           NotificationsService.addNotification({
             id: tokenWarningAlertID,
             type: 'warning',
-            message: 'A token is a form of a password. Do not share your API token.',
+            message: '令牌是密码的一种形式。不要共享API令牌。',
             links: [{
               href: "",
-              label: "Don't Show Me Again",
+              label: "别再给我看了",
               onClick: function() {
                 NotificationsService.permanentlyHideNotification(tokenWarningAlertID);
                 // Return true close the existing notification.
@@ -140,7 +140,7 @@ angular.module('openshiftConsole')
           NotificationsService.addNotification({
             id: 'copy-login-command-error',
             type: 'error',
-            message: 'Unable to copy the login command.'
+            message: '无法复制登录命令。'
           });
         });
         element.on('$destroy', function() {
@@ -153,7 +153,7 @@ angular.module('openshiftConsole')
     return {
       restrict: 'E',
       replace: true,
-      template: '<a href="">Set Home Page</a>',
+      template: '<a href="">设置首页</a>',
       link: function($scope, element) {
         element.bind('click', function() {
           $uibModal.open({

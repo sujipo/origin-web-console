@@ -27,7 +27,7 @@ angular.module('openshiftConsole')
           node: [
             '<li class="list-group-item">',
               '<a href="{{\'default\' | helpLink}}">',
-                '<span class="fa fa-book fa-fw" aria-hidden="true"></span> <span class="list-group-item-value">Documentation</span>',
+                '<span class="fa fa-book fa-fw" aria-hidden="true"></span> <span class="list-group-item-value">文档</span>',
               '</a>',
             '</li>'
           ].join('')
@@ -36,7 +36,7 @@ angular.module('openshiftConsole')
           node: [
             '<li class="list-group-item">',
               '<a href="command-line">',
-                '<span class="fa fa-terminal" aria-hidden="true"></span> <span class="list-group-item-value">Command Line Tools</span>',
+                '<span class="fa fa-terminal" aria-hidden="true"></span> <span class="list-group-item-value">命令行工具</span>',
               '</a>',
             '</li>'
           ].join('')
@@ -45,7 +45,7 @@ angular.module('openshiftConsole')
           node: [
             '<li class="list-group-item">',
               '<a href="about">',
-                '<span class="pficon pficon-info fa-fw" aria-hidden="true"></span> <span class="list-group-item-value">About</span>',
+                '<span class="pficon pficon-info fa-fw" aria-hidden="true"></span> <span class="list-group-item-value">关于</span>',
               '</a>',
             '</li>'
           ].join('')
@@ -56,7 +56,7 @@ angular.module('openshiftConsole')
               '<li class="list-group-item">',
               '<a href="logout">',
               '<span class="pficon pficon-user fa-fw" aria-hidden="true"></span>',
-              '<span class="list-group-item-value">Log out <span class="username"><%= userName %></span></span>',
+              '<span class="list-group-item-value">退出系统 <span class="username"><%= userName %></span></span>',
               '</a>',
               '</li>'
             ].join(''))({userName: (user ? (user.fullName || user.metadata.name) : "") })

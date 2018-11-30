@@ -100,18 +100,18 @@
       });
 
       ctrl.noProjectsEmptyState = {
-        title: 'No Available Projects',
-        info: 'There are no projects available from which to load templates.'
+        title: '没有可用的项目',
+        info: '没有可用于加载模板的项目。'
       };
 
       ctrl.projectEmptyState = {
-        title: 'No Project Selected',
-        info: 'Please select a project from the dropdown to load templates from that project.'
+        title: '没有选择项目',
+        info: '请从下拉菜单中选择一个项目，以便从该项目加载模板。'
       };
 
       ctrl.templatesEmptyState = {
-        title: 'No Templates',
-        info: 'The selected project has no templates available to import.'
+        title: '没有模板',
+        info: '所选项目没有可用于导入的模板。'
       };
 
       ctrl.filterConfig = {

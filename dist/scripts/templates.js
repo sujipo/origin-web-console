@@ -4691,7 +4691,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"middle-content\">\n" +
     "<div class=\"container gutter-top\">\n" +
     "<div class=\"col-md-12\">\n" +
-    "<h1>Create Project</h1>\n" +
+    "<h1>创建项目</h1>\n" +
     "<create-project redirect-action=\"onProjectCreated\"></create-project>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -4772,18 +4772,18 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-12\">\n" +
     "<uib-tabset class=\"mar-top-md\" ng-if=\"project\">\n" +
     "<uib-tab active=\"selectedTab.fromCatalog\">\n" +
-    "<uib-tab-heading>Browse Catalog</uib-tab-heading>\n" +
+    "<uib-tab-heading>应用商店</uib-tab-heading>\n" +
     "<catalog project-name=\"projectName\" project-image-streams=\"projectImageStreams\" openshift-image-streams=\"openshiftImageStreams\" project-templates=\"projectTemplates\" openshift-templates=\"openshiftTemplates\">\n" +
     "</catalog>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.deployImage\">\n" +
-    "<uib-tab-heading>Deploy Image</uib-tab-heading>\n" +
+    "<uib-tab-heading>部署镜像</uib-tab-heading>\n" +
     "<form>\n" +
     "<deploy-image ng-if=\"project\" project=\"project\"></deploy-image>\n" +
     "</form>\n" +
     "</uib-tab>\n" +
     "<uib-tab active=\"selectedTab.fromFile\">\n" +
-    "<uib-tab-heading>Import YAML / JSON</uib-tab-heading>\n" +
+    "<uib-tab-heading>导入 YAML / JSON</uib-tab-heading>\n" +
     "<from-file ng-if=\"project\" project=\"project\"></from-file>\n" +
     "</uib-tab>\n" +
     "</uib-tabset>\n" +
@@ -7385,19 +7385,19 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<catalog-search ng-if=\"canIAddToProject\" catalog-items=\"catalogItems\" base-project-url=\"project\" toggle-at-mobile=\"true\" search-toggle-callback=\"onSearchToggle\"></catalog-search>\n" +
     "\n" +
     "<div class=\"dropdown add-to-project\" ng-if=\"canIAddToProject\" uib-dropdown>\n" +
-    "<button class=\"dropdown-toggle btn btn-link\" ng-disabled=\"currentProject.status.phase != 'Active'\" title=\"Add to Project\" uib-dropdown-toggle>\n" +
-    "<i class=\"fa fa-plus visible-xs-inline-block\" aria-hidden=\"true\" title=\"Add to Project\"></i>\n" +
-    "<span class=\"hidden-xs\">Add to Project</span>\n" +
-    "<span class=\"hidden-xs caret\" aria-hidden=\"true\" title=\"Add to Project\"></span>\n" +
+    "<button class=\"dropdown-toggle btn btn-link\" ng-disabled=\"currentProject.status.phase != 'Active'\" title=\"添加到项目\" uib-dropdown-toggle>\n" +
+    "<i class=\"fa fa-plus visible-xs-inline-block\" aria-hidden=\"true\" title=\"添加到项目\"></i>\n" +
+    "<span class=\"hidden-xs\">添加到项目</span>\n" +
+    "<span class=\"hidden-xs caret\" aria-hidden=\"true\" title=\"添加到项目\"></span>\n" +
     "</button>\n" +
     "<ul role=\"menu\" uib-dropdown-menu class=\"dropdown-menu dropdown-menu-right\">\n" +
-    "<li ng-if-start=\"!catalogLandingPageEnabled\" role=\"menuitem\"><a ng-href=\"project/{{currentProjectName}}/create?tab=fromCatalog\">Browse Catalog</a></li>\n" +
-    "<li role=\"menuitem\"><a ng-href=\"project/{{currentProjectName}}/create?tab=deployImage\">Deploy Image</a></li>\n" +
-    "<li ng-if-end role=\"menuitem\"><a ng-href=\"project/{{currentProjectName}}/create?tab=fromFile\">Import YAML / JSON</a></li>\n" +
-    "<li ng-if-start=\"catalogLandingPageEnabled\" role=\"menuitem\"><a href=\"{{currentProjectName | catalogURL}}\">Browse Catalog</a></li>\n" +
-    "<li role=\"menuitem\"><a href=\"\" ng-click=\"showOrderingPanel('deployImage')\">Deploy Image</a></li>\n" +
-    "<li ng-if-end role=\"menuitem\"><a href=\"\" ng-click=\"showOrderingPanel('fromFile')\">Import YAML / JSON</a></li>\n" +
-    "<li role=\"menuitem\"><a href=\"\" ng-click=\"showOrderingPanel('fromProject')\">Select from Project</a></li>\n" +
+    "<li ng-if-start=\"!catalogLandingPageEnabled\" role=\"menuitem\"><a ng-href=\"project/{{currentProjectName}}/create?tab=fromCatalog\">应用商店</a></li>\n" +
+    "<li role=\"menuitem\"><a ng-href=\"project/{{currentProjectName}}/create?tab=deployImage\">部署镜像</a></li>\n" +
+    "<li ng-if-end role=\"menuitem\"><a ng-href=\"project/{{currentProjectName}}/create?tab=fromFile\">导入 YAML / JSON</a></li>\n" +
+    "<li ng-if-start=\"catalogLandingPageEnabled\" role=\"menuitem\"><a href=\"{{currentProjectName | catalogURL}}\">应用商店</a></li>\n" +
+    "<li role=\"menuitem\"><a href=\"\" ng-click=\"showOrderingPanel('deployImage')\">部署镜像</a></li>\n" +
+    "<li ng-if-end role=\"menuitem\"><a href=\"\" ng-click=\"showOrderingPanel('fromFile')\">导入  YAML / JSON</a></li>\n" +
+    "<li role=\"menuitem\"><a href=\"\" ng-click=\"showOrderingPanel('fromProject')\">从项目选择</a></li>\n" +
     "</ul>\n" +
     "</div>\n" +
     "</div> \n" +
@@ -9056,7 +9056,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
 
   $templateCache.put('views/directives/process-template-dialog.html',
     "<div class=\"order-service\">\n" +
-    "<pf-wizard wizard-title=\"{{!$ctrl.useProjectTemplate && ($ctrl.template | displayName) || 'Select from Project'}}\" hide-sidebar=\"true\" step-class=\"order-service-wizard-step\" wizard-ready=\"$ctrl.wizardReady\" next-title=\"$ctrl.nextTitle\" next-callback=\"$ctrl.next\" on-finish=\"$ctrl.close()\" on-cancel=\"$ctrl.close()\" wizard-done=\"$ctrl.wizardDone\" current-step=\"$ctrl.currentStep\">\n" +
+    "<pf-wizard wizard-title=\"{{!$ctrl.useProjectTemplate && ($ctrl.template | displayName) || '从项目选择'}}\" hide-sidebar=\"true\" step-class=\"order-service-wizard-step\" wizard-ready=\"$ctrl.wizardReady\" next-title=\"$ctrl.nextTitle\" next-callback=\"$ctrl.next\" on-finish=\"$ctrl.close()\" on-cancel=\"$ctrl.close()\" wizard-done=\"$ctrl.wizardDone\" current-step=\"$ctrl.currentStep\">\n" +
     "<pf-wizard-step ng-repeat=\"step in $ctrl.steps track by step.id\" step-title=\"{{step.label}}\" wz-disabled=\"{{step.hidden}}\" allow-click-nav=\"step.allowClickNav\" next-enabled=\"step.valid\" prev-enabled=\"step.prevEnabled\" on-show=\"step.onShow\" step-id=\"{{step.id}}\" step-priority=\"{{$index}}\">\n" +
     "<div class=\"wizard-pf-main-inner-shadow-covers\">\n" +
     "<div ng-show=\"step.selected\" ng-include=\"step.view\" class=\"wizard-pf-main-form-contents\"></div>\n" +
@@ -9127,7 +9127,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"order-service-config\">\n" +
     "<div class=\"config-top\">\n" +
     "<div ng-if=\"$ctrl.numTemplateProjects\" class=\"select-project-for-template\">\n" +
-    "<h2>Select from Project</h2>\n" +
+    "<h2>从项目选择</h2>\n" +
     "<label ng-if=\"$ctrl.numTemplateProjects === 1\">{{$ctrl.templateProject | displayName}}</label>\n" +
     "<ui-select ng-if=\"$ctrl.numTemplateProjects > 1\" name=\"selectProject\" ng-model=\"$ctrl.templateProject\" ng-change=\"$ctrl.templateProjectChange()\" search-enabled=\"$ctrl.searchEnabled\">\n" +
     "<ui-select-match placeholder=\"Select a Project\">\n" +
@@ -9233,17 +9233,17 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "              !$ctrl.apiObject.metadata.deletionTimestamp\">\n" +
     "<a href=\"\" ng-click=\"$ctrl.createBinding()\" role=\"button\">\n" +
     "<span class=\"pficon pficon-add-circle-o\" aria-hidden=\"true\"></span>\n" +
-    "Create Binding\n" +
+    "创建绑定\n" +
     "</a>\n" +
     "</div>\n" +
     "<div ng-if=\"!$ctrl.apiObject.metadata.deletionTimestamp && !($ctrl.bindableServiceInstances | size)\">\n" +
-    "<span>You must have a bindable service in your namespace in order to create bindings.</span>\n" +
+    "<span>要创建绑定，名称空间中必须有一个可绑定的服务。</span>\n" +
     "<div>\n" +
-    "<a ng-href=\"{{project | catalogURL}}\">Browse Catalog</a>\n" +
+    "<a ng-href=\"{{project | catalogURL}}\">应用商店</a>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"!($ctrl.bindings | size) && ($ctrl.bindableServiceInstances | size) && !($ctrl.serviceBindingsVersion | canI : 'create')\">\n" +
-    "<span>There are no service bindings.</span>\n" +
+    "<span>没有服务绑定。</span>\n" +
     "</div>\n" +
     "</div>\n" +
     "<overlay-panel show-panel=\"$ctrl.overlayPanelVisible\" handle-close=\"$ctrl.closeOverlayPanel\">\n" +
@@ -11922,29 +11922,29 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "\n" +
     "<div class=\"empty-state-message text-center\">\n" +
     "<div ng-if=\"project.metadata.name | canIAddToProject\">\n" +
-    "<h2>Get started with your project.</h2>\n" +
+    "<h2>开始您的项目。</h2>\n" +
     "<p>\n" +
-    "Add content to your project from the catalog of web frameworks, databases, and other components. You may also deploy an existing image, create or replace resources from their YAML or JSON definitions, or select an item shared from another project.\n" +
+    "从web框架、数据库和其他组件的应用向项目添加内容。您还可以部署现有映像，从它们的YAML或JSON定义创建或替换资源，或者从另一个项目中选择共享的项。\n" +
     "</p>\n" +
     "<div class=\"empty-state-message-main-action\">\n" +
     "<button class=\"btn btn-primary btn-lg\" ng-click=\"browseCatalog()\">\n" +
-    "Browse Catalog\n" +
+    "应用商店\n" +
     "</button>\n" +
     "</div>\n" +
     "<div class=\"empty-state-message-secondary-action\">\n" +
     "<button class=\"btn btn-default btn-sm\" ng-click=\"showOrderingPanel('deployImage')\">\n" +
-    "Deploy Image\n" +
+    "部署镜像\n" +
     "</button>\n" +
     "<button class=\"btn btn-default btn-sm\" ng-click=\"showOrderingPanel('fromFile')\">\n" +
-    "Import YAML / JSON\n" +
+    "导入 YAML / JSON\n" +
     "</button>\n" +
     "<button class=\"btn btn-default btn-sm\" ng-click=\"showOrderingPanel('fromProject')\">\n" +
-    "Select from Project\n" +
+    "从项目选择\n" +
     "</button>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"!(project.metadata.name | canIAddToProject)\">\n" +
-    "<h2>Welcome to project {{projectName}}.</h2>\n" +
+    "<h2>欢迎来到项目 {{projectName}}.</h2>\n" +
     "<ng-include src=\"'views/_request-access.html'\"></ng-include>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -12900,9 +12900,9 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</a>\n" +
     "</p>\n" +
     "<p ng-if=\"($ctrl.refApiObject.kind !== 'ServiceInstance')  && !($ctrl.bindableServiceInstances | size)\">\n" +
-    "<span>You must have a bindable service in your namespace in order to create bindings.</span>\n" +
+    "<span>要创建绑定，名称空间中必须有一个可绑定的服务。</span>\n" +
     "<div>\n" +
-    "<a href=\"catalog\">Browse Catalog</a>\n" +
+    "<a href=\"catalog\">应用商店</a>\n" +
     "</div>\n" +
     "</p>\n" +
     "</div>"
@@ -13360,7 +13360,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
 
   $templateCache.put('views/projects.html',
     "<div class=\"middle surface-shaded\">\n" +
-    "<origin-modal-popup class=\"projects-list-create-popup\" shown=\"newProjectPanelShown\" modal-title=\"Create Project\" on-close=\"closeNewProjectPanel\" reference-element=\"popupElement\">\n" +
+    "<origin-modal-popup class=\"projects-list-create-popup\" shown=\"newProjectPanelShown\" modal-title=\"创建项目\" on-close=\"closeNewProjectPanel\" reference-element=\"popupElement\">\n" +
     "<create-project is-dialog=\"true\" redirect-action=\"onNewProject\" on-cancel=\"closeNewProjectPanel\"></create-project>\n" +
     "</origin-modal-popup>\n" +
     "<div class=\"middle-content\">\n" +
@@ -13372,17 +13372,17 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-if=\"!showGetStarted\">\n" +
     "<div ng-if=\"loading\" class=\"empty-state-message\">\n" +
-    "<h2 class=\"text-center\">Loading...</h2>\n" +
+    "<h2 class=\"text-center\">加载中...</h2>\n" +
     "</div>\n" +
     "<div ng-if=\"!loading\">\n" +
     "<div class=\"projects-header\">\n" +
     "<div class=\"projects-bar\">\n" +
-    "<h1>My Projects</h1>\n" +
+    "<h1>我的项目</h1>\n" +
     "<div class=\"projects-options\">\n" +
     "<div class=\"projects-add\" ng-if=\"canCreate\">\n" +
     "<button ng-click=\"createProject($event)\" class=\"btn btn-primary\">\n" +
     "<span class=\"fa fa-plus\" aria-hidden=\"true\"></span>\n" +
-    "<span class=\"icon-button-text\">Create Project</span>\n" +
+    "<span class=\"icon-button-text\">创建项目</span>\n" +
     "</button>\n" +
     "</div>\n" +
     "<div class=\"projects-search\">\n" +
@@ -13501,7 +13501,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"canCreate\">\n" +
     "<button ng-click=\"createProject($event)\" class=\"btn btn-lg btn-primary\">\n" +
     "<span class=\"fa fa-plus\" aria-hidden=\"true\"></span>\n" +
-    "<span class=\"icon-button-text\">Create Project</span>\n" +
+    "<span class=\"icon-button-text\">创建项目</span>\n" +
     "</button>\n" +
     "</div>\n" +
     "<p>To learn more, visit the OpenShift <a target=\"_blank\" ng-href=\"{{'' | helpLink}}\">documentation</a>.</p>\n" +

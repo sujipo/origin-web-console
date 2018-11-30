@@ -20,7 +20,7 @@ angular.module('openshiftConsole')
           node: '<li><set-home-page></set-home-page></li>'
         });
 
-        var msg = 'Log Out';
+        var msg = '退出系统';
         if ($rootScope.user.fullName && $rootScope.user.fullName !== $rootScope.user.metadata.name) {
           msg += ' (' + $rootScope.user.metadata.name + ')';
         }
