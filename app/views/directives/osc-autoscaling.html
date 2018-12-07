@@ -1,7 +1,7 @@
 <ng-form name="form">
   <div class="autoscaling-form">
   <div ng-show="showNameInput" class="form-group">
-    <label for="hpa-name" class="required">Autoscaler Name</label>
+    <label for="hpa-name" class="required">控制器名称</label>
     <span ng-class="{ 'has-error': form.name.$touched && form.name.$invalid }">
       <input
           id="hpa-name"
@@ -21,25 +21,25 @@
     </span>
     <div>
       <span id="hpa-name-help" class="help-block">
-        A unique name for the horizontal pod autoscaler within the project.
+        在项目的同一类pod中，名称必须唯一。
       </span>
     </div>
     <div class="has-error" ng-show="form.name.$invalid && form.name.$touched">
       <span ng-if="form.name.$error.required" class="help-block">
-        Name is required.
+        名称必需填写。
       </span>
       <span ng-show="form.name.$error.pattern" class="help-block">
         {{nameValidation.description}}
       </span>
       <span ng-show="form.name.$error.maxlength" class="help-block">
         <span class="help-block">
-          Can't be longer than {{nameValidation.maxlength}} characters.
+          不能超过 {{nameValidation.maxlength}} 字符。
         </span>
       </span>
     </div>
   </div>
   <div class="form-group">
-    <label>Min Pods</label>
+    <label>最小Pod数</label>
     <span ng-class="{ 'has-error': form.minReplicas.$dirty && form.minReplicas.$invalid }">
       <input type="number"
              class="form-control"
@@ -51,23 +51,23 @@
              aria-describedby="min-replicas-help">
     </span>
     <div id="min-replicas-help" class="help-block">
-      The lower limit for the number of pods that can be set by the autoscaler.
-      If not specified, defaults to 1.
+      可由自动定标器设置的Pod数量的下限。
+      如果没有指定，默认值为1。
     </div>
     <div class="has-error" ng-show="form.minReplicas.$dirty && form.minReplicas.$invalid">
       <span ng-if="form.minReplicas.$error.number" class="help-block">
-        Min pods must be a number.
+        最小Pod数必须是一个数字。
       </span>
       <span ng-if="form.minReplicas.$error.pattern" class="help-block">
-        Min pods must be a whole number.
+        最小Pod数必须是一个整数。
       </span>
       <span ng-if="form.minReplicas.$error.min" class="help-block">
-        Min pods must be greater than or equal to 1.
+        最小Pod数必须大于等于1。
       </span>
     </div>
   </div>
   <div class="form-group">
-    <label class="required">Max Pods</label>
+    <label class="required">最大Pod数</label>
     <span ng-class="{ 'has-error': (form.minReplicas.$dirty || form.maxReplicas.$dirty) && form.maxReplicas.$invalid }">
       <input type="number"
              class="form-control"
@@ -80,28 +80,28 @@
              aria-describedby="max-replicas-help">
     </span>
     <div id="max-replicas-help" class="help-block">
-      The upper limit for the number of pods that can be set by the autoscaler.
+      可自动伸缩控制的Pod数量的上限。
     </div>
     <div class="has-error" ng-show="(form.minReplicas.$dirty || form.maxReplicas.$dirty) && form.maxReplicas.$invalid">
       <span ng-if="form.maxReplicas.$error.number" class="help-block">
-        Max pods must be a number.
+        最大Pod数必须是一个数字。
       </span>
       <span ng-if="form.minReplicas.$error.pattern" class="help-block">
-        Min pods must be a whole number.
+        最小Pod数必须是一个整数。
       </span>
       <span class="help-block" ng-if="form.maxReplicas.$error.min">
-        Max pods must be greater than or equal to
+        最大Pod数必须大于等于最小Pod数：
         <span ng-if="autoscaling.minReplicas">min pods, which is</span>
-        {{autoscaling.minReplicas || 1}}.
+        {{autoscaling.minReplicas || 1}}。
       </span>
       <span class="help-block" ng-if="form.maxReplicas.$error.required">
-        Max pods is a required field.
+        最大Pod数是一个必填项。
       </span>
     </div>
   </div>
   <div ng-show="showRequestInput" class="form-group">
     <label>
-      CPU Request Target
+      CPU请求目标
     </label>
     <div class="input-group" ng-class="{ 'has-error': form.targetCPU.$invalid && form.targetCPU.$touched }">
       <input type="number"
@@ -115,23 +115,22 @@
       <span class="input-group-addon">%</span>
     </div>
     <div id="target-cpu-help" class="help-block">
-      The percentage of the CPU request that each pod should ideally be using.
-      Pods will be added or removed periodically when CPU usage exceeds or
-      drops below this target value.
+      每个pod理想状态下应该使用的CPU请求百分比。
+      当CPU使用率超过或低于这个目标值时，将定期添加或删除pod。
     </div>
     <div class="learn-more-block">
-      <a ng-href="{{'compute_resources' | helpLink}}" target="_blank">Learn More&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+      <a ng-href="{{'compute_resources' | helpLink}}" target="_blank">了解更多&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
     </div>
     <!-- Add extra top margin for the learn more block -->
     <div class="has-error mar-top-md" ng-show="form.targetCPU.$touched && form.targetCPU.$invalid">
       <span ng-if="form.targetCPU.$error.number" class="help-block">
-        Target CPU percentage must be a number.
+        目标CPU百分比必须是一个数字。
       </span>
       <span ng-if="form.targetCPU.$error.pattern" class="help-block">
-        Target CPU percentage must be a whole number.
+        目标CPU百分比必须是一个整数。
       </span>
       <span ng-if="form.targetCPU.$error.min" class="help-block">
-        Target CPU percentage must be greater than 1.
+        目标CPU百分比必须大于1。
       </span>
     </div>
   </div>

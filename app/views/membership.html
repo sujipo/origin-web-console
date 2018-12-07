@@ -8,13 +8,13 @@
             href=""
             ng-if="canUpdateRolebindings"
             ng-click="toggleEditMode()">
-            <span ng-if="!(mode.edit)">Edit Membership</span>
-            <span ng-if="mode.edit">Done Editing</span>
+            <span ng-if="!(mode.edit)">添加访问对象</span>
+            <span ng-if="mode.edit">确认编辑</span>
           </a>
-           Membership
+            访问对象
            <span class="page-header-link">
              <a ng-href="{{'roles' | helpLink}}" target="_blank">
-               Learn More <i class="fa fa-external-link" aria-hidden="true"></i>
+               了解更多 <i class="fa fa-external-link" aria-hidden="true"></i>
              </a>
            </span>
         </h1>
@@ -25,7 +25,7 @@
     <div class="container-fluid">
       <alerts alerts="alerts"></alerts>
       <div  ng-if="!(roleBindingsVersion | canI : 'list')">
-        <p>You do not have permission to view roles in this project.</p>
+        <p>您没有权限查看此项目中的角色。</p>
       </div>
       <uib-tabset
         ng-if="roleBindingsVersion | canI : 'list'">
@@ -44,7 +44,7 @@
                 target="_blank"
                 ng-href="{{subjectKind.helpLinkKey | helpLink}}"
                 class="learn-more-inline">
-                Learn More <i class="fa fa-external-link" aria-hidden="true"></i>
+                了解更多 <i class="fa fa-external-link" aria-hidden="true"></i>
               </a>
             </p>
           </div>
@@ -55,18 +55,18 @@
             <div
               class="col-heading">
               <div class="col-name">
-                <h3>Name</h3>
+                <h3>名称</h3>
               </div>
               <div class="action-set">
                 <div class="col-roles">
-                  <h3>Roles</h3>
+                  <h3>角色</h3>
                 </div>
               </div>
             </div>
 
             <div ng-if="(subjectKind.subjects | hashSize) === 0" class="membership-empty">
               <p>
-                <em>There are no {{ subjectKind.name | humanizeKind }}s with access to this project.</em>
+                <em>项目没有 {{ subjectKind.name | humanizeKind }}</em>
               </p>
             </div>
             <div
@@ -136,7 +136,7 @@
                       ng-disabled="disableAddForm || (!subject.newRole)"
                       ng-click="addRoleTo(subject.name, subjectKind.name, subject.newRole, subject.namespace)"
                       class="btn btn-default add-role-to">
-                      Add
+                      添加
                     </button>
                   </div>
                 </div>
@@ -155,7 +155,7 @@
                   <label
                     ng-attr-for="newBindingName"
                     class="sr-only">
-                    Name
+                    名称
                   </label>
 
                   <!-- name entry field for everything but service accounts -->
@@ -250,7 +250,7 @@
                         ng-disabled="disableAddForm || (!newBinding.name) || (!newBinding.newRole)"
                         ng-click="addRoleTo(newBinding.name, newBinding.kind, newBinding.newRole, newBinding.namespace)"
                         class="btn btn-default add-role-to">
-                        Add
+                        添加
                       </button>
                     </div>
                   </div>
@@ -268,7 +268,7 @@
                     class="toggle-hidden"
                     ng-click="toggleRoles($event)"
                     ng-checked="toggle.roles">
-                  Show hidden roles</label>&nbsp;<a href=""
+                  显示隐藏角色</label>&nbsp;<a href=""
                                                     class="action-inline"
                                                     data-toggle="popover"
                                                     data-trigger="hover focus"

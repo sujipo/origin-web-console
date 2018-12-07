@@ -889,7 +889,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
     "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"addVolume()\" ng-disabled=\"forms.addConfigVolumeForm.$invalid || disableInputs\">Add</button>\n" +
-    "<a class=\"btn btn-default btn-lg\" role=\"button\" href=\"\" ng-click=\"cancel()\">Cancel</a>\n" +
+    "<a class=\"btn btn-default btn-lg\" role=\"button\" href=\"\" ng-click=\"cancel()\">取消</a>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</form>\n" +
@@ -1043,7 +1043,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</pause-rollouts-checkbox>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
     "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"attachPVC()\" ng-disabled=\"attachPVCForm.$invalid || disableInputs || !attachPVC\">Add</button>\n" +
-    "<a class=\"btn btn-default btn-lg\" role=\"button\" ng-click=\"cancel()\">Cancel</a>\n" +
+    "<a class=\"btn btn-default btn-lg\" role=\"button\" ng-click=\"cancel()\">取消</a>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</form>\n" +
@@ -1356,7 +1356,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<button type=\"button\" ng-click=\"rollbackToDeployment(replicaSet, changeScaleSettings, changeStrategy, changeTriggers)\" ng-disabled=\"(deploymentConfigDeploymentsInProgress[deploymentConfigName] | hashSize) > 0\" class=\"btn btn-default btn-xs\">Roll Back</button>\n" +
     "</div>\n" +
     "\n" +
-    "<button ng-show=\"(replicaSet | deploymentIsInProgress) && !replicaSet.metadata.deletionTimestamp && ('replicationcontrollers' | canI : 'update')\" type=\"button\" ng-click=\"cancelRunningDeployment(replicaSet)\" class=\"btn btn-default btn-xs\">Cancel</button>\n" +
+    "<button ng-show=\"(replicaSet | deploymentIsInProgress) && !replicaSet.metadata.deletionTimestamp && ('replicationcontrollers' | canI : 'update')\" type=\"button\" ng-click=\"cancelRunningDeployment(replicaSet)\" class=\"btn btn-default btn-xs\">取消</button>\n" +
     "</span>\n" +
     "</dd>\n" +
     "<dt ng-if-start=\"replicaSet | hasDeploymentConfig\">Deployment Config:</dt>\n" +
@@ -1884,7 +1884,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"col-lg-6\">\n" +
-    "<h3>Triggers <span class=\"pficon pficon-warning-triangle-o\" ng-if=\"!(secretsVersion | canI : 'list')\" aria-hidden=\"true\" data-toggle=\"tooltip\" data-original-title=\"You do not have access to secrets in this project. Webhook URLs require access to secret information to be used.\"></span><a href=\"{{'build-triggers' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a></h3>\n" +
+    "<h3>Triggers <span class=\"pficon pficon-warning-triangle-o\" ng-if=\"!(secretsVersion | canI : 'list')\" aria-hidden=\"true\" data-toggle=\"tooltip\" data-original-title=\"You do not have access to secrets in this project. Webhook URLs require access to secret information to be used.\"></span><a href=\"{{'build-triggers' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a></h3>\n" +
     "<dl class=\"dl-horizontal left build-triggers\">\n" +
     "<div ng-repeat=\"trigger in buildConfig.spec.triggers | orderBy : 'type' : false : compareTriggers\">\n" +
     "<div ng-switch=\"trigger.type\">\n" +
@@ -2176,7 +2176,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Config Maps\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'config-maps' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -2457,7 +2457,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<dl class=\"dl-horizontal left\">\n" +
     "<dt>Manual (CLI):\n" +
     "<a href=\"{{'deployment-operations' | helpLink}}\" target=\"_blank\">\n" +
-    "<span class=\"learn-more-block\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span>\n" +
+    "<span class=\"learn-more-block\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span>\n" +
     "</a>\n" +
     "</dt>\n" +
     "<dd>\n" +
@@ -2509,7 +2509,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<h3>\n" +
     "Hooks\n" +
     "<span class=\"learn-more-inline\">\n" +
-    "<a ng-href=\"{{'lifecycle_hooks' | helpLink}}\" target=\"_blank\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
+    "<a ng-href=\"{{'lifecycle_hooks' | helpLink}}\" target=\"_blank\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
     "</span>\n" +
     "</h3>\n" +
     "<div ng-if=\"strategyParams.pre\">\n" +
@@ -3446,7 +3446,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Routes\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'routes' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -3673,7 +3673,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<a ng-href=\"{{serviceInstance | editYamlURL}}\" role=\"button\">Edit YAML</a>\n" +
     "</li>\n" +
     "<li ng-if=\"serviceInstancesVersion | canI : 'delete'\">\n" +
-    "<a href=\"\" ng-click=\"deprovision()\" ng-attr-aria-disabled=\"{{serviceInstance.metadata.deletionTimestamp ? 'true' : undefined}}\" ng-class=\"{ 'disabled-link': serviceInstance.metadata.deletionTimestamp }\" role=\"button\">Delete</a>\n" +
+    "<a href=\"\" ng-click=\"deprovision()\" ng-attr-aria-disabled=\"{{serviceInstance.metadata.deletionTimestamp ? 'true' : undefined}}\" ng-class=\"{ 'disabled-link': serviceInstance.metadata.deletionTimestamp }\" role=\"button\">删除</a>\n" +
     "</li>\n" +
     "</ul>\n" +
     "</div>\n" +
@@ -4067,7 +4067,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Builds\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'builds' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -4548,7 +4548,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<edit-config-map-or-secret model=\"configMap\" type=\"config-map\" show-name-input=\"true\"></edit-config-map-or-secret>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
     "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"createConfigMap()\" ng-disabled=\"createConfigMapForm.$invalid || disableInputs\" value=\"\">Create</button>\n" +
-    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\" role=\"button\">Cancel</a>\n" +
+    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\" role=\"button\">取消</a>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</form>\n" +
@@ -4600,7 +4600,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"button-group mar-bottom-lg mar-top-lg\">\n" +
     "<button type=\"submit\" class=\"btn btn-primary\" ng-click=\"createWithProject()\" ng-disabled=\"!(selected.project) || !canIAddToProject\" value=\"\">Next</button>\n" +
-    "<a class=\"btn btn-default\" href=\"#\" back>Cancel</a>\n" +
+    "<a class=\"btn btn-default\" href=\"#\" back>取消</a>\n" +
     "</div>\n" +
     "</div>\n" +
     "</form>\n" +
@@ -4630,7 +4630,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"button-group mar-bottom-lg mar-top-lg\">\n" +
     "<button type=\"submit\" class=\"btn btn-primary\" ng-click=\"createWithProject()\" ng-disabled=\"!(selected.project) || !canIAddToProject\" value=\"\">Next</button>\n" +
-    "<a class=\"btn btn-default\" href=\"#\" back>Cancel</a>\n" +
+    "<a class=\"btn btn-default\" href=\"#\" back>取消</a>\n" +
     "</div>\n" +
     "</div>\n" +
     "</form>\n" +
@@ -4666,14 +4666,14 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<h1>Create Storage</h1>\n" +
     "<div class=\"help-block\">\n" +
     "Create a request for an administrator-defined storage asset by specifying size and permissions for a best fit.\n" +
-    "<a href=\"{{'persistent_volumes' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "<a href=\"{{'persistent_volumes' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</div>\n" +
     "<form name=\"createPersistentVolumeClaimForm\" class=\"mar-top-lg\">\n" +
     "<fieldset ng-disabled=\"disableInputs\">\n" +
     "<osc-persistent-volume-claim model=\"claim\" project-name=\"projectName\"></osc-persistent-volume-claim>\n" +
     "<div class=\"button-group gutter-bottom\">\n" +
     "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"createPersistentVolumeClaim()\" ng-disabled=\"createPersistentVolumeClaimForm.$invalid || disableInputs\" value=\"\">Create</button>\n" +
-    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\" role=\"button\">Cancel</a>\n" +
+    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\" role=\"button\">取消</a>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</form>\n" +
@@ -4722,7 +4722,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</label-editor>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
     "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"createRoute()\" ng-disabled=\"createRouteForm.$invalid || disableInputs || !createRoute\" value=\"\">Create</button>\n" +
-    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\">Cancel</a>\n" +
+    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\">取消</a>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</div>\n" +
@@ -5015,7 +5015,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Scale replicas manually or automatically based on CPU usage.\n" +
     "</div>\n" +
     "<div class=\"learn-more-block\">\n" +
-    "<a href=\"{{'pod_autoscaling' | helpLink}}\" target=\"_blank\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
+    "<a href=\"{{'pod_autoscaling' | helpLink}}\" target=\"_blank\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
     "</div>\n" +
     "<div class=\"has-warning\" ng-if=\"metricsWarning && scaling.autoscale\">\n" +
     "<span class=\"help-block\">\n" +
@@ -5065,7 +5065,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"buttons gutter-bottom\" ng-class=\"{'gutter-top': !alerts.length}\">\n" +
     "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-disabled=\"form.$invalid || nameTaken || cpuProblems.length || memoryProblems.length || disableInputs\">Create</button>\n" +
-    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\" role=\"button\">Cancel</a>\n" +
+    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\" role=\"button\">取消</a>\n" +
     "</div>\n" +
     "</form>\n" +
     "</fieldset>\n" +
@@ -5100,7 +5100,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Deployments\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'deployments' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -6137,7 +6137,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"help-block\" id=\"secret-name-help\">\n" +
     "Value of the secret will be supplied when invoking the webhook.\n" +
-    "<a ng-href=\"{{'webhooks' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "<a ng-href=\"{{'webhooks' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"secretForm.webhookSecretKey.$error.pattern && secretForm.webhookSecretKey.$touched\">\n" +
     "<span class=\"help-block\">\n" +
@@ -6318,7 +6318,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<label>\n" +
     "<input type=\"checkbox\" ng-model=\"newSecret.linkSecret\">\n" +
     "Link secret to a service account.\n" +
-    "<a href=\"{{'managing_secrets' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "<a href=\"{{'managing_secrets' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</label>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -6342,7 +6342,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"buttons gutter-top-bottom\">\n" +
     "<button class=\"btn btn-primary\" type=\"button\" ng-disabled=\"secretForm.$invalid || secretForm.$pristine || invalidConfigFormat\" ng-click=\"create()\">Create</button>\n" +
-    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">取消</button>\n" +
     "</div>\n" +
     "</ng-form>"
   );
@@ -6440,7 +6440,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "To deploy an image from a private repository, you must <span ng-if=\"!input.selectedProject.metadata.uid\">create an image pull secret</span>\n" +
     "<a href=\"\" ng-click=\"openCreateWebhookSecretModal()\" ng-if=\"input.selectedProject.metadata.uid\">create an image pull secret</a>\n" +
     "with your image registry credentials.\n" +
-    "<a ng-href=\"{{'pull_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a></div>\n" +
+    "<a ng-href=\"{{'pull_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a></div>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</fieldset>\n" +
@@ -6525,7 +6525,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<alerts alerts=\"alerts\"></alerts>\n" +
     "<div ng-if=\"!isDialog\" class=\"button-group gutter-bottom\" ng-class=\"{'gutter-top': !alerts.length}\">\n" +
     "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"create()\" value=\"\" ng-disabled=\"forms.deployImage.$invalid || nameTaken || disableInputs\">Create</button>\n" +
-    "<a class=\"btn btn-default btn-lg\" href=\"#\" back>Cancel</a>\n" +
+    "<a class=\"btn btn-default btn-lg\" href=\"#\" back>取消</a>\n" +
     "</div>\n" +
     "</ng-form>\n" +
     "</div>\n" +
@@ -6947,7 +6947,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div id=\"action-help\" class=\"help-block\">\n" +
     "<span ng-if=\"action.type === 'execNewPod'\">Runs a command in a new pod using the container from the deployment template. You can add additional environment variables and volumes.</span>\n" +
     "<span ng-if=\"action.type === 'tagImages'\">Tags the current image as an image stream tag if the deployment succeeds.</span>\n" +
-    "<a href=\"{{'new_pod_exec' | helpLink}}\" aria-hidden=\"true\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\"></i></span></a>\n" +
+    "<a href=\"{{'new_pod_exec' | helpLink}}\" aria-hidden=\"true\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\"></i></span></a>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"action.type === 'execNewPod'\">\n" +
@@ -8100,7 +8100,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "The percentage of the CPU request that each pod should ideally be using. Pods will be added or removed periodically when CPU usage exceeds or drops below this target value.\n" +
     "</div>\n" +
     "<div class=\"learn-more-block\">\n" +
-    "<a ng-href=\"{{'compute_resources' | helpLink}}\" target=\"_blank\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
+    "<a ng-href=\"{{'compute_resources' | helpLink}}\" target=\"_blank\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"has-error mar-top-md\" ng-show=\"form.targetCPU.$touched && form.targetCPU.$invalid\">\n" +
@@ -8231,7 +8231,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Storage classes are set by the administrator to define types of storage the users can select.\n" +
     "<span ng-if=\"defaultStorageClass\"> If another storage class is not chosen, the default storage class <var>{{defaultStorageClass.metadata.name}}</var> will be used.</span>\n" +
     "<div class=\"learn-more-block\">\n" +
-    "<a ng-href=\"{{'storage_classes' | helpLink}}\" target=\"_blank\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"> </i></a>\n" +
+    "<a ng-href=\"{{'storage_classes' | helpLink}}\" target=\"_blank\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"> </i></a>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -8366,7 +8366,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Use label selectors to request storage\n" +
     "</label>\n" +
     "<div class=\"help-block learn-more-block mar-bottom-xl\">\n" +
-    "<a ng-href=\"{{'selector_label' | helpLink}}\" target=\"_blank\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
+    "<a ng-href=\"{{'selector_label' | helpLink}}\" target=\"_blank\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-show=\"useLabels\" class=\"form-group osc-form\">\n" +
@@ -8620,7 +8620,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</ui-select-choices>\n" +
     "</ui-select>\n" +
     "<div class=\"learn-more-block help-block\">\n" +
-    "<a href=\"{{'route-types' | helpLink}}\" target=\"_blank\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
+    "<a href=\"{{'route-types' | helpLink}}\" target=\"_blank\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
     "</div>\n" +
     "</div>\n" +
     "\n" +
@@ -8727,15 +8727,15 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"help-blocks\" ng-switch=\"displayType\">\n" +
     "<div class=\"help-block\" ng-switch-when=\"source\">\n" +
     "Secret with credentials for pulling your source code.\n" +
-    "<a href=\"{{'git_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "<a href=\"{{'git_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</div>\n" +
     "<div class=\"help-block\" ng-switch-when=\"pull\">\n" +
     "Secret for authentication when pulling images from a secured registry.\n" +
-    "<a href=\"{{'pull_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "<a href=\"{{'pull_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</div>\n" +
     "<div class=\"help-block\" ng-switch-when=\"push\">\n" +
     "Secret for authentication when pushing images to a secured registry.\n" +
-    "<a href=\"{{'pull_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "<a href=\"{{'pull_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -9177,7 +9177,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</label-editor>\n" +
     "<div ng-if=\"!$ctrl.isDialog\" class=\"buttons gutter-top-bottom\">\n" +
     "<button class=\"btn btn-primary btn-lg\" ng-click=\"$ctrl.createFromTemplate()\" ng-disabled=\"$ctrl.templateForm.$invalid || $ctrl.disableInputs\">Create</button>\n" +
-    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"$ctrl.cancel()\" role=\"button\">Cancel</a>\n" +
+    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"$ctrl.cancel()\" role=\"button\">取消</a>\n" +
     "</div>\n" +
     "</span>\n" +
     "</ng-form>\n" +
@@ -9205,7 +9205,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</a>\n" +
     "<a href=\"\" title=\"Cancel\" class=\"action-button\" ng-click=\"cancel()\" role=\"button\">\n" +
     "<i class=\"fa fa-times\" style=\"margin-left: 5px\"></i>\n" +
-    "<span class=\"sr-only\">Cancel</span>\n" +
+    "<span class=\"sr-only\">取消</span>\n" +
     "</a>\n" +
     "<div ng-if=\"form.scaling.$invalid\" class=\"has-error\">\n" +
     "<div ng-if=\"form.scaling.desired.$error.required\" class=\"help-block\">\n" +
@@ -9487,7 +9487,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Scale replicas automatically based on CPU usage.\n" +
     "</div>\n" +
     "<div class=\"learn-more-block\" ng-class=\"{ 'gutter-bottom': metricsWarning || showCPURequestWarning }\">\n" +
-    "<a href=\"{{'pod_autoscaling' | helpLink}}\" target=\"_blank\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden> </i></a>\n" +
+    "<a href=\"{{'pod_autoscaling' | helpLink}}\" target=\"_blank\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden> </i></a>\n" +
     "</div>\n" +
     "\n" +
     "<div ng-if=\"metricsWarning\" class=\"alert alert-warning\">\n" +
@@ -9521,7 +9521,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-disabled=\"form.$invalid || form.$pristine\">\n" +
     "Save\n" +
     "</button>\n" +
-    "<a href=\"\" ng-click=\"cancel()\" class=\"btn btn-default btn-lg\" role=\"button\">Cancel</a>\n" +
+    "<a href=\"\" ng-click=\"cancel()\" class=\"btn btn-default btn-lg\" role=\"button\">取消</a>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</form>\n" +
@@ -9823,7 +9823,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "\n" +
     "<div ng-show=\"view.advancedOptions\">\n" +
     "<h3 class=\"with-divider\">Triggers\n" +
-    "<a ng-href=\"{{'build-triggers' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "<a ng-href=\"{{'build-triggers' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</h3>\n" +
     "<dl class=\"dl-horizontal left\">\n" +
     "<div>\n" +
@@ -9858,7 +9858,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-show=\"view.advancedOptions\">\n" +
     "<h3 class=\"with-divider\">\n" +
     "Build Secrets\n" +
-    "<a href=\"{{'source_secrets' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "<a href=\"{{'source_secrets' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</h3>\n" +
     "<div class=\"form-group\">\n" +
     "<osc-source-secrets model=\"secrets.picked.sourceSecrets\" namespace=\"projectName\" secrets-by-type=\"secrets.secretsByType\" strategy-type=\"strategyType\" service-account-to-link=\"builder\" alerts=\"alerts\" display-type=\"source\" type=\"source\">\n" +
@@ -9896,7 +9896,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<h3 class=\"with-divider\">\n" +
     "Post-Commit Hooks\n" +
     "<span class=\"help action-inline\">\n" +
-    "<a href=\"{{'build-hooks' | helpLink}}\" aria-hidden=\"true\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\"></i></span></a>\n" +
+    "<a href=\"{{'build-hooks' | helpLink}}\" aria-hidden=\"true\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\"></i></span></a>\n" +
     "</span>\n" +
     "</h3>\n" +
     "<div class=\"checkbox\">\n" +
@@ -9952,7 +9952,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-disabled=\"form.$invalid || form.$pristine || disableInputs\">\n" +
     "Save\n" +
     "</button>\n" +
-    "<button class=\"btn btn-default btn-lg\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "<button class=\"btn btn-default btn-lg\" ng-click=\"cancel()\">取消</button>\n" +
     "</div>\n" +
     "</form>\n" +
     "</fieldset>\n" +
@@ -9993,7 +9993,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<edit-config-map-or-secret model=\"configMap\" type=\"config map\"></edit-config-map-or-secret>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
     "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"updateConfigMap()\" ng-disabled=\"forms.editConfigMapForm.$invalid || forms.editConfigMapForm.$pristine || disableInputs || resourceChanged || resourceDeleted\" value=\"\">Save</button>\n" +
-    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\" role=\"button\">Cancel</a>\n" +
+    "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\" role=\"button\">取消</a>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</form>\n" +
@@ -10038,15 +10038,15 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span ng-switch=\"strategyData.type\">\n" +
     "<span class=\"help-block\" ng-switch-when=\"Recreate\">\n" +
     "The recreate strategy has basic rollout behavior and supports lifecycle hooks for injecting code into the deployment process.\n" +
-    "<a ng-href=\"{{'recreate_strategy' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "<a ng-href=\"{{'recreate_strategy' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</span>\n" +
     "<span class=\"help-block\" ng-switch-when=\"Rolling\">\n" +
     "The rolling strategy will wait for pods to pass their readiness check, scale down old components and then scale up.\n" +
-    "<a ng-href=\"{{'rolling_strategy' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "<a ng-href=\"{{'rolling_strategy' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</span>\n" +
     "<span class=\"help-block\" ng-switch-when=\"Custom\">\n" +
     "The custom strategy allows you to specify container image that will provide your own deployment behavior.\n" +
-    "<a ng-href=\"{{'custom_strategy' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "<a ng-href=\"{{'custom_strategy' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</span>\n" +
     "</span>\n" +
     "</div>\n" +
@@ -10254,7 +10254,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<button ng-click=\"save()\" class=\"btn btn-primary btn-lg\" ng-disabled=\"form.$invalid || form.$pristine || disableInputs\">\n" +
     "Save\n" +
     "</button>\n" +
-    "<button ng-click=\"cancel()\" class=\"btn btn-default btn-lg\">Cancel</button>\n" +
+    "<button ng-click=\"cancel()\" class=\"btn btn-default btn-lg\">取消</button>\n" +
     "</div>\n" +
     "</form>\n" +
     "</fieldset>\n" +
@@ -10280,7 +10280,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"help-block\">\n" +
     "Container health is periodically checked using readiness and liveness probes.\n" +
     "<div class=\"learn-more-block\">\n" +
-    "<a href=\"{{'application_health' | helpLink}}\" target=\"_blank\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
+    "<a href=\"{{'application_health' | helpLink}}\" target=\"_blank\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
     "</div>\n" +
     "</div>\n" +
     "<fieldset ng-disabled=\"disableInputs\">\n" +
@@ -10319,7 +10319,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</pause-rollouts-checkbox>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
     "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"save()\" ng-disabled=\"form.$invalid || form.$pristine || disableInputs\" value=\"\">Save</button>\n" +
-    "<button class=\"btn btn-default btn-lg\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "<button class=\"btn btn-default btn-lg\" ng-click=\"cancel()\">取消</button>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</form>\n" +
@@ -10405,7 +10405,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"button-group\">\n" +
     "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"update()\" ng-disabled=\"editProjectForm.$invalid || disableInputs\" value=\"\">Save</button>\n" +
-    "<a class=\"btn btn-default btn-lg\" href=\"#\" back>Cancel</a>\n" +
+    "<a class=\"btn btn-default btn-lg\" href=\"#\" back>取消</a>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</form>\n" +
@@ -10434,7 +10434,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</osc-routing>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
     "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"updateRoute()\" ng-disabled=\"form.$invalid || disableInputs\" value=\"\">Save</button>\n" +
-    "<button class=\"btn btn-default btn-lg\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "<button class=\"btn btn-default btn-lg\" ng-click=\"cancel()\">取消</button>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</form>\n" +
@@ -10471,7 +10471,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<ui-ace-yaml resource=\"updated.resource\" ng-required=\"true\"></ui-ace-yaml>\n" +
     "<div class=\"button-group mar-top-xl\">\n" +
     "<button class=\"btn btn-lg btn-primary\" type=\"button\" ng-click=\"save()\" ng-disabled=\"editor.form.$pristine || editor.form.$invalid || resourceChanged || resourceDeleted || updatingNow\">Save</button>\n" +
-    "<button class=\"btn btn-lg btn-default\" type=\"button\" ng-disabled=\"updatingNow\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "<button class=\"btn btn-lg btn-default\" type=\"button\" ng-disabled=\"updatingNow\" ng-click=\"cancel()\">取消</button>\n" +
     "</div>\n" +
     "</form>\n" +
     "</div>\n" +
@@ -10514,7 +10514,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Image Streams\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'image-streams' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -10671,7 +10671,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Membership\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'roles' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -10693,7 +10693,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<p>\n" +
     "{{subjectKind.description}}\n" +
     "<a ng-if=\"subjectKind.helpLinkKey\" target=\"_blank\" ng-href=\"{{subjectKind.helpLinkKey | helpLink}}\" class=\"learn-more-inline\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</p>\n" +
     "</div>\n" +
@@ -10835,7 +10835,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<h1 class=\"modal-title\">\n" +
     "Compute Resources\n" +
     "<span class=\"page-header-link\">\n" +
-    "<a href=\"{{'compute_resources' | helpLink}}\" target=\"_blank\">Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
+    "<a href=\"{{'compute_resources' | helpLink}}\" target=\"_blank\">了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
     "</span>\n" +
     "</h1>\n" +
     "</div>\n" +
@@ -10905,7 +10905,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
-    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel();\">Cancel</button>\n" +
+    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel();\">取消</button>\n" +
     "<button class=\"btn btn-primary\" type=\"button\" ng-click=\"replace();\">Replace</button>\n" +
     "</div>\n" +
     "</div>"
@@ -10932,7 +10932,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
-    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">取消</button>\n" +
     "<button class=\"btn btn-primary\" type=\"button\" ng-click=\"save()\">Save</button>\n" +
     "</div>\n" +
     "</div>"
@@ -10975,7 +10975,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</p>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
-    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">取消</button>\n" +
     "<button class=\"btn btn-danger\" type=\"button\" ng-click=\"confirmScale()\">Scale Down</button>\n" +
     "</div>\n" +
     "</div>"
@@ -10991,10 +10991,10 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<h1 class=\"modal-title\">\n" +
     "Create {{type | capitalize}} Secret\n" +
     "<span ng-switch=\"type\">\n" +
-    "<a ng-switch-when=\"webhook\" ng-href=\"{{'webhook_secrets' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
-    "<a ng-switch-when=\"source\" ng-href=\"{{'git_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
-    "<a ng-switch-when=\"image\" ng-href=\"{{'pull_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
-    "<a ng-switch-default ng-href=\"{{'source_secrets' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">Learn More&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "<a ng-switch-when=\"webhook\" ng-href=\"{{'webhook_secrets' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "<a ng-switch-when=\"source\" ng-href=\"{{'git_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "<a ng-switch-when=\"image\" ng-href=\"{{'pull_secret' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
+    "<a ng-switch-default ng-href=\"{{'source_secrets' | helpLink}}\" target=\"_blank\"><span class=\"learn-more-inline\">了解更多&nbsp;<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></span></a>\n" +
     "</span>\n" +
     "</h1>\n" +
     "</div>\n" +
@@ -11131,7 +11131,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
-    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel();\">Cancel</button>\n" +
+    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel();\">取消</button>\n" +
     "<button ng-disabled=\"typeNameToConfirm && confirmName !== resourceName && confirmName !== displayName\" class=\"btn btn-danger\" type=\"submit\" ng-click=\"delete();\">Delete</button>\n" +
     "</div>\n" +
     "</form>\n" +
@@ -11151,7 +11151,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<h3>Increase the capacity of claim\n" +
     "<strong>{{typeDisplayName}}</strong>.\n" +
     "<a ng-href=\"{{'expanding_persistent_volumes' | helpLink}}\" target=\"_blank\">\n" +
-    "<span class=\"learn-more-inline\">Learn More\n" +
+    "<span class=\"learn-more-inline\">了解更多\n" +
     "<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</span>\n" +
     "</a>\n" +
@@ -11229,7 +11229,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</fieldset>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\" style=\"padding-right: 0\">\n" +
-    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">取消</button>\n" +
     "<button class=\"btn btn-primary\" type=\"submit\" ng-disabled=\"expandPersistentVolumeClaimForm.$invalid || disableButton\" ng-click=\"expand()\"> Expand\n" +
     "</button>\n" +
     "</div>\n" +
@@ -11313,7 +11313,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
-    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel();\">Cancel</button>\n" +
+    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel();\">取消</button>\n" +
     "<button class=\"btn btn-primary\" type=\"button\" ng-click=\"continue();\" ng-disabled=\"!templateOptions.process && !templateOptions.add\">Continue</button>\n" +
     "</div>\n" +
     "</div>"
@@ -11360,7 +11360,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</form>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
-    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">取消</button>\n" +
     "<button class=\"btn btn-primary\" type=\"button\" ng-disabled=\"homePageForm.$invalid || homePageForm.$pristine\" ng-click=\"setHomePage()\">Save</button>\n" +
     "</div>\n" +
     "</div>"
@@ -12436,7 +12436,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<a ng-href=\"project/{{row.apiObject.metadata.namespace}}/browse/events\">View Events</a>\n" +
     "<span ng-if=\"row.replicationControllersVersion | canI : 'update'\">\n" +
     "<span class=\"action-divider\">|</span>\n" +
-    "<a href=\"\" ng-click=\"row.cancelDeployment()\" role=\"button\">Cancel</a>\n" +
+    "<a href=\"\" ng-click=\"row.cancelDeployment()\" role=\"button\">取消</a>\n" +
     "</span>\n" +
     "</div>\n" +
     "<div ng-if=\"row.apiObject.kind === 'Deployment'\">\n" +
@@ -12987,7 +12987,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<a href=\"\" ng-click=\"row.showOverlayPanel('unbindService', {target: row.apiObject})\">Delete Binding</a>\n" +
     "</li>\n" +
     "<li role=\"menuitem\">\n" +
-    "<a href=\"\" ng-click=\"row.deprovision()\" role=\"button\" ng-if=\"row.serviceInstancesVersion | canI : 'delete'\">Delete</a>\n" +
+    "<a href=\"\" ng-click=\"row.deprovision()\" role=\"button\" ng-if=\"row.serviceInstancesVersion | canI : 'delete'\">删除</a>\n" +
     "</li>\n" +
     "</ul>\n" +
     "</div>\n" +
@@ -13192,7 +13192,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Pipelines\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'pipeline-builds' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -13309,7 +13309,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Pods\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'pods' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -13525,7 +13525,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span ng-if=\"clusterQuotas.length\">Cluster </span>Quota\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'quota' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -13772,7 +13772,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Secrets\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'secrets' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -13945,7 +13945,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Services\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'services' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -14032,7 +14032,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"help-block\">\n" +
     "Resource limits control how much <span ng-if=\"!hideCPU\">CPU and</span> memory a container will consume on a node.\n" +
     "<div class=\"learn-more-block\" ng-class=\"{ 'gutter-bottom': showPodWarning }\">\n" +
-    "<a href=\"{{'compute_resources' | helpLink}}\" target=\"_blank\">Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
+    "<a href=\"{{'compute_resources' | helpLink}}\" target=\"_blank\">了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"showPodWarning\" class=\"alert alert-warning\">\n" +
@@ -14057,7 +14057,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</pause-rollouts-checkbox>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
     "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"save()\" ng-disabled=\"form.$pristine || form.$invalid || disableInputs || cpuProblems.length || memoryProblems.length\" value=\"\">Save</button>\n" +
-    "<button class=\"btn btn-default btn-lg\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "<button class=\"btn btn-default btn-lg\" ng-click=\"cancel()\">取消</button>\n" +
     "</div>\n" +
     "</fieldset>\n" +
     "</form>\n" +
@@ -14082,7 +14082,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Storage\n" +
     "<span class=\"page-header-link\">\n" +
     "<a ng-href=\"{{'storage' | helpLink}}\" target=\"_blank\">\n" +
-    "Learn More <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
+    "了解更多 <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i>\n" +
     "</a>\n" +
     "</span>\n" +
     "</h1>\n" +
@@ -14206,14 +14206,14 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<h1>Confirm Login</h1>\n" +
     "<p>You are being logged in as <code>{{confirmUser.metadata.name}}</code>.</p>\n" +
     "<button class=\"btn btn-lg btn-primary\" type=\"button\" ng-click=\"completeLogin();\">Continue</button>\n" +
-    "<button class=\"btn btn-lg btn-default\" type=\"button\" ng-click=\"cancelLogin();\">Cancel</button>\n" +
+    "<button class=\"btn btn-lg btn-default\" type=\"button\" ng-click=\"cancelLogin();\">取消</button>\n" +
     "</div>\n" +
     "<div ng-if=\"confirmUser && overriddenUser\">\n" +
     "<h1>Confirm User Change</h1>\n" +
     "<p>You are about to change users from <code>{{overriddenUser.metadata.name}}</code> to <code>{{confirmUser.metadata.name}}</code>.</p>\n" +
     "<p>If this is unexpected, click Cancel. This could be an attempt to trick you into acting as another user.</p>\n" +
     "<button class=\"btn btn-lg btn-danger\" type=\"button\" ng-click=\"completeLogin();\">Switch Users</button>\n" +
-    "<button class=\"btn btn-lg btn-primary\" type=\"button\" ng-click=\"cancelLogin();\">Cancel</button>\n" +
+    "<button class=\"btn btn-lg btn-primary\" type=\"button\" ng-click=\"cancelLogin();\">取消</button>\n" +
     "</div>\n" +
     "</div>\n" +
     "</div>"

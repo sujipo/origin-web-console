@@ -3,10 +3,10 @@
     <div class="container-fluid">
       <div class="page-header page-header-bleed-right page-header-bleed-left">
         <h1>
-          Image Streams
+          镜像
           <span class="page-header-link">
             <a ng-href="{{'image-streams' | helpLink}}" target="_blank">
-              Learn More <i class="fa fa-external-link" aria-hidden="true"></i>
+              了解更多 <i class="fa fa-external-link" aria-hidden="true"></i>
             </a>
           </span>
         </h1>
@@ -24,15 +24,15 @@
         <div class="col-md-12">
           <div ng-if="(imageStreams | hashSize) == 0">
             <p ng-if="!imageStreamsLoaded">
-              Loading...
+              加载中...
             </p>
             <div ng-if="imageStreamsLoaded" class="empty-state-message text-center">
               <div ng-if="!filterWithZeroResults">
-                <h2>No image streams.</h2>
-                <p>No image streams have been added to project {{projectName}}.</p>
+                <h2>没有镜像</h2>
+                <p>没有镜像添加到项目 {{projectName}}.</p>
               </div>
               <div ng-if="filterWithZeroResults">
-                <h2>The filter is hiding all image streams. <button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">Clear All Filters</button></h2>
+                <h2>过滤器隐藏了所有的镜像<button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">清除所有过滤器</button></h2>
               </div>
             </div>
           </div>
@@ -45,10 +45,10 @@
             </colgroup>
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Docker Repo</th>
-                <th>Tags</th>
-                <th>Updated</th>
+                <th>名称</th>
+                <th>Docker 源</th>
+                <th>标签</th>
+                <th>更新</th>
               </tr>
             </thead>
             <tbody>

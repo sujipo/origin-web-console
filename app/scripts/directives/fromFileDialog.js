@@ -101,10 +101,10 @@
       // since the value hasn't changed.
       ctrl.currentStep = step.title;
       if (step.stepId === 'results') {
-        ctrl.nextButtonTitle = "Close";
+        ctrl.nextButtonTitle = "关闭";
         ctrl.wizardDone = true;
       } else {
-        ctrl.nextButtonTitle = "Create";
+        ctrl.nextButtonTitle = "创建";
       }
     };
 

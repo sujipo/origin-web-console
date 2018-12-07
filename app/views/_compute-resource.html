@@ -3,7 +3,7 @@
     <label ng-if="label">{{label}}</label>
     <div class="resource-size" ng-class="{ 'has-error': form.$invalid }">
       <div class="resource-amount">
-        <label class="sr-only" ng-attr-for="{{id}}">Amount</label>
+        <label class="sr-only" ng-attr-for="{{id}}">总计</label>
         <input type="number"
                name="amount"
                ng-attr-id="{{id}}"
@@ -16,7 +16,7 @@
                ng-attr-aria-describedby="{{description ? id + '-help' : undefined}}">
       </div>
       <div class="resource-unit">
-        <label class="sr-only" ng-attr-for="{{id}}-unit">Unit</label>
+        <label class="sr-only" ng-attr-for="{{id}}-unit">单位</label>
         <ui-select search-enabled="false" ng-model="input.unit" input-id="{{id}}-unit">
           <ui-select-match>{{$select.selected.label}}</ui-select-match>
           <ui-select-choices repeat="option.value as option in units" group-by="groupUnits">
@@ -30,29 +30,29 @@
     </div>
     <div ng-if="form.$invalid" class="has-error">
       <div ng-if="form.amount.$error.number" class="help-block">
-        Must be a number.
+        必须是一个数字。
       </div>
       <div ng-if="form.amount.$error.min" class="help-block">
-        Can't be negative.
+        不能是负数。
       </div>
       <div ng-if="form.amount.$error.limitRangeMin" class="help-block">
-        Can't be less than {{limitRangeMin | usageWithUnits : type}}.
+        不能小于 {{limitRangeMin | usageWithUnits : type}}.
       </div>
       <div ng-if="form.amount.$error.limitRangeMax" class="help-block">
-        Can't be greater than {{limitRangeMax | usageWithUnits : type}}.
+        不能大于 {{limitRangeMax | usageWithUnits : type}}.
       </div>
       <div ng-if="form.amount.$error.limitLargerThanRequest" class="help-block">
-        Limit can't be less than request ({{request | usageWithUnits : type}}).
+        限制不能少于要求 ({{request | usageWithUnits : type}}).
       </div>
       <div ng-if="form.amount.$error.limitWithinRatio" class="help-block">
         <span ng-if="!input.amount && !defaultValue">
-          Limit is required if request is set. (Max Limit/Request Ratio: {{maxLimitRequestRatio}})
+          如果设置了请求，则需要限制。 (最大 限制/请求 的比例: {{maxLimitRequestRatio}})
         </span>
         <span ng-if="input.amount || defaultValue">
-          Limit cannot be more than {{maxLimitRequestRatio}} times request value.
+          限制不能大于 {{maxLimitRequestRatio}} 次请求值。
           (Request: {{request | usageWithUnits : type}},
           <!-- Show default if amount is unset. -->
-          Limit: {{(input.amount ? (input.amount + input.unit) : defaultValue) | usageWithUnits : type}})
+          限制: {{(input.amount ? (input.amount + input.unit) : defaultValue) | usageWithUnits : type}})
         </span>
       </div>
     </div>

@@ -4,39 +4,36 @@
       <span class="pficon pficon-close"></span>
     </button>
     <h1 class="modal-title">
-      Compute Resources
+      计算机资源
       <span class="page-header-link">
-        <a href="{{'compute_resources' | helpLink}}" target="_blank">Learn More <i class="fa fa-external-link" aria-hidden="true"></i></a>
+        <a href="{{'compute_resources' | helpLink}}" target="_blank">了解更多 <i class="fa fa-external-link" aria-hidden="true"></i></a>
       </span>
     </h1>
   </div>
   <div class="modal-body">
     <div>
-      Each container running on a node uses compute resources like CPU and memory. You can specify
-      how much CPU and memory a container needs to improve scheduling and performance.
+      在节点上运行的每个容器都使用CPU和内存等计算资源。您可以指定一个容器需要多少CPU和内存来改进调度和性能。
     </div>
 
     <h3>CPU</h3>
 
     <p>
-      CPU is often measured in units called <var>millicores</var>. Each millicore is
-      equivalent to <sup>1</sup>&frasl;<sub>1000</sub> of a CPU&nbsp;core.
+      CPU的度量单位是 <var>millicores</var>. 每个 millicore 代表一个CPU核心的千分之一。
     </p>
 
 <pre>
 1000 millcores  =  1 core
 </pre>
 
-    <h3>Memory and Storage</h3>
+    <h3>内存与存储</h3>
 
     <p>
-      Memory and storage are measured in binary units like <var>KiB</var>, <var>MiB</var>, <var>GiB</var>, and <var>TiB</var> or
-      decimal units like <var>kB</var>, <var>MB</var>, <var>GB</var>, and&nbsp;<var>TB</var>.
+      内存和存储是用二进制单元来度量的，例如 <var>KiB</var>, <var>MiB</var>, <var>GiB</var>, and <var>TiB</var> 或者十进制单位 <var>kB</var>, <var>MB</var>, <var>GB</var>, and&nbsp;<var>TB</var>.
     </p>
 
     <div class="row">
       <div class="col-sm-6">
-        <h4>Binary Units</h4>
+        <h4>二进制单位</h4>
 <pre>
 1024 bytes  =  1 KiB
 1024 KiB    =  1 MiB
@@ -45,7 +42,7 @@
 </pre>
       </div>
       <div class="col-sm-6">
-        <h4>Decimal Units</h4>
+        <h4>十进制单位</h4>
 <pre>
 1000 bytes  =  1 kB
 1000 kB     =  1 MB
@@ -57,6 +54,6 @@
 
   </div>
   <div class="modal-footer">
-    <button class="btn btn-default" type="button" ng-click="close()">Close</button>
+    <button class="btn btn-default" type="button" ng-click="close()">关闭</button>
   </div>
 </div>

@@ -12,13 +12,13 @@
       <ng-pluralize count="pod.status.initContainerStatuses.length"
                       when="{'1': '&nbsp;Init container {{pod.status.initContainerStatuses[0].name}}','other': '&nbsp;{} init containers'}">
       </ng-pluralize>
-      completed successfully
+      成功完成
     </span>
     <span ng-if="initContainersTerminated">
       <a class="page-header-link" href="" ng-click="toggleInitContainer()">
-        <span ng-if="!expandInitContainers">Show</span>
-        <span ng-if="expandInitContainers">Hide</span>
-        Details
+        <span ng-if="!expandInitContainers">显示</span>
+        <span ng-if="expandInitContainers">隐藏</span>
+        详情
       </a>
     </span>
   </h4>
@@ -26,44 +26,44 @@
   <div class="animate-if"
        ng-if="expandInitContainers"
        ng-repeat="containerStatus in pod.status.initContainerStatuses track by containerStatus.name" >
-    <h4>Init container {{containerStatus.name}}</h4>
+    <h4>初始化容器 {{containerStatus.name}}</h4>
 
     <dl class="dl-horizontal left">
-      <dt>State:</dt>
+      <dt>状态:</dt>
       <dd>
         <kubernetes-object-describe-container-state container-state="containerStatus.state"></kubernetes-object-describe-container-state>
       </dd>
-      <dt ng-if="!(containerStatus.lastState | isEmptyObj)">Last State</dt>
+      <dt ng-if="!(containerStatus.lastState | isEmptyObj)">最后状态</dt>
       <dd ng-if="!(containerStatus.lastState | isEmptyObj)">
         <kubernetes-object-describe-container-state container-state="containerStatus.lastState"></kubernetes-object-describe-container-state>
       </dd>
-      <dt>Ready:</dt>
+      <dt>就绪:</dt>
       <dd>{{containerStatus.ready}}</dd>
-      <dt>Restart Count:</dt>
+      <dt>重启次数:</dt>
       <dd>{{containerStatus.restartCount}}</dd>
     </dl>
   </div>
 </div>
 
 <div ng-repeat="containerStatus in pod.status.containerStatuses track by containerStatus.name" >
-  <h4>Container {{containerStatus.name}}</h4>
+  <h4>容器 {{containerStatus.name}}</h4>
 
   <dl class="dl-horizontal left">
-    <dt>State:</dt>
+    <dt>状态:</dt>
     <dd>
       <kubernetes-object-describe-container-state container-state="containerStatus.state"></kubernetes-object-describe-container-state>
     </dd>
-    <dt ng-if="!(containerStatus.lastState | isEmptyObj)">Last State</dt>
+    <dt ng-if="!(containerStatus.lastState | isEmptyObj)">最后状态</dt>
     <dd ng-if="!(containerStatus.lastState | isEmptyObj)">
       <kubernetes-object-describe-container-state container-state="containerStatus.lastState"></kubernetes-object-describe-container-state>
     </dd>
-    <dt>Ready:</dt>
+    <dt>就绪:</dt>
     <dd>{{containerStatus.ready}}</dd>
-    <dt>Restart Count:</dt>
+    <dt>重启次数:</dt>
     <dd>{{containerStatus.restartCount}}</dd>
 
     <div ng-if="hasDebugTerminal && showDebugAction(containerStatus) && (podsVersion | canI : 'create')" class="debug-pod-action">
-      <a href="" ng-click="debugTerminal(containerStatus.name)" role="button">Debug in Terminal</a>
+      <a href="" ng-click="debugTerminal(containerStatus.name)" role="button">在终端调试</a>
     </div>
   </dl>
 </div>

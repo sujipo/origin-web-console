@@ -42,7 +42,7 @@ angular.module('openshiftConsole')
       kind: 'DeploymentConfig',
       namespace: $routeParams.project
     });
-    $scope.emptyMessage = "Loading...";
+    $scope.emptyMessage = "加载中...";
     $scope.deploymentConfigsInstantiateVersion = APIService.getPreferredVersion('deploymentconfigs/instantiate');
     $scope.deploymentConfigsVersion = APIService.getPreferredVersion('deploymentconfigs');
     $scope.eventsVersion = APIService.getPreferredVersion('events');
@@ -90,7 +90,7 @@ angular.module('openshiftConsole')
               if (action === "DELETED") {
                 $scope.alerts["deleted"] = {
                   type: "warning",
-                  message: "This deployment configuration has been deleted."
+                  message: "此部署配置已被删除。"
                 };
               }
               $scope.deploymentConfig = deploymentConfig;
@@ -104,15 +104,15 @@ angular.module('openshiftConsole')
             $scope.loaded = true;
             $scope.alerts["load"] = {
               type: "error",
-              message: e.status === 404 ? "This deployment configuration can not be found, it may have been deleted." : "The deployment configuration details could not be loaded.",
-              details: e.status === 404 ? "Any remaining deployment history for this deployment will be shown." : $filter('getErrorDetails')(e)
+              message: e.status === 404 ? "无法找到此部署配置，它可能已被删除。" : "无法加载部署配置细节。",
+              details: e.status === 404 ? "将显示此部署的任何剩余部署历史。" : $filter('getErrorDetails')(e)
             };
           }
         );
 
         watches.push(DataService.watch(replicationControllersVersion, context, function(deployments, action, deployment) {
           var deploymentConfigName = $routeParams.deploymentconfig;
-          $scope.emptyMessage = "No deployments to show";
+          $scope.emptyMessage = "没有部署需要显示";
           if (!action) {
             var deploymentsByDeploymentConfig = DeploymentsService.associateDeploymentsToDeploymentConfig(deployments.by("metadata.name"));
             $scope.unfilteredDeployments = deploymentsByDeploymentConfig[$routeParams.deploymentconfig] || {};
@@ -197,7 +197,7 @@ angular.module('openshiftConsole')
           if (!LabelFilter.getLabelSelector().isEmpty() && $.isEmptyObject($scope.deployments) && !$.isEmptyObject($scope.unfilteredDeployments)) {
             $scope.alerts["deployments"] = {
               type: "warning",
-              details: "The active filters are hiding all deployments."
+              details: "活动过滤器隐藏了所有部署。"
             };
           }
           else {
@@ -244,7 +244,7 @@ angular.module('openshiftConsole')
           var showScalingError = function(result) {
             $scope.alerts["scale-error"] = {
               type: "error",
-              message: "An error occurred scaling the deployment config.",
+              message: "缩放部署配置时发生错误。",
               details: $filter('getErrorDetails')(result)
             };
           };
@@ -261,7 +261,7 @@ angular.module('openshiftConsole')
               $scope.updatingPausedState = false;
               $scope.alerts["pause-error"] = {
                 type: "error",
-                message: "An error occurred " + (paused ? "pausing" : "resuming") + " the deployment config.",
+                message: "出现了一个错误 " + (paused ? "暂停" : "恢复") + " 部署配置。",
                 details: $filter('getErrorDetails')(e)
               };
             });
@@ -279,25 +279,25 @@ angular.module('openshiftConsole')
         $scope.removeVolume = function(volume) {
           var details;
           if (isConfigChangeActive()) {
-            details = "This will remove the volume from the deployment config and trigger a new deployment.";
+            details = "这将从部署配置中删除卷并触发新的部署。";
           } else {
-            details = "This will remove the volume from the deployment config.";
+            details = "这将从部署配置中删除卷。";
           }
 
           if (volume.persistentVolumeClaim) {
-            details += " It will not delete the persistent volume claim.";
+            details += " 它不会删除持久卷声明。";
           } else if (volume.secret) {
-            details += " It will not delete the secret.";
+            details += " 它不会删除这个密钥。";
           } else if (volume.configMap) {
-            details += " It will not delete the config map.";
+            details += " 它不会删除配置映射。";
           }
 
           var confirm = ModalsService.confirm({
-            title: "Remove volume " + volume.name + "?",
+            title: "确认要删除卷 " + volume.name + "?",
             details: details,
-            okButtonText: "Remove",
+            okButtonText: "删除",
             okButtonClass: "btn-danger",
-            cancelButtonText: "Cancel"
+            cancelButtonText: "取消"
           });
 
           var removeVolume = function() {

@@ -21,9 +21,9 @@ angular.module('openshiftConsole')
     $scope.limitsByType = {};
     $scope.labelSuggestions = {};
     $scope.alerts = $scope.alerts || {};
-    $scope.quotaHelp = "Limits resource usage within this project.";
-    $scope.emptyMessageLimitRanges = "Loading...";
-    $scope.limitRangeHelp = "Defines minimum and maximum constraints for runtime resources such as memory and CPU.";
+    $scope.quotaHelp = "限制本项目中的资源使用。";
+    $scope.emptyMessageLimitRanges = "加载中...";
+    $scope.limitRangeHelp = "定义运行时资源(如内存和CPU)的最小和最大约束。";
     $scope.renderOptions = $scope.renderOptions || {};
     $scope.renderOptions.hideFilterWidget = true;
 
@@ -128,7 +128,7 @@ angular.module('openshiftConsole')
 
         watches.push(DataService.watch(limitRangesVersion, context, function(resp) {
           $scope.limitRanges = _.sortBy(resp.by("metadata.name"), "metadata.name");
-          $scope.emptyMessageLimitRanges = "There are no limit ranges set on this project.";
+          $scope.emptyMessageLimitRanges = "这个项目没有限制范围。";
           // Convert to a sane format for a view to a build a table with rows per resource type
           angular.forEach($scope.limitRanges, function(limitRange){
             var name = limitRange.metadata.name;

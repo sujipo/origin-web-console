@@ -3,20 +3,20 @@
     <div class="container-fluid">
       <breadcrumbs breadcrumbs="breadcrumbs"></breadcrumbs>
       <alerts alerts="alerts"></alerts>
-      <div ng-if="!loaded" class="mar-top-xl">Loading...</div>
+      <div ng-if="!loaded" class="mar-top-xl">加载中...</div>
       <div ng-if="imageStream">
         <h1 class="contains-actions">
           <div class="pull-right dropdown" ng-hide="!('imageStreams' | canIDoAny)">
             <button type="button" class="dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs" data-toggle="dropdown">
-              Actions
+              动作
               <span class="caret" aria-hidden="true"></span>
             </button>
             <a href=""
                class="dropdown-toggle actions-dropdown-kebab visible-xs-inline"
-               data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">Actions</span></a>
+               data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">动作</span></a>
             <ul class="dropdown-menu dropdown-menu-right actions action-button">
               <li ng-if="imageStreamsVersion | canI : 'update'">
-                <a ng-href="{{imageStream | editYamlURL}}" role="button">Edit YAML</a>
+                <a ng-href="{{imageStream | editYamlURL}}" role="button">编辑YAML</a>
               </li>
               <li ng-if="imageStreamsVersion | canI : 'delete'">
                 <delete-link

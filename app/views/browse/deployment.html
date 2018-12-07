@@ -7,43 +7,43 @@
         <h1 class="contains-actions">
           <div class="pull-right dropdown" ng-if="deployment" ng-hide="!('deployments' | canIDoAny)">
             <button type="button" class="dropdown-toggle btn btn-default actions-dropdown-btn hidden-xs" data-toggle="dropdown">
-              Actions
+              动作
               <span class="caret" aria-hidden="true"></span>
             </button>
             <a href=""
                class="dropdown-toggle actions-dropdown-kebab visible-xs-inline"
-               data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">Actions</span></a>
+               data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">动作</span></a>
             <ul class="dropdown-menu dropdown-menu-right actions action-button">
               <li ng-if="!deployment.spec.paused && !updatingPausedState && (deploymentsVersion | canI : 'update')">
-                <a href="" ng-click="setPaused(true)" role="button">Pause Rollouts</a>
+                <a href="" ng-click="setPaused(true)" role="button">暂停部署</a>
               </li>
               <li ng-if="deployment.spec.paused && !updatingPausedState && (deploymentsVersion | canI : 'update')">
-                <a href="" ng-click="setPaused(false)" role="button">Resume Rollouts</a>
+                <a href="" ng-click="setPaused(false)" role="button">继续部署</a>
               </li>
               <li class="divider" ng-if="!updatingPausedState && (deploymentsVersion | canI : 'update')"></li>
               <li ng-if="deploymentsVersion | canI : 'update'">
                 <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=Deployment&name={{deployment.metadata.name}}&group=apps"
-                   role="button">Add Storage</a>
+                   role="button">添加存储</a>
               </li>
               <li ng-if="!autoscalers.length && (horizontalPodAutoscalersVersion | canI : 'create')">
                 <!-- Create a new HPA. -->
                 <a ng-href="project/{{projectName}}/edit/autoscaler?kind=Deployment&name={{deployment.metadata.name}}&group=apps"
-                   role="button">Add Autoscaler</a>
+                   role="button">添加自动伸缩控制</a>
               </li>
               <li ng-if="autoscalers.length === 1 && (horizontalPodAutoscalersVersion | canI : 'update')">
                 <!-- Edit an existing HPA. -->
                 <a ng-href="project/{{projectName}}/edit/autoscaler?kind=HorizontalPodAutoscaler&group=autoscaling&name={{autoscalers[0].metadata.name}}"
-                  role="button">Edit Autoscaler</a>
+                  role="button">编辑自动伸缩控制</a>
               </li>
               <li ng-if="deploymentsVersion | canI : 'update'">
                 <a ng-href="project/{{projectName}}/set-limits?kind=Deployment&name={{deployment.metadata.name}}&group=apps"
-                  role="button">Edit Resource Limits</a>
+                  role="button">编辑资源限制</a>
               </li>
               <li ng-if="deploymentsVersion | canI : 'update'">
-                <a ng-href="{{healthCheckURL}}" role="button">Edit Health Checks</a>
+                <a ng-href="{{healthCheckURL}}" role="button">编辑健康检查</a>
               </li>
               <li ng-if="deploymentsVersion | canI : 'update'">
-                <a ng-href="{{deployment | editYamlURL}}" role="button">Edit YAML</a>
+                <a ng-href="{{deployment | editYamlURL}}" role="button">编辑YAML</a>
               </li>
               <li class="divider" ng-if="deploymentsVersion | canI : 'update'"></li>
               <li ng-if="deploymentsVersion | canI : 'delete'">
@@ -72,16 +72,15 @@
         <div class="col-md-12" ng-class="{ 'hide-tabs' : !deployment }">
           <div ng-if="deployment.spec.paused && !updatingPausedState" class="alert alert-info animate-if">
             <span class="pficon pficon-info" aria-hidden="true"></span>
-            <strong>{{deployment.metadata.name}} is paused.</strong>
-            This pauses any in-progress rollouts and stops new
-            rollouts from running until the deployment is resumed.
+            <strong>{{deployment.metadata.name}} 已经暂停。</strong>
+            这将暂停任何正在进行的部署，并在部署恢复之前停止新部署的运行。
             <span ng-if="!updatingPausedState && (deploymentsVersion | canI : 'update')" class="nowrap">
-              <a href="" ng-click="setPaused(false)" role="button">Resume Rollouts</a>
+              <a href="" ng-click="setPaused(false)" role="button">继续部署</a>
             </span>
           </div>
           <uib-tabset>
             <uib-tab active="selectedTab.history">
-              <uib-tab-heading>History</uib-tab-heading>
+              <uib-tab-heading>历史</uib-tab-heading>
               <div class="table-filter-extension">
                 <div class="data-toolbar">
                   <div class="data-toolbar-filter">
@@ -98,10 +97,10 @@
                 </colgroup>
                 <thead>
                   <tr>
-                    <th>Version</th>
-                    <th>Name</th>
-                    <th>Replicas</th>
-                    <th>Created</th>
+                    <th>版本</th>
+                    <th>名称</th>
+                    <th>副本</th>
+                    <th>创建</th>
                   </tr>
                 </thead>
                 <tbody ng-if="(replicaSetsForDeployment | size) == 0">
@@ -126,7 +125,7 @@
               </table>
             </uib-tab>
             <uib-tab active="selectedTab.configuration">
-              <uib-tab-heading>Configuration</uib-tab-heading>
+              <uib-tab-heading>配置</uib-tab-heading>
               <div class="resource-details" ng-if="deployment">
                 <div class="row">
                   <div class="col-lg-6">
@@ -134,13 +133,13 @@
                       Show a header at lg and xl screen sizes to balance the columns, but hide
                       it at smaller widths since "Details" is not very meaningful.
                     -->
-                    <h3 class="hidden visible-lg visible-xl">Details</h3>
+                    <h3 class="hidden visible-lg visible-xl">详情</h3>
                     <dl class="dl-horizontal left">
-                      <dt>Selectors:</dt>
+                      <dt>选择器:</dt>
                       <dd>
                         <selector selector="deployment.spec.selector"></selector>
                       </dd>
-                      <dt>Replicas:</dt>
+                      <dt>副本:</dt>
                       <dd>
                         <replicas spec="deployment.spec.replicas"
                                   disable-scaling="inProgressDeployment || autoscalers.length"
@@ -155,12 +154,12 @@
                           <span ng-if="deployment.status.unavailableReplicas">{{deployment.status.unavailableReplicas}} unavailable</span>
                         </div>
                       </dd>
-                      <dt>Strategy:</dt>
+                      <dt>策略:</dt>
                       <dd>{{deployment.spec.strategy.type | sentenceCase}}</dd>
                       <dt ng-if-start="deployment.spec.strategy.rollingUpdate">
-                        Max Unavailable:
+                        最大不可用:
                         <span data-toggle="tooltip"
-                          title="The maximum number of pods that can be unavailable during the update process."
+                          title="更新过程中不可用的pod的最大数量。"
                           class="pficon pficon-help text-muted small"></span>
                       </dt>
                       <dd>
@@ -170,9 +169,9 @@
                         </span>
                       </dd>
                       <dt>
-                        Max Surge:
+                        最大增量值:
                         <span data-toggle="tooltip"
-                          title="The maximum number of pods that can be created above the desired number of pods."
+                          title="可以创建的超过所需的pod数量的最大pod数量。"
                           class="pficon pficon-help text-muted small"></span>
                       </dt>
                       <dd ng-if-end>
@@ -182,27 +181,27 @@
                         </span>
                       </dd>
                       <dt>
-                        Min Ready:
+                        最小就绪值:
                         <span data-toggle="tooltip"
-                          title="The minimum number of seconds a new pod must be ready before it is considered available."
+                          title="一个新的pod在被认为可用之前必须准备好它的最小秒数。"
                           class="pficon pficon-help text-muted small"></span>
                       </dt>
                       <dd>
                         {{deployment.spec.minReadySeconds || 0}} sec
                       </dd>
                       <dt>
-                        Revision History Limit:
+                        修订历史限制:
                         <span data-toggle="tooltip"
-                          title="The number of old replica sets to keep."
+                          title="需要保存的旧副本集的数量。"
                           class="pficon pficon-help text-muted small"></span>
                       </dt>
                       <dd>
                         {{deployment.spec.revisionHistoryLimit || 2}}
                       </dd>
                       <dt>
-                        Progress Deadline:
+                        前进截止期限:
                         <span data-toggle="tooltip"
-                          title="The amount of time to wait for a deployment to make progress before it's considered failed."
+                          title="等待部署取得进展而认为失败的时间量。"
                           class="pficon pficon-help text-muted small"></span>
                       </dt>
                       <dd>
@@ -210,7 +209,7 @@
                       </dd>
                     </dl>
 
-                    <h3>Template</h3>
+                    <h3>模板</h3>
                     <pod-template
                         pod-template="deployment.spec.template"
                         images-by-docker-reference="imagesByDockerReference"
@@ -221,7 +220,7 @@
 
                   </div>
                   <div class="col-lg-6">
-                    <h3>Volumes</h3>
+                    <h3>卷</h3>
                     <p ng-if="!deployment.spec.template.spec.volumes.length && !(deploymentsVersion | canI : 'update')">
                       none
                     </p>
@@ -232,30 +231,30 @@
                         remove-fn="removeVolume(volume)">
                     </volumes>
                     <div ng-if="deploymentsVersion | canI : 'update'">
-                      <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=Deployment&name={{deployment.metadata.name}}&group=apps">Add Storage</a>
+                      <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=Deployment&name={{deployment.metadata.name}}&group=apps">添加存储</a>
                       <span class="action-divider" aria-hidden="true">|</span>
-                      <a ng-href="project/{{project.metadata.name}}/add-config-volume?kind=Deployment&name={{deployment.metadata.name}}&group=apps">Add Config Files</a>
+                      <a ng-href="project/{{project.metadata.name}}/add-config-volume?kind=Deployment&name={{deployment.metadata.name}}&group=apps">添加配置文件</a>
                     </div>
 
-                    <h3>Autoscaling</h3>
+                    <h3>自动伸缩</h3>
 
                     <!-- Show any warnings. -->
                     <div ng-repeat="warning in hpaWarnings" class="alert alert-warning">
                       <span class="pficon pficon-warning-triangle-o" aria-hidden="true"></span>
-                      <span class="sr-only">Warning:</span>
+                      <span class="sr-only">警告:</span>
                       {{warning.message}}
 
                       <!-- If the CPU request is missing, add an action to set one. -->
                       <a ng-href="project/{{projectName}}/set-limits?kind=Deployment&name={{deployment.metadata.name}}&group=apps"
                          ng-if="warning.reason === 'NoCPURequest' && (deploymentsVersion | canI : 'update')"
-                         role="button">Edit Resource
-                        <span ng-if="!('cpu' | isRequestCalculated : project)">Requests and</span> Limits</a>
+                         role="button">编辑资源
+                        <span ng-if="!('cpu' | isRequestCalculated : project)">要求和</span>限制</a>
                     </div>
 
                     <!-- Create autoscaler -->
                     <div ng-if="!autoscalers.length">
                       <a ng-if="horizontalPodAutoscalersVersion | canI : 'create'" ng-href="project/{{projectName}}/edit/autoscaler?kind=Deployment&name={{deployment.metadata.name}}&group=apps"
-                         role="button">Add Autoscaler</a>
+                         role="button">添加自动伸缩控制</a>
                       <span ng-if="!(horizontalPodAutoscalersVersion | canI : 'create')">none</span>
                     </div>
 
@@ -280,11 +279,11 @@
               </div>
             </uib-tab>
             <uib-tab heading="Environment" active="selectedTab.environment" ng-if="deployment">
-              <uib-tab-heading>Environment</uib-tab-heading>
+              <uib-tab-heading>环境</uib-tab-heading>
               <edit-environment-variables api-object="deployment"></edit-environment-variables>
             </uib-tab>
             <uib-tab active="selectedTab.events" ng-if="eventsVersion | canI : 'watch'">
-              <uib-tab-heading>Events</uib-tab-heading>
+              <uib-tab-heading>事件</uib-tab-heading>
               <events api-objects="[ deployment ]" project-context="projectContext" ng-if="selectedTab.events"></events>
             </uib-tab>
           </uib-tabset>

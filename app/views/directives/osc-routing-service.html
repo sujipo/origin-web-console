@@ -2,7 +2,7 @@
   <div class="row">
     <div class="form-group" ng-class="{ 'col-sm-6': showWeight, 'col-sm-12': !showWeight }">
       <label for="{{id}}-service-select" class="required">
-        Service
+        服务
       </label>
       <ui-select ng-model="model.name" input-id="{{id}}-service-select" aria-describedby="{{id}}-service-help" required>
         <ui-select-match>{{$select.selected}}</ui-select-match>
@@ -12,32 +12,29 @@
       </ui-select>
       <div>
         <span ng-attr-id="{{id}}-service-help" class="help-block">
-          <span ng-if="!isAlternate">Service to route to.</span>
-          <span ng-if="isAlternate">Alternate service for route traffic.</span>
+          <span ng-if="!isAlternate">服务到路由。</span>
+          <span ng-if="isAlternate">路线通信的替代服务。</span>
         </span>
       </div>
       <div ng-if="model.name && !allServices[model.name]" class="has-warning">
         <span class="help-block">
-          Service {{model.name}} does not exist.
+          服务 {{model.name}} 不存在。
         </span>
       </div>
       <div ng-if="(optionNames | size) === 0" class="has-error">
         <span class="help-block">
-          There are no <span ng-if="is-alternate">additional</span> services in your project to expose
-          with a route.
+            您的项目中没有<span ng-if="is-alternate">其它</span>服务可以通过路由公开。
         </span>
       </div>
       <div ng-if="warnUnnamedPort" class="has-warning">
         <span class="help-block">
-          Service {{model.name}} has a single, unnamed port. A route cannot specifically target
-          an unnamed service port. If more service ports are added later, the route will also direct
-          traffic to them.
+          服务{{model.name}}只有一个未命名端口。路由不能专门针对未命名的服务端口。如果以后添加更多的服务端口，路由也会将流量引向这些端口。
         </span>
       </div>
     </div>
 
     <div ng-if="showWeight" class="form-group col-sm-6">
-      <label for="{{id}}-service-weight" class="required">Weight</label>
+      <label for="{{id}}-service-weight" class="required">权重</label>
       <input ng-model="model.weight"
              name="weight"
              id="{{id}}-service-weight"
@@ -51,17 +48,16 @@
              aria-describedby="{{id}}-weight-help">
       <div>
         <span id="{{id}}-weight-help" class="help-block">
-          Weight is a number between 0 and 256 that specifies the relative weight against other
-          route services.
+          权重是介于0到256之间的一个数字，它指定相对于其他路由服务的相对权重。
         </span>
         <div ng-if="routingServiceForm.weight.$dirty && routingServiceForm.weight.$invalid" class="has-error">
           <div ng-if="routingServiceForm.weight.$error.number" class="help-block">
-            Must be a number.
+            必须是一个数字。
           </div>
           <!-- This message will also display for values less than the min (e.g., -1) since they
                don't match the pattern. -->
           <div ng-if="routingServiceForm.weight.$error.pattern" class="help-block">
-            Must be a whole number greater than or equal to 0.
+            必须是大于等于0的整数。
           </div>
         </div>
       </div>

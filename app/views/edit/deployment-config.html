@@ -28,15 +28,15 @@
                         <span ng-switch="strategyData.type">
                           <span class="help-block" ng-switch-when="Recreate">
                             The recreate strategy has basic rollout behavior and supports lifecycle hooks for injecting code into the deployment process.
-                            <a ng-href="{{'recreate_strategy' | helpLink}}" target="_blank"><span class="learn-more-inline">Learn More&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></span></a>
+                            <a ng-href="{{'recreate_strategy' | helpLink}}" target="_blank"><span class="learn-more-inline">了解更多&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></span></a>
                           </span>
                           <span class="help-block" ng-switch-when="Rolling">
                             The rolling strategy will wait for pods to pass their readiness check, scale down old components and then scale up.
-                            <a ng-href="{{'rolling_strategy' | helpLink}}" target="_blank"><span class="learn-more-inline">Learn More&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></span></a>
+                            <a ng-href="{{'rolling_strategy' | helpLink}}" target="_blank"><span class="learn-more-inline">了解更多&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></span></a>
                           </span>
                           <span class="help-block" ng-switch-when="Custom">
                             The custom strategy allows you to specify container image that will provide your own deployment behavior.
-                            <a ng-href="{{'custom_strategy' | helpLink}}" target="_blank"><span class="learn-more-inline">Learn More&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></span></a>
+                            <a ng-href="{{'custom_strategy' | helpLink}}" target="_blank"><span class="learn-more-inline">了解更多&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></span></a>
                           </span>
                         </span>
                       </div>
@@ -372,7 +372,7 @@
                   <button ng-click="save()" class="btn btn-primary btn-lg" ng-disabled="form.$invalid || form.$pristine || disableInputs">
                     Save
                   </button>
-                  <button ng-click="cancel()" class="btn btn-default btn-lg">Cancel</button>
+                  <button ng-click="cancel()" class="btn btn-default btn-lg">取消</button>
                 </div>
               </form>
             </fieldset>

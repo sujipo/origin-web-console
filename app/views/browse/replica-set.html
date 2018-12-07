@@ -86,14 +86,14 @@
                 run="logCanRun">
 
                 <span ng-if="replicaSet | deploymentStatus">
-                  <label>Status:</label>
+                  <label>状态:</label>
                   <status-icon status="replicaSet | deploymentStatus"></status-icon>
                   {{replicaSet | deploymentStatus}}
                 </span>
               </log-viewer>
             </uib-tab>
             <uib-tab active="selectedTab.events" ng-if="eventsVersion | canI : 'watch'">
-              <uib-tab-heading>Events</uib-tab-heading>
+              <uib-tab-heading>事件</uib-tab-heading>
               <events api-objects="[ replicaSet ]" project-context="projectContext" ng-if="selectedTab.events"></events>
             </uib-tab>
           </uib-tabset>

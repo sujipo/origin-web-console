@@ -5,45 +5,46 @@
         <div class="col-md-10">
           <breadcrumbs breadcrumbs="breadcrumbs"></breadcrumbs>
           <div ng-if="!targetKind || !targetName || !project" class="mar-top-md">
-            Loading...
+            加载中...
           </div>
           <form name="form" ng-submit="save()" class="osc-form" ng-show="targetKind && targetName">
             <h1>
-              Autoscale {{targetKind | humanizeKind : true}} {{targetName}}
+              自动伸缩 {{targetKind | humanizeKind : true}} {{targetName}}
             </h1>
             <div class="help-block">
-              Scale replicas automatically based on CPU usage.
+              根据CPU使用情况自动伸缩副本。
             </div>
             <div class="learn-more-block" ng-class="{ 'gutter-bottom': metricsWarning || showCPURequestWarning }">
-              <a href="{{'pod_autoscaling' | helpLink}}" target="_blank">Learn More&nbsp;<i class="fa fa-external-link" aria-hidden> </i></a>
+              <a href="{{'pod_autoscaling' | helpLink}}" target="_blank">了解更多&nbsp;<i class="fa fa-external-link" aria-hidden> </i></a>
             </div>
 
             <!-- Warning: metrics not configured -->
             <div ng-if="metricsWarning" class="alert alert-warning">
               <span class="pficon pficon-warning-triangle-o" aria-hidden="true"></span>
-              <span class="sr-only">Warning:</span>
-              Metrics might not be configured by your cluster administrator. Metrics are
-              required for autoscaling.
+              <span class="sr-only">警告:</span>
+              您的集群管理员可能没有配置度量标准。自动伸缩需要度量标准。
             </div>
 
             <!-- Warning: CPU request not set -->
             <div ng-if="showCPURequestWarning" class="alert alert-warning">
               <span class="pficon pficon-warning-triangle-o" aria-hidden="true"></span>
-              <span class="sr-only">Warning:</span>
-              This {{targetKind | humanizeKind}} does not have any containers with a CPU
-              <span ng-if="'cpu' | isRequestCalculated : project">limit</span>
-              <span ng-if="!('cpu' | isRequestCalculated : project)">request</span>
-              set. Autoscaling will not work without a CPU
-              <span ng-if="'cpu' | isRequestCalculated : project">limit.</span>
-              <span ng-if="!('cpu' | isRequestCalculated : project)">request.</span>
+              <span class="sr-only">警告:</span>
+              这个 {{targetKind | humanizeKind}} 没有任何容器针对CPU
+              <span ng-if="'cpu' | isRequestCalculated : project">有限制</span>
+              <span ng-if="!('cpu' | isRequestCalculated : project)">有要求</span>
+              。 如果没有CPU
+              <span ng-if="'cpu' | isRequestCalculated : project">限制，</span>
+              <span ng-if="!('cpu' | isRequestCalculated : project)">要求，</span>
+              自动伸缩将无法工作
             </div>
 
             <!-- Warning: V2Beta1 HPA -->
             <div ng-if="usesV2Metrics" class="alert alert-warning">
               <span class="pficon pficon-warning-triangle-o" aria-hidden="true"></span>
-              <span class="sr-only">Warning:</span>
-              This autoscaler uses a newer API, consider editing it with the
-              <a href="command-line" target="_blank">command line tools</a>.
+              <span class="sr-only">警告:</span>
+              这个自动伸缩控制使用更新的API，可以考虑使用
+              <a href="command-line" target="_blank">命令行工具</a>
+              来编辑。
             </div>
 
 
@@ -65,9 +66,9 @@
                     type="submit"
                     class="btn btn-primary btn-lg"
                     ng-disabled="form.$invalid || form.$pristine">
-                  Save
+                  保存
                 </button>
-                <a href="" ng-click="cancel()" class="btn btn-default btn-lg" role="button">Cancel</a>
+                <a href="" ng-click="cancel()" class="btn btn-default btn-lg" role="button">取消</a>
               </div>
             </fieldset>
           </form>

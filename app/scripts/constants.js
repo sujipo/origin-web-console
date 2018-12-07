@@ -344,7 +344,7 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
               href: "/quota"
             },
             {
-              label: "会员",
+              label: "访问对象",
               href: "/membership",
               // supports: {resource: '', verb: '', group: '' }
               canI: {

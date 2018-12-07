@@ -2,23 +2,22 @@
   <select-project ng-if="!project" selected-project="input.selectedProject" name-taken="projectNameTaken"></select-project>
   <span ng-show="!noProjectsCantCreate">
     <p>
-      通过镜像流标签或从镜像库里部署一个已经存在的应用镜像。
+      通过镜像集标签或从镜像库里部署一个已经存在的应用镜像。
     </p>
     <ng-form name="forms.imageSelection">
       <fieldset ng-disabled="loading">
         <div class="radio">
           <label>
             <input type="radio" ng-model="mode" value="istag">
-            镜像流标签
+            镜像集标签
           </label>
         </div>
         <fieldset>
           <istag-select model="istag" select-required="mode === 'istag'" select-disabled="mode !== 'istag'" include-shared-namespace="true" append-to-body="isDialog"></istag-select>
           <div ng-if="mode == 'istag' && istag.namespace && istag.namespace !== 'openshift' && istag.namespace !== input.selectedProject.metadata.name" class="alert alert-warning">
             <span class="pficon pficon-warning-triangle-o" aria-hidden="true"></span>
-            Service account <strong>default</strong> will need image pull authority to deploy images
-            from <strong>{{istag.namespace}}</strong>. You can grant authority with the command:
-
+            <strong>默认的</strong>服务账户要部署镜像，需要有从<strong>{{istag.namespace}}</strong>拉取镜像的权限。
+            您可以使用以下命令来授予权限:
             <p>
               <code>oc policy add-role-to-user system:image-puller system:serviceaccount:{{input.selectedProject.metadata.name}}:default -n {{istag.namespace}}</code>
             </p>
@@ -30,13 +29,13 @@
             <input type="radio" ng-model="mode" value="dockerImage" ng-disabled="!input.selectedProject.metadata.uid">
             镜像名称
             <span ng-if="!input.selectedProject.metadata.uid" class="text-warning">
-              &ndash; Image search is only available for existing projects.
+              &ndash; 镜像搜索仅针对当前项目。
             </span>
           </label>
         </div>
         <fieldset ng-disabled="!input.selectedProject.metadata.uid">
           <div class="form-group">
-            <label for="imageName" class="sr-only">Image name or pull spec</label>
+            <label for="imageName" class="sr-only">镜像名称或拉取细则</label>
             <div class="input-group">
               <input type="search"
                      id="imageName"
@@ -56,7 +55,7 @@
                         ng-disabled="!imageName"
                         ng-click="findImage()">
                   <i class="fa fa-search" aria-hidden="true"></i>
-                  <span class="sr-only">Find</span>
+                  <span class="sr-only">搜索</span>
                 </button>
               </span>
             </div>
@@ -75,7 +74,7 @@
       <div class="separator"></div>
     </div>
     <div ng-if="loading || !import" class="empty-state-message text-center">
-      <h2 ng-if="!loading" class="h2">选择镜像流标签或输入镜像名称</h2>
+      <h2 ng-if="!loading" class="h2">选择镜像集标签或输入镜像名称</h2>
       <h2 ng-if="loading" class="h2">加载镜像数据（<span class="word-break">{{imageName | stripSHA}}</span>）...</h2>
     </div>
     <div class="row mar-bottom-md" ng-if-start="!loading && import.image">
@@ -85,9 +84,7 @@
       <div class="col-sm-10">
         <div ng-if="runsAsRoot" class="alert alert-warning">
           <span class="pficon pficon-warning-triangle-o" aria-hidden="true"></span>
-          Image <strong>{{import.name}}</strong> runs as the
-          <strong>root</strong> user which might not be permitted by your cluster
-          administrator.
+          镜像<strong>{{import.name}}</strong>作为<strong>root</strong>用户运行，集群管理员可能不允许这样做。
         </div>
         <h2>
           <span ng-if="mode === 'dockerImage'">{{import.name}}</span>
@@ -100,8 +97,8 @@
           </small>
         </h2>
         <ul>
-          <li ng-if="!import.namespace">Image Stream <strong>{{app.name || "&lt;name&gt;"}}:{{import.tag || 'latest'}}</strong> will track this image.</li>
-          <li>This image will be deployed in Deployment Config <strong>{{app.name || "&lt;name&gt;"}}</strong>.</li>
+          <li ng-if="!import.namespace">镜像集 <strong>{{app.name || "&lt;name&gt;"}}:{{import.tag || 'latest'}}</strong> 将跟踪该镜像。</li>
+          <li>该镜像将部署在部署配置 <strong>{{app.name || "&lt;name&gt;"}}</strong>中。</li>
           <li ng-if="ports.length">
             <span ng-if="ports.length === 1">Port</span>
             <span ng-if="ports.length > 1">Ports</span>
@@ -109,13 +106,13 @@
               <span ng-if="!$first && $last">and</span>
               {{port.containerPort}}/{{port.protocol}}<span ng-if="!$last && ports.length > 2">,</span>
             </span>
-            will be load balanced by Service <strong>{{app.name || "&lt;name&gt;"}}</strong>.
-            <div>Other containers can access this service through the hostname <strong>{{app.name || "&lt;name&gt;"}}</strong>.</div>
+            将通过服务 <strong>{{app.name || "&lt;name&gt;"}}</strong>进行负载平衡。
+            <div>其他容器可以通过主机名 <strong>{{app.name || "&lt;name&gt;"}}</strong>访问此服务。</div>
           </li>
         </ul>
         <div ng-if="(volumes | hashSize) > 0" class="help-block">
-          This image declares volumes and will default to use non-persistent, host-local storage.
-          You can add persistent storage later to the deployment config.
+          该镜像声明卷，并将默认使用非持久性主机本地存储。
+          您可以稍后将持久性存储添加到部署配置。
         </div>
       </div>
     </div>
@@ -123,7 +120,7 @@
     <div ng-if-end>
       <ng-form name="forms.deployImage" class="osc-form">
         <div class="form-group">
-         <label for="name" class="required">Name</label>
+         <label for="name" class="required">名称</label>
          <div ng-class="{'has-error': (forms.deployImage.name.$invalid && forms.deployImage.name.$touched) || nameTaken}">
            <input type="text"
                   required
@@ -139,25 +136,24 @@
                   autocapitalize="none"
                   spellcheck="false">
           </div>
-          <div class="help-block">Identifies the resources created for this image.</div>
+          <div class="help-block">标识该镜像创建的资源。</div>
           <div class="has-error" ng-show="forms.deployImage.name.$invalid && forms.deployImage.name.$touched">
             <div class="help-block" ng-show="forms.deployImage.name.$error.required">
-              A name is required.
+                名称为必填项。
             </div>
             <div class="help-block" ng-show="forms.deployImage.name.$error.pattern">
-              Name must be an alphanumeric (a-z, 0-9) string with a maximum length
-              of 24 characters where the first character is a letter (a-z). The '-'
-              character is allowed anywhere except the first or last character.
+              名称必须是字母数字(a-z, 0-9)字符串，最大长度为24个字符，其中第一个字符是字母(a-z)。
+              除了第一个或最后一个字符外，“-”字符允许在任何地方使用。
             </div>
             <div class="help-block" ng-show="forms.deployImage.name.$error.minlength">
-              Name must have at least 2 characters.
+              名称必须至少有两个字符。
             </div>
             <div class="help-block" ng-show="forms.deployImage.name.$error.maxlength">
-              Name can't have more than 24 characters.
+              名称不能超过24个字符。
             </div>
           </div>
           <div class="has-error" ng-show="nameTaken">
-            <span class="help-block">This name is already in use within the project. Please choose a different name.</span>
+            <span class="help-block">该名称已经在项目中使用。请选择一个不同的名字。</span>
           </div>
         </div>
         <osc-form-section
@@ -191,8 +187,8 @@
               class="btn btn-primary btn-lg"
               ng-click="create()"
               value=""
-              ng-disabled="forms.deployImage.$invalid || nameTaken || disableInputs">Create</button>
-          <a class="btn btn-default btn-lg" href="#" back>Cancel</a>
+              ng-disabled="forms.deployImage.$invalid || nameTaken || disableInputs">创建</button>
+          <a class="btn btn-default btn-lg" href="#" back>取消</a>
         </div>
       </ng-form>
     </div>
@@ -200,17 +196,17 @@
     <div ng-if="!loading && import.error" class="empty-state-message text-center">
       <h2>
         <i class="pficon pficon-error-circle-o" aria-hidden="true"></i>
-        Could not load image metadata.
+        无法加载镜像元数据。
       </h2>
       <p>{{import.error | upperFirst}}</p>
-      <p>The image may not exist or it may be in a secure registry. Check that you have entered the image name correctly or <a href="" ng-click="openCreateWebhookSecretModal()">create an image pull secret</a> with your image registry credentials and try again.</p>
+      <p>镜像可能不存在，也可能位于安全注册表中。检查您是否正确输入了镜像名称，或者 <a href="" ng-click="openCreateWebhookSecretModal()">创建一个镜像拉取密钥</a> 来作为镜像注册凭据并再次尝试。</p>
     </div>
 
     <div ng-if="!loading && import && !import.error && !import.image" class="empty-state-message text-center">
       <h2>
-        No image metadata found.
+        没有找到镜像元数据。
       </h2>
-      <p>Could not find any images for {{import.name | stripTag}}:{{import.tag}}.</p>
+      <p>找不到任何镜像类似 {{import.name | stripTag}}:{{import.tag}}</p>
     </div>
   </span>
 </div>

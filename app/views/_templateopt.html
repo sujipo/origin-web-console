@@ -3,11 +3,11 @@
     ng-form="paramForm">
   <div ng-if="!isDialog && parameters.length" class="flow">
     <div class="flow-block">
-      <h2>Parameters</h2>
+      <h2>参数</h2>
     </div>
     <div ng-show="canToggle" class="flow-block right">
-      <a class="action action-inline" href="" ng-click="expand = false" ng-show="expand"><i class="pficon pficon-remove"></i> Collapse</a>
-      <a class="action action-inline" href="" ng-click="expand = true" ng-hide="expand"><i class="pficon pficon-edit"></i> Edit Parameters</a>
+      <a class="action action-inline" href="" ng-click="expand = false" ng-show="expand"><i class="pficon pficon-remove"></i> 折叠</a>
+      <a class="action action-inline" href="" ng-click="expand = true" ng-hide="expand"><i class="pficon pficon-edit"></i> 编辑参数</a>
     </div>
   </div>
   <div ng-transclude></div>
@@ -51,8 +51,8 @@
             ng-class="{'fa-expand': !expandedParemeter, 'fa-compress': expandedParameter}"
             aria-hidden="true"
             role="presentation"
-         /><span class="sr-only" ng-if="expandedParameter">Collapse to a single line input</span
-          ><span class="sr-only" ng-if="!expandedParameter">Expand to enter multiline input</span></a>
+         /><span class="sr-only" ng-if="expandedParameter">折叠为一行输入</span
+          ><span class="sr-only" ng-if="!expandedParameter">展开以输入多行输入</span></a>
       <textarea
           ng-if="expandedParameter"
           ng-attr-id="{{paramID}}"
@@ -73,10 +73,10 @@
         <div class="help-block">{{parameter.displayName || parameter.name}} is required.</div>
       </div>
       <div ng-show="isOnlyWhitespace(parameter.value)" class="has-warning help-block">
-        The current value is "{{parameter.value}}", which is not empty.
-        <span ng-if="parameter.generate">This will prevent a value from being generated.</span>
-        If this isn't what you want,
-          <a href="" ng-click="parameter.value=''; cleared = true; focus(paramID)">clear the value</a>.
+        当前值是 "{{parameter.value}}", 不能为空。
+        <span ng-if="parameter.generate">这将阻止生成值。</span>
+        如果这不是你想要的，
+          <a href="" ng-click="parameter.value=''; cleared = true; focus(paramID)">则清除该值</a>.
       </div>
     </div>
   </div>
@@ -88,7 +88,7 @@
       <span class="value truncate" ng-attr-title="{{parameter | parameterValue}}">{{ parameter | parameterValue }}</span>
       <div class="help-block" ng-if="parameter.description">{{parameter.description}}</div>
       <div ng-show="paramForm[paramID].$error.required && paramForm[paramID].$touched" class="has-error">
-        <div class="help-block">{{parameter.name}} is required.</div>
+        <div class="help-block">{{parameter.name}} 是必须的。</div>
       </div>
     </li>
   </ul>

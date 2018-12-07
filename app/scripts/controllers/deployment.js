@@ -36,7 +36,7 @@ angular.module('openshiftConsole')
     $scope.imagesByDockerReference = {};
     $scope.breadcrumbs = [
       {
-        title: "Deployments",
+        title: "部署",
         link: "project/" + $routeParams.project + "/browse/deployments"
       },
       {
@@ -218,9 +218,9 @@ angular.module('openshiftConsole')
           var confirm = ModalsService.confirm({
             title: "Remove volume " + volume.name + "?",
             details: details,
-            okButtonText: "Remove",
+            okButtonText: "删除",
             okButtonClass: "btn-danger",
-            cancelButtonText: "Cancel"
+            cancelButtonText: "取消"
           });
 
           var removeVolume = function() {

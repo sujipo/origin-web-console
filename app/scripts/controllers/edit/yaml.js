@@ -34,7 +34,7 @@ angular.module('openshiftConsole')
       // If returnURL is unspecified, the breadcrumbs directive defaults to back.
       link: $routeParams.returnURL
     }, {
-      title: "Edit YAML"
+      title: "编辑YAML"
     }];
 
     var navigateBack = function() {

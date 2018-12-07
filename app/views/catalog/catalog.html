@@ -1,37 +1,33 @@
-<p ng-if="!loaded">Loading...</p>
+<p ng-if="!loaded">加载中...</p>
 
 <div ng-if="emptyCatalog && loaded" class="empty-state-message empty-state-full-page">
-  <h2 class="text-center">No images or templates.</h2>
+  <h2 class="text-center">没有镜像或模板。</h2>
 
   <p class="gutter-top">
-    No images or templates are loaded for this project or the shared
-    <code>openshift</code> namespace. An image or template is
-    required to add content.
+    这个项目和<code>openshift</code>共享项目里都没有镜像或模板。 需要一个镜像或模板来添加内容。
   </p>
 
   <p>
-    To add an image stream or template from a file, use the editor in the
-    <strong>Import YAML / JSON</strong> tab, or run the following command:
+    通过文件添加镜像或模板，可以在 <strong>导入 YAML / JSON</strong> tab页面中使用编辑器, 或者运行以下命令:
     <div><code>oc create -f &lt;filename&gt; -n {{projectName}}</code></div>
   </p>
 
-  <p><a href="{{projectName | projectOverviewURL}}">Back to overview</a></p>
+  <p><a href="{{projectName | projectOverviewURL}}">返回概述</a></p>
 </div>
 
 <div ng-show="!emptyCatalog && loaded && !singleCategory">
-  <p ng-if="!parentCategory">Choose from web frameworks, databases, and other components to
-  add content to your project.</p>
+  <p ng-if="!parentCategory">从web框架、数据库和其他组件中进行选择向项目添加内容。</p>
 
   <form role="form" class="filter-catalog search-pf has-button">
     <div class="form-group has-clear">
       <!-- Add a hidden label for screen readers. -->
       <div class="search-pf-input-group">
-        <label for="search" class="sr-only">Filter by name or description</label>
+        <label for="search" class="sr-only">按名称或描述过滤</label>
         <input
            ng-model="filter.keyword"
            type="search"
            id="search"
-           placeholder="Filter by name or description"
+           placeholder="按名称或描述过滤"
            class="search-input form-control"
            autocorrect="off"
            autocapitalize="none"
@@ -49,8 +45,8 @@
   </form>
 
   <div ng-if="allContentHidden" class="empty-state-message text-center h2">
-    All content is hidden by the current filter.
-    <button type="button" class="btn btn-link inline-btn-link" ng-click="filter.keyword = ''">Clear All Filters</button>
+    所有内容都被当前过滤器隐藏。
+    <button type="button" class="btn btn-link inline-btn-link" ng-click="filter.keyword = ''">清除所有过滤器</button>
   </div>
 
   <div ng-if="!filterActive">
@@ -123,7 +119,7 @@
     </div>
     <div ng-if="countFilteredNoSubcategory">
       <h2 class="h3">
-        Other {{parentCategory.label}}
+        其它 {{parentCategory.label}}
         <span class="tile-item-count badge">{{countFilteredNoSubcategory}}</span>
       </h2>
       <div class="row row-cards-pf row-cards-pf-flex mar-top-xl">

@@ -6,10 +6,10 @@
           <a ng-href="project/{{project.metadata.name}}/create-config-map" class="btn btn-default">Create Config Map</a>
         </div>
         <h1>
-          Config Maps
+          配置映射
           <span class="page-header-link">
             <a ng-href="{{'config-maps' | helpLink}}" target="_blank">
-              Learn More <i class="fa fa-external-link" aria-hidden="true"></i>
+              了解更多 <i class="fa fa-external-link" aria-hidden="true"></i>
             </a>
           </span>
         </h1>
@@ -27,18 +27,18 @@
         <div class="col-md-12">
           <div ng-if="(configMaps | hashSize) == 0">
             <p ng-if="!loaded">
-              Loading...
+              加载中...
             </p>
             <div ng-if="loaded" class="empty-state-message text-center">
               <div ng-if="!filterWithZeroResults">
-                <h2>No config maps.</h2>
-                <p>No config maps have been added to project {{projectName}}.</p>
+                <h2>没有配置映射</h2>
+                <p>没有配置映射添加到项目 {{projectName}}.</p>
                 <p ng-if="project && (configMapsVersion | canI : 'create')">
-                  <a ng-href="project/{{project.metadata.name}}/create-config-map" class="btn btn-primary btn-lg">Create Config Map</a>
+                  <a ng-href="project/{{project.metadata.name}}/create-config-map" class="btn btn-primary btn-lg">添加配置映射</a>
                 </p>
               </div>
               <div ng-if="filterWithZeroResults">
-                <h2>The filter is hiding all config maps. <button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">Clear All Filters</button></h2>
+                <h2>过滤器隐藏了所有的配置映射。 <button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">清除所有过滤器</button></h2>
               </div>
             </div>
           </div>
@@ -48,9 +48,9 @@
             </colgroup>
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Created</th>
-                <th>Labels</th>
+                <th>名称</th>
+                <th>创建</th>
+                <th>标签</th>
               </tr>
             </thead>
             <tbody>

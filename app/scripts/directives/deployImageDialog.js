@@ -55,10 +55,10 @@
 
     ctrl.stepChanged = function(step) {
       if (step.stepId === 'results') {
-        ctrl.nextButtonTitle = "Close";
+        ctrl.nextButtonTitle = "关闭";
         ctrl.wizardDone = true;
       } else {
-        ctrl.nextButtonTitle = "Deploy";
+        ctrl.nextButtonTitle = "部署";
       }
     };
 

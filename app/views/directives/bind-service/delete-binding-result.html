@@ -1,7 +1,7 @@
 <div>
   <div ng-if="!ctrl.error">
     <h3 class="mar-top-none">
-      Binding for the following has been deleted:
+      以下绑定已被删除:
     </h3>
 
     <div
@@ -16,17 +16,17 @@
     <!-- Only show the redeploy pods message if previously bound to an app. -->
     <p ng-if="ctrl.unboundApps | size" class="mar-top-lg">
       <span class="pficon pficon-info" aria-hidden="true"></span>
-      You will need to redeploy your pods for this to take effect.
+      为了使之生效，您需要重新部署pod。
     </p>
   </div>
   <div ng-if="ctrl.error">
-    <div class="title">Deletion of Binding Failed <span class="fa fa-times text-danger"></span></div>
+    <div class="title">删除绑定失败<span class="fa fa-times text-danger"></span></div>
     <div class="sub-title">
       <span ng-if="ctrl.error.data.message">
         {{ctrl.error.data.message | upperFirst}}
       </span>
       <span ng-if="!ctrl.error.data.message">
-        An error occurred deleting the binding.
+        删除绑定时发生错误。
       </span>
     </div>
   </div>

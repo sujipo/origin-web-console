@@ -128,12 +128,12 @@
                           <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu">
                             <li role="menuitem">
                               <a ng-href="project/{{project.metadata.name}}/membership">
-                                查看成员
+                                查看访问对象
                               </a>
                             </li>
                             <li role="menuitem">
                               <a href="" ng-click="editProject(project)">
-                                修改项目
+                                编辑项目
                               </a>
                             </li>
                             <li role="menuitem">
@@ -159,9 +159,8 @@
                 </div>
               </div>
               <p ng-if="projects.length > limitListTo">
-                Only the first {{limitListTo}} projects are displayed.
-                Filter by keyword or change sort options to see other
-                projects.
+                只显示第一个 {{limitListTo}} 项目。
+                通过关键字筛选或更改排序选项来查看其他项目。
               </p>
               <p class="projects-instructions" ng-if="canCreate === false" ng-include="'views/_cannot-create-project.html'"></p>
             </div>

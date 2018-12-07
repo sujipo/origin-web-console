@@ -2580,7 +2580,7 @@ subjects: {}
 ServiceAccount: {
 kind: "ServiceAccount",
 sortOrder: 3,
-description: "Service accounts provide a flexible way to control API access without sharing a regular user’s credentials.",
+description: "服务帐户提供了一种灵活的方式来控制API访问，而无需共享普通用户的凭据。",
 helpLinkKey: "service_accounts",
 name: "ServiceAccount",
 subjects: {}
@@ -2638,7 +2638,7 @@ subjects: {}
 ServiceAccount: {
 kind: "ServiceAccount",
 sortOrder: 3,
-description: "Service accounts provide a flexible way to control API access without sharing a regular user’s credentials.",
+description: "服务帐户提供了一种灵活的方式来控制API访问，而无需共享普通用户的凭据。",
 helpLinkKey: "service_accounts",
 name: "ServiceAccount",
 subjects: {}
@@ -5130,7 +5130,7 @@ n.namespaceUsageByClusterQuota[e.metadata.name] = r.status;
 poll: !0,
 pollInterval: 6e4
 })), u.push(a.watch(l, r, function(e) {
-n.limitRanges = _.sortBy(e.by("metadata.name"), "metadata.name"), n.emptyMessageLimitRanges = "There are no limit ranges set on this project.", angular.forEach(n.limitRanges, function(e) {
+n.limitRanges = _.sortBy(e.by("metadata.name"), "metadata.name"), n.emptyMessageLimitRanges = "这个项目没有限制范围。", angular.forEach(n.limitRanges, function(e) {
 var t = e.metadata.name;
 n.limitsByType[t] = {}, angular.forEach(e.spec.limits, function(e) {
 var r = n.limitsByType[t][e.type] = {};

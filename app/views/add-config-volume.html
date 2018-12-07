@@ -6,31 +6,30 @@
         <div ng-if="!error && (!targetObject || !configMaps || !secrets)">Loading...</div>
 
         <div ng-if="error" class="empty-state-message text-center">
-          <h2>The {{kind | humanizeKind}} could not be loaded.</h2>
+          <h2>该 {{kind | humanizeKind}} 无法加载</h2>
           <p>{{error | getErrorDetails}}</p>
         </div>
 
         <div ng-if="targetObject && configMaps && secrets">
           <div ng-if="!configMaps.length && !secrets.length && !(configMapVersion | canI : 'create') && !(secretVersion | canI : 'create')" class="empty-state-message empty-state-full-page text-center">
-            <h2>No config maps or secrets.</h2>
+            <h2>没有配置映射或密钥。</h2>
 
             <p>
-              There are no config maps or secrets in project {{project | displayName}} to use
-              as a volume for this {{kind | humanizeKind}}.
+              {{project | displayName}} 项目中没有配置映射或密钥可以使用这种{{kind | humanizeKind}}的卷。
             </p>
 
             <p ng-if="targetObject"><a ng-href="{{targetObject | navigateResourceURL}}">Back to {{kind | humanizeKind}} {{name}}</a></p>
           </div>
 
           <div ng-if="configMaps.length || secrets.length || (configMapVersion | canI : 'create') || (secretVersion | canI : 'create')" class="mar-top-xl">
-            <h1>Add Config Files to {{name}}</h1>
+            <h1>将配置文件添加到 {{name}}</h1>
             <div class="help-block">
-              Add values from a config map or secret as volume. This will make the data available as files for {{kind | humanizeKind}} {{name}}.
+              从配置映射或密钥中添加值作为卷。这将使数据作为{{kind | humanizeKind}} {{name}}的文件可用。
             </div>
             <form name="forms.addConfigVolumeForm" class="mar-top-lg">
               <fieldset ng-disabled="disableInputs">
                 <div class="form-group">
-                  <label class="required">Source</label>
+                  <label class="required">来源</label>
                   <ui-select ng-model="attach.source" ng-required="true">
                     <ui-select-match placeholder="Select config map or secret">
                       <span>
@@ -46,20 +45,20 @@
                   </ui-select>
                   <div ng-if="(configMapVersion | canI : 'create') || (secretVersion | canI : 'create')" class="mar-top-md">
                     <span ng-if="configMapVersion | canI : 'create'">
-                      <a ng-href="project/{{project.metadata.name}}/create-config-map">Create Config Map</a>
+                      <a ng-href="project/{{project.metadata.name}}/create-config-map">创建配置映射</a>
                     </span>
                     <span ng-if="secretVersion | canI : 'create'">
                       <span ng-if="configMapVersion | canI : 'create'" class="action-divider" aria-hidden="true">|</span>
-                      <a ng-href="project/{{project.metadata.name}}/create-secret">Create Secret</a>
+                      <a ng-href="project/{{project.metadata.name}}/create-secret">创建密钥</a>
                     </span>
                   </div>
                   <div class="help-block">
-                    Pick the config source. Its data will be mounted as a volume in the container.
+                    选择配置源。它的数据将作为卷装载在容器中。
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="mount-path" class="required">Mount Path</label>
+                  <label for="mount-path" class="required">挂载路径</label>
                   <input
                       id="mount-path"
                       class="form-control"
@@ -76,21 +75,20 @@
                       aria-describedby="mount-path-help">
                   <div>
                     <span id="mount-path-help" class="help-block">
-                      Mount path for the volume.
+                      卷的挂载路径。
                       <span ng-if="!attach.pickKeys">
-                        A file will be created in this directory for each key from the config
-                        map or secret. The file contents will be the value of the key.
+                        将在此目录中为配置映射或密钥中的每个键创建一个文件。文件内容将是键的值。
                       </span>
                     </span>
                   </div>
                   <div class="has-error" ng-show="forms.addConfigVolumeForm.mountPath.$error.pattern && forms.addConfigVolumeForm.mountPath.$touched">
                     <span class="help-block">
-                      Mount path must be a valid path to a directory starting with <code>/</code>.
+                      挂载路径必须是从根目录开始的有效路径 <code>/</code>.
                     </span>
                   </div>
                   <div class="has-error" ng-show="forms.addConfigVolumeForm.mountPath.$error.oscUnique">
                     <span class="help-block">
-                      The mount path is already used. Please choose another mount path.
+                        挂载路径已被使用。请选择另一条挂载路径。
                     </span>
                   </div>
                 </div>
@@ -104,20 +102,20 @@
                           ng-model="attach.pickKeys"
                           ng-disabled="!attach.source"
                           aria-describedby="select-keys-help">
-                      Select specific keys and paths
+                        选择特定的键和路径
                     </label>
                     <div id="select-keys-help" class="help-block">
-                      Add only certain keys or use paths that are different than the key names.
+                        只添加某些键或使用与键名不同的路径。
                     </div>
                   </div>
                 </div>
 
                 <div ng-if="attach.pickKeys && attach.source" class="mar-bottom-md">
-                  <h3>Keys and Paths</h3>
+                  <h3>键和路径</h3>
                   <div class="help-block mar-bottom-md">
-                    Select the keys to use and the file paths where each key will be exposed.
-                    The file paths are relative to the mount path.
-                    The contents of each file will be the value of the key.
+                    选择要使用的键和每个键将公开的文件路径。
+                    文件路径相对于挂载路径。
+                    每个文件的内容将是键的值。
                   </div>
                   <div ng-repeat="item in attach.items">
                     <div class="row">
@@ -133,7 +131,7 @@
                         </ui-select>
                       </div>
                       <div class="form-group col-md-6">
-                        <label ng-attr-for="path-{{$id}}" class="required">Path</label>
+                        <label ng-attr-for="path-{{$id}}" class="required">路径</label>
                         <input
                             ng-attr-id="path-{{$id}}"
                             class="form-control"
@@ -150,13 +148,12 @@
                             spellcheck="false">
                         <div class="has-error" ng-show="forms.addConfigVolumeForm['path-' + $id].$error.pattern">
                           <span class="help-block">
-                            Path must be a relative path. It cannot start with <code>/</code> or
-                            contain <code>..</code> path elements.
+                            路径必须是相对路径。 路径不能以 <code>/</code> 开头，或者包含 <code>..</code> 路径元素。
                           </span>
                         </div>
                         <div class="has-error" ng-show="forms.addConfigVolumeForm['path-' + $id].$error.oscUnique">
                           <span class="help-block">
-                            Paths must be unique.
+                            路径必须是唯一的。
                           </span>
                         </div>
                       </div>
@@ -165,27 +162,27 @@
                       <a ng-hide="attach.items.length === 1" href="" ng-click="removeItem($index)">Remove Item</a>
                       <span ng-if="$last">
                         <span ng-hide="attach.items.length === 1" class="action-divider" aria-hidden="true">|</span>
-                        <a href="" ng-click="addItem()">Add Item</a>
+                        <a href="" ng-click="addItem()">添加项</a>
                       </span>
                     </div>
                   </div>
                 </div>
 
                 <div ng-if="targetObject.spec.template.spec.containers.length > 1">
-                  <h3 ng-class="{ hidden: attach.allContainers && !attach.pickKeys }">Containers</h3>
+                  <h3 ng-class="{ hidden: attach.allContainers && !attach.pickKeys }">容器</h3>
                   <div ng-if="attach.allContainers">
-                    The volume will be mounted into all containers. You can
-                    <a href="" ng-click="attach.allContainers = false">select specific containers</a>
-                    instead.
+                    卷将装入所有容器。你可以
+                    <a href="" ng-click="attach.allContainers = false">选择特定的容器</a>
+                    代替。
                   </div>
 
                   <div ng-if="!attach.allContainers" class="form-group">
-                    <label class="sr-only required">Containers</label>
+                    <label class="sr-only required">容器</label>
                     <select-containers
                         ng-model="attach.containers"
                         pod-template="targetObject.spec.template"
                         ng-required="true"
-                        help-text="Add the volume to the selected containers.">
+                        help-text="将卷添加到所选容器。">
                     </select-containers>
                   </div>
                 </div>
@@ -194,11 +191,11 @@
                   <button type="submit"
                       class="btn btn-primary btn-lg"
                       ng-click="addVolume()"
-                      ng-disabled="forms.addConfigVolumeForm.$invalid || disableInputs">Add</button>
+                      ng-disabled="forms.addConfigVolumeForm.$invalid || disableInputs">添加</button>
                   <a class="btn btn-default btn-lg"
                       role="button"
                       href=""
-                      ng-click="cancel()">Cancel</a>
+                      ng-click="cancel()">取消</a>
                 </div>
               </fieldset>
             </form>

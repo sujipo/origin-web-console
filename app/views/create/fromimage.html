@@ -4,7 +4,7 @@
         <div class="row">
           <div class="col-md-12">
             <div ng-hide="imageStream" class="mar-top-lg">
-              Loading...
+              加载中...
             </div>
             <div class="osc-form" ng-show="imageStream">
               <alerts alerts="alerts"></alerts>
@@ -19,7 +19,7 @@
                     <form class="" ng-show="imageStream" novalidate name="form" ng-submit="createApp()">
                       <div style="margin-bottom: 15px;">
                         <div class="form-group">
-                         <label for="appname" class="required">Name</label>
+                         <label for="appname" class="required">名称</label>
                          <!--
                            Only validate the name pattern and minlength if the field has both been changed and blurred.  This
                            avoids a lot of problems clicking on the try it / more options links below.  Don't use $touched,
@@ -44,20 +44,20 @@
                                   autocapitalize="none"
                                   spellcheck="false">
                           </div>
-                          <div class="help-block">Identifies the resources created for this application.</div>
+                          <div class="help-block">标识为该应用程序创建的资源。</div>
                           <div class="has-error" ng-show="form.appname.$error.required && form.appname.$dirty">
-                            <span class="help-block">A name is required.</span>
+                            <span class="help-block">需要一个名称。</span>
                           </div>
                           <div class="has-error" ng-show="form.appname.$error.pattern && shouldValidateName">
-                            <span class="help-block"><strong>Please enter a valid name.</strong>
-                            <p>A valid name is applied to all generated resources. It is an alphanumeric (a-z, and 0-9) string with a maximum length of 24 characters, where the first character is a letter (a-z), and the '-' character is allowed anywhere except the first or last character.</p>
+                            <span class="help-block"><strong>请输入有效名称。</strong>
+                            <p>对所有生成的资源应用有效的名称。它是一个最大长度为24个字符的字母数字字符串(a-z和0-9)，其中第一个字符是一个字母(a-z)，除了第一个或最后一个字符之外，“-”字符允许出现在任何地方。</p>
                             </span>
                           </div>
                           <div class="has-error" ng-show="form.appname.$error.minlength && shouldValidateName">
-                            <span class="help-block">The name must have at least 2 characters.</span>
+                            <span class="help-block">名称必须至少有两个字符。</span>
                           </div>
                           <div class="has-error" ng-show="nameTaken">
-                            <span class="help-block">This name is already in use within the project. Please choose a different name.</span>
+                            <span class="help-block">该名称已经在项目中使用。请选择一个不同的名字。</span>
                           </div>
                         </div>
                       </div>
@@ -67,7 +67,7 @@
                           'col-lg-12': !advancedOptions && !advancedSourceOptions
                         }">
                           <div class="form-group">
-                            <label for="sourceUrl" class="required">Git Repository URL</label>
+                            <label for="sourceUrl" class="required">Git 仓库 URL</label>
                             <div ng-class="{
                               'has-warning': buildConfig.sourceUrl && form.sourceUrl.$touched && !sourceURLPattern.test(buildConfig.sourceUrl),
                               'has-error': (form.sourceUrl.$error.required && form.sourceUrl.$dirty)
@@ -311,7 +311,7 @@
                               Scale replicas manually or automatically based on CPU usage.
                             </div>
                             <div class="learn-more-block">
-                              <a href="{{'pod_autoscaling' | helpLink}}" target="_blank">Learn More&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                              <a href="{{'pod_autoscaling' | helpLink}}" target="_blank">了解更多&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
                             </div>
                             <div class="has-warning" ng-if="metricsWarning && scaling.autoscale">
                               <span class="help-block">
@@ -388,21 +388,21 @@
                             labels="labelArray"
                             expand="true"
                             can-toggle="false"
-                            help-text="Each label is applied to each created resource.">
+                            help-text="每个标签应用于每个创建的资源。">
                         </label-editor>
                       </div>
                       <div class="mar-top-md">
-                        <span ng-if="!advancedOptions">Show</span>
-                        <span ng-if="advancedOptions">Hide</span>
-                        <a href="" ng-click="advancedOptions = !advancedOptions" role="button">advanced options</a>
-                        for source, routes, builds, and deployments.
+                        <span ng-if="!advancedOptions">显示</span>
+                        <span ng-if="advancedOptions">隐藏</span>
+                        <a href="" ng-click="advancedOptions = !advancedOptions" role="button">高级选项</a>
+                        用于资源、路由、构建和部署。
                       </div>
                       <div class="buttons gutter-bottom" ng-class="{'gutter-top': !alerts.length}">
                         <button type="submit"
                             class="btn btn-primary btn-lg"
                             ng-disabled="form.$invalid || nameTaken || cpuProblems.length || memoryProblems.length || disableInputs"
                             >Create</button>
-                        <a class="btn btn-default btn-lg" href="" ng-click="cancel()" role="button">Cancel</a>
+                        <a class="btn btn-default btn-lg" href="" ng-click="cancel()" role="button">取消</a>
                       </div>
                     </form>
                   </fieldset>

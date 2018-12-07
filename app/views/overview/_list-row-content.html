@@ -42,10 +42,10 @@
         <ellipsis-pulser color="dark" size="sm" display="inline" msg="Deploying"></ellipsis-pulser>
       </span>
     </span>
-    <a ng-href="project/{{row.apiObject.metadata.namespace}}/browse/events">View Events</a>
+    <a ng-href="project/{{row.apiObject.metadata.namespace}}/browse/events">查看事件</a>
     <span ng-if="row.replicationControllersVersion | canI : 'update'">
       <span class="action-divider">|</span>
-      <a href="" ng-click="row.cancelDeployment()" role="button">Cancel</a>
+      <a href="" ng-click="row.cancelDeployment()" role="button">取消</a>
     </span>
   </div>
   <div ng-if="row.apiObject.kind === 'Deployment'">

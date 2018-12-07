@@ -209,16 +209,16 @@ angular
 
       var createModalScope = function(subjectName, kind, roleName, currentUserName) {
         var modalScope = {
-          title: 'Confirm Removal',
+          title: '确认删除',
           alerts: {},
           detailsMarkup: messages.remove.areYouSure.html.subject({
             roleName: roleName,
             kindName: humanizeKind(kind),
             subjectName:  subjectName
           }),
-          okButtonText: 'Remove',
+          okButtonText: '删除',
           okButtonClass: 'btn-danger',
-          cancelButtonText: 'Cancel'
+          cancelButtonText: '取消'
         };
         if(_.isEqual(subjectName, currentUserName)) {
           modalScope.detailsMarkup = messages.remove.areYouSure.html.self({

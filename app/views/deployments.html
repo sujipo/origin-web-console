@@ -3,10 +3,10 @@
     <div class="container-fluid">
       <div class="page-header page-header-bleed-right page-header-bleed-left">
         <h1>
-          Deployments
+          部署
           <span class="page-header-link">
             <a ng-href="{{'deployments' | helpLink}}" target="_blank">
-              Learn More <i class="fa fa-external-link" aria-hidden="true"></i>
+              了解更多 <i class="fa fa-external-link" aria-hidden="true"></i>
             </a>
           </span>
         </h1>
@@ -23,21 +23,21 @@
       <div class="row">
         <div class="col-md-12">
           <p ng-if="!deploymentConfigsLoaded">
-            Loading...
+            加载中...
           </p>
           <div ng-if="(showEmptyState || filterWithZeroResults) && deploymentConfigsLoaded">
             <div class="empty-state-message text-center">
               <div ng-if="showEmptyState">
-                <h2>No deployments.</h2>
-                <p>No deployments have been added to project {{projectName}}.</p>
+                <h2>没有部署。</h2>
+                <p>没有部署添加到项目 {{projectName}}.</p>
               </div>
               <div ng-if="filterWithZeroResults">
-                <h2>The filter is hiding all deployments. <button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">Clear All Filters</button></h2>
+                <h2>过滤器隐藏了所有部署。 <button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">清除所有过滤器</button></h2>
               </div>
             </div>
           </div>
           <div ng-if="!filterWithZeroResults">
-            <h3 ng-if="showDeploymentConfigTable() && ((deployments | size) || (replicaSets | size) || (replicationControllersByDC[''] | size))">Deployment Configs</h3>
+            <h3 ng-if="showDeploymentConfigTable() && ((deployments | size) || (replicaSets | size) || (replicationControllersByDC[''] | size))">部署配置</h3>
             <table ng-if="showDeploymentConfigTable() && !showEmptyState" class="table table-bordered table-mobile table-layout-fixed">
               <colgroup>
                 <col class="col-sm-3">
@@ -48,11 +48,11 @@
               </colgroup>
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Last Version</th>
-                  <th>Status</th>
-                  <th>Created</th>
-                  <th>Trigger</th>
+                  <th>名称</th>
+                  <th>最后版本</th>
+                  <th>状态</th>
+                  <th>创建</th>
+                  <th>触发器</th>
                 </tr>
               </thead>
               <tbody>
@@ -63,7 +63,7 @@
                     <a ng-if="deploymentConfigs[dcName]" href="{{dcName | navigateResourceURL : 'DeploymentConfig' : projectName}}">{{dcName}}</a>
                     <span ng-if="deploymentConfigs[dcName].status.details.message" class="pficon pficon-warning-triangle-o" style="cursor: help;" data-toggle="popover" data-trigger="hover" dynamic-content="{{deploymentConfigs[dcName].status.details.message}}"></span>
                   </td>
-                  <td data-title="Last Version"><em>No deployments</em></td>
+                  <td data-title="Last Version"><em>没有部署</em></td>
                   <td class="hidden-xs">&nbsp;</td>
                   <td class="hidden-xs">&nbsp;</td>
                   <td class="hidden-xs">&nbsp;</td>
@@ -118,7 +118,7 @@
               </tbody>
             </table>
             <div ng-if="(deployments | size)">
-              <h3>Deployments</h3>
+              <h3>部署</h3>
               <table class="table table-bordered table-mobile table-layout-fixed">
                 <colgroup>
                   <col class="col-sm-4">
@@ -129,11 +129,11 @@
                 </colgroup>
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Last Version</th>
-                    <th>Replicas</th>
-                    <th>Created</th>
-                    <th>Strategy</th>
+                    <th>名称</th>
+                    <th>最后版本</th>
+                    <th>副本</th>
+                    <th>创建</th>
+                    <th>策略</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -163,16 +163,16 @@
               </table>
             </div>
             <div ng-if="(replicaSets | size)" id="replica-sets">
-              <h3>Replica Sets</h3>
+              <h3>副本集</h3>
               <table class="table table-bordered table-mobile table-layout-fixed">
                 <colgroup>
                   <col class="col-sm-4">
                 </colgroup>
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Replicas</th>
-                    <th>Created</th>
+                    <th>名称</th>
+                    <th>副本</th>
+                    <th>创建</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -191,16 +191,16 @@
               </table>
             </div>
             <div ng-if="(replicationControllersByDC[''] | size)" id="replica-controllers">
-              <h3>Other Replication Controllers</h3>
+              <h3>其它副本控制器</h3>
               <table class="table table-bordered table-mobile table-layout-fixed">
                 <colgroup>
                   <col class="col-sm-5">
                 </colgroup>
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Replicas</th>
-                    <th>Created</th>
+                    <th>名称</th>
+                    <th>副本</th>
+                    <th>创建</th>
                   </tr>
                 </thead>
                 <tbody>

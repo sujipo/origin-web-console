@@ -13,7 +13,7 @@
       <span class="pficon pficon-image" aria-hidden="true"></span>
     </div>
     <div class="pod-template-detail word-break">
-      <span class="pod-template-key">Image:</span>
+      <span class="pod-template-key">镜像:</span>
       <span ng-if="!imagesByDockerReference[container.image]">{{container.image | imageStreamName}}</span>
       <span ng-if="imagesByDockerReference[container.image]">
             <a ng-href="{{imagesByDockerReference[container.image].imageStreamName | navigateResourceURL : 'ImageStream' : imagesByDockerReference[container.image].imageStreamNamespace}}">{{container.image | imageStreamName}}</a>
@@ -31,7 +31,7 @@
         <span class="fa fa-refresh" aria-hidden="true"></span>
       </div>
       <div class="pod-template-detail word-break">
-        <span class="pod-template-key">Build:</span>
+        <span class="pod-template-key">构建:</span>
         <span ng-if="build | configURLForResource">
               <a ng-href="{{build | configURLForResource}}">{{build | buildConfigForBuild}}</a>,
             </span>
@@ -46,7 +46,7 @@
         <span class="fa fa-code" aria-hidden="true"></span>
       </div>
       <div class="pod-template-detail word-break">
-        <span class="pod-template-key">Source:</span>
+        <span class="pod-template-key">来源:</span>
         <span ng-switch="build.spec.source.type">
               <span ng-switch-when="Git">
                 <span ng-if="build.spec.revision.git.commit">
@@ -64,7 +64,7 @@
                 </span>
               </span>
               <span ng-switch-default>
-                {{build.spec.source.type || 'Unknown'}}
+                {{build.spec.source.type || '未知'}}
               </span>
             </span>
       </div>
@@ -77,7 +77,7 @@
     </div>
     <div class="pod-template-detail word-break">
           <span class="pod-template-key">
-            Command:
+            命令:
           </span>
       <span>
             <code class="command">
@@ -98,7 +98,7 @@
       <span aria-hidden="true" class="pficon pficon-port"></span>
     </div>
     <div class="pod-template-detail word-break">
-      <span class="pod-template-key">Ports:</span>
+      <span class="pod-template-key">端口:</span>
       <span ng-repeat="port in container.ports | orderBy: 'containerPort' | limitToOrAll : detailed ? undefined : 1">
         <span class="nowrap">{{port.containerPort}}/{{port.protocol}}</span><span ng-if="port.name"><span class="nowrap"> ({{port.name}})</span></span><span ng-if="port.hostPort"><span class="nowrap"><span class="port-icon"> &#8594;</span> {{port.hostPort}}</span></span><span ng-if="!$last">, </span>
       </span>
@@ -115,7 +115,7 @@
       <span aria-hidden="true" class="fa fa-database"></span>
     </div>
     <div class="pod-template-detail word-break">
-      <span class="pod-template-key">Mount:</span>
+      <span class="pod-template-key">挂载:</span>
       <span>
             {{mount.name}}<span ng-if="mount.subPath">, subpath {{mount.subPath}}</span>&#8201;&#8594;&#8201;<span>{{mount.mountPath}}</span>
             <small class="text-muted">{{mount | volumeMountMode : podTemplate.spec.volumes}}</small>
@@ -146,7 +146,7 @@
       <i class="fa fa-area-chart" aria-hidden="true"></i>
     </div>
     <div class="pod-template-detail">
-      <span class="pod-template-key">Memory:</span>
+      <span class="pod-template-key">内存:</span>
       <span ng-if="container.resources.requests.memory && container.resources.limits.memory">
             {{container.resources.requests.memory | usageWithUnits: 'memory'}} to {{container.resources.limits.memory | usageWithUnits: 'memory'}}
           </span>
@@ -164,7 +164,7 @@
       <i class="fa fa-medkit" aria-hidden="true"></i>
     </div>
     <div class="pod-template-detail">
-      <span class="pod-template-key">Readiness Probe:</span>
+      <span class="pod-template-key">就绪探针:</span>
       <probe probe="container.readinessProbe"></probe>
     </div>
   </div>
@@ -174,7 +174,7 @@
       <i class="fa fa-medkit" aria-hidden="true"></i>
     </div>
     <div class="pod-template-detail">
-      <span class="pod-template-key">Liveness Probe:</span>
+      <span class="pod-template-key">活跃探针:</span>
       <probe probe="container.livenessProbe"></probe>
     </div>
   </div>

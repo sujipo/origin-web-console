@@ -8,12 +8,11 @@
   </p>
 
   <p>
-    To add an image stream or template from a file, use the editor in the
-    <strong>Import YAML / JSON</strong> tab, or run the following command:
+    通过文件添加镜像或模板，可以在 <strong>导入 YAML / JSON</strong> tab页面中使用编辑器, 或者运行以下命令:
     <div><code>oc create -f &lt;filename&gt; -n {{projectName}}</code></div>
   </p>
 
-  <p><a ng-href="project/{{projectName}}/create">Back to catalog</a></p>
+  <p><a ng-href="project/{{projectName}}/create">返回目录</a></p>
 </div>
 
 <div ng-if="loaded && !emptyCategory && !catalog.subcategories">
@@ -21,12 +20,12 @@
     <div class="form-group has-clear">
       <!-- Add a hidden label for screen readers. -->
       <div class="search-pf-input-group">
-        <label for="search" class="sr-only">Filter by name or description</label>
+        <label for="search" class="sr-only">按名称或描述过滤</label>
         <input
            ng-model="filter.keyword"
            type="search"
            id="search"
-           placeholder="Filter by name or description"
+           placeholder="按名称或描述过滤"
            class="search-input form-control"
            autocorrect="off"
            autocapitalize="none"
@@ -44,8 +43,8 @@
   </form>
 
   <div ng-if="!filteredBuilderImages.length && !filteredTemplates.length && loaded" class="empty-state-message text-center h2">
-    All content is hidden by the current filter.
-    <button type="button" class="btn btn-link inline-btn-link" ng-click="filter.keyword = ''">Clear All Filters</button>
+    所有内容都被当前过滤器隐藏。
+    <button type="button" class="btn btn-link inline-btn-link" ng-click="filter.keyword = ''">清除所有过滤器</button>
   </div>
 
   <div class="row row-cards-pf row-cards-pf-flex mar-top-xl">

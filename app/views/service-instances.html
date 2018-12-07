@@ -8,7 +8,7 @@
         <div class="container-fluid">
           <div class="page-header page-header-bleed-right page-header-bleed-left">
             <h1>
-              Provisioned Services
+              提供服务
             </h1>
           </div>
           <div ng-if="(serviceInstances | size) > 0 || filterWithZeroResults" class="data-toolbar">
@@ -24,15 +24,15 @@
             <div class="col-md-12">
               <div ng-if="(serviceInstances | hashSize) == 0">
                 <p ng-if="!serviceInstancesLoaded">
-                  Loading...
+                  加载中...
                 </p>
                 <div ng-if="serviceInstancesLoaded" class="empty-state-message text-center">
                   <div ng-if="!filterWithZeroResults">
-                    <h2>No provisioned services.</h2>
-                    <p>No provisioned services have been added to project {{projectName}}.</p>
+                    <h2>没有提供服务。</h2>
+                    <p>没有提供服务添加到项目 {{projectName}}.</p>
                   </div>
                   <div ng-if="filterWithZeroResults">
-                    <h2>The filter is hiding all provisioned services. <button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">Clear All Filters</button></h2>
+                    <h2>过滤器隐藏了所有提供的服务。 <button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">清除所有过滤器</button></h2>
                   </div>
                 </div>
               </div>
@@ -42,11 +42,11 @@
                 </colgroup>
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Instance Name</th>
-                    <th>Status</th>
-                    <th>Created</th>
-                    <th>Bindings</th>
+                    <th>名称</th>
+                    <th>实例名</th>
+                    <th>状态</th>
+                    <th>创建</th>
+                    <th>绑定</th>
                   </tr>
                 </thead>
                 <tbody ng-if="(serviceInstances | size) > 0">

@@ -20,7 +20,7 @@ angular.module('openshiftConsole')
         link: "project/" + $routeParams.project + "/monitoring"
       },
       {
-        title: 'Events'
+        title: '事件'
       }
     ];
 

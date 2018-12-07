@@ -3,10 +3,10 @@
     <div class="container-fluid">
       <div class="page-header page-header-bleed-right page-header-bleed-left">
         <h1>
-          Builds
+          构建
           <span class="page-header-link">
             <a ng-href="{{'builds' | helpLink}}" target="_blank">
-              Learn More <i class="fa fa-external-link" aria-hidden="true"></i>
+              了解更多 <i class="fa fa-external-link" aria-hidden="true"></i>
             </a>
           </span>
         </h1>
@@ -24,15 +24,15 @@
         <div class="col-md-12">
           <div ng-if="!(latestByConfig | hashSize) && !(buildsNoConfig | hashSize)">
             <p ng-if="!buildsLoaded">
-              Loading...
+              加载中...
             </p>
             <div ng-if="buildsLoaded" class="empty-state-message text-center">
               <div ng-if="!filterWithZeroResults">
-                <h2>No builds.</h2>
-                <p>No builds have been added to project {{projectName}}.</p>
+                <h2>没有构建</h2>
+                <p>没有构建添加到项目 {{projectName}}.</p>
               </div>
               <div ng-if="filterWithZeroResults">
-                <h2>The filter is hiding all builds. <button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">Clear All Filters</button></h2>
+                <h2>过滤器隐藏了所有构建。<button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">清除所有过滤器</button></h2>
               </div>
             </div>
           </div>
@@ -48,13 +48,13 @@
             </colgroup>
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Last Build</th>
-                <th>Status</th>
-                <th>Duration</th>
-                <th>Created</th>
-                <th>Type</th>
-                <th ng-class="{'hidden-sm' : (latestByConfig | hashSize)}">Source</th>
+                <th>名称</th>
+                <th>最后构建</th>
+                <th>状态</th>
+                <th>持续</th>
+                <th>创建</th>
+                <th>类型</th>
+                <th ng-class="{'hidden-sm' : (latestByConfig | hashSize)}">来源</th>
               </tr>
             </thead>
             <tbody>

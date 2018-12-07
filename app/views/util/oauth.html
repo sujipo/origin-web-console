@@ -9,7 +9,7 @@
         <h1>Confirm Login</h1>
         <p>You are being logged in as <code>{{confirmUser.metadata.name}}</code>.</p>
         <button class="btn btn-lg btn-primary" type="button" ng-click="completeLogin();">Continue</button>
-        <button class="btn btn-lg btn-default" type="button" ng-click="cancelLogin();">Cancel</button>
+        <button class="btn btn-lg btn-default" type="button" ng-click="cancelLogin();">取消</button>
       </div>
 
       <div ng-if="confirmUser && overriddenUser">
@@ -17,7 +17,7 @@
         <p>You are about to change users from <code>{{overriddenUser.metadata.name}}</code> to <code>{{confirmUser.metadata.name}}</code>.</p>
         <p>If this is unexpected, click Cancel. This could be an attempt to trick you into acting as another user.</p>
         <button class="btn btn-lg btn-danger" type="button" ng-click="completeLogin();">Switch Users</button>
-        <button class="btn btn-lg btn-primary" type="button" ng-click="cancelLogin();">Cancel</button>
+        <button class="btn btn-lg btn-primary" type="button" ng-click="cancelLogin();">取消</button>
       </div>
 
     </div>

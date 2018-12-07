@@ -4,23 +4,23 @@
       <div class="row">
         <div class="col-md-10">
           <breadcrumbs breadcrumbs="breadcrumbs"></breadcrumbs>
-          <div ng-show="!containers.length">Loading...</div>
+          <div ng-show="!containers.length">加载中...</div>
           <form ng-if="containers.length" name="form" class="set-limits-form" novalidate>
-            <h1>Resource Limits: {{name}}</h1>
+            <h1>资源限制: {{name}}</h1>
             <div class="help-block">
-              Resource limits control how much <span ng-if="!hideCPU">CPU and</span> memory a container will consume on a node.
+              资源限制控制容器在节点上能使用多少 <span ng-if="!hideCPU">CPU 和</span> 内存。
               <div class="learn-more-block" ng-class="{ 'gutter-bottom': showPodWarning }">
-                <a href="{{'compute_resources' | helpLink}}" target="_blank">Learn More <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                <a href="{{'compute_resources' | helpLink}}" target="_blank">了解更多 <i class="fa fa-external-link" aria-hidden="true"></i></a>
               </div>
             </div>
             <div ng-if="showPodWarning" class="alert alert-warning">
               <span class="pficon pficon-warning-triangle-o" aria-hidden="true"></span>
-              Changes will only apply to new pods.
+              更改将只适用于新的pod。
             </div>
             <fieldset ng-disabled="disableInputs">
               <div ng-repeat="container in containers"
                    ng-init="formName = container.name + '-form'">
-                <h2 ng-if="containers.length > 1">Container {{container.name}}</h2>
+                <h2 ng-if="containers.length > 1">容器 {{container.name}}</h2>
                 <edit-request-limit
                     resources="container.resources"
                     type="cpu"
@@ -51,8 +51,8 @@
                   class="btn btn-primary btn-lg"
                   ng-click="save()"
                   ng-disabled="form.$pristine || form.$invalid || disableInputs || cpuProblems.length || memoryProblems.length"
-                  value="">Save</button>
-                <button class="btn btn-default btn-lg" ng-click="cancel()">Cancel</button>
+                  value="">保存</button>
+                <button class="btn btn-default btn-lg" ng-click="cancel()">取消</button>
               </div>
             </fieldset>
           </form>
