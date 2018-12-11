@@ -119,7 +119,7 @@
           {
             id: 'keyword',
             title:  'Keyword',
-            placeholder: 'Filter by Keyword',
+            placeholder: '根据关键字过滤',
             filterType: 'text'
           }
         ],

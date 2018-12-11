@@ -9,8 +9,8 @@ describe("Component: Alerts", function(){
       $scope.alerts = {
         danger: {
           type: "error",
-          message: "An error happened and stuff.",
-          details: "Errors are bad.",
+          message: "发生了错误之类的。",
+          details: "错误是糟糕的。",
           links: [
             {
               label: "test_link"
@@ -19,14 +19,14 @@ describe("Component: Alerts", function(){
         },
         warning: {
           type: "warning",
-          message: "I'm going to count to five."
+          message: "我要数到五。"
         },
         success: {
           type: "success",
-          message: "Huzzah!"
+          message: "好哇"
         },
         info: {
-          message: "This is informational."
+          message: "这是条信息。"
         }
       };
 

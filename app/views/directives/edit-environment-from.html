@@ -30,10 +30,10 @@
               没有配置映射或秘密作为环境来源。
           </div>
           <div ng-if="entry.configMapRef.name || entry.secretRef.name" class="faux-form-control readonly">
-            Use all keys and values from
-            <span ng-if="entry.configMapRef.name">config map {{entry.configMapRef.name}}.</span>
-            <span ng-if="entry.secretRef.name">secret {{entry.secretRef.name}}.</span>
-            <span ng-if="entry.prefix">Names will be prefixed with "{{entry.prefix}}"</span>
+            使用所有键和值
+            <span ng-if="entry.configMapRef.name">配置映射 {{entry.configMapRef.name}}.</span>
+            <span ng-if="entry.secretRef.name">密钥 {{entry.secretRef.name}}.</span>
+            <span ng-if="entry.prefix">名字前面要加上前缀 "{{entry.prefix}}"</span>
           </div>
         </div>
 
@@ -57,7 +57,7 @@
             </ui-select>
           </div>
           <div class="has-warning" ng-if="$ctrl.hasInvalidEnvVar(entry.selectedEnvFrom.data)">
-            <div class="help-block">{{entry.selectedEnvFrom.kind | humanizeKind | upperFirst}} <strong>{{entry.selectedEnvFrom.metadata.name}}</strong> contains keys that are not valid environment variable names. Only {{entry.selectedEnvFrom.kind | humanizeKind}} keys with valid names will be added as environment variables.
+            <div class="help-block">{{entry.selectedEnvFrom.kind | humanizeKind | upperFirst}} <strong>{{entry.selectedEnvFrom.metadata.name}}</strong> 包含的键不是有效环境变量名。 只有有效名称的 {{entry.selectedEnvFrom.kind | humanizeKind}} 键能作为环境变量添加。
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@
             <div class="environment-from-input"
                  ng-if="!$ctrl.isEnvFromReadonly(entry) && $ctrl.hasOptions()"
                  ng-class="{ 'has-error': ($ctrl.editEnvironmentFromForm['envfrom-prefix-'+$index].$invalid && $ctrl.editEnvironmentFromForm['envfrom-prefix-'+$index].$touched) }">
-              <label for="envfrom-prefix-{{$index}}" class="sr-only">Prefix</label>
+              <label for="envfrom-prefix-{{$index}}" class="sr-only">前缀</label>
               <input type="text"
                      class="form-control"
                      placeholder="Add prefix"
@@ -81,7 +81,7 @@
               <span ng-show="$ctrl.editEnvironmentFromForm['envfrom-prefix-'+$index].$touched">
                 <span class="help-block key-validation-error"
                       ng-show="$ctrl.editEnvironmentFromForm['envfrom-prefix-'+$index].$error.pattern">
-                  <span class="validation-text">Please enter a valid prefix.</span>
+                  <span class="validation-text">请输入有效的前缀。</span>
                 </span>
               </span>
             </div>
@@ -89,7 +89,7 @@
           <div class="col-sm-6">
             <div class="environment-from-view-details" ng-if="entry.selectedEnvFrom">
               <a href=""
-                ng-click="$ctrl.viewOverlayPanel(entry.selectedEnvFrom)">View Details</a>
+                ng-click="$ctrl.viewOverlayPanel(entry.selectedEnvFrom)">浏览详情</a>
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@
             aria-grabbed="false"
             as-sortable-item-handle>
             <span class="fa fa-bars"></span>
-            <span class="sr-only">Move row</span>
+            <span class="sr-only">移动行</span>
           </button>
           <button
             ng-if="!$ctrl.cannotDeleteAny"
@@ -111,7 +111,7 @@
             aria-hidden="true"
             ng-click="$ctrl.deleteEntry($index, 1)">
             <span class="pficon pficon-close" aria-hidden="true"></span>
-            <span class="sr-only">Delete row</span>
+            <span class="sr-only">删除行</span>
           </button>
         </div>
       </div>
@@ -122,7 +122,7 @@
         href=""
         class="add-row-link"
         role="button"
-        ng-click="$ctrl.onAddRow()">Add ALL Values from Config Map or Secret</a>
+        ng-click="$ctrl.onAddRow()">从配置映射或密钥中添加所有值</a>
     </div>
   </div>
 
@@ -131,19 +131,19 @@
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" ng-click="$ctrl.closeOverlayPanel()">
         <span class="pficon pficon-close"></span>
       </button>
-      <h1 class="modal-title">{{$ctrl.overlayPaneEntryDetails.kind | humanizeKind : true}} Details</h1>
+      <h1 class="modal-title">{{$ctrl.overlayPaneEntryDetails.kind | humanizeKind : true}} 详情</h1>
     </div>
     <div class="modal-body">
       <h4>{{$ctrl.overlayPaneEntryDetails.metadata.name}}
         <small ng-if="$ctrl.overlayPaneEntryDetails.kind === 'Secret'" class="mar-left-sm">
           <a href=""
              role="button"
-             ng-click="$ctrl.showSecret = !$ctrl.showSecret">{{$ctrl.showSecret ? "Hide" : "Reveal"}} Secret</a>
+             ng-click="$ctrl.showSecret = !$ctrl.showSecret">{{$ctrl.showSecret ? "Hide" : "Reveal"}} 密钥</a>
         </small>
       </h4>
 
       <div ng-if="!($ctrl.overlayPaneEntryDetails.data | size)" class="empty-state-message text-center">
-        The {{$ctrl.overlayPaneEntryDetails.kind | humanizeKind}} has no properties.
+        该 {{$ctrl.overlayPaneEntryDetails.kind | humanizeKind}} 没有属性。
       </div>
 
       <div ng-if="$ctrl.overlayPaneEntryDetails.data | size" class="table-responsive scroll-shadows-horizontal">
@@ -152,7 +152,7 @@
             <tr ng-repeat="(key, value) in $ctrl.decodedData">
               <td class="key">
                 {{key}}
-                <span ng-if="$ctrl.isEnvVarInvalid(key)" class="pficon pficon-warning-triangle-o tooltip-default-icon" data-toggle="popover" data-trigger="hover" dynamic-content="{{key}} is not a valid environment variable name and will not be added."></span>
+                <span ng-if="$ctrl.isEnvVarInvalid(key)" class="pficon pficon-warning-triangle-o tooltip-default-icon" data-toggle="popover" data-trigger="hover" dynamic-content="{{key}} 不是有效的环境变量名，不能添加。"></span>
               </td>
               <td class="value">
                 <truncate-long-text
@@ -172,7 +172,7 @@
                     expandable="true">
                   </truncate-long-text>
                   <div ng-if="decodedData.$$nonprintable[key]" class="help-block">
-                    This secret value contains non-printable characters and is displayed as a Base64-encoded string.
+                    这个密钥值包含不可打印的字符，并显示为base64编码的字符串。
                   </div>
                 </div>
               </td>
@@ -184,7 +184,7 @@
     <div class="modal-footer">
       <button ng-click="$ctrl.closeOverlayPanel()"
               type="button"
-              class="btn btn-default">Close</button>
+              class="btn btn-default">关闭</button>
     </div>
   </overlay-panel>
 </ng-form>

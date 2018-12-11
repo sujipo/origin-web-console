@@ -8,7 +8,7 @@
         <div ng-if="project.metadata.name | canIAddToProject">
           <h2>开始你的项目.</h2>
           <p>
-            从web框架、数据库和其他组件的目录向项目添加内容。您还可以部署现有映像，从它们的YAML或JSON定义创建或替换资源，或者从另一个项目中选择共享的项。
+            从web框架、数据库和其他组件的目录向项目添加内容。您还可以部署现有映像，从它们的YAML或JSON定义创建或替换资源，或者从其它项目中选择共享的项。
           </p>
           <div class="empty-state-message-main-action">
             <button class="btn btn-primary btn-lg" ng-click="browseCatalog()">
@@ -87,7 +87,7 @@
             </div>
             <div class="vertical-divider"></div>
             <div class="view-by-options">
-              <span class="data-toolbar-label">List by</span>
+              <span class="data-toolbar-label">列表方式</span>
               <ui-select class="data-toolbar-dropdown" ng-model="overview.viewBy" search-enabled="false">
                 <ui-select-match>{{$select.selected.label}}</ui-select-match>
                 <ui-select-choices repeat="option.id as option in overview.viewByOptions">

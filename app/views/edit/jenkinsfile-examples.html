@@ -1,11 +1,9 @@
 <div class="jenkinsfile-examples">
   <p>
-    A Jenkinsfile is a Groovy script that defines your pipeline. In the Jenkinsfile, you can declare
-    pipeline stages and run one or more steps within each stage. Here are some examples you can use
-    in your pipelines.
+    Jenkinsfile是定义流水线的Groovy脚本。在Jenkinsfile中，可以声明流水线的阶段，并在每个阶段中运行一个或多个步骤。下面是一些可以在流水线中使用的示例。
   </p>
   <p>
-    Run an OpenShift build and deployment:
+    运行OpenShift构建和部署:
     <copy-to-clipboard
       display-wide="true"
       clipboard-text="'node {
@@ -20,7 +18,7 @@
     </copy-to-clipboard>
   </p>
   <p>
-    Checkout source code and run shell commands on a node labelled <var>maven:</var>
+    签出源代码并在标记为<var>maven</var>的节点上运行shell命令：
     <copy-to-clipboard
       display-wide="true"
       clipboard-text="'node(\'maven\') {
@@ -38,7 +36,7 @@
     </copy-to-clipboard>
   </p>
   <p>
-    Prompt for manual input:
+    手动输入提示:
     <copy-to-clipboard
       display-wide="true"
       clipboard-text="'node {
@@ -50,9 +48,9 @@
     </copy-to-clipboard>
   </p>
   <p>
-    Learn more about
-    <a ng-href="{{ 'pipeline-builds' | helpLink}}" target="_blank">Pipeline Builds</a>
-    and the
-    <a ng-href="{{ 'pipeline-plugin' | helpLink}}" target="_blank">OpenShift Pipeline Plugin</a>.
+    了解更多关于
+    <a ng-href="{{ 'pipeline-builds' | helpLink}}" target="_blank">流水线构建</a>
+    和
+    <a ng-href="{{ 'pipeline-plugin' | helpLink}}" target="_blank">OpenShift 流水线插件</a>.
   </p>
 </div>

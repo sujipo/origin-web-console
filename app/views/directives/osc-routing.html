@@ -172,7 +172,7 @@
             <button type="button" class="btn btn-link" ng-click="route.alternateServices.splice($index, 1)">删除服务</button>
             <span ng-if="$last && route.alternateServices.length < alternateServiceOptions.length">
               <span class="action-divider">|</span>
-              <button type="button" class="btn btn-link" ng-click="addAlternateService()">添加另一个服务</button>
+              <button type="button" class="btn btn-link" ng-click="addAlternateService()">添加其它服务</button>
             </span>
           </div>
           <div ng-if="route.alternateServices.length === 1 && controls.hideSlider" class="col-sm-6">

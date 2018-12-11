@@ -85,17 +85,17 @@
                                 spellcheck="false">
                             </div>
                             <div ng-if="!(sourceURIinParams) && image.metadata.annotations.sampleRepo" class="help-block">
-                              Sample repository for {{imageName}}: {{image.metadata.annotations.sampleRepo}}<span ng-if="image.metadata.annotations.sampleRef">,
-                                ref: {{image.metadata.annotations.sampleRef}}</span><span ng-if="image.metadata.annotations.sampleContextDir">,
-                                context dir: {{image.metadata.annotations.sampleContextDir}}</span>
+                              样本库 {{imageName}}: {{image.metadata.annotations.sampleRepo}}<span ng-if="image.metadata.annotations.sampleRef">,
+                                引用: {{image.metadata.annotations.sampleRef}}</span><span ng-if="image.metadata.annotations.sampleContextDir">,
+                                关联目录: {{image.metadata.annotations.sampleContextDir}}</span>
                               <a href="" ng-click="fillSampleRepo()"
-                                style="margin-left: 3px;" class="nowrap">Try It<i class="fa fa-level-up" style="margin-left: 3px; font-size: 17px;"></i></a>
+                                style="margin-left: 3px;" class="nowrap">试试看<i class="fa fa-level-up" style="margin-left: 3px; font-size: 17px;"></i></a>
                             </div>
                             <div class="has-error" ng-show="form.sourceUrl.$error.required && form.sourceUrl.$dirty">
-                              <span class="help-block">A Git repository URL is required.</span>
+                              <span class="help-block">一个Git源码地址是必须的。</span>
                             </div>
                             <div class="has-warning" ng-if="buildConfig.sourceUrl && form.sourceUrl.$touched && !sourceURLPattern.test(buildConfig.sourceUrl)">
-                              <span class="help-block">This might not be a valid Git URL. Check that it is the correct URL to a remote Git repository.</span>
+                              <span class="help-block">这可能不是一个有效的Git源码地址。检查到远程Git存储库的URL是否正确。</span>
                             </div>
                           </div>
                         </div>
@@ -103,7 +103,7 @@
                         <!-- Use ng-show instead of ng-if so the form is still marked invalid if a hidden field has errors. -->
                         <div class="col-md-4" ng-show="advancedOptions || advancedSourceOptions">
                           <div class="form-group">
-                            <label for="gitref">Git Reference</label>
+                            <label for="gitref">Git 引用</label>
                             <div>
                               <input
                                 id="gitref"
@@ -115,14 +115,14 @@
                                 spellcheck="false"
                                 class="form-control">
                             </div>
-                            <div class="help-block">Optional branch, tag, or commit.</div>
+                            <div class="help-block">可选的分支、标记或提交。</div>
                           </div>
                         </div>
                       </div>
 
                       <!-- Use ng-show instead of ng-if so the form is still marked invalid if a hidden field has errors. -->
                       <div ng-show="advancedOptions || advancedSourceOptions" class="form-group">
-                        <label for="contextdir">Context Dir</label>
+                        <label for="contextdir">关联目录</label>
                         <div>
                           <input
                             id="contextdir"
@@ -134,7 +134,7 @@
                             spellcheck="false"
                             class="form-control">
                         </div>
-                        <div class="help-block">Optional subdirectory for the application source code, used as the context directory for the build.</div>
+                        <div class="help-block">可选的应用程序源代码子目录，用作构建的关联目录。</div>
                       </div>
 
                       <!-- Use ng-show instead of ng-if so the form is still marked invalid if a hidden field has errors. -->
@@ -164,7 +164,7 @@
                           <div class="form-group checkbox">
                             <label>
                               <input type="checkbox" ng-model="routing.include">
-                              Create a route to the application
+                              创建到应用的路由
                             </label>
                           </div>
                           <osc-routing
@@ -186,7 +186,7 @@
                           <div class="checkbox">
                             <label>
                               <input type="checkbox" ng-model="buildConfig.buildOnSourceChange"/>
-                              Configure a webhook build trigger
+                              配置webhook构建触发器
                               <span class="help action-inline">
                                 <a href data-toggle="tooltip"
                                    data-original-title="The source repository must be configured to use the webhook to trigger a build when source is committed.">
@@ -198,7 +198,7 @@
                           <div class="checkbox">
                             <label>
                               <input type="checkbox" ng-model="buildConfig.buildOnImageChange"/>
-                              Automatically build a new image when the builder image changes
+                              当构建器基础镜像更改时自动构建新镜像
                               <span class="help action-inline">
                                 <a href data-toggle="tooltip" data-original-title="Automatically building a new image when the builder image changes allows your code to always run on the latest updates.">
                                 <i class="pficon pficon-help"></i>
@@ -209,12 +209,12 @@
                           <div class="checkbox">
                             <label>
                               <input type="checkbox" ng-model="buildConfig.buildOnConfigChange"/>
-                              Launch the first build when the build configuration is created
+                              在创建构建配置时启动第一个构建
                             </label>
                           </div>
-                          <h3>Environment Variables <span class="appended-icon">(Build and Runtime) <span class="help action-inline">
+                          <h3>环境变量 <span class="appended-icon">(构建和运行时) <span class="help action-inline">
                             <a href data-toggle="tooltip"
-                               data-original-title="Environment variables are used to configure and pass information to running containers.  These environment variables will be available during your build and at runtime.">
+                               data-original-title="环境变量用于配置和将信息传递给正在运行的容器。这些环境变量将在构建期间和运行时可用。">
                               <i class="pficon pficon-help"></i>
                             </a>
                           </span></span></h3>
@@ -224,38 +224,37 @@
                             value-placeholder="value"
                             value-from-selector-options="valueFromObjects"
                             key-validator="[-._a-zA-Z][-._a-zA-Z0-9]*"
-                            key-validator-error-tooltip="A valid environment variable name must consist of alphabetic characters, digits, '_', '-', or '.', and must not start with a digit."
-                            add-row-link="Add Value"
-                            add-row-with-selectors-link="Add Value from Config Map or Secret"></key-value-editor>
+                            key-validator-error-tooltip="一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。"
+                            add-row-link="添加值"
+                            add-row-with-selectors-link="从配置映射或密钥中添加值"></key-value-editor>
                         </osc-form-section>
 
                         <!-- /build config -->
 
                         <osc-form-section
                           header="Deployment Configuration"
-                          about-title="Deployment Configuration"
-                          about="Deployment configurations describe how your application is configured
-                            by the cluster and under what conditions it should be recreated (e.g. when the image changes)."
+                          about-title="部署配置"
+                          about="部署配置描述集群如何配置应用程序，以及在什么条件下应该重新创建应用程序(例如当映像发生更改时)。"
                           expand="true"
                           can-toggle="false">
                           <div class="animate-drawer" ng-show="$parent.expand">
-                            <h3>Autodeploy when</h3>
+                            <h3>自动部署当</h3>
                             <div class="checkbox">
                               <label>
                                 <input type="checkbox" ng-model="deploymentConfig.deployOnNewImage">
-                                New image is available
+                                新镜像可用
                               </label>
                             </div>
                             <div class="checkbox">
                             <label>
                               <input type="checkbox" ng-model="deploymentConfig.deployOnConfigChange">
-                              Deployment configuration changes
+                              部署配置更改
                             </label>
                             </div>
                             <div>
-                              <h3>Environment Variables <span class="appended-icon">(Runtime only) <span class="help action-inline">
+                              <h3>环境变量 <span class="appended-icon">(仅运行时) <span class="help action-inline">
                                 <a href="" data-toggle="tooltip"
-                                   data-original-title="Environment variables are used to configure and pass information to running containers.  These environment variables will only be available at runtime.">
+                                   data-original-title="环境变量用于配置和将信息传递给正在运行的容器。这些环境变量只在运行时可用。">
                                   <i class="pficon pficon-help"></i>
                                 </a>
                               </span></span></h3>
@@ -263,12 +262,12 @@
                                 <a
                                   href=""
                                   ng-click="showDCEnvs = (!showDCEnvs)">
-                                  {{showDCEnvs ? 'Hide' : 'Show'}} Image Environment Variables
+                                  {{showDCEnvs ? 'Hide' : 'Show'}} 镜像环境变量
                                 </a>
                               </p>
                               <div ng-show="showDCEnvs">
                                 <div class="help-block">
-                                  <p>These variables exist on the image and will be available at runtime. You may override them below.</p>
+                                  <p>这些变量存在于镜像上，并且在运行时可用。您可以在下面重写它们。</p>
                                 </div>
                                 <key-value-editor
                                   entries="DCEnvVarsFromImage"
@@ -283,9 +282,9 @@
                                 value-placeholder="value"
                                 value-from-selector-options="valueFromObjects"
                                 key-validator="[-._a-zA-Z][-._a-zA-Z0-9]*"
-                                key-validator-error-tooltip="A valid environment variable name must consist of alphabetic characters, digits, '_', '-', or '.', and must not start with a digit."
-                                add-row-link="Add Value"
-                                add-row-with-selectors-link="Add Value from Config Map or Secret"></key-value-editor>
+                                key-validator-error-tooltip="一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。"
+                                add-row-link="添加值"
+                                add-row-with-selectors-link="从配置映射或密钥中添加值"></key-value-editor>
                             </div>
                           </div>
                         </osc-form-section>
@@ -295,7 +294,7 @@
                         <osc-form-section
                           header="Scaling"
                           about-title="Scaling"
-                          about="Scaling defines the number of running instances of your built image."
+                          about="缩放定义构建镜像的运行实例的数量。"
                           expand="true"
                           can-toggle="false"
                           >
@@ -315,8 +314,8 @@
                             </div>
                             <div class="has-warning" ng-if="metricsWarning && scaling.autoscale">
                               <span class="help-block">
-                                CPU metrics might not be available. In order to use horizontal pod autoscalers,
-                                your cluster administrator must have properly configured cluster metrics.
+                                CPU指标可能不可用。为了使用水平pod自动定标器，
+                                集群管理员必须正确配置集群指标。
                               </span>
                             </div>
                           </div>
@@ -335,10 +334,10 @@
                                    select-on-focus
                                    aria-describedby="replicas-help">
                             <div id="replicas-help">
-                              <span class="help-block">The number of instances of your image.</span>
+                              <span class="help-block">镜像实例的数量。</span>
                             </div>
                             <div class="has-error" ng-show="form.replicas.$dirty && form.replicas.$invalid">
-                              <span class="help-block">Replicas must be an integer value greater than or equal to 0.</span>
+                              <span class="help-block">副本必须是大于或等于0的整数值。</span>
                             </div>
                           </div>
 
@@ -346,8 +345,8 @@
 
                           <div class="has-warning" ng-if="showCPURequestWarning">
                             <span class="help-block">
-                              You should configure resource limits below for autoscaling.
-                              Autoscaling will not work without a CPU request.
+                              您应该在下面配置资源限制以实现自动伸缩。
+                              如果没有CPU请求，自动伸缩将无法工作。
                             </span>
                           </div>
 

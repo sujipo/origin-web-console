@@ -3,17 +3,17 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" ng-click="cancel()">
       <span class="pficon pficon-close"></span>
     </button>
-    <h1 class="modal-title">Confirm Scale Down</h1>
+    <h1 class="modal-title">确认缩小</h1>
   </div>
   <div class="modal-body">
-    <p>Scale down {{type}} <strong>{{resource | displayName}}</strong>?</p>
+    <p>缩小 {{type}} <strong>{{resource | displayName}}</strong>?</p>
     <p>
-      Are you sure you want to scale <strong>{{resource | displayName}}</strong> to 0
-      replicas? This will stop all pods for the {{type}}.
+      您确定要将 <strong>{{resource | displayName}}</strong> 缩放到0个副本吗??
+      这将停止 {{type}} 的所有pod。
     </p>
   </div>
   <div class="modal-footer">
     <button class="btn btn-default" type="button" ng-click="cancel()">取消</button>
-    <button class="btn btn-danger" type="button" ng-click="confirmScale()">Scale Down</button>
+    <button class="btn btn-danger" type="button" ng-click="confirmScale()">缩小</button>
   </div>
 </div>

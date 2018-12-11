@@ -158,8 +158,8 @@
         </div>
         <osc-form-section
             header="Environment Variables"
-            about-title="Environment Variables"
-            about="Environment variables are used to configure and pass information to running containers."
+            about-title="环境变量"
+            about="环境变量用于配置和将信息传递给正在运行的容器。"
             expand="true"
             can-toggle="false"
             class="first-section">
@@ -167,18 +167,18 @@
             entries="env"
             key-placeholder="Name"
             key-validator="[-._a-zA-Z][-._a-zA-Z0-9]*"
-            key-validator-error-tooltip="A valid environment variable name must consist of alphabetic characters, digits, '_', '-', or '.', and must not start with a digit."
+            key-validator-error-tooltip="一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。"
             value-placeholder="Value"
             value-from-selector-options="input.selectedProject.metadata.uid && valueFromNamespace[input.selectedProject.metadata.name]"
-            add-row-link="Add Value"
-            add-row-with-selectors-link="Add Value from Config Map or Secret"></key-value-editor>
+            add-row-link="添加值"
+            add-row-with-selectors-link="从配置映射或密钥中添加值"></key-value-editor>
         </osc-form-section>
 
         <label-editor
             labels="labels"
             expand="true"
             can-toggle="false"
-            help-text="Each label is applied to each created resource.">
+            help-text="每个标签应用于每个创建的资源。">
         </label-editor>
 
         <alerts alerts="alerts"></alerts>

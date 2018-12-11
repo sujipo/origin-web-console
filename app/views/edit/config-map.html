@@ -11,7 +11,7 @@
               configuration.
             </div>
             <div class="mar-top-xl">
-              <div ng-if="!loaded">Loading...</div>
+              <div ng-if="!loaded">加载中...</div>
               <form ng-if="loaded" name="forms.editConfigMapForm">
                 <div ng-if="resourceChanged && !resourceDeleted && !updatingNow" class="alert alert-warning">
                   <span class="pficon pficon-warning-triangle-o" aria-hidden="true"></span>
@@ -31,7 +31,7 @@
                         class="btn btn-primary btn-lg"
                         ng-click="updateConfigMap()"
                         ng-disabled="forms.editConfigMapForm.$invalid || forms.editConfigMapForm.$pristine || disableInputs || resourceChanged || resourceDeleted"
-                        value="">Save</button>
+                        value="">保存</button>
                     <a class="btn btn-default btn-lg" href="" ng-click="cancel()" role="button">取消</a>
                   </div>
                 </fieldset>

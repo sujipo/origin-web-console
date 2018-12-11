@@ -8,7 +8,7 @@
           ng-required="required && !containerSelected">
         <b>{{container.name}}</b>
       <span class="hidden-xs">
-        from image
+        来自镜像
         <i ng-attr-title="{{container.image}}">{{container.image}}</i>
       </span>
       </label>
@@ -19,7 +19,7 @@
   </div>
   <div class="has-error" ng-if="required && forms.containerSelect.$dirty && !containerSelected">
     <span class="help-block">
-      You must select at least one container.
+      您必须选择至少一个容器。
     </span>
   </div>
 </ng-form>

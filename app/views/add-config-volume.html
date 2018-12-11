@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-10">
         <breadcrumbs breadcrumbs="breadcrumbs"></breadcrumbs>
-        <div ng-if="!error && (!targetObject || !configMaps || !secrets)">Loading...</div>
+        <div ng-if="!error && (!targetObject || !configMaps || !secrets)">加载中...</div>
 
         <div ng-if="error" class="empty-state-message text-center">
           <h2>该 {{kind | humanizeKind}} 无法加载</h2>

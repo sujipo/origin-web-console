@@ -1,15 +1,15 @@
 <ng-form name="editForm">
   <div ng-switch="type">
-    <div class="help-block" ng-switch-when="pre">Pre hooks execute before the deployment begins.</div>
-    <div class="help-block" ng-switch-when="mid">Mid hooks execute after the previous deployment is scaled down to zero and before the first pod of the new deployment is created.</div>
-    <div class="help-block" ng-switch-when="post">Post hooks execute after the deployment strategy completes.</div>
+    <div class="help-block" ng-switch-when="pre">在部署开始之前执行Pre钩子。</div>
+    <div class="help-block" ng-switch-when="mid">在前一个部署按比例缩小到0并在创建新部署的第一个pod之前执行Mid钩子。</div>
+    <div class="help-block" ng-switch-when="post">Post钩子在部署策略完成后执行。</div>
   </div>
 
   <div class="gutter-top" ng-if="hookParams">
     <fieldset ng-disabled="view.isDisabled">
 
       <div class="form-group">
-        <label for="actionType" class="required">Lifecycle Action</label><br/>
+        <label for="actionType" class="required">生命周期动作</label><br/>
         <label class="radio-inline">
           <input
             type="radio"
@@ -17,7 +17,7 @@
             ng-model="action.type"
             value="execNewPod"
             aria-describedby="action-help">
-          Run a specific command in a new pod
+          在新pod中运行特定命令
         </label>
         <label class="radio-inline">
           <input
@@ -26,18 +26,18 @@
             ng-model="action.type"
             value="tagImages"
             aria-describedby="action-help">
-          Tag image if the deployment succeeds
+          如果部署成功，则标记镜像
         </label>
         <div  id="action-help" class="help-block">
-          <span ng-if="action.type === 'execNewPod'">Runs a command in a new pod using the container from the deployment template. You can add additional environment variables and volumes.</span>
-          <span ng-if="action.type === 'tagImages'">Tags the current image as an image stream tag if the deployment succeeds.</span>
+          <span ng-if="action.type === 'execNewPod'">使用部署模板中的容器在新pod中运行命令。您可以添加其他环境变量和卷。</span>
+          <span ng-if="action.type === 'tagImages'">如果部署成功，将当前镜像标记为镜像集标记。</span>
           <a href="{{'new_pod_exec' | helpLink}}" aria-hidden="true" target="_blank"><span class="learn-more-inline">了解更多&nbsp;<i class="fa fa-external-link"></i></span></a>
         </div>
       </div>
 
       <div ng-if="action.type === 'execNewPod'">
         <div class="form-group">
-          <label class="required">Container Name</label>
+          <label class="required">容器名称</label>
           <ui-select ng-model="hookParams.execNewPod.containerName" required>
             <ui-select-match>{{$select.selected}}</ui-select-match>
             <ui-select-choices repeat="container in (availableContainers | filter : $select.search)" ng-disabled="view.isDisabled">
@@ -47,26 +47,26 @@
         </div>
 
         <div class="form-group">
-          <label class="required">Command</label>
+          <label class="required">命令</label>
           <edit-command args="hookParams.execNewPod.command" is-required="true"></edit-command>
         </div>
 
         <div class="form-group">
-          <label>Environment Variables</label>
+          <label>环境变量</label>
           <key-value-editor
             entries="hookParams.execNewPod.env"
             key-validator="[-._a-zA-Z][-._a-zA-Z0-9]*"
-            key-validator-error-tooltip="A valid environment variable name must consist of alphabetic characters, digits, '_', '-', or '.', and must not start with a digit."
+            key-validator-error-tooltip="一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。"
             value-from-selector-options="valueFromObjects"
-            add-row-with-selectors-link="Add Value from Config Map or Secret"
-            add-row-link="Add Value"></key-value-editor>
+            add-row-with-selectors-link="从配置映射或密钥中添加值"
+            add-row-link="添加值"></key-value-editor>
           <div class="help-block">
-            Environment variables to supply to the hook pod's container.
+            环境变量提供给钩子Pod的容器。
           </div>
         </div>
 
         <div class="form-group">
-        <label>Volumes</label>
+        <label>卷</label>
         <ui-select multiple placeholder="Select volume" ng-model="hookParams.execNewPod.volumes" ng-disabled="view.isDisabled">
           <ui-select-match>{{$item}}</ui-select-match>
           <ui-select-choices repeat="volume in availableVolumes | filter : $select.search">
@@ -74,7 +74,7 @@
           </ui-select-choices>
         </ui-select>
         <div class="help-block">
-          List of named volumes to copy to the hook pod.
+          要复制到钩子Pod的已命名卷的列表。
         </div>
         </div>
       </div>
@@ -83,7 +83,7 @@
         <div ng-repeat="tagImage in hookParams.tagImages">
           <div ng-if="hookParams.tagImages.length === 1">
             <div class="form-group">
-              <label class="required">Container Name</label>
+              <label class="required">容器名称</label>
               <ui-select ng-model="tagImage.containerName" ng-disabled="view.isDisabled" required>
                 <ui-select-match>{{$select.selected}}</ui-select-match>
                 <ui-select-choices repeat="container in (availableContainers | filter : $select.search)">
@@ -91,11 +91,11 @@
                 </ui-select-choices>
               </ui-select>
               <div class="help-block">
-                Use the image for this container as the source of the tag.
+                使用此容器的镜像作为标签的源。
               </div>
             </div>
             <div class="form-group">
-              <label class="required">Tag As</label>
+              <label class="required">标签为</label>
               <istag-select model="istagHook" allow-custom-tag="true" select-required="true" select-disabled="view.isDisabled"></istag-select>
             </div>
           </div>
@@ -103,7 +103,7 @@
           <div class="read-only-tag-image" ng-if="hookParams.tagImages.length > 1">
             <p class="read-only-info" ng-if="$first">
               <span class="pficon pficon-info" aria-hidden="true"></span>
-              More than one image tag is defined. To change image tags, use the YAML editor.
+              定义了多个镜像标签。要更改镜像标签，请使用YAML编辑器。
             </p>
             {{tagImage.containerName}}&nbsp;&rarr;&nbsp;{{tagImage.to.namespace || namespace}}/{{tagImage.to.name}}
           </div>
@@ -111,7 +111,7 @@
       </div>
 
       <div class="form-group failure-policy">
-        <label class="required picker-label">Failure Policy</label>
+        <label class="required picker-label">失败处理策略</label>
         <ui-select ng-model="hookParams.failurePolicy" search-enabled="false" ng-disabled="view.isDisabled">
           <ui-select-match>{{$select.selected}}</ui-select-match>
           <ui-select-choices repeat="failurePolicyTypes in lifecycleHookFailurePolicyTypes">
@@ -120,16 +120,16 @@
         </ui-select>
 
         <div ng-switch="hookParams.failurePolicy">
-          <div class="help-block" ng-switch-when="Retry">Retry the hook until it succeeds.</div>
-          <div class="help-block" ng-switch-when="Abort">Fail the deployment if the hook fails.</div>
-          <div class="help-block" ng-switch-when="Ignore">Ignore hook failures and continue the deployment.</div>
+          <div class="help-block" ng-switch-when="Retry">重试钩子，直到成功。</div>
+          <div class="help-block" ng-switch-when="Abort">如果钩子失败，则部署失败。</div>
+          <div class="help-block" ng-switch-when="Ignore">忽略钩子失败并继续部署。</div>
         </div>
       </div>
     </fieldset>
   </div>
 
   <span>
-    <a href="" role="button" ng-if="!hookParams" ng-click="addHook()">Add {{type | upperFirst}} Lifecycle Hook</a>
-    <a href="" role="button" ng-if="hookParams" ng-click="removeHook()">Remove {{type | upperFirst}} Lifecycle Hook</a>
+    <a href="" role="button" ng-if="!hookParams" ng-click="addHook()">添加 {{type | upperFirst}} 生命周期钩子</a>
+    <a href="" role="button" ng-if="hookParams" ng-click="removeHook()">删除 {{type | upperFirst}} 生命周期钩子</a>
   </span>
 </ng-form>

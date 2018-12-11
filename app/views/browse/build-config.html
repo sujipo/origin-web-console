@@ -275,7 +275,7 @@
                             <i>none</i>
                             <span class="help action-inline">
                               <a href>
-                                <i class="pficon pficon-help" data-toggle="tooltip" aria-hidden="true" data-original-title="No source inputs have been defined for this build configuration.">
+                                <i class="pficon pficon-help" data-toggle="tooltip" aria-hidden="true" data-original-title="没有为此构建配置定义源输入。">
                                 </i>
                               </a>
                             </span>
@@ -375,12 +375,12 @@
                       </div>
                     </dl>
                     <div ng-if="buildConfig | hasPostCommitHook">
-                      <h3>Post-Commit Hooks</h3>
+                      <h3>Post-Commit 钩子</h3>
                       <build-hooks build="buildConfig"></build-hooks>
                     </div>
                   </div>
                   <div class="col-lg-6">
-                    <h3>Triggers <span class="pficon pficon-warning-triangle-o" ng-if="!(secretsVersion | canI : 'list')" aria-hidden="true" data-toggle="tooltip" data-original-title="You do not have access to secrets in this project. Webhook URLs require access to secret information to be used."></span><a href="{{'build-triggers' | helpLink}}" target="_blank"><span class="learn-more-inline">了解更多&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></span></a></h3>
+                    <h3>触发器 <span class="pficon pficon-warning-triangle-o" ng-if="!(secretsVersion | canI : 'list')" aria-hidden="true" data-toggle="tooltip" data-original-title="You do not have access to secrets in this project. Webhook URLs require access to secret information to be used."></span><a href="{{'build-triggers' | helpLink}}" target="_blank"><span class="learn-more-inline">了解更多&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></span></a></h3>
                     <dl class="dl-horizontal left build-triggers">
                       <div ng-repeat="trigger in buildConfig.spec.triggers | orderBy : 'type' : false : compareTriggers">
                         <div ng-switch="trigger.type">
@@ -415,7 +415,7 @@
                           </div>
                           <div ng-switch-when="ImageChange">
                             <dt>
-                              New Image For:
+                              新镜像:
                             </dt>
                             <dd ng-init="triggerFrom = (trigger.imageChange.from || (buildConfig | buildStrategy).from)">
                               <a ng-if="triggerFrom.kind === 'ImageStreamTag' && (!triggerFrom.namespace || buildConfig.metadata.namespace === triggerFrom.namespace)"
@@ -428,11 +428,11 @@
                             </dd>
                           </div>
                           <div ng-switch-when="ConfigChange">
-                            <dt>Config Change For:</dt>
-                            <dd>Build config {{buildConfig.metadata.name}}</dd>
+                            <dt>配置变化:</dt>
+                            <dd>构建配置 {{buildConfig.metadata.name}}</dd>
                           </div>
                           <div ng-switch-default>
-                            <dt>Other Trigger:</dt>
+                            <dt>其它触发器:</dt>
                             <dd>{{trigger.type}}</dd>
                           </div>
                         </div>
@@ -476,9 +476,9 @@
                     value-from-selector-options="valueFromObjects"
                     key-validator="[-._a-zA-Z][-._a-zA-Z0-9]*"
                     key-validator-error="Please enter a valid key."
-                    key-validator-error-tooltip="A valid environment variable name must consist of alphabetic characters, digits, '_', '-', or '.', and must not start with a digit."
-                    add-row-link="Add Value"
-                    add-row-with-selectors-link="Add Value from Config Map or Secret"
+                    key-validator-error-tooltip="一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。"
+                    add-row-link="添加值"
+                    add-row-with-selectors-link="从配置映射或密钥中添加值"
                     show-header></key-value-editor>
                   <button
                     class="btn btn-default"

@@ -1,27 +1,27 @@
 <div class='resource-details'>
   <div class="row">
     <div class="col-sm-12">
-      <h3>Status</h3>
+      <h3>状态</h3>
       <dl class="dl-horizontal left">
-        <dt>Status:</dt>
+        <dt>状态:</dt>
         <dd>
           <status-icon status="build.status.phase"></status-icon>
           <span ng-if="!build.status.message || build.status.phase === 'Cancelled'">{{build.status.phase}}</span>
           <span ng-if="build.status.message && build.status.phase !== 'Cancelled'">{{build.status.message}}</span>
           <span ng-if="build | jenkinsLogURL">
             <span class="text-muted">&ndash;</span>
-            <a ng-href="{{build | jenkinsLogURL}}" target="_blank">View Log</a>
+            <a ng-href="{{build | jenkinsLogURL}}" target="_blank">查看日志</a>
           </span>
         </dd>
-        <dt>Started:</dt>
+        <dt>开始:</dt>
         <dd>
           <span ng-if="build.status.startTimestamp">
             <span am-time-ago="build.status.startTimestamp"></span>
             <span><span class="text-muted">&ndash;</span> {{build.status.startTimestamp | date : 'medium'}}</span>
           </span>
-          <span ng-if="!build.status.startTimestamp"><em>not started</em></span>
+          <span ng-if="!build.status.startTimestamp"><em>未开始</em></span>
         </dd>
-        <dt>Duration:</dt>
+        <dt>持续:</dt>
         <dd>
           <span ng-switch="build.status.phase" class="hide-ng-leave">
             <span ng-switch-when="Complete">{{(build.status.startTimestamp || build.metadata.creationTimestamp) | duration : build.status.completionTimestamp}}</span>
@@ -36,7 +36,7 @@
           </span>
         </dd>
         <div ng-if='build.spec.triggeredBy.length'>
-          <dt>Triggered By:</dt>
+          <dt>触发:</dt>
           <dd>
             <div ng-repeat="trigger in build.spec.triggeredBy">
               <div ng-switch="trigger.message">
@@ -56,24 +56,24 @@
           </dd>
         </div>
       </dl>
-      <h3>Configuration <span class="small" ng-if="buildConfigName">created from <a href="{{build | configURLForResource}}">{{buildConfigName}}</a></span></h3>
+      <h3>配置 <span class="small" ng-if="buildConfigName">created from <a href="{{build | configURLForResource}}">{{buildConfigName}}</a></span></h3>
       <dl class="dl-horizontal left">
-        <dt>Build Strategy:</dt>
+        <dt>构建策略:</dt>
         <dd>{{build.spec.strategy.type | startCase}}</dd>
-        <dt ng-if-start="(build | buildStrategy).from">Builder Image:</dt>
+        <dt ng-if-start="(build | buildStrategy).from">基础镜像:</dt>
         <dd ng-if-end class="truncate">{{(build | buildStrategy).from | imageObjectRef : build.metadata.namespace}}<span ng-if="!(build | buildStrategy).from"><em>none</em></span></dd>
-        <dt>Source Type:</dt>
+        <dt>资源类型:</dt>
         <dd>{{build.spec.source.type}}</dd>
-        <dt ng-if-start="build.spec.source.git.uri">Source Repo:</dt>
+        <dt ng-if-start="build.spec.source.git.uri">源码仓库:</dt>
         <dd ng-if-end><span class="word-break"><osc-git-link
                     uri="build.spec.source.git.uri"
                     ref="build.spec.source.git.ref"
                     context-dir="build.spec.source.contextDir">{{build.spec.source.git.uri}}</osc-git-link></span></dd>
-        <dt ng-if-start="build.spec.source.git.ref">Source Ref:</dt>
+        <dt ng-if-start="build.spec.source.git.ref">源码引用:</dt>
         <dd ng-if-end>{{build.spec.source.git.ref}}</dd>
-        <dt ng-if-start="build.spec.source.contextDir">Source Context Dir:</dt>
+        <dt ng-if-start="build.spec.source.contextDir">源码关联目录:</dt>
         <dd ng-if-end>{{build.spec.source.contextDir}}</dd>
-        <dt ng-if-start="build.spec.revision.git.commit">Source Commit:</dt>
+        <dt ng-if-start="build.spec.revision.git.commit">源码提交:</dt>
         <dd ng-if-end>
           <span class="word-break">
             {{build.spec.revision.git.message}}
@@ -86,7 +86,7 @@
             authored by {{build.spec.revision.git.author.name}}
           </span>
         </dd>
-        <dt ng-if-start="outputTo = build.spec.output.to">Output Image:</dt>
+        <dt ng-if-start="outputTo = build.spec.output.to">输出镜像:</dt>
         <dd ng-if-end>
           <a ng-if="outputTo.kind === 'ImageStreamTag' && (!outputTo.namespace || build.metadata.namespace === outputTo.namespace)"
               ng-href="{{outputTo.name | navigateResourceURL : 'ImageStreamTag' : build.metadata.namespace}}">
@@ -96,10 +96,10 @@
             {{outputTo | imageObjectRef : build.metadata.namespace}}
           </span>
         </dd>
-        <dt ng-if-start="build.spec.output.pushSecret.name">Push Secret:</dt>
+        <dt ng-if-start="build.spec.output.pushSecret.name">推送密钥:</dt>
         <dd ng-if-end>{{build.spec.output.pushSecret.name}}</dd>
         <dt ng-if-start="build.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath">
-          Jenkinsfile Path:
+          Jenkinsfile 路径:
         </dt>
         <dd>
           <span ng-if="build | jenkinsfileLink">
@@ -110,10 +110,10 @@
           </span>
         </dd>
         <div ng-if-end class="small">
-          <a href="" ng-click="showJenkinsfileExamples()">What's a Jenkinsfile?</a>
+          <a href="" ng-click="showJenkinsfileExamples()">什么是 Jenkinsfile?</a>
         </div>
         <div ng-if-start="build.spec.strategy.jenkinsPipelineStrategy.jenkinsfile" class="small pull-right mar-top-sm">
-          <a href="" ng-click="showJenkinsfileExamples()">What's a Jenkinsfile?</a>
+          <a href="" ng-click="showJenkinsfileExamples()">什么是 Jenkinsfile?</a>
         </div>
         <dt>
           Jenkinsfile:
@@ -134,7 +134,7 @@
         }" readonly ng-model="build.spec.strategy.jenkinsPipelineStrategy.jenkinsfile" class="ace-bordered ace-inline ace-read-only"></div>
       </dl>
       <div ng-if="build | hasPostCommitHook">
-        <h3>Post-Commit Hooks</h3>
+        <h3>Post-Commit 钩子</h3>
         <build-hooks build="build"></build-hooks>
       </div>
     </div>

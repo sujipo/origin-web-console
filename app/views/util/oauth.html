@@ -1,22 +1,22 @@
   <div class="middle surface-shaded">
     <div class="container">
       <div ng-if="!confirmUser">
-        <h1>Logging in&hellip;</h1>
-        <p>Please wait while you are logged in&hellip;</p>
+        <h1>登录中&hellip;</h1>
+        <p>登录时请稍候&hellip;</p>
       </div>
 
       <div ng-if="confirmUser && !overriddenUser">
-        <h1>Confirm Login</h1>
-        <p>You are being logged in as <code>{{confirmUser.metadata.name}}</code>.</p>
-        <button class="btn btn-lg btn-primary" type="button" ng-click="completeLogin();">Continue</button>
+        <h1>确认登录</h1>
+        <p>您正在登录为 <code>{{confirmUser.metadata.name}}</code>.</p>
+        <button class="btn btn-lg btn-primary" type="button" ng-click="completeLogin();">继续</button>
         <button class="btn btn-lg btn-default" type="button" ng-click="cancelLogin();">取消</button>
       </div>
 
       <div ng-if="confirmUser && overriddenUser">
-        <h1>Confirm User Change</h1>
-        <p>You are about to change users from <code>{{overriddenUser.metadata.name}}</code> to <code>{{confirmUser.metadata.name}}</code>.</p>
-        <p>If this is unexpected, click Cancel. This could be an attempt to trick you into acting as another user.</p>
-        <button class="btn btn-lg btn-danger" type="button" ng-click="completeLogin();">Switch Users</button>
+        <h1>确认用户改变</h1>
+        <p>您即将更改用户从 <code>{{overriddenUser.metadata.name}}</code> 到 <code>{{confirmUser.metadata.name}}</code>。</p>
+        <p>如果这是意外的，请单击Cancel。这可能是企图欺骗您，使您扮演另一个用户的角色。</p>
+        <button class="btn btn-lg btn-danger" type="button" ng-click="completeLogin();">切换用户</button>
         <button class="btn btn-lg btn-primary" type="button" ng-click="cancelLogin();">取消</button>
       </div>
 

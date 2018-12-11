@@ -412,7 +412,7 @@
     {
       "name": "NAME",
       "displayName": "Name",
-      "description": "The name assigned to all of the frontend objects defined in this template.",
+      "description": "分配给该模板中定义的所有前端对象的名称。",
       "required": true,
       "value": "nodejs-mongodb-example"
     },

@@ -17,13 +17,13 @@
       <div ng-if="firstError = $ctrl.annotations.error[0]">
         <a href="" ng-click="$ctrl.gotoLine(firstError.row)">
           <span class="pficon pficon-error-circle-o" aria-hidden="true"></span>
-          Error
+          错误
         </a>
       </div>
       <div ng-if="firstWarning = $ctrl.annotations.warning[0]">
         <a href="" ng-click="$ctrl.gotoLine(firstWarning.row)">
           <span class="pficon pficon-warning-triangle-o" aria-hidden="true"></span>
-          Warning
+          警告
         </a>
       </div>
     </div>

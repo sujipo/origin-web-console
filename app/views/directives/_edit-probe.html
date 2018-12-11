@@ -1,6 +1,6 @@
 <ng-form name="form">
   <div class="form-group">
-    <label class="required">Type</label>
+    <label class="required">类别</label>
     <ui-select ng-model="selected.type" required search-enabled="false">
       <ui-select-match>{{$select.selected.label}}</ui-select-match>
       <ui-select-choices repeat="item.id as item in types">{{item.label}}</ui-select-choices>
@@ -15,12 +15,12 @@
               ng-model="probe.httpGet.scheme"
               ng-true-value=" 'HTTPS' "
               ng-false-value=" 'HTTP' ">
-          Use HTTPS
+          使用 HTTPS
         </label>
       </div>
     </div>
     <div class="form-group">
-      <label ng-attr-for="{{id}}-path">Path</label>
+      <label ng-attr-for="{{id}}-path">路径</label>
       <div>
         <input
             ng-attr-id="{{id}}-path"
@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="required">Port</label>
+      <label class="required">端口</label>
       <ui-select ng-model="probe.httpGet.port" required>
         <ui-select-match>{{$select.selected.containerPort}}</ui-select-match>
         <ui-select-choices
@@ -45,12 +45,12 @@
     </div>
   </fieldset>
   <fieldset ng-if="selected.type === 'exec'">
-    <label class="required">Command</label>
+    <label class="required">命令</label>
     <edit-command args="probe.exec.command" is-required="true"></edit-command>
   </fieldset>
   <fieldset ng-if="selected.type === 'tcpSocket'">
     <div class="form-group">
-      <label class="required">Port</label>
+      <label class="required">端口</label>
       <ui-select ng-model="probe.tcpSocket.port" required>
         <ui-select-match>{{$select.selected.containerPort}}</ui-select-match>
         <ui-select-choices
@@ -61,7 +61,7 @@
     </div>
   </fieldset>
   <div class="form-group">
-    <label ng-attr-for="{{id}}-initial-delay">Initial Delay</label>
+    <label ng-attr-for="{{id}}-initial-delay">初始延时</label>
     <span class="input-group"
        ng-class="{ 'has-error': form.initialDelaySeconds.$invalid && form.initialDelaySeconds.$touched }">
       <input
@@ -74,25 +74,25 @@
           ng-attr-id="{{id}}-initial-delay"
           class="form-control"
           ng-attr-aria-describedby="{{id}}-delay-description">
-      <span class="input-group-addon">seconds</span>
+      <span class="input-group-addon">秒</span>
     </span>
     <div class="help-block" ng-attr-id="{{id}}-delay-description">
-      How long to wait after the container starts before checking its health.
+      容器启动后需要等待多长时间才能检查其健康状态。
     </div>
     <div ng-if="form.initialDelaySeconds.$invalid && form.initialDelaySeconds.$touched" class="has-error">
       <div ng-if="form.initialDelaySeconds.$error.number" class="help-block">
-        Must be a number.
+        必须是一个数字。
       </div>
       <div ng-if="form.initialDelaySeconds.$error.min" class="help-block">
-        Delay can't be negative.
+        延时不能是负数。
       </div>
       <span ng-if="form.initialDelaySeconds.$error.pattern && !form.initialDelaySeconds.$error.min" class="help-block">
-        Must be a whole number.
+        必须是一个整数。
       </span>
     </div>
   </div>
   <div class="form-group">
-    <label ng-attr-for="{{id}}-timeout">Timeout</label>
+    <label ng-attr-for="{{id}}-timeout">超时</label>
     <span class="input-group"
        ng-class="{ 'has-error': form.timeoutSeconds.$invalid && form.timeoutSeconds.$touched }">
       <input
@@ -106,20 +106,20 @@
           ng-attr-id="{{id}}-timeout"
           class="form-control"
           ng-attr-aria-describedby="{{id}}-timeout-description">
-      <span class="input-group-addon">seconds</span>
+      <span class="input-group-addon">秒</span>
     </span>
     <div class="help-block" ng-attr-id="{{id}}-timeout-description">
-      How long to wait for the probe to finish. If the time is exceeded, the probe is considered failed.
+        要等多久探测器才能完成。如果超过了时间，则认为探测失败。
     </div>
     <div ng-if="form.timeoutSeconds.$invalid && form.timeoutSeconds.$touched" class="has-error">
       <div ng-if="form.timeoutSeconds.$error.number" class="help-block">
-        Must be a number.
+        必须是一个数字。
       </div>
       <div ng-if="form.timeoutSeconds.$error.min" class="help-block">
-        Timeout must be greater than or equal to one.
+        超时时间必须大于或等于1。
       </div>
       <span ng-if="form.timeoutSeconds.$error.pattern && !form.timeoutSeconds.$error.min" class="help-block">
-        Must be a whole number.
+        必须是一个整数。
       </span>
     </div>
   </div>

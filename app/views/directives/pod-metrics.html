@@ -1,11 +1,11 @@
 <div class="metrics mar-top-xl" ng-if="pod || deployment">
   <div ng-show="!metricsError" class="metrics-options">
     <div class="pull-right learn-more-block hidden-xs">
-      <a href="" ng-click="showComputeUnitsHelp()">About Compute Resources</a>
+      <a href="" ng-click="showComputeUnitsHelp()">关于计算资源</a>
     </div>
     <!-- Let the user select the container if we're showing pod metrics. -->
     <div ng-if="pod.spec.containers.length" class="form-group">
-      <label for="selectContainer">Container:</label>
+      <label for="selectContainer">容器:</label>
       <div class="select-container" ng-class="{ 'multiple-containers' : pod.spec.containers.length > 1 }">
         <span ng-show="pod.spec.containers.length === 1">
           {{pod.spec.containers[0].name}}
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="timeRange">Time Range:</label>
+      <label for="timeRange">时间范围:</label>
       <div class="select-range">
         <ui-select ng-model="options.timeRange" search-enabled="false" ng-disabled="metricsError" input-id="timeRange">
           <ui-select-match>{{$select.selected.label}}</ui-select-match>
@@ -33,18 +33,18 @@
 
   <ellipsis-pulser color="dark" size="sm" msg="Loading metrics" ng-if="!loaded"></ellipsis-pulser>
 
-  <div ng-if="loaded && noData && !metricsError" class="mar-top-md">No metrics to display.</div>
+  <div ng-if="loaded && noData && !metricsError" class="mar-top-md">没有指标显示。</div>
 
   <div ng-if="metricsError" class="empty-state-message text-center">
     <h2>
       <span class="pficon pficon-error-circle-o" aria-hidden="true"></span>
-      Metrics are not available.
+      度量指标不可用。
     </h2>
 
     <p>
-      An error occurred getting metrics<span ng-if="options.selectedContainer.name">
-        for container {{options.selectedContainer.name}}</span><span ng-if="metricsURL">
-        from <a ng-href="{{metricsURL}}">{{metricsURL}}</a></span>.
+      获取指标时发生错误<span ng-if="options.selectedContainer.name">
+        针对容器 {{options.selectedContainer.name}}</span><span ng-if="metricsURL">
+        指标 <a ng-href="{{metricsURL}}">{{metricsURL}}</a></span>.
     </p>
 
     <p class="text-muted">
@@ -56,8 +56,8 @@
     <h2 ng-class="{ 'has-limit': metric.datasets[0].total }">
       {{metric.label}}
       <small ng-if="pod.spec.containers.length > 1">
-        <span ng-if="metric.containerMetric">Container Metrics</span>
-        <span ng-if="!metric.containerMetric">Pod Metrics</span>
+        <span ng-if="metric.containerMetric">容器指标</span>
+        <span ng-if="!metric.containerMetric">Pod 指标</span>
       </small>
      </h2>
 

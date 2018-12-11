@@ -1,5 +1,5 @@
 <div class="mar-bottom-xl" ng-if="$ctrl.showBindings">
-  <h3>Bindings</h3>
+  <h3>绑定</h3>
   <service-binding
     ng-repeat="binding in $ctrl.bindings track by (binding | uid)"
     namespace="$ctrl.projectContext.projectName"
@@ -23,7 +23,7 @@
     </div>
   </div>
   <div ng-if="!($ctrl.bindings | size) && ($ctrl.bindableServiceInstances | size) && !($ctrl.serviceBindingsVersion | canI : 'create')">
-    <span>There are no service bindings.</span>
+    <span>没有服务绑定。</span>
   </div>
 </div>
 <overlay-panel show-panel="$ctrl.overlayPanelVisible" handle-close="$ctrl.closeOverlayPanel">

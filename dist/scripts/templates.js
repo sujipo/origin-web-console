@@ -58,7 +58,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-if=\"form.$invalid\" class=\"has-error\">\n" +
     "<div ng-if=\"form.amount.$error.number\" class=\"help-block\">\n" +
-    "Must be a number.\n" +
+    "必须是一个数字。\n" +
     "</div>\n" +
     "<div ng-if=\"form.amount.$error.min\" class=\"help-block\">\n" +
     "Can't be negative.\n" +
@@ -753,7 +753,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"row\">\n" +
     "<div class=\"col-md-10\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
-    "<div ng-if=\"!error && (!targetObject || !configMaps || !secrets)\">Loading...</div>\n" +
+    "<div ng-if=\"!error && (!targetObject || !configMaps || !secrets)\">加载中...</div>\n" +
     "<div ng-if=\"error\" class=\"empty-state-message text-center\">\n" +
     "<h2>The {{kind | humanizeKind}} could not be loaded.</h2>\n" +
     "<p>{{error | getErrorDetails}}</p>\n" +
@@ -909,7 +909,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"row\">\n" +
     "<div class=\"col-md-10\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
-    "<div ng-show=\"!pvcs || !attach.resource\">Loading...</div>\n" +
+    "<div ng-show=\"!pvcs || !attach.resource\">加载中...</div>\n" +
     "<div ng-show=\"pvcs && !pvcs.length && attach.resource\" class=\"empty-state-message empty-state-full-page text-center\">\n" +
     "<h2>No persistent volume claims.</h2>\n" +
     "<p>\n" +
@@ -1595,14 +1595,14 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"middle-content\" persist-tab-state>\n" +
     "<div class=\"container-fluid\">\n" +
-    "<div ng-if=\"!loaded\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\">加载中...</div>\n" +
     "<div class=\"row\" ng-if=\"loaded\">\n" +
     "<div class=\"col-md-12\" ng-class=\"{ 'hide-tabs' : !buildConfig }\">\n" +
     "<uib-tabset>\n" +
     "<uib-tab active=\"selectedTab.history\">\n" +
     "<uib-tab-heading>History</uib-tab-heading>\n" +
     "\n" +
-    "<div ng-if=\"!unfilteredBuilds\" class=\"gutter-bottom\">Loading...</div>\n" +
+    "<div ng-if=\"!unfilteredBuilds\" class=\"gutter-bottom\">加载中...</div>\n" +
     "\n" +
     "<div ng-if=\"buildConfig && unfilteredBuilds && (unfilteredBuilds | hashSize) === 0\" class=\"empty-state-message text-center\">\n" +
     "<h2>No builds.</h2>\n" +
@@ -1962,8 +1962,8 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<ng-form name=\"forms.bcEnvVars\" class=\"mar-bottom-xl block\">\n" +
     "<div ng-if=\"buildConfigsVersion | canI : 'update'\">\n" +
     "<confirm-on-exit dirty=\"forms.bcEnvVars.$dirty\"></confirm-on-exit>\n" +
-    "<key-value-editor entries=\"envVars\" key-placeholder=\"Name\" value-placeholder=\"Value\" value-from-selector-options=\"valueFromObjects\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error=\"Please enter a valid key.\" key-validator-error-tooltip=\"A valid environment variable name must consist of alphabetic characters, digits, '_', '-', or '.', and must not start with a digit.\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\" show-header></key-value-editor>\n" +
-    "<button class=\"btn btn-default\" ng-click=\"saveEnvVars()\" ng-disabled=\"forms.bcEnvVars.$pristine || forms.bcEnvVars.$invalid\">Save</button>\n" +
+    "<key-value-editor entries=\"envVars\" key-placeholder=\"Name\" value-placeholder=\"Value\" value-from-selector-options=\"valueFromObjects\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error=\"Please enter a valid key.\" key-validator-error-tooltip=\"一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\" show-header></key-value-editor>\n" +
+    "<button class=\"btn btn-default\" ng-click=\"saveEnvVars()\" ng-disabled=\"forms.bcEnvVars.$pristine || forms.bcEnvVars.$invalid\">保存</button>\n" +
     "<a ng-if=\"!forms.bcEnvVars.$pristine\" href=\"\" ng-click=\"clearEnvVarUpdates()\" class=\"mar-left-sm\" style=\"vertical-align: -2px\">Clear Changes</a>\n" +
     "</div>\n" +
     "<key-value-editor ng-if=\"!(buildConfigsVersion | canI : 'update')\" entries=\"envVars\" key-placeholder=\"Name\" value-placeholder=\"Value\" is-readonly cannot-add cannot-sort cannot-delete show-header></key-value-editor>\n" +
@@ -1988,7 +1988,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"build\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "<div class=\"pull-right dropdown\" ng-hide=\"!('builds' | canIDoAny)\">\n" +
@@ -2091,7 +2091,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"loaded && error\" class=\"empty-state-message text-center\">\n" +
     "<h2>The config map could not be loaded.</h2>\n" +
     "<p>{{error | getErrorDetails}}</p>\n" +
@@ -2313,7 +2313,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"middle-content\" persist-tab-state>\n" +
     "<div class=\"container-fluid\">\n" +
-    "<div ng-if=\"!loaded\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\">加载中...</div>\n" +
     "<div class=\"row\" ng-if=\"loaded\">\n" +
     "<div class=\"col-md-12\" ng-class=\"{ 'hide-tabs' : !deploymentConfig }\">\n" +
     "<div ng-if=\"deploymentConfig.spec.paused && !updatingPausedState\" class=\"alert alert-info animate-if\">\n" +
@@ -2605,7 +2605,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"middle-content\" persist-tab-state>\n" +
     "<div class=\"container-fluid\">\n" +
-    "<div ng-if=\"!loaded\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\">加载中...</div>\n" +
     "<div class=\"row\" ng-if=\"loaded\">\n" +
     "<div class=\"col-md-12\" ng-class=\"{ 'hide-tabs' : !deployment }\">\n" +
     "<div ng-if=\"deployment.spec.paused && !updatingPausedState\" class=\"alert alert-info animate-if\">\n" +
@@ -2800,7 +2800,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"imageStream\">\n" +
     "<h1>\n" +
     "{{imageStream.metadata.name}}:{{tagName}}\n" +
@@ -2810,7 +2810,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"middle-content\" persist-tab-state>\n" +
     "<div class=\"container-fluid\">\n" +
-    "<div ng-if=\"!loaded\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\">加载中...</div>\n" +
     "<div class=\"row\" ng-if=\"image\">\n" +
     "<div class=\"col-md-12\">\n" +
     "<registry-image-pull settings=\"settings\" names=\"[ imageStream.metadata.name + ':' + tagName ]\">\n" +
@@ -2849,7 +2849,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"imageStream\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "<div class=\"pull-right dropdown\" ng-hide=\"!('imageStreams' | canIDoAny)\">\n" +
@@ -2901,7 +2901,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\">加载中...</div>\n" +
     "<div ng-if=\"pvc\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "<div class=\"pull-right dropdown\" ng-hide=\"!('persistentVolumeClaims' | canIDoAny)\">\n" +
@@ -2990,7 +2990,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"pod\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "<div class=\"pull-right dropdown\" ng-hide=\"!('pods' | canIDoAny)\">\n" +
@@ -3151,7 +3151,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-md\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-md\">加载中...</div>\n" +
     "<div ng-if=\"replicaSet\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "\n" +
@@ -3231,7 +3231,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"route\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "<div class=\"pull-right dropdown\" ng-hide=\"!('routes' | canIDoAny)\">\n" +
@@ -3557,7 +3557,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"secret\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "<div class=\"pull-right dropdown\">\n" +
@@ -3651,7 +3651,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"serviceInstance\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "<div class=\"pull-right dropdown\" ng-hide=\"!('serviceInstances' | canIDoAny)\">\n" +
@@ -3777,7 +3777,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\" class=\"mar-top-xl\">加载中...</div>\n" +
     "<div ng-if=\"service\">\n" +
     "<h1 class=\"contains-actions\">\n" +
     "<div class=\"pull-right dropdown\" ng-hide=\"!('services' | canIDoAny)\">\n" +
@@ -3912,7 +3912,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"middle-content\" persist-tab-state>\n" +
     "<div class=\"container-fluid\">\n" +
-    "<div ng-if=\"!loaded\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\">加载中...</div>\n" +
     "<div class=\"row resource-details\" ng-if=\"loaded && statefulSet\">\n" +
     "<div class=\"col-md-12\">\n" +
     "<uib-tabset>\n" +
@@ -4329,7 +4329,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
 
 
   $templateCache.put('views/catalog/catalog.html',
-    "<p ng-if=\"!loaded\">Loading...</p>\n" +
+    "<p ng-if=\"!loaded\">加载中...</p>\n" +
     "<div ng-if=\"emptyCatalog && loaded\" class=\"empty-state-message empty-state-full-page\">\n" +
     "<h2 class=\"text-center\">No images or templates.</h2>\n" +
     "<p class=\"gutter-top\">\n" +
@@ -4435,7 +4435,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
 
 
   $templateCache.put('views/catalog/category-content.html',
-    "<p ng-if=\"!loaded\">Loading...</p>\n" +
+    "<p ng-if=\"!loaded\">加载中...</p>\n" +
     "<div ng-if=\"emptyCategory && loaded\" class=\"empty-state-message empty-state-full-page\">\n" +
     "<h2 class=\"text-center\">No images or templates.</h2>\n" +
     "<p class=\"gutter-top\">\n" +
@@ -4567,7 +4567,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container gutter-top\">\n" +
     "<div class=\"row\">\n" +
     "<div class=\"col-md-12\">\n" +
-    "<div ng-if=\"!loaded\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\">加载中...</div>\n" +
     "<div ng-if=\"loaded\">\n" +
     "<alerts alerts=\"alerts\" hide-close-button=\"true\"></alerts>\n" +
     "<osc-image-summary resource=\"resource\"></osc-image-summary>\n" +
@@ -4713,7 +4713,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Routing is a way to make your application publicly visible.\n" +
     "</div>\n" +
     "<form name=\"createRouteForm\" class=\"mar-top-xl osc-form\" novalidate>\n" +
-    "<div ng-if=\"!services\">Loading...</div>\n" +
+    "<div ng-if=\"!services\">加载中...</div>\n" +
     "<div ng-if=\"services\">\n" +
     "<fieldset ng-disabled=\"disableInputs\">\n" +
     "<osc-routing model=\"routing\" services=\"services\" show-name-input=\"true\">\n" +
@@ -4742,7 +4742,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<div class=\"row\">\n" +
     "<div class=\"col-md-10\">\n" +
-    "<div ng-if=\"!project\" class=\"mar-top-md\">Loading...</div>\n" +
+    "<div ng-if=\"!project\" class=\"mar-top-md\">加载中...</div>\n" +
     "<div ng-if=\"project\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
@@ -4961,7 +4961,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<i class=\"pficon pficon-help\"></i>\n" +
     "</a>\n" +
     "</span></span></h3>\n" +
-    "<key-value-editor entries=\"buildConfigEnvVars\" key-placeholder=\"name\" value-placeholder=\"value\" value-from-selector-options=\"valueFromObjects\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error-tooltip=\"A valid environment variable name must consist of alphabetic characters, digits, '_', '-', or '.', and must not start with a digit.\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\"></key-value-editor>\n" +
+    "<key-value-editor entries=\"buildConfigEnvVars\" key-placeholder=\"name\" value-placeholder=\"value\" value-from-selector-options=\"valueFromObjects\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error-tooltip=\"一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\"></key-value-editor>\n" +
     "</osc-form-section>\n" +
     "\n" +
     "<osc-form-section header=\"Deployment Configuration\" about-title=\"Deployment Configuration\" about=\"Deployment configurations describe how your application is configured\n" +
@@ -4997,7 +4997,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<key-value-editor entries=\"DCEnvVarsFromImage\" is-readonly cannot-add cannot-sort cannot-delete></key-value-editor>\n" +
     "</div>\n" +
-    "<key-value-editor entries=\"DCEnvVarsFromUser\" key-placeholder=\"name\" value-placeholder=\"value\" value-from-selector-options=\"valueFromObjects\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error-tooltip=\"A valid environment variable name must consist of alphabetic characters, digits, '_', '-', or '.', and must not start with a digit.\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\"></key-value-editor>\n" +
+    "<key-value-editor entries=\"DCEnvVarsFromUser\" key-placeholder=\"name\" value-placeholder=\"value\" value-from-selector-options=\"valueFromObjects\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error-tooltip=\"一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\"></key-value-editor>\n" +
     "</div>\n" +
     "</div>\n" +
     "</osc-form-section>\n" +
@@ -5560,13 +5560,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-if=\"form.initialDelaySeconds.$invalid && form.initialDelaySeconds.$touched\" class=\"has-error\">\n" +
     "<div ng-if=\"form.initialDelaySeconds.$error.number\" class=\"help-block\">\n" +
-    "Must be a number.\n" +
+    "必须是一个数字。\n" +
     "</div>\n" +
     "<div ng-if=\"form.initialDelaySeconds.$error.min\" class=\"help-block\">\n" +
     "Delay can't be negative.\n" +
     "</div>\n" +
     "<span ng-if=\"form.initialDelaySeconds.$error.pattern && !form.initialDelaySeconds.$error.min\" class=\"help-block\">\n" +
-    "Must be a whole number.\n" +
+    "必须是一个整数。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -5581,13 +5581,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-if=\"form.timeoutSeconds.$invalid && form.timeoutSeconds.$touched\" class=\"has-error\">\n" +
     "<div ng-if=\"form.timeoutSeconds.$error.number\" class=\"help-block\">\n" +
-    "Must be a number.\n" +
+    "必须是一个数字。\n" +
     "</div>\n" +
     "<div ng-if=\"form.timeoutSeconds.$error.min\" class=\"help-block\">\n" +
     "Timeout must be greater than or equal to one.\n" +
     "</div>\n" +
     "<span ng-if=\"form.timeoutSeconds.$error.pattern && !form.timeoutSeconds.$error.min\" class=\"help-block\">\n" +
-    "Must be a whole number.\n" +
+    "必须是一个整数。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -6518,7 +6518,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<osc-form-section header=\"Environment Variables\" about-title=\"Environment Variables\" about=\"Environment variables are used to configure and pass information to running containers.\" expand=\"true\" can-toggle=\"false\" class=\"first-section\">\n" +
-    "<key-value-editor entries=\"env\" key-placeholder=\"Name\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error-tooltip=\"A valid environment variable name must consist of alphabetic characters, digits, '_', '-', or '.', and must not start with a digit.\" value-placeholder=\"Value\" value-from-selector-options=\"input.selectedProject.metadata.uid && valueFromNamespace[input.selectedProject.metadata.name]\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\"></key-value-editor>\n" +
+    "<key-value-editor entries=\"env\" key-placeholder=\"Name\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error-tooltip=\"一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。\" value-placeholder=\"Value\" value-from-selector-options=\"input.selectedProject.metadata.uid && valueFromNamespace[input.selectedProject.metadata.name]\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\"></key-value-editor>\n" +
     "</osc-form-section>\n" +
     "<label-editor labels=\"labels\" expand=\"true\" can-toggle=\"false\" help-text=\"Each label is applied to each created resource.\">\n" +
     "</label-editor>\n" +
@@ -6889,7 +6889,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
-    "<button ng-click=\"$ctrl.closeOverlayPanel()\" type=\"button\" class=\"btn btn-default\">Close</button>\n" +
+    "<button ng-click=\"$ctrl.closeOverlayPanel()\" type=\"button\" class=\"btn btn-default\">关闭</button>\n" +
     "</div>\n" +
     "</overlay-panel>\n" +
     "</ng-form>"
@@ -6908,7 +6908,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<key-value-editor ng-if=\"container.env.length\" entries=\"container.env\" key-placeholder=\"Name\" value-placeholder=\"Value\" cannot-add cannot-sort cannot-delete is-readonly show-header>\n" +
     "</key-value-editor>\n" +
     "</div>\n" +
-    "<key-value-editor ng-if=\"$ctrl.canIUpdate && !$ctrl.ngReadonly\" entries=\"container.env\" key-placeholder=\"Name\" value-placeholder=\"Value\" value-from-selector-options=\"$ctrl.valueFromObjects\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error=\"Please enter a valid key.\" key-validator-error-tooltip=\"A valid environment variable name must consist of alphabetic characters, digits, '_', '-', or '.', and must not start with a digit.\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\" show-header>\n" +
+    "<key-value-editor ng-if=\"$ctrl.canIUpdate && !$ctrl.ngReadonly\" entries=\"container.env\" key-placeholder=\"Name\" value-placeholder=\"Value\" value-from-selector-options=\"$ctrl.valueFromObjects\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error=\"Please enter a valid key.\" key-validator-error-tooltip=\"一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\" show-header>\n" +
     "</key-value-editor>\n" +
     "<h4>\n" +
     "Environment From\n" +
@@ -6918,7 +6918,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</edit-environment-from>\n" +
     "</div>\n" +
     "<div class=\"gutter-top-bottom\">\n" +
-    "<button class=\"btn btn-default\" ng-if=\"$ctrl.canIUpdate && !$ctrl.ngReadonly\" ng-click=\"$ctrl.save()\" ng-disabled=\"$ctrl.form.$pristine || $ctrl.form.$invalid\">Save</button>\n" +
+    "<button class=\"btn btn-default\" ng-if=\"$ctrl.canIUpdate && !$ctrl.ngReadonly\" ng-click=\"$ctrl.save()\" ng-disabled=\"$ctrl.form.$pristine || $ctrl.form.$invalid\">保存</button>\n" +
     "<a ng-if=\"!$ctrl.form.$pristine\" href=\"\" ng-click=\"$ctrl.clearChanges()\" class=\"mar-left-sm clear-env-changes-link\">Clear Changes</a>\n" +
     "</div>\n" +
     "</form>"
@@ -6966,7 +6966,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"form-group\">\n" +
     "<label>Environment Variables</label>\n" +
-    "<key-value-editor entries=\"hookParams.execNewPod.env\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error-tooltip=\"A valid environment variable name must consist of alphabetic characters, digits, '_', '-', or '.', and must not start with a digit.\" value-from-selector-options=\"valueFromObjects\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\" add-row-link=\"Add Value\"></key-value-editor>\n" +
+    "<key-value-editor entries=\"hookParams.execNewPod.env\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error-tooltip=\"一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。\" value-from-selector-options=\"valueFromObjects\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\" add-row-link=\"Add Value\"></key-value-editor>\n" +
     "<div class=\"help-block\">\n" +
     "Environment variables to supply to the hook pod's container.\n" +
     "</div>\n" +
@@ -8331,7 +8331,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"persistentVolumeClaimForm.capacity.$error.number\">\n" +
     "<span class=\"help-block\">\n" +
-    "Must be a number.\n" +
+    "必须是一个数字。\n" +
     "</span>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"persistentVolumeClaimForm.capacity.$error.min\">\n" +
@@ -8422,7 +8422,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</span>\n" +
     "<div ng-if=\"routingServiceForm.weight.$dirty && routingServiceForm.weight.$invalid\" class=\"has-error\">\n" +
     "<div ng-if=\"routingServiceForm.weight.$error.number\" class=\"help-block\">\n" +
-    "Must be a number.\n" +
+    "必须是一个数字。\n" +
     "</div>\n" +
     "\n" +
     "<div ng-if=\"routingServiceForm.weight.$error.pattern\" class=\"help-block\">\n" +
@@ -9541,7 +9541,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-10\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\">加载中...</div>\n" +
     "<h1>\n" +
     "Edit Build Config {{buildConfig.metadata.name}}\n" +
     "<small>&mdash; {{strategyType | startCase}} Build Strategy</small>\n" +
@@ -9816,7 +9816,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</a>\n" +
     "</span></h3>\n" +
     "<div>\n" +
-    "<key-value-editor ng-if=\"envVars\" entries=\"envVars\" key-placeholder=\"Name\" value-placeholder=\"Value\" show-header value-from-selector-options=\"valueFromObjects\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error-tooltip=\"A valid environment variable name must consist of alphabetic characters, digits, '_', '-', or '.', and must not start with a digit.\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\"></key-value-editor>\n" +
+    "<key-value-editor ng-if=\"envVars\" entries=\"envVars\" key-placeholder=\"Name\" value-placeholder=\"Value\" show-header value-from-selector-options=\"valueFromObjects\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error-tooltip=\"一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\"></key-value-editor>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"sources.git || !(updatedBuildConfig | isJenkinsPipelineStrategy)\" class=\"section\">\n" +
@@ -9977,7 +9977,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "Config maps hold key-value pairs that can be used in pods to read application configuration.\n" +
     "</div>\n" +
     "<div class=\"mar-top-xl\">\n" +
-    "<div ng-if=\"!loaded\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\">加载中...</div>\n" +
     "<form ng-if=\"loaded\" name=\"forms.editConfigMapForm\">\n" +
     "<div ng-if=\"resourceChanged && !resourceDeleted && !updatingNow\" class=\"alert alert-warning\">\n" +
     "<span class=\"pficon pficon-warning-triangle-o\" aria-hidden=\"true\"></span>\n" +
@@ -9992,7 +9992,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<fieldset ng-disabled=\"disableInputs\">\n" +
     "<edit-config-map-or-secret model=\"configMap\" type=\"config map\"></edit-config-map-or-secret>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
-    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"updateConfigMap()\" ng-disabled=\"forms.editConfigMapForm.$invalid || forms.editConfigMapForm.$pristine || disableInputs || resourceChanged || resourceDeleted\" value=\"\">Save</button>\n" +
+    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"updateConfigMap()\" ng-disabled=\"forms.editConfigMapForm.$invalid || forms.editConfigMapForm.$pristine || disableInputs || resourceChanged || resourceDeleted\" value=\"\">保存</button>\n" +
     "<a class=\"btn btn-default btn-lg\" href=\"\" ng-click=\"cancel()\" role=\"button\">取消</a>\n" +
     "</div>\n" +
     "</fieldset>\n" +
@@ -10015,7 +10015,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"col-md-10\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!loaded\">Loading...</div>\n" +
+    "<div ng-if=\"!loaded\">加载中...</div>\n" +
     "<div ng-if=\"loaded\">\n" +
     "<h1>\n" +
     "Edit Deployment Config {{deploymentConfig.metadata.name}}\n" +
@@ -10065,7 +10065,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"form-group\">\n" +
     "<label>Environment Variables</label>\n" +
-    "<key-value-editor entries=\"strategyData.customParams.environment\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error-tooltip=\"A valid environment variable name must consist of alphabetic characters, digits, '_', '-', or '.', and must not start with a digit.\" value-from-selector-options=\"valueFromObjects\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\"></key-value-editor>\n" +
+    "<key-value-editor entries=\"strategyData.customParams.environment\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error-tooltip=\"一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。\" value-from-selector-options=\"valueFromObjects\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\"></key-value-editor>\n" +
     "</div>\n" +
     "</div>\n" +
     "<div ng-if=\"strategyData.type !== 'Custom'\">\n" +
@@ -10080,13 +10080,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-if=\"form.strategyTimeout.$invalid && form.strategyTimeout.$touched\" class=\"has-error\">\n" +
     "<div ng-if=\"form.strategyTimeout.$error.number\" class=\"help-block\">\n" +
-    "Must be a number.\n" +
+    "必须是一个数字。\n" +
     "</div>\n" +
     "<div ng-if=\"form.strategyTimeout.$error.min\" class=\"help-block\">\n" +
     "Timeout can't be negative.\n" +
     "</div>\n" +
     "<span ng-if=\"form.strategyTimeout.$error.pattern && !form.strategyTimeout.$error.min\" class=\"help-block\">\n" +
-    "Must be a whole number.\n" +
+    "必须是一个整数。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -10104,13 +10104,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-if=\"form.updatePeriod.$invalid && form.updatePeriod.$touched\" class=\"has-error\">\n" +
     "<div ng-if=\"form.updatePeriod.$error.number\" class=\"help-block\">\n" +
-    "Must be a number.\n" +
+    "必须是一个数字。\n" +
     "</div>\n" +
     "<div ng-if=\"form.updatePeriod.$error.min\" class=\"help-block\">\n" +
     "Update period can't be negative.\n" +
     "</div>\n" +
     "<span ng-if=\"form.updatePeriod.$error.pattern && !form.updatePeriod.$error.min\" class=\"help-block\">\n" +
-    "Must be a whole number.\n" +
+    "必须是一个整数。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -10125,13 +10125,13 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-if=\"form.interval.$invalid && form.interval.$touched\" class=\"has-error\">\n" +
     "<div ng-if=\"form.interval.$error.number\" class=\"help-block\">\n" +
-    "Must be a number.\n" +
+    "必须是一个数字。\n" +
     "</div>\n" +
     "<div ng-if=\"form.interval.$error.min\" class=\"help-block\">\n" +
     "Interval can't be negative.\n" +
     "</div>\n" +
     "<span ng-if=\"form.interval.$error.pattern && !form.interval.$error.min\" class=\"help-block\">\n" +
-    "Must be a whole number.\n" +
+    "必须是一个整数。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -10146,7 +10146,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-if=\"form.maxUnavailable.$invalid && form.maxUnavailable.$touched && form.maxUnavailable.$error.pattern\" class=\"has-error\">\n" +
     "<span class=\"help-block\">\n" +
-    "Must be a non-negative whole number or percentage.\n" +
+    "必须是一个非负整数或百分比。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -10160,7 +10160,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div ng-if=\"form.maxSurge.$invalid && form.maxSurge.$touched && form.maxSurge.$error.pattern\" class=\"has-error\">\n" +
     "<span class=\"help-block\">\n" +
-    "Must be a non-negative whole number or percentage.\n" +
+    "必须是一个非负整数或百分比。\n" +
     "</span>\n" +
     "</div>\n" +
     "</div>\n" +
@@ -10245,7 +10245,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-name\">\n" +
     "<h4>Container {{containerName}}</h4>\n" +
     "</div>\n" +
-    "<key-value-editor ng-if=\"containerConfig\" entries=\"containerConfig.env\" value-from-selector-options=\"valueFromObjects\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error-tooltip=\"A valid environment variable name must consist of alphabetic characters, digits, '_', '-', or '.', and must not start with a digit.\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\"></key-value-editor>\n" +
+    "<key-value-editor ng-if=\"containerConfig\" entries=\"containerConfig.env\" value-from-selector-options=\"valueFromObjects\" key-validator=\"[-._a-zA-Z][-._a-zA-Z0-9]*\" key-validator-error-tooltip=\"一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。\" add-row-link=\"Add Value\" add-row-with-selectors-link=\"Add Value from Config Map or Secret\"></key-value-editor>\n" +
     "</div>\n" +
     "</div>\n" +
     "<pause-rollouts-checkbox deployment=\"updatedDeploymentConfig\" always-visible=\"true\">\n" +
@@ -10274,7 +10274,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"row\">\n" +
     "<div class=\"col-md-10\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
-    "<div ng-show=\"!containers.length\" class=\"mar-top-md\">Loading...</div>\n" +
+    "<div ng-show=\"!containers.length\" class=\"mar-top-md\">加载中...</div>\n" +
     "<form ng-show=\"containers.length\" name=\"form\" class=\"health-checks-form\" novalidate>\n" +
     "<h1>Health Checks: {{name}}</h1>\n" +
     "<div class=\"help-block\">\n" +
@@ -10318,7 +10318,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<pause-rollouts-checkbox ng-if=\"object | managesRollouts\" deployment=\"object\">\n" +
     "</pause-rollouts-checkbox>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
-    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"save()\" ng-disabled=\"form.$invalid || form.$pristine || disableInputs\" value=\"\">Save</button>\n" +
+    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"save()\" ng-disabled=\"form.$invalid || form.$pristine || disableInputs\" value=\"\">保存</button>\n" +
     "<button class=\"btn btn-default btn-lg\" ng-click=\"cancel()\">取消</button>\n" +
     "</div>\n" +
     "</fieldset>\n" +
@@ -10404,7 +10404,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<textarea class=\"form-control input-lg\" name=\"description\" id=\"description\" placeholder=\"A short description.\" ng-model=\"editableFields.description\"></textarea>\n" +
     "</div>\n" +
     "<div class=\"button-group\">\n" +
-    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"update()\" ng-disabled=\"editProjectForm.$invalid || disableInputs\" value=\"\">Save</button>\n" +
+    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"update()\" ng-disabled=\"editProjectForm.$invalid || disableInputs\" value=\"\">保存</button>\n" +
     "<a class=\"btn btn-default btn-lg\" href=\"#\" back>取消</a>\n" +
     "</div>\n" +
     "</fieldset>\n" +
@@ -10433,7 +10433,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<osc-routing model=\"routing\" services=\"services\" show-name-input=\"false\" existing-route=\"true\">\n" +
     "</osc-routing>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
-    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"updateRoute()\" ng-disabled=\"form.$invalid || disableInputs\" value=\"\">Save</button>\n" +
+    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"updateRoute()\" ng-disabled=\"form.$invalid || disableInputs\" value=\"\">保存</button>\n" +
     "<button class=\"btn btn-default btn-lg\" ng-click=\"cancel()\">取消</button>\n" +
     "</div>\n" +
     "</fieldset>\n" +
@@ -10452,7 +10452,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"container-fluid\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
     "<alerts alerts=\"alerts\"></alerts>\n" +
-    "<div ng-if=\"!updated.resource\" class=\"pad-top-md\">Loading...</div>\n" +
+    "<div ng-if=\"!updated.resource\" class=\"pad-top-md\">加载中...</div>\n" +
     "<div ng-if=\"updated.resource\">\n" +
     "<h1 class=\"truncate\">Edit <span class=\"hidden-xs\">{{updated.resource.kind | humanizeKind : true}}</span> {{updated.resource.metadata.name}}</h1>\n" +
     "<parse-error error=\"error\" ng-if=\"error\"></parse-error>\n" +
@@ -10470,7 +10470,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<form name=\"editor.form\">\n" +
     "<ui-ace-yaml resource=\"updated.resource\" ng-required=\"true\"></ui-ace-yaml>\n" +
     "<div class=\"button-group mar-top-xl\">\n" +
-    "<button class=\"btn btn-lg btn-primary\" type=\"button\" ng-click=\"save()\" ng-disabled=\"editor.form.$pristine || editor.form.$invalid || resourceChanged || resourceDeleted || updatingNow\">Save</button>\n" +
+    "<button class=\"btn btn-lg btn-primary\" type=\"button\" ng-click=\"save()\" ng-disabled=\"editor.form.$pristine || editor.form.$invalid || resourceChanged || resourceDeleted || updatingNow\">保存</button>\n" +
     "<button class=\"btn btn-lg btn-default\" type=\"button\" ng-disabled=\"updatingNow\" ng-click=\"cancel()\">取消</button>\n" +
     "</div>\n" +
     "</form>\n" +
@@ -10876,7 +10876,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
-    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"close()\">Close</button>\n" +
+    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"close()\">关闭</button>\n" +
     "</div>\n" +
     "</div>"
   );
@@ -10933,7 +10933,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
     "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">取消</button>\n" +
-    "<button class=\"btn btn-primary\" type=\"button\" ng-click=\"save()\">Save</button>\n" +
+    "<button class=\"btn btn-primary\" type=\"button\" ng-click=\"save()\">保存</button>\n" +
     "</div>\n" +
     "</div>"
   );
@@ -11056,7 +11056,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
-    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"close()\">Close</button>\n" +
+    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"close()\">关闭</button>\n" +
     "</div>\n" +
     "</div>"
   );
@@ -11202,7 +11202,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<span class=\"help-block\">Size is required.</span>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"expandPersistentVolumeClaimForm.capacity.$error.number\">\n" +
-    "<span class=\"help-block\">Must be a number.</span>\n" +
+    "<span class=\"help-block\">必须是一个数字。</span>\n" +
     "</div>\n" +
     "<div class=\"has-error\" ng-show=\"expandPersistentVolumeClaimForm .capacity.$error.min\">\n" +
     "<span class=\"help-block\">Must be a positive number.</span>\n" +
@@ -11251,7 +11251,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<ng-include src=\"'views/edit/jenkinsfile-examples.html'\"></ng-include>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
-    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"close()\">Close</button>\n" +
+    "<button class=\"btn btn-default\" type=\"button\" ng-click=\"close()\">关闭</button>\n" +
     "</div>\n" +
     "</div>"
   );
@@ -11314,7 +11314,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
     "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel();\">取消</button>\n" +
-    "<button class=\"btn btn-primary\" type=\"button\" ng-click=\"continue();\" ng-disabled=\"!templateOptions.process && !templateOptions.add\">Continue</button>\n" +
+    "<button class=\"btn btn-primary\" type=\"button\" ng-click=\"continue();\" ng-disabled=\"!templateOptions.process && !templateOptions.add\">继续</button>\n" +
     "</div>\n" +
     "</div>"
   );
@@ -11361,7 +11361,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
     "<button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">取消</button>\n" +
-    "<button class=\"btn btn-primary\" type=\"button\" ng-disabled=\"homePageForm.$invalid || homePageForm.$pristine\" ng-click=\"setHomePage()\">Save</button>\n" +
+    "<button class=\"btn btn-primary\" type=\"button\" ng-disabled=\"homePageForm.$invalid || homePageForm.$pristine\" ng-click=\"setHomePage()\">保存</button>\n" +
     "</div>\n" +
     "</div>"
   );
@@ -11924,7 +11924,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"project.metadata.name | canIAddToProject\">\n" +
     "<h2>开始您的项目。</h2>\n" +
     "<p>\n" +
-    "从web框架、数据库和其他组件的应用向项目添加内容。您还可以部署现有映像，从它们的YAML或JSON定义创建或替换资源，或者从另一个项目中选择共享的项。\n" +
+    "从web框架、数据库和其他组件的应用向项目添加内容。您还可以部署现有映像，从它们的YAML或JSON定义创建或替换资源，或者从其它项目中选择共享的项。\n" +
     "</p>\n" +
     "<div class=\"empty-state-message-main-action\">\n" +
     "<button class=\"btn btn-primary btn-lg\" ng-click=\"browseCatalog()\">\n" +
@@ -13531,7 +13531,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "</h1>\n" +
     "<div ng-if=\"!quotas.length && !clusterQuotas.length\" class=\"mar-top-xl\">\n" +
     "<div class=\"help-block\">{{quotaHelp}}</div>\n" +
-    "<p><em ng-if=\"!quotas && !clusterQuotas\">Loading...</em><em ng-if=\"quotas || clusterQuotas\">There are no resource quotas set on this project.</em></p>\n" +
+    "<p><em ng-if=\"!quotas && !clusterQuotas\">加载中...</em><em ng-if=\"quotas || clusterQuotas\">There are no resource quotas set on this project.</em></p>\n" +
     "</div>\n" +
     "<div ng-repeat=\"quota in clusterQuotas | orderBy: 'metadata.name'\" class=\"gutter-bottom\">\n" +
     "<h2 ng-if=\"clusterQuotas.length\">{{quota.metadata.name}}</h2>\n" +
@@ -14026,7 +14026,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"row\">\n" +
     "<div class=\"col-md-10\">\n" +
     "<breadcrumbs breadcrumbs=\"breadcrumbs\"></breadcrumbs>\n" +
-    "<div ng-show=\"!containers.length\">Loading...</div>\n" +
+    "<div ng-show=\"!containers.length\">加载中...</div>\n" +
     "<form ng-if=\"containers.length\" name=\"form\" class=\"set-limits-form\" novalidate>\n" +
     "<h1>Resource Limits: {{name}}</h1>\n" +
     "<div class=\"help-block\">\n" +
@@ -14056,7 +14056,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<pause-rollouts-checkbox ng-if=\"object | managesRollouts\" deployment=\"object\">\n" +
     "</pause-rollouts-checkbox>\n" +
     "<div class=\"button-group gutter-top gutter-bottom\">\n" +
-    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"save()\" ng-disabled=\"form.$pristine || form.$invalid || disableInputs || cpuProblems.length || memoryProblems.length\" value=\"\">Save</button>\n" +
+    "<button type=\"submit\" class=\"btn btn-primary btn-lg\" ng-click=\"save()\" ng-disabled=\"form.$pristine || form.$invalid || disableInputs || cpuProblems.length || memoryProblems.length\" value=\"\">保存</button>\n" +
     "<button class=\"btn btn-default btn-lg\" ng-click=\"cancel()\">取消</button>\n" +
     "</div>\n" +
     "</fieldset>\n" +
@@ -14205,7 +14205,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div ng-if=\"confirmUser && !overriddenUser\">\n" +
     "<h1>Confirm Login</h1>\n" +
     "<p>You are being logged in as <code>{{confirmUser.metadata.name}}</code>.</p>\n" +
-    "<button class=\"btn btn-lg btn-primary\" type=\"button\" ng-click=\"completeLogin();\">Continue</button>\n" +
+    "<button class=\"btn btn-lg btn-primary\" type=\"button\" ng-click=\"completeLogin();\">继续</button>\n" +
     "<button class=\"btn btn-lg btn-default\" type=\"button\" ng-click=\"cancelLogin();\">取消</button>\n" +
     "</div>\n" +
     "<div ng-if=\"confirmUser && overriddenUser\">\n" +
@@ -14226,7 +14226,7 @@ angular.module('openshiftConsoleTemplates', []).run(['$templateCache', function(
     "<div class=\"alert word-break\" ng-class=\"{ 'alert-danger': alert.type === 'error', 'alert-warning': alert.type === 'warning', 'alert-success': alert.type === 'success', 'alert-info': !alert.type || alert.type === 'info', 'toast-pf': $ctrl.toast, 'mar-left-sm': $ctrl.toast}\">\n" +
     "<button ng-if=\"!$ctrl.hideCloseButton\" ng-click=\"$ctrl.close(alert)\" type=\"button\" class=\"close\">\n" +
     "<span class=\"pficon pficon-close\" aria-hidden=\"true\"></span>\n" +
-    "<span class=\"sr-only\">Close</span>\n" +
+    "<span class=\"sr-only\">关闭</span>\n" +
     "</button>\n" +
     "<span class=\"pficon\" aria-hidden=\"true\" ng-class=\"{'pficon-error-circle-o': alert.type === 'error', 'pficon-warning-triangle-o': alert.type === 'warning', 'pficon-ok': alert.type === 'success','pficon-info': !alert.type || alert.type === 'info'}\"></span>\n" +
     "<span class=\"sr-only\">{{alert.type}}</span>\n" +
