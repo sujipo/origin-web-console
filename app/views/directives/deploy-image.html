@@ -60,10 +60,10 @@
               </span>
             </div>
             <div class="help-block">
-              要从私有存储库部署映像, 你必须 <span ng-if="!input.selectedProject.metadata.uid">创建一个镜像拉取密钥</span>
+              要从私有存储库部署映像, 你必须 <span ng-if="!input.selectedProject.metadata.uid">创建一个镜像拉取秘密</span>
               <a href=""
                 ng-click="openCreateWebhookSecretModal()"
-                ng-if="input.selectedProject.metadata.uid">创建一个镜像拉取密钥</a>
+                ng-if="input.selectedProject.metadata.uid">创建一个镜像拉取秘密</a>
               作为你的镜像库凭据。
               <a ng-href="{{'pull_secret' | helpLink}}" target="_blank"><span class="learn-more-inline">了解更多&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></span></a></div>
           </div>
@@ -171,7 +171,7 @@
             value-placeholder="Value"
             value-from-selector-options="input.selectedProject.metadata.uid && valueFromNamespace[input.selectedProject.metadata.name]"
             add-row-link="添加值"
-            add-row-with-selectors-link="从配置映射或密钥中添加值"></key-value-editor>
+            add-row-with-selectors-link="从配置映射或秘密中添加值"></key-value-editor>
         </osc-form-section>
 
         <label-editor
@@ -199,7 +199,7 @@
         无法加载镜像元数据。
       </h2>
       <p>{{import.error | upperFirst}}</p>
-      <p>镜像可能不存在，也可能位于安全注册表中。检查您是否正确输入了镜像名称，或者 <a href="" ng-click="openCreateWebhookSecretModal()">创建一个镜像拉取密钥</a> 来作为镜像注册凭据并再次尝试。</p>
+      <p>镜像可能不存在，也可能位于安全注册表中。检查您是否正确输入了镜像名称，或者 <a href="" ng-click="openCreateWebhookSecretModal()">创建一个镜像拉取秘密</a> 来作为镜像注册凭据并再次尝试。</p>
     </div>
 
     <div ng-if="!loading && import && !import.error && !import.image" class="empty-state-message text-center">

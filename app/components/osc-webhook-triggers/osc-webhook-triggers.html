@@ -38,7 +38,7 @@
         </ui-select>
         <div class="has-error select-secret-ref" ng-show="$ctrl.secretsForm[secretFieldName].$invalid && $ctrl.secretsForm[secretFieldName].$touched">
           <span class="help-block">
-            需要密钥引用。
+            需要秘密引用。
           </span>
         </div>
       </div>
@@ -81,7 +81,7 @@
     <button class="btn btn-link pad-left-none" type="button" ng-click="$ctrl.addEmptyWebhookTrigger()">添加 Webhook</button>
     <span ng-if="$ctrl.secretsVersion | canI : 'create'">
       <span class="action-divider" aria-hidden="true">|</span>
-      <button class="btn btn-link" href="" type="button" ng-click="$ctrl.openCreateWebhookSecretModal()">创建新的 Webhook 密钥</button>
+      <button class="btn btn-link" href="" type="button" ng-click="$ctrl.openCreateWebhookSecretModal()">创建新的 Webhook 秘密</button>
     </span>
   </div>
 </ng-form>

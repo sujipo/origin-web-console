@@ -289,7 +289,7 @@
       </div>
       <div ng-if="showCertificatesNotUsedWarning" class="has-warning">
         <span class="help-block">
-            您设置的证书或密钥将不会被使用。
+            您设置的证书或秘密将不会被使用。
           <span ng-if="!route.tls.termination">
             这条路由不安全。
           </span>
@@ -312,7 +312,7 @@
             </osc-file-input>
           </div>
           <div class="form-group" id="private-key-file">
-            <label>私有密钥</label>
+            <label>私有秘密</label>
             <osc-file-input
               model="route.tls.key"
               drop-zone-id="private-key-file"

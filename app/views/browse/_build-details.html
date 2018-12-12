@@ -96,7 +96,7 @@
             {{outputTo | imageObjectRef : build.metadata.namespace}}
           </span>
         </dd>
-        <dt ng-if-start="build.spec.output.pushSecret.name">推送密钥:</dt>
+        <dt ng-if-start="build.spec.output.pushSecret.name">推送秘密:</dt>
         <dd ng-if-end>{{build.spec.output.pushSecret.name}}</dd>
         <dt ng-if-start="build.spec.strategy.jenkinsPipelineStrategy.jenkinsfilePath">
           Jenkinsfile 路径:

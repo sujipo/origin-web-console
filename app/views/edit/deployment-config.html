@@ -71,7 +71,7 @@
                           key-validator-error-tooltip="一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。"
                           value-from-selector-options="valueFromObjects"
                           add-row-link="添加值"
-                          add-row-with-selectors-link="从配置映射或密钥中添加值"></key-value-editor>
+                          add-row-with-selectors-link="从配置映射或秘密中添加值"></key-value-editor>
                       </div>
                     </div>
                     <div ng-if="strategyData.type !== 'Custom'" >
@@ -338,7 +338,7 @@
                     </div>
 
                     <div class="mar-top-lg">
-                      <div ng-if="!view.advancedImageOptions">要设置从私有镜像库中提取镜像的密钥, 请查看 <a href="" ng-click="view.advancedImageOptions = true">高级镜像选项。</a></div>
+                      <div ng-if="!view.advancedImageOptions">要设置从私有镜像库中提取镜像的秘密, 请查看 <a href="" ng-click="view.advancedImageOptions = true">高级镜像选项。</a></div>
                       <a ng-if="view.advancedImageOptions" href="" ng-click="view.advancedImageOptions = false">隐藏高级镜像选项</a>
                     </div>
                   </dl>
@@ -359,7 +359,7 @@
                       key-validator="[-._a-zA-Z][-._a-zA-Z0-9]*"
                       key-validator-error-tooltip="一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。"
                       add-row-link="添加值"
-                      add-row-with-selectors-link="从配置映射或密钥中添加值"></key-value-editor>
+                      add-row-with-selectors-link="从配置映射或秘密中添加值"></key-value-editor>
                   </div>
                 </div>
 

@@ -433,7 +433,7 @@
                     key-validator="[-._a-zA-Z][-._a-zA-Z0-9]*"
                     key-validator-error-tooltip="一个有效的环境变量名必须由字母、数字、“_”、“-”或“”组成。，而且不能以数字开头。"
                     add-row-link="添加值"
-                    add-row-with-selectors-link="从配置映射或密钥中添加值"></key-value-editor>
+                    add-row-with-selectors-link="从配置映射或秘密中添加值"></key-value-editor>
                 </div>
               </div>
               <div ng-if="sources.git || !(updatedBuildConfig | isJenkinsPipelineStrategy)" class="section">
@@ -488,7 +488,7 @@
                 <!-- Use ng-show instead of ng-if so the form is still marked invalid if a hidden field has errors. -->
                 <div ng-show="view.advancedOptions">
                   <h3 class="with-divider">
-                    构建密钥
+                    构建秘密
                     <a href="{{'source_secrets' | helpLink}}" target="_blank"><span class="learn-more-inline">了解更多&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></span></a>
                   </h3>
                   <div class="form-group">

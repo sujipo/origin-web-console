@@ -12,10 +12,10 @@
 
         <div ng-if="targetObject && configMaps && secrets">
           <div ng-if="!configMaps.length && !secrets.length && !(configMapVersion | canI : 'create') && !(secretVersion | canI : 'create')" class="empty-state-message empty-state-full-page text-center">
-            <h2>没有配置映射或密钥。</h2>
+            <h2>没有配置映射或秘密。</h2>
 
             <p>
-              {{project | displayName}} 项目中没有配置映射或密钥可以使用这种{{kind | humanizeKind}}的卷。
+              {{project | displayName}} 项目中没有配置映射或秘密可以使用这种{{kind | humanizeKind}}的卷。
             </p>
 
             <p ng-if="targetObject"><a ng-href="{{targetObject | navigateResourceURL}}">Back to {{kind | humanizeKind}} {{name}}</a></p>
@@ -24,7 +24,7 @@
           <div ng-if="configMaps.length || secrets.length || (configMapVersion | canI : 'create') || (secretVersion | canI : 'create')" class="mar-top-xl">
             <h1>将配置文件添加到 {{name}}</h1>
             <div class="help-block">
-              从配置映射或密钥中添加值作为卷。这将使数据作为{{kind | humanizeKind}} {{name}}的文件可用。
+              从配置映射或秘密中添加值作为卷。这将使数据作为{{kind | humanizeKind}} {{name}}的文件可用。
             </div>
             <form name="forms.addConfigVolumeForm" class="mar-top-lg">
               <fieldset ng-disabled="disableInputs">
@@ -49,7 +49,7 @@
                     </span>
                     <span ng-if="secretVersion | canI : 'create'">
                       <span ng-if="configMapVersion | canI : 'create'" class="action-divider" aria-hidden="true">|</span>
-                      <a ng-href="project/{{project.metadata.name}}/create-secret">创建密钥</a>
+                      <a ng-href="project/{{project.metadata.name}}/create-secret">创建秘密</a>
                     </span>
                   </div>
                   <div class="help-block">
@@ -77,7 +77,7 @@
                     <span id="mount-path-help" class="help-block">
                       卷的挂载路径。
                       <span ng-if="!attach.pickKeys">
-                        将在此目录中为配置映射或密钥中的每个键创建一个文件。文件内容将是键的值。
+                        将在此目录中为配置映射或秘密中的每个键创建一个文件。文件内容将是键的值。
                       </span>
                     </span>
                   </div>
