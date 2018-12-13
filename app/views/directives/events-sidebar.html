@@ -8,21 +8,21 @@
           <span class="pficon pficon-warning-triangle-o"></span>
           {{warningCount}}
           <span class="hidden-xs hidden-sm">
-            <span ng-if="warningCount === 1">warning</span>
-            <span ng-if="warningCount > 1">warnings</span>
+            <span ng-if="warningCount === 1">警告</span>
+            <span ng-if="warningCount > 1">警告</span>
           </span>
         </small>
       </h2>
     </div>
     <div ng-if="events | hashSize" class="event-details-link">
-      <a ng-href="project/{{projectContext.projectName}}/browse/events">View Details</a>
+      <a ng-href="project/{{projectContext.projectName}}/browse/events">查看详情</a>
     </div>
   </div>
   <div class="right-content">
     <ellipsis-pulser color="dark" size="sm" msg="Loading" ng-if="!events" class="events"></ellipsis-pulser>
     <div ng-if="events" class="events">
       <div ng-if="!(events | hashSize)" class="event">
-        <em>No events.</em>
+        <em>没有事件</em>
       </div>
       <div ng-repeat="event in events track by (event | uid)" class="event animate-repeat" ng-class="{'highlight': highlightedEvents[event.involvedObject.kind + '/' + event.involvedObject.name]}">
         <span class="sr-only">{{event.type}}</span>

@@ -41,7 +41,7 @@ angular.module("openshiftConsole")
             var logLink = URI(podLink).addSearch({ tab: "logs", container: warning.container }).toString();
             alert.links = [{
               href: logLink,
-              label: "View Log"
+              label: "查看日志"
             }];
             break;
 
@@ -53,7 +53,7 @@ angular.module("openshiftConsole")
 
             alert.links = [{
               href: "",
-              label: "Don't Show Me Again",
+              label: "别再给我看了",
               onClick: function() {
                 // Hide the alert on future page loads.
                 AlertMessageService.permanentlyHideAlert(alertID, namespace);
@@ -87,17 +87,17 @@ angular.module("openshiftConsole")
         alerts[deployment.metadata.uid + '-paused'] = {
           type: 'info',
           message: deployment.metadata.name + ' is paused.',
-          details: 'This will stop any new rollouts or triggers from running until resumed.',
+          details: '这将阻止任何新的部署或触发器运行，直到恢复。',
           links: [{
             href: "",
-            label: 'Resume Rollouts',
+            label: '继续部署',
             onClick: function() {
               DeploymentsService.setPaused(deployment, false, {namespace: deployment.metadata.namespace}).then(
                 _.noop,
                 function(e) {
                   alerts[deployment.metadata.uid + '-pause-error'] = {
                     type: "error",
-                    message: "An error occurred resuming the " + humanizeKind(deployment.kind) + ".",
+                    message: "发生错误在恢复 " + humanizeKind(deployment.kind) + "。",
                     details: $filter('getErrorDetails')(e)
                   };
                 });
@@ -127,11 +127,11 @@ angular.module("openshiftConsole")
       case 'Cancelled':
         alerts[mostRecentRC.metadata.uid + '-cancelled'] = {
           type: 'info',
-          message: 'Deployment ' + displayName + ' was cancelled.',
+          message: '部署 ' + displayName + ' 被取消。',
           // TODO: Add back start deployment link from previous overview (see serviceGroupNotifications.js)
           links: [{
             href: rcLink,
-            label: 'View Deployment'
+            label: '查看部署'
           }]
         };
         break;
@@ -139,15 +139,15 @@ angular.module("openshiftConsole")
         logLink = URI(rcLink).addSearch({ tab: "logs" }).toString();
         alerts[mostRecentRC.metadata.uid + '-failed'] = {
           type: 'error',
-          message: 'Deployment ' + displayName + ' failed.',
+          message: '部署 ' + displayName + ' 失败。',
           reason: annotation(mostRecentRC, 'openshift.io/deployment.status-reason'),
           links: [{
             href: logLink,
-            label: 'View Log'
+            label: '查看日志'
           }, {
             // Show all events since the event might not be on the replication controller itself.
             href: 'project/' + mostRecentRC.metadata.namespace + '/browse/events',
-            label: 'View Events'
+            label: '查看事件'
           }]
         };
         break;
