@@ -48,7 +48,7 @@
               </a>
             </span>
             <span ng-if="env.valueFrom.secretKeyRef">
-              {{env.valueFrom.secretKeyRef.key}} 在秘密
+              {{env.valueFrom.secretKeyRef.key}} 在私密
               <span
                 ng-if="!(secretsVersion | canI : 'get')">
                 {{env.valueFrom.secretKeyRef.name}}

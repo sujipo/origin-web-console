@@ -2,7 +2,7 @@
   <div ng-if="$ctrl.showHeader" class="row form-row-has-controls input-labels">
     <div class="col-xs-6">
       <label class="input-label">
-        配置映射/秘密
+        配置映射/私密
       </label>
     </div>
     <div class="col-xs-6"
@@ -27,12 +27,12 @@
       <div class="environment-from-input col-xs-6 form-group">
         <div ng-if="$ctrl.isEnvFromReadonly(entry) || !$ctrl.hasOptions()" class="faux-input-group">
           <div ng-if="!entry.configMapRef.name && !entry.secretRef.name">
-              没有配置映射或秘密作为环境来源。
+              没有配置映射或私密作为环境来源。
           </div>
           <div ng-if="entry.configMapRef.name || entry.secretRef.name" class="faux-form-control readonly">
             使用所有键和值
             <span ng-if="entry.configMapRef.name">配置映射 {{entry.configMapRef.name}}.</span>
-            <span ng-if="entry.secretRef.name">秘密 {{entry.secretRef.name}}.</span>
+            <span ng-if="entry.secretRef.name">私密 {{entry.secretRef.name}}.</span>
             <span ng-if="entry.prefix">名字前面要加上前缀 "{{entry.prefix}}"</span>
           </div>
         </div>
@@ -122,7 +122,7 @@
         href=""
         class="add-row-link"
         role="button"
-        ng-click="$ctrl.onAddRow()">从配置映射或秘密中添加所有值</a>
+        ng-click="$ctrl.onAddRow()">从配置映射或私密中添加所有值</a>
     </div>
   </div>
 
@@ -138,7 +138,7 @@
         <small ng-if="$ctrl.overlayPaneEntryDetails.kind === 'Secret'" class="mar-left-sm">
           <a href=""
              role="button"
-             ng-click="$ctrl.showSecret = !$ctrl.showSecret">{{$ctrl.showSecret ? "Hide" : "Reveal"}} 秘密</a>
+             ng-click="$ctrl.showSecret = !$ctrl.showSecret">{{$ctrl.showSecret ? "Hide" : "Reveal"}} 私密</a>
         </small>
       </h4>
 
@@ -172,7 +172,7 @@
                     expandable="true">
                   </truncate-long-text>
                   <div ng-if="decodedData.$$nonprintable[key]" class="help-block">
-                    这个秘密值包含不可打印的字符，并显示为base64编码的字符串。
+                    这个私密值包含不可打印的字符，并显示为base64编码的字符串。
                   </div>
                 </div>
               </td>
