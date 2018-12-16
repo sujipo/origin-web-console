@@ -286,11 +286,11 @@
                       <div class="checkbox form-group">
                         <label>
                           <input type="checkbox" ng-model="containerConfig.hasDeploymentTrigger">
-                          根据镜像集标签部署镜像
+                          根据镜像流标签部署镜像
                         </label>
                       </div>
                       <div ng-if="containerConfig.hasDeploymentTrigger">
-                        <label class="required">镜像集标签</label>
+                        <label class="required">镜像流标签</label>
                         <istag-select model="containerConfig.triggerData.istag" select-required="true" select-disabled="disableInputs" include-shared-namespace="true"></istag-select>
 
                         <div class="checkbox form-group">

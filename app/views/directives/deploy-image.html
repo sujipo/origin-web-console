@@ -2,14 +2,14 @@
   <select-project ng-if="!project" selected-project="input.selectedProject" name-taken="projectNameTaken"></select-project>
   <span ng-show="!noProjectsCantCreate">
     <p>
-      通过镜像集标签或从镜像库里部署一个已经存在的应用镜像。
+      通过镜像流标签或从镜像库里部署一个已经存在的应用镜像。
     </p>
     <ng-form name="forms.imageSelection">
       <fieldset ng-disabled="loading">
         <div class="radio">
           <label>
             <input type="radio" ng-model="mode" value="istag">
-            镜像集标签
+            镜像流标签
           </label>
         </div>
         <fieldset>
@@ -74,7 +74,7 @@
       <div class="separator"></div>
     </div>
     <div ng-if="loading || !import" class="empty-state-message text-center">
-      <h2 ng-if="!loading" class="h2">选择镜像集标签或输入镜像名称</h2>
+      <h2 ng-if="!loading" class="h2">选择镜像流标签或输入镜像名称</h2>
       <h2 ng-if="loading" class="h2">加载镜像数据（<span class="word-break">{{imageName | stripSHA}}</span>）...</h2>
     </div>
     <div class="row mar-bottom-md" ng-if-start="!loading && import.image">
@@ -97,7 +97,7 @@
           </small>
         </h2>
         <ul>
-          <li ng-if="!import.namespace">镜像集 <strong>{{app.name || "&lt;name&gt;"}}:{{import.tag || 'latest'}}</strong> 将跟踪该镜像。</li>
+          <li ng-if="!import.namespace">镜像流 <strong>{{app.name || "&lt;name&gt;"}}:{{import.tag || 'latest'}}</strong> 将跟踪该镜像。</li>
           <li>该镜像将部署在部署配置 <strong>{{app.name || "&lt;name&gt;"}}</strong>中。</li>
           <li ng-if="ports.length">
             <span ng-if="ports.length === 1">Port</span>
