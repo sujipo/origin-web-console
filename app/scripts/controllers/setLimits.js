@@ -23,7 +23,7 @@ angular.module('openshiftConsole')
                        NotificationsService,
                        ProjectsService) {
     if (!$routeParams.kind || !$routeParams.name) {
-      Navigate.toErrorPage("Kind or name parameter missing.");
+      Navigate.toErrorPage("类型或名称参数丢失。");
       return;
     }
 
@@ -35,7 +35,7 @@ angular.module('openshiftConsole')
     ];
 
     if (!_.includes(supportedKinds, $routeParams.kind)) {
-      Navigate.toErrorPage("Health checks are not supported for kind " + $routeParams.kind + ".");
+      Navigate.toErrorPage("健康检查不支持类型 " + $routeParams.kind + ".");
       return;
     }
 
@@ -55,7 +55,7 @@ angular.module('openshiftConsole')
       name: $routeParams.name,
       kind: $routeParams.kind,
       namespace: $routeParams.project,
-      subpage: 'Edit Resource Limits'
+      subpage: '编辑资源限制'
     });
 
     var getErrorDetails = $filter('getErrorDetails');
@@ -93,7 +93,7 @@ angular.module('openshiftConsole')
         };
 
         if (!AuthorizationService.canI(resourceGroupVersion, 'update', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to update ' +
+          Navigate.toErrorPage('你没有权限更新 ' +
                                humanizeKind($routeParams.kind) + ' ' + $routeParams.name + '.', 'access_denied');
           return;
         }
@@ -104,7 +104,7 @@ angular.module('openshiftConsole')
             $scope.breadcrumbs = BreadcrumbsService.getBreadcrumbs({
               object: object,
               project: project,
-              subpage: 'Edit Resource Limits'
+              subpage: '编辑资源限制'
             });
             $scope.resourceURL = Navigate.resourceURL(object);
             $scope.containers = _.get(object, 'spec.template.spec.containers');
@@ -115,18 +115,18 @@ angular.module('openshiftConsole')
                 function() {
                   NotificationsService.addNotification({
                       type: "success",
-                      message: displayName + " was updated."
+                      message: displayName + " 已经更新。"
                   });
                   navigateBack();
                 },
                 function(result) {
                   $scope.disableInputs = false;
-                  displayError(displayName + ' could not be updated.', getErrorDetails(result));
+                  displayError(displayName + ' 无法更新。', getErrorDetails(result));
                 });
             };
           },
           function(result) {
-            displayError(displayName + ' could not be loaded.', getErrorDetails(result));
+            displayError(displayName + ' 无法加载。', getErrorDetails(result));
           }
         );
 

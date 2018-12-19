@@ -21,7 +21,7 @@ angular.module('openshiftConsole')
                         NotificationsService,
                         ProjectsService) {
     if (!$routeParams.kind || !$routeParams.name) {
-      Navigate.toErrorPage("Kind or name parameter missing.");
+      Navigate.toErrorPage("类型或名称参数丢失。");
       return;
     }
 
@@ -33,7 +33,7 @@ angular.module('openshiftConsole')
     ];
 
     if (!_.includes(supportedKinds, $routeParams.kind)) {
-      Navigate.toErrorPage("Health checks are not supported for kind " + $routeParams.kind + ".");
+      Navigate.toErrorPage("健康检查不支持类别 " + $routeParams.kind + "。");
       return;
     }
 
@@ -44,7 +44,7 @@ angular.module('openshiftConsole')
       name: $routeParams.name,
       kind: $routeParams.kind,
       namespace: $routeParams.project,
-      subpage: 'Edit Health Checks'
+      subpage: '编辑健康检查'
     });
 
     // Map of removed probes so that removing and adding back a probe remembers what was previously set.
@@ -82,7 +82,7 @@ angular.module('openshiftConsole')
         };
 
         if (!AuthorizationService.canI(resourceGroupVersion, 'update', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to update ' + displayName + '.', 'access_denied');
+          Navigate.toErrorPage('你没有权限更新 ' + displayName + '.', 'access_denied');
           return;
         }
 
@@ -93,7 +93,7 @@ angular.module('openshiftConsole')
             $scope.breadcrumbs = BreadcrumbsService.getBreadcrumbs({
               object: object,
               project: project,
-              subpage: 'Edit Health Checks'
+              subpage: '修改健康检查'
             });
 
             $scope.containers = _.get(object, 'spec.template.spec.containers');
@@ -121,18 +121,18 @@ angular.module('openshiftConsole')
                 function() {
                   NotificationsService.addNotification({
                       type: "success",
-                      message: upperFirst(displayName) + " was updated."
+                      message: upperFirst(displayName) + " 已经更新。"
                   });
                   navigateBack();
                 },
                 function(result) {
                   $scope.disableInputs = false;
-                  displayError(upperFirst(displayName) + ' could not be updated.', getErrorDetails(result));
+                  displayError(upperFirst(displayName) + ' 无法更新。', getErrorDetails(result));
                 });
             };
           },
           function(result) {
-            displayError(upperFirst(displayName) + ' could not be loaded.', getErrorDetails(result));
+            displayError(upperFirst(displayName) + ' 无法加载。', getErrorDetails(result));
           }
         );
     }));
