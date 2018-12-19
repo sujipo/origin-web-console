@@ -3,11 +3,11 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" ng-click="cancel()">
       <span class="pficon pficon-close" aria-hidden="true"></span>
     </button>
-    <h1 class="modal-title">Expand Persistent Volume Claim</h1>
+    <h1 class="modal-title">扩容持久卷声明</h1>
   </div>
 
   <div class="modal-body">
-    <h3>Increase the capacity of claim
+    <h3>增加声明容量
       <strong>{{typeDisplayName}}</strong>.
       <a ng-href="{{'expanding_persistent_volumes' | helpLink}}" target="_blank">
         <span class="learn-more-inline">了解更多
@@ -16,20 +16,20 @@
       </a>
     </h3>
 
-    <p>This can be a time-consuming process.</p>
+    <p>这可能是一个耗时的过程。</p>
 
     <ng-form name="expandPersistentVolumeClaimForm">
       <div ng-if="capacityReadOnly" class="form-group mar-bottom-xl">
-        <label>Size</label>
+        <label>大小</label>
         <div class="static-form-value-large">
           {{claim.capacity}} {{claim.unit | humanizeUnit : 'storage'}}
-          <small>(cannot be changed)</small>
+          <small>(不能更改)</small>
         </div>
       </div>
       <div ng-if="!capacityReadOnly" class="form-group">
         <fieldset class="form-inline compute-resource">
           <label>
-            Capacity
+            容量
             <small ng-if="limits.min && limits.max">
               {{limits.min | usageWithUnits : 'storage'}} min to {{limits.max | usageWithUnits : 'storage'}} max
             </small>
@@ -42,7 +42,7 @@
           </label>
           <div class="resource-size" ng-class="{ 'has-error': expandPersistentVolumeClaimForm.capacity.$invalid && expandPersistentVolumeClaimForm.capacity.$dirty}">
             <div class="resource-amount">
-              <label for="claim-amount" class="sr-only">Amount</label>
+              <label for="claim-amount" class="sr-only">总计</label>
               <input type="number"
                      name="capacity"
                      id="claim-amount"
@@ -65,34 +65,34 @@
             </div>
           </div>
           <div id="claim-capacity-help" class="help-block">
-            Desired storage capacity.
+            所需的存储容量。
           </div>
           <div ng-if="expandPersistentVolumeClaimForm.capacity.$invalid && expandPersistentVolumeClaimForm.capacity.$dirty">
             <div class="has-error" ng-show="expandPersistentVolumeClaimForm.capacity.$error.required">
-              <span class="help-block">Size is required.</span>
+              <span class="help-block">大小是必需的。</span>
             </div>
             <div class="has-error" ng-show="expandPersistentVolumeClaimForm.capacity.$error.number">
               <span class="help-block">必须是一个数字。</span>
             </div>
             <div class="has-error" ng-show="expandPersistentVolumeClaimForm .capacity.$error.min">
-              <span class="help-block">Must be a positive number.</span>
+              <span class="help-block">必须是正数。</span>
             </div>
             <div class="has-error" ng-show="expandPersistentVolumeClaimForm.capacity.$error.checkCurrentCapacity">
-              <span class="help-block">The requested capacity may not be less than the current capacity.</span>
+              <span class="help-block">请求的容量不能小于当前的容量。</span>
             </div>
             <div ng-if="expandPersistentVolumeClaimForm.capacity.$error.limitRangeMin" class="has-error">
               <span class="help-block">
-                Can't be less than {{limits.min | usageWithUnits : 'storage'}}.
+                不能小于 {{limits.min | usageWithUnits : 'storage'}}.
               </span>
             </div>
             <div ng-if="expandPersistentVolumeClaimForm.capacity.$error.limitRangeMax" class="has-error">
               <span class="help-block">
-                Can't be greater than {{limits.max | usageWithUnits : 'storage'}}.
+                不能大于 {{limits.max | usageWithUnits : 'storage'}}.
               </span>
             </div>
             <div ng-if="expandPersistentVolumeClaimForm.capacity.$error.willExceedStorage" class="has-error">
               <span class="help-block">
-                Storage quota will be exceeded. <a ng-href="project/{{projectName}}/quota" target="_blank">View Quota&nbsp;</a>
+                将超出存储配额。 <a ng-href="project/{{projectName}}/quota" target="_blank">查看配额&nbsp;</a>
               </span>
             </div>
           </div>
@@ -102,7 +102,7 @@
 
       <div class="modal-footer" style="padding-right: 0;">
         <button class="btn btn-default" type="button" ng-click="cancel()">取消</button>
-        <button class="btn btn-primary" type="submit" ng-disabled="expandPersistentVolumeClaimForm.$invalid || disableButton" ng-click="expand()"> Expand
+        <button class="btn btn-primary" type="submit" ng-disabled="expandPersistentVolumeClaimForm.$invalid || disableButton" ng-click="expand()"> 扩容
         </button>
       </div>
     </ng-form>
