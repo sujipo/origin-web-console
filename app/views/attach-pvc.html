@@ -66,7 +66,7 @@
                 </div>
                 <div ng-if="project && (pvcVersion | canI : 'create')" class="help-block">
                   选择要使用的存储<span ng-if="!outOfClaims"> 或 <a ng-href="project/{{project.metadata.name}}/create-pvc" >创建存储</a>。</span>
-                  <span ng-if="outOfClaims">. You cannot create new storage since you are at quota.</span>
+                  <span ng-if="outOfClaims">. 由于您的配额状态,您不能创建新的存储。</span>
                 </div>
 
                 <h3>卷</h3>
@@ -99,7 +99,6 @@
                   </div>
                   <div class="has-error" ng-show="attachPVCForm.mountPath.$error.oscUnique">
                     <span class="help-block">
-                      Volume mount in that path already exists. Please choose another mount path.
                       卷挂载的路径已经存在。请选择另一条挂载路径。
                     </span>
                   </div>

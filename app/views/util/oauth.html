@@ -15,7 +15,7 @@
       <div ng-if="confirmUser && overriddenUser">
         <h1>确认用户改变</h1>
         <p>您即将更改用户从 <code>{{overriddenUser.metadata.name}}</code> 到 <code>{{confirmUser.metadata.name}}</code>。</p>
-        <p>如果这是意外的，请单击Cancel。这可能是企图欺骗您，使您扮演另一个用户的角色。</p>
+        <p>如果这是意外的，请单击取消。这可能是企图欺骗您，使您扮演另一个用户的角色。</p>
         <button class="btn btn-lg btn-danger" type="button" ng-click="completeLogin();">切换用户</button>
         <button class="btn btn-lg btn-primary" type="button" ng-click="cancelLogin();">取消</button>
       </div>

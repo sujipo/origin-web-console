@@ -18,7 +18,7 @@
               {{project | displayName}} 项目中没有配置映射或私密可以使用这种{{kind | humanizeKind}}的卷。
             </p>
 
-            <p ng-if="targetObject"><a ng-href="{{targetObject | navigateResourceURL}}">Back to {{kind | humanizeKind}} {{name}}</a></p>
+            <p ng-if="targetObject"><a ng-href="{{targetObject | navigateResourceURL}}">返回 {{kind | humanizeKind}} {{name}}</a></p>
           </div>
 
           <div ng-if="configMaps.length || secrets.length || (configMapVersion | canI : 'create') || (secretVersion | canI : 'create')" class="mar-top-xl">
