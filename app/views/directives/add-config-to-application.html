@@ -12,7 +12,7 @@
         <div class="form-group"  ng-class="{'has-error' : ctrl.addType === 'env' && ctrl.application && !ctrl.canAddRefToApplication}">
           <div class="application-select">
             <ui-select autofocus id="application" ng-model="ctrl.application" on-select="ctrl.checkApplicationContainersRefs($item)" required="true" ng-disabled="ctrl.disableInputs">
-              <ui-select-match placeholder="{{ctrl.applications.length ? 'Select an application' : 'There are no applications in this project'}}">
+              <ui-select-match placeholder="{{ctrl.applications.length ? 选择一个应用' : '这个项目中没有应用'}}">
               <span>
                 {{$select.selected.metadata.name}}
                 <small class="text-muted">&ndash; {{$select.selected.kind | humanizeKind : true}}</small>

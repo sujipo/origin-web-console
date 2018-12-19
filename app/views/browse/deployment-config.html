@@ -164,16 +164,16 @@
                       <span am-time-ago="deployment.metadata.creationTimestamp"></span>
                     </td>
                     <td data-title="Trigger">
-                      <span ng-if="!deployment.causes.length">Unknown</span>
+                      <span ng-if="!deployment.causes.length">未知</span>
                       <span ng-if="deployment.causes.length">
                         <span ng-repeat="cause in deployment.causes">
                           <span ng-switch="cause.type">
                             <span ng-switch-when="ImageChange">
                               <span ng-if="cause.imageTrigger.from">
-                                <abbr title="{{cause.imageTrigger.from | imageObjectRef : null : true}}">Image</abbr> change
+                                <abbr title="{{cause.imageTrigger.from | imageObjectRef : null : true}}">镜像</abbr> 变更
                               </span>
                             </span>
-                            <span ng-switch-when="ConfigChange">Config change</span>
+                            <span ng-switch-when="ConfigChange">配置变更</span>
                             <span ng-switch-default>{{cause.type}}</span>
                           </span>
                         </span>
@@ -213,7 +213,7 @@
                       <div ng-if="deploymentConfig.spec.strategy.rollingParams || deploymentConfig.spec.strategy.recreateParams">
                         <dt>超时:</dt>
                         <dd>{{strategyParams.timeoutSeconds}} sec</dd>
-                        <dt ng-if-start="deploymentConfig.spec.strategy.rollingParams">Update Period:</dt>
+                        <dt ng-if-start="deploymentConfig.spec.strategy.rollingParams">更新周期:</dt>
                         <dd>{{strategyParams.updatePeriodSeconds}} sec</dd>
                         <dt>间隔:</dt>
                         <dd>{{strategyParams.intervalSeconds}} sec</dd>
@@ -243,9 +243,9 @@
                         remove-fn="removeVolume(volume)">
                     </volumes>
                     <p ng-if="deploymentConfigsVersion | canI : 'update'">
-                      <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}">Add Storage</a>
+                      <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}">添加存储</a>
                       <span class="action-divider" aria-hidden="true">|</span>
-                      <a ng-href="project/{{project.metadata.name}}/add-config-volume?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}">Add Config Files</a>
+                      <a ng-href="project/{{project.metadata.name}}/add-config-volume?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}">添加配置文件</a>
                     </p>
                     <h3>触发器</h3>
                     <dl class="dl-horizontal left">
@@ -261,15 +261,15 @@
                         <span ng-switch="trigger.type">
                           <span ng-switch-default>{{trigger.type}}</span>
                           <span ng-switch-when="ImageChange" ng-if="trigger.imageChangeParams.from">
-                            <dt>New Image For:</dt>
+                            <dt>新镜像:</dt>
                             <dd>
                               {{trigger.imageChangeParams.from | imageObjectRef : deploymentConfig.metadata.namespace}}
-                              <small ng-if="!trigger.imageChangeParams.automatic" class="text-muted">(disabled)</small>
+                              <small ng-if="!trigger.imageChangeParams.automatic" class="text-muted">(已禁用)</small>
                             </dd>
                           </span>
                           <span ng-switch-when="ConfigChange">
-                            <dt>Change Of:</dt>
-                            <dd>Config</dd>
+                            <dt>改变:</dt>
+                            <dd>配置</dd>
                           </span>
                         </span>
                       </div>
@@ -295,15 +295,15 @@
                       <!-- If the CPU request is missing, add an action to set one. -->
                       <a ng-href="project/{{projectName}}/set-limits?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}"
                          ng-if="warning.reason === 'NoCPURequest' && (deploymentConfigsVersion | canI : 'update')"
-                         role="button">Edit Resource
-                        <span ng-if="!('cpu' | isRequestCalculated : project)">Requests and</span> Limits</a>
+                         role="button">编辑资源
+                        <span ng-if="!('cpu' | isRequestCalculated : project)">需求 和</span> 限制</a>
                     </div>
 
                     <!-- Create autoscaler -->
                     <div ng-if="!autoscalers.length">
                       <a ng-if="horizontalPodAutoscalersVersion | canI : 'create'" ng-href="project/{{projectName}}/edit/autoscaler?kind=DeploymentConfig&name={{deploymentConfig.metadata.name}}"
-                         role="button">Add Autoscaler</a>
-                      <span ng-if="!(horizontalPodAutoscalersVersion | canI : 'create')">Autoscaling is not enabled. There are no autoscalers for this deployment config.</span>
+                         role="button">添加自动伸缩控制</a>
+                      <span ng-if="!(horizontalPodAutoscalersVersion | canI : 'create')">自动伸缩控制没有启用。这个部署配置没有设置自动伸缩控制。</span>
                     </div>
 
                     <!-- HPA details -->
