@@ -10,10 +10,10 @@
             <!-- Primary Actions -->
             <button class="btn btn-default hidden-xs"
                     ng-click="cancelBuild()"
-                    ng-if="!build.metadata.deletionTimestamp && (build | isIncompleteBuild) && (buildsVersion | canI : 'update')">Cancel Build</button>
+                    ng-if="!build.metadata.deletionTimestamp && (build | isIncompleteBuild) && (buildsVersion | canI : '更新')">Cancel Build</button>
             <button class="btn btn-default hidden-xs"
                     ng-click="cloneBuild()"
-                    ng-hide="build.metadata.deletionTimestamp || (build | isIncompleteBuild) || !(buildsCloneVersion | canI : 'create') || (build | isBinaryBuild)"
+                    ng-hide="build.metadata.deletionTimestamp || (build | isIncompleteBuild) || !(buildsCloneVersion | canI : '创建') || (build | isBinaryBuild)"
                     ng-disabled="!canBuild">重新构建</button>
 
             <!-- Secondary Actions -->
@@ -25,7 +25,7 @@
                class="dropdown-toggle actions-dropdown-kebab visible-xs-inline"
                data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">动作</span></a>
             <ul class="dropdown-menu dropdown-menu-right actions action-button">
-              <li ng-if="buildConfigsVersion | canI : 'update'">
+              <li ng-if="buildConfigsVersion | canI : '更新'">
                 <a ng-href="{{buildConfig | editResourceURL}}" role="button">
                   <span ng-if="!(buildConfig | isJenkinsPipelineStrategy)">
                     编辑配置
@@ -35,8 +35,8 @@
                   </span>
                 </a>
               </li>
-              <li class="divider" ng-if="buildConfigsVersion | canI : 'update'"></li>
-              <li ng-if="!build.metadata.deletionTimestamp && (build | isIncompleteBuild) && (buildsVersion | canI : 'update')"
+              <li class="divider" ng-if="buildConfigsVersion | canI : '更新'"></li>
+              <li ng-if="!build.metadata.deletionTimestamp && (build | isIncompleteBuild) && (buildsVersion | canI : '更新')"
                   class="visible-xs-inline">
                 <a href=""
                    role="button"
@@ -44,17 +44,17 @@
               </li>
               <li class="visible-xs-inline"
                   ng-class="{ disabled: !canBuild }"
-                  ng-hide="build.metadata.deletionTimestamp || (build | isIncompleteBuild) || !(buildsCloneVersion | canI : 'create') || (build | isBinaryBuild)">
+                  ng-hide="build.metadata.deletionTimestamp || (build | isIncompleteBuild) || !(buildsCloneVersion | canI : '创建') || (build | isBinaryBuild)">
                 <a href=""
                    role="button"
                    ng-click="cloneBuild()"
                    ng-attr-aria-disabled="{{canBuild ? undefined : 'true'}}"
                    ng-class="{ 'disabled-link': !canBuild }">重新构建</a>
               </li>
-              <li ng-if="(buildsVersion | canI : 'update')">
+              <li ng-if="(buildsVersion | canI : '更新')">
                 <a ng-href="{{build | editYamlURL}}" role="button">编辑YAML</a>
               </li>
-              <li ng-if="(buildsVersion | canI : 'delete')">
+              <li ng-if="(buildsVersion | canI : '删除')">
                 <delete-link
                   kind="Build"
                   resource-name="{{build.metadata.name}}"
@@ -94,7 +94,7 @@
               <uib-tab heading="Environment" active="selectedTab.environment" ng-if="!(build | isJenkinsPipelineStrategy)">
                 <uib-tab-heading>环境</uib-tab-heading>
                 <h3>环境变量</h3>
-                <p ng-if="buildConfigsVersion | canI : 'update'">
+                <p ng-if="buildConfigsVersion | canI : '更新'">
                   <span class="pficon pficon-info" aria-hidden="true"></span>
                   可以在<a ng-href="{{build | configURLForResource}}?tab=environment">构建配置</a>上编辑环境变量。
                 </p>
@@ -112,7 +112,7 @@
                 <p ng-if="!(build | buildStrategy).env"><em>构建策略没有定义环境变量。</em></p>
               </uib-tab>
 
-              <uib-tab active="selectedTab.logs" ng-if="!(build | isJenkinsPipelineStrategy) && (buildsLogVersion | canI : 'get')">
+              <uib-tab active="selectedTab.logs" ng-if="!(build | isJenkinsPipelineStrategy) && (buildsLogVersion | canI : '获取')">
                 <uib-tab-heading>日志</uib-tab-heading>
                 <log-viewer
                   ng-if="selectedTab.logs"
@@ -136,7 +136,7 @@
 
                 </log-viewer>
               </uib-tab>
-              <uib-tab active="selectedTab.events" ng-if="(eventsVersion | canI : 'watch')">
+              <uib-tab active="selectedTab.events" ng-if="(eventsVersion | canI : '关注')">
                 <uib-tab-heading>事件</uib-tab-heading>
                 <events api-objects="eventObjects" project-context="projectContext" ng-if="selectedTab.events"></events>
               </uib-tab>

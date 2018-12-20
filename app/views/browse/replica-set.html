@@ -44,12 +44,12 @@
             </uib-tab>
             <uib-tab heading="Environment" active="selectedTab.environment">
               <uib-tab-heading>环境</uib-tab-heading>
-              <p ng-if="deployment && (deploymentsVersion | canI : 'update')">
+              <p ng-if="deployment && (deploymentsVersion | canI : '更新')">
                 <span class="pficon pficon-info" aria-hidden="true"></span>
                 可以在部署
                 <a ng-href="{{deployment | navigateResourceURL}}?tab=environment">{{deployment.metadata.name}}</a>时编辑环境变量。
               </p>
-              <p ng-if="deploymentConfigName && (deploymentConfigsVersion | canI : 'update')">
+              <p ng-if="deploymentConfigName && (deploymentConfigsVersion | canI : '更新')">
                 <span class="pficon pficon-info" aria-hidden="true"></span>
                 可以在部署配置
                 <a ng-href="{{replicaSet | configURLForResource}}?tab=environment">{{deploymentConfigName}}</a>上编辑环境变量。
@@ -74,7 +74,7 @@
                   alerts="alerts">
               </deployment-metrics>
             </uib-tab>
-            <uib-tab ng-if="deploymentConfigName && logOptions.version && (deploymentConfigsLogVersion | canI : 'get')" active="selectedTab.logs">
+            <uib-tab ng-if="deploymentConfigName && logOptions.version && (deploymentConfigsLogVersion | canI : '获取')" active="selectedTab.logs">
               <uib-tab-heading>日志</uib-tab-heading>
               <log-viewer
                 ng-if="selectedTab.logs"
@@ -92,7 +92,7 @@
                 </span>
               </log-viewer>
             </uib-tab>
-            <uib-tab active="selectedTab.events" ng-if="eventsVersion | canI : 'watch'">
+            <uib-tab active="selectedTab.events" ng-if="eventsVersion | canI : '关注'">
               <uib-tab-heading>事件</uib-tab-heading>
               <events api-objects="[ replicaSet ]" project-context="projectContext" ng-if="selectedTab.events"></events>
             </uib-tab>

@@ -7,15 +7,15 @@
      class="dropdown-toggle actions-dropdown-kebab visible-xs-inline"
      data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">动作</span></a>
   <ul class="dropdown-menu dropdown-menu-right actions action-button">
-    <li ng-if="deployment && ({ group: 'apps', resource: 'deployments' } | canI : 'update')">
+    <li ng-if="deployment && ({ group: 'apps', resource: 'deployments' } | canI : '更新')">
       <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=Deployment&name={{deployment.metadata.name}}&group=extensions"
          role="button">添加存储</a>
     </li>
-    <li ng-if="!deployment && ({ group: 'extensions', resource: 'replicasets' } | canI : 'update')">
+    <li ng-if="!deployment && ({ group: 'extensions', resource: 'replicasets' } | canI : '更新')">
       <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions"
          role="button">添加存储</a>
     </li>
-    <li ng-if="!autoscalers.length && ({ group: 'autoscaling', resource: 'horizontalpodautoscalers' } | canI : 'create')">
+    <li ng-if="!autoscalers.length && ({ group: 'autoscaling', resource: 'horizontalpodautoscalers' } | canI : '创建')">
       <a ng-href="project/{{projectName}}/edit/autoscaler?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions"
          ng-if="!deployment"
          role="button">添加自动伸缩控制</a>
@@ -23,21 +23,21 @@
          ng-if="deployment"
          role="button">添加自动伸缩控制</a>
     </li>
-    <li ng-if="deployment && ({ group: 'apps', resource: 'deployments' } | canI : 'update')">
+    <li ng-if="deployment && ({ group: 'apps', resource: 'deployments' } | canI : '更新')">
       <a ng-href="project/{{projectName}}/set-limits?kind=Deployment&name={{deployment.metadata.name}}&group=extensions"
          role="button">编辑资源限制</a>
     </li>
-    <li ng-if="!deployment && ({ group: 'extensions', resource: 'replicasets' } | canI : 'update')">
+    <li ng-if="!deployment && ({ group: 'extensions', resource: 'replicasets' } | canI : '更新')">
       <a ng-href="project/{{projectName}}/set-limits?kind=ReplicaSet&name={{replicaSet.metadata.name}}&group=extensions"
          role="button">编辑资源限制</a>
     </li>
-    <li ng-if="(!deployment && ({ group: 'extensions', resource: 'replicasets' } | canI : 'update')) || (deployment && ({group: 'apps', resource: 'deployments' } | canI : 'update'))">
+    <li ng-if="(!deployment && ({ group: 'extensions', resource: 'replicasets' } | canI : '更新')) || (deployment && ({group: 'apps', resource: 'deployments' } | canI : '更新'))">
       <a ng-href="{{healthCheckURL}}" role="button">编辑健康检查</a>
     </li>
-    <li ng-if="{ group: 'extensions', resource: 'replicasets' } | canI : 'update'">
+    <li ng-if="{ group: 'extensions', resource: 'replicasets' } | canI : '更新'">
       <a ng-href="{{replicaSet | editYamlURL}}" role="button">编辑YAML</a>
     </li>
-    <li ng-if="{ group: 'extensions', resource: 'replicasets' } | canI : 'delete'">
+    <li ng-if="{ group: 'extensions', resource: 'replicasets' } | canI : '删除'">
       <!-- TODO: Warn about replicas -->
       <delete-link
         kind="ReplicaSet"

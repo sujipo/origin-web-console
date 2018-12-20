@@ -62,7 +62,7 @@
     <dt>重启次数:</dt>
     <dd>{{containerStatus.restartCount}}</dd>
 
-    <div ng-if="hasDebugTerminal && showDebugAction(containerStatus) && (podsVersion | canI : 'create')" class="debug-pod-action">
+    <div ng-if="hasDebugTerminal && showDebugAction(containerStatus) && (podsVersion | canI : '创建')" class="debug-pod-action">
       <a href="" ng-click="debugTerminal(containerStatus.name)" role="button">在终端调试</a>
     </div>
   </dl>

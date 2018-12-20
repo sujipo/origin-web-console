@@ -32,7 +32,7 @@
           <dropdown-item action="row.startOvm()" enabled="{{row.canStartOvm()}}">启动</dropdown-item>
           <dropdown-item action="row.restartOvm()" enabled="{{row.canRestartOvm()}}">重启</dropdown-item>
           <dropdown-item action="row.stopOvm()" enabled="{{row.canStopOvm()}}">停止</dropdown-item>
-          <li ng-if="row.OfflineVirtualMachineVersion | canI : 'delete'">
+          <li ng-if="row.OfflineVirtualMachineVersion | canI : '删除'">
             <delete-link
               kind="OfflineVirtualMachine"
               group="{{row.OfflineVirtualMachineVersion.group}}"

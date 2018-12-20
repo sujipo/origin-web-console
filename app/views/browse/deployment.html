@@ -14,39 +14,39 @@
                class="dropdown-toggle actions-dropdown-kebab visible-xs-inline"
                data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">动作</span></a>
             <ul class="dropdown-menu dropdown-menu-right actions action-button">
-              <li ng-if="!deployment.spec.paused && !updatingPausedState && (deploymentsVersion | canI : 'update')">
+              <li ng-if="!deployment.spec.paused && !updatingPausedState && (deploymentsVersion | canI : '更新')">
                 <a href="" ng-click="setPaused(true)" role="button">暂停部署</a>
               </li>
-              <li ng-if="deployment.spec.paused && !updatingPausedState && (deploymentsVersion | canI : 'update')">
+              <li ng-if="deployment.spec.paused && !updatingPausedState && (deploymentsVersion | canI : '更新')">
                 <a href="" ng-click="setPaused(false)" role="button">继续部署</a>
               </li>
-              <li class="divider" ng-if="!updatingPausedState && (deploymentsVersion | canI : 'update')"></li>
-              <li ng-if="deploymentsVersion | canI : 'update'">
+              <li class="divider" ng-if="!updatingPausedState && (deploymentsVersion | canI : '更新')"></li>
+              <li ng-if="deploymentsVersion | canI : '更新'">
                 <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=Deployment&name={{deployment.metadata.name}}&group=apps"
                    role="button">添加存储</a>
               </li>
-              <li ng-if="!autoscalers.length && (horizontalPodAutoscalersVersion | canI : 'create')">
+              <li ng-if="!autoscalers.length && (horizontalPodAutoscalersVersion | canI : '创建')">
                 <!-- Create a new HPA. -->
                 <a ng-href="project/{{projectName}}/edit/autoscaler?kind=Deployment&name={{deployment.metadata.name}}&group=apps"
                    role="button">添加自动伸缩控制</a>
               </li>
-              <li ng-if="autoscalers.length === 1 && (horizontalPodAutoscalersVersion | canI : 'update')">
+              <li ng-if="autoscalers.length === 1 && (horizontalPodAutoscalersVersion | canI : '更新')">
                 <!-- Edit an existing HPA. -->
                 <a ng-href="project/{{projectName}}/edit/autoscaler?kind=HorizontalPodAutoscaler&group=autoscaling&name={{autoscalers[0].metadata.name}}"
                   role="button">编辑自动伸缩控制</a>
               </li>
-              <li ng-if="deploymentsVersion | canI : 'update'">
+              <li ng-if="deploymentsVersion | canI : '更新'">
                 <a ng-href="project/{{projectName}}/set-limits?kind=Deployment&name={{deployment.metadata.name}}&group=apps"
                   role="button">编辑资源限制</a>
               </li>
-              <li ng-if="deploymentsVersion | canI : 'update'">
+              <li ng-if="deploymentsVersion | canI : '更新'">
                 <a ng-href="{{healthCheckURL}}" role="button">编辑健康检查</a>
               </li>
-              <li ng-if="deploymentsVersion | canI : 'update'">
+              <li ng-if="deploymentsVersion | canI : '更新'">
                 <a ng-href="{{deployment | editYamlURL}}" role="button">编辑YAML</a>
               </li>
-              <li class="divider" ng-if="deploymentsVersion | canI : 'update'"></li>
-              <li ng-if="deploymentsVersion | canI : 'delete'">
+              <li class="divider" ng-if="deploymentsVersion | canI : '更新'"></li>
+              <li ng-if="deploymentsVersion | canI : '删除'">
                 <delete-link
                   kind="Deployment"
                   group="apps"
@@ -74,7 +74,7 @@
             <span class="pficon pficon-info" aria-hidden="true"></span>
             <strong>{{deployment.metadata.name}} 已经暂停。</strong>
             这将暂停任何正在进行的部署，并在部署恢复之前停止新部署的运行。
-            <span ng-if="!updatingPausedState && (deploymentsVersion | canI : 'update')" class="nowrap">
+            <span ng-if="!updatingPausedState && (deploymentsVersion | canI : '更新')" class="nowrap">
               <a href="" ng-click="setPaused(false)" role="button">继续部署</a>
             </span>
           </div>
@@ -215,22 +215,22 @@
                         images-by-docker-reference="imagesByDockerReference"
                         builds="builds"
                         detailed="true"
-                        add-health-check-url="{{ (deploymentsVersion | canI : 'update') ? healthCheckURL : '' }}">
+                        add-health-check-url="{{ (deploymentsVersion | canI : '更新') ? healthCheckURL : '' }}">
                     </pod-template>
 
                   </div>
                   <div class="col-lg-6">
                     <h3>卷</h3>
-                    <p ng-if="!deployment.spec.template.spec.volumes.length && !(deploymentsVersion | canI : 'update')">
+                    <p ng-if="!deployment.spec.template.spec.volumes.length && !(deploymentsVersion | canI : '更新')">
                       none
                     </p>
                     <volumes
                         volumes="deployment.spec.template.spec.volumes"
                         namespace="project.metadata.name"
-                        can-remove="deploymentsVersion | canI : 'update'"
+                        can-remove="deploymentsVersion | canI : '更新'"
                         remove-fn="removeVolume(volume)">
                     </volumes>
-                    <div ng-if="deploymentsVersion | canI : 'update'">
+                    <div ng-if="deploymentsVersion | canI : '更新'">
                       <a ng-href="project/{{project.metadata.name}}/attach-pvc?kind=Deployment&name={{deployment.metadata.name}}&group=apps">添加存储</a>
                       <span class="action-divider" aria-hidden="true">|</span>
                       <a ng-href="project/{{project.metadata.name}}/add-config-volume?kind=Deployment&name={{deployment.metadata.name}}&group=apps">添加配置文件</a>
@@ -246,16 +246,16 @@
 
                       <!-- If the CPU request is missing, add an action to set one. -->
                       <a ng-href="project/{{projectName}}/set-limits?kind=Deployment&name={{deployment.metadata.name}}&group=apps"
-                         ng-if="warning.reason === 'NoCPURequest' && (deploymentsVersion | canI : 'update')"
+                         ng-if="warning.reason === 'NoCPURequest' && (deploymentsVersion | canI : '更新')"
                          role="button">编辑资源
                         <span ng-if="!('cpu' | isRequestCalculated : project)">要求和</span>限制</a>
                     </div>
 
                     <!-- Create autoscaler -->
                     <div ng-if="!autoscalers.length">
-                      <a ng-if="horizontalPodAutoscalersVersion | canI : 'create'" ng-href="project/{{projectName}}/edit/autoscaler?kind=Deployment&name={{deployment.metadata.name}}&group=apps"
+                      <a ng-if="horizontalPodAutoscalersVersion | canI : '创建'" ng-href="project/{{projectName}}/edit/autoscaler?kind=Deployment&name={{deployment.metadata.name}}&group=apps"
                          role="button">添加自动伸缩控制</a>
-                      <span ng-if="!(horizontalPodAutoscalersVersion | canI : 'create')">none</span>
+                      <span ng-if="!(horizontalPodAutoscalersVersion | canI : '创建')">none</span>
                     </div>
 
                     <!-- HPA details -->
@@ -282,7 +282,7 @@
               <uib-tab-heading>环境</uib-tab-heading>
               <edit-environment-variables api-object="deployment"></edit-environment-variables>
             </uib-tab>
-            <uib-tab active="selectedTab.events" ng-if="eventsVersion | canI : 'watch'">
+            <uib-tab active="selectedTab.events" ng-if="eventsVersion | canI : '关注'">
               <uib-tab-heading>事件</uib-tab-heading>
               <events api-objects="[ deployment ]" project-context="projectContext" ng-if="selectedTab.events"></events>
             </uib-tab>

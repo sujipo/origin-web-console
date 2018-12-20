@@ -8,7 +8,7 @@
           <!-- Primary Actions -->
           <button
               class="btn btn-default hidden-xs"
-              ng-if="(buildConfigsInstantiateVersion | canI : 'create') && !(buildConfig | isBinaryBuild)"
+              ng-if="(buildConfigsInstantiateVersion | canI : '创建') && !(buildConfig | isBinaryBuild)"
               ng-click="startBuild()">
             <span ng-if="!(buildConfig | isJenkinsPipelineStrategy)">
               开始构建
@@ -27,7 +27,7 @@
              class="dropdown-toggle actions-dropdown-kebab visible-xs-inline"
              data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">动作</span></a>
           <ul class="dropdown-menu dropdown-menu-right actions action-button">
-            <li class="visible-xs-inline" ng-if="(buildConfigsInstantiateVersion | canI : 'create') && !(buildConfig | isBinaryBuild)">
+            <li class="visible-xs-inline" ng-if="(buildConfigsInstantiateVersion | canI : '创建') && !(buildConfig | isBinaryBuild)">
               <a href="" role="button" ng-click="startBuild()">
                 <span ng-if="!(buildConfig | isJenkinsPipelineStrategy)">
                   开始构建
@@ -37,13 +37,13 @@
                 </span>
               </a>
             </li>
-            <li ng-if="buildConfigsVersion | canI : 'update'">
+            <li ng-if="buildConfigsVersion | canI : '更新'">
               <a ng-href="{{buildConfig | editResourceURL}}" role="button">编辑</a>
             </li>
-            <li ng-if="buildConfigsVersion | canI : 'update'">
+            <li ng-if="buildConfigsVersion | canI : '更新'">
               <a ng-href="{{buildConfig | editYamlURL}}" role="button">编辑YAML</a>
             </li>
-            <li ng-if="buildConfigsVersion | canI : 'delete'">
+            <li ng-if="buildConfigsVersion | canI : '删除'">
               <delete-link
                 kind="BuildConfig"
                 resource-name="{{buildConfig.metadata.name}}"
@@ -83,10 +83,10 @@
 
                   <p>
                     <span ng-if="!buildConfig.spec.strategy.jenkinsPipelineStrategy">
-                      <span ng-if="!(buildConfigsInstantiateVersion | canI : 'create')">
+                      <span ng-if="!(buildConfigsInstantiateVersion | canI : '创建')">
                         构建将创建一个镜像从
                       </span>
-                      <span ng-if="buildConfigsInstantiateVersion | canI : 'create'">
+                      <span ng-if="buildConfigsInstantiateVersion | canI : '创建'">
                         启动一个新的构建来创建一个镜像从
                       </span>
                       <span ng-if="buildConfig.spec.source.type === 'Git'">
@@ -118,7 +118,7 @@
                   <button
                       class="btn btn-primary btn-lg"
                       ng-click="startBuild()"
-                      ng-if="(buildConfigsInstantiateVersion | canI : 'create') && !(buildConfig | isBinaryBuild)">
+                      ng-if="(buildConfigsInstantiateVersion | canI : '创建') && !(buildConfig | isBinaryBuild)">
                     <span ng-if="!(buildConfig | isJenkinsPipelineStrategy)">
                       开始构建
                     </span>
@@ -154,7 +154,7 @@
                       <a ng-href="{{latestBuild | buildLogURL}}" target="_blank">查看日志</a>
                     </span>
                     <!-- Show a log link for other builds if the user can view. -->
-                    <span ng-if="!(latestBuild | isJenkinsPipelineStrategy) && (buildsLogVersion | canI : 'get')">
+                    <span ng-if="!(latestBuild | isJenkinsPipelineStrategy) && (buildsLogVersion | canI : '获取')">
                       <a ng-href="{{latestBuild | buildLogURL}}">查看日志</a>
                     </span>
                   </span>
@@ -380,7 +380,7 @@
                     </div>
                   </div>
                   <div class="col-lg-6">
-                    <h3>触发器 <span class="pficon pficon-warning-triangle-o" ng-if="!(secretsVersion | canI : 'list')" aria-hidden="true" data-toggle="tooltip" data-original-title="You do not have access to secrets in this project. Webhook URLs require access to secret information to be used."></span><a href="{{'build-triggers' | helpLink}}" target="_blank"><span class="learn-more-inline">了解更多&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></span></a></h3>
+                    <h3>触发器 <span class="pficon pficon-warning-triangle-o" ng-if="!(secretsVersion | canI : '列出')" aria-hidden="true" data-toggle="tooltip" data-original-title="You do not have access to secrets in this project. Webhook URLs require access to secret information to be used."></span><a href="{{'build-triggers' | helpLink}}" target="_blank"><span class="learn-more-inline">了解更多&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></span></a></h3>
                     <dl class="dl-horizontal left build-triggers">
                       <div ng-repeat="trigger in buildConfig.spec.triggers | orderBy : 'type' : false : compareTriggers">
                         <div ng-switch="trigger.type">
@@ -467,7 +467,7 @@
                 cannot-delete
                 show-header></key-value-editor>
               <ng-form name="forms.bcEnvVars" class="mar-bottom-xl block">
-                <div ng-if="buildConfigsVersion | canI : 'update'">
+                <div ng-if="buildConfigsVersion | canI : '更新'">
                   <confirm-on-exit dirty="forms.bcEnvVars.$dirty"></confirm-on-exit>
                   <key-value-editor
                     entries="envVars"
@@ -492,7 +492,7 @@
                     style="vertical-align: -2px;">清除变更</a>
                 </div>
                 <key-value-editor
-                  ng-if="!(buildConfigsVersion | canI : 'update')"
+                  ng-if="!(buildConfigsVersion | canI : '更新')"
                   entries="envVars"
                   key-placeholder="Name"
                   value-placeholder="Value"
@@ -503,7 +503,7 @@
                   show-header></key-value-editor>
               </ng-form>
             </uib-tab>
-            <uib-tab active="selectedTab.events" ng-if="(eventsVersion | canI : 'watch')">
+            <uib-tab active="selectedTab.events" ng-if="(eventsVersion | canI : '关注')">
               <uib-tab-heading>事件</uib-tab-heading>
               <events api-objects="[ buildConfig ]" project-context="projectContext" ng-if="selectedTab.events"></events>
             </uib-tab>

@@ -62,16 +62,16 @@
                   <em ng-if="(resource.metadata.labels | hashSize) === 0">none</em>
                   <labels labels="resource.metadata.labels" clickable="true" kind="{{kindSelector.selected.kind | kindToResource : true }}" project-name="{{resource.metadata.namespace}}" limit="3" filter-current-page="true"></labels></td>
                 <td data-title="Actions" class="text-xs-left text-right">
-                  <span uib-dropdown ng-hide="!(selectedResource | canI : 'update') && !(selectedResource | canI : 'delete')">
+                  <span uib-dropdown ng-hide="!(selectedResource | canI : '更新') && !(selectedResource | canI : '删除')">
                     <button type="button" class="dropdown-toggle btn btn-default" data-toggle="dropdown">
                       动作
                       <span class="caret"></span>
                     </button>
                     <ul uib-dropdown-menu class="dropdown-menu-right" aria-labelledby="{{resource.metadata.name}}_actions">
-                      <li ng-if="selectedResource | canI : 'update'">
+                      <li ng-if="selectedResource | canI : '更新'">
                         <a ng-href="{{resource | editYamlURL : getReturnURL()}}" role="button">编辑YAML</a>
                       </li>
-                      <li ng-if="selectedResource | canI : 'delete'">
+                      <li ng-if="selectedResource | canI : '删除'">
                         <delete-link
                           kind="{{kindSelector.selected.kind}}"
                           group="{{kindSelector.selected.group}}"

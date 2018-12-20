@@ -24,10 +24,10 @@
               <i class="fa fa-ellipsis-v"></i><span class="sr-only">动作</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-right actions action-button">
-              <li ng-if="statefulSetsVersion | canI : 'update'">
+              <li ng-if="statefulSetsVersion | canI : '更新'">
                 <a ng-href="{{statefulSet | editYamlURL}}" role="button">编辑YAML</a>
               </li>
-              <li ng-if="statefulSetsVersion | canI : 'delete'">
+              <li ng-if="statefulSetsVersion | canI : '删除'">
                 <delete-link
                   kind="StatefulSet"
                   group="apps"
