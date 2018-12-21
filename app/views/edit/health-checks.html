@@ -34,12 +34,12 @@
                     <a href="" ng-click="removeProbe(container, 'readinessProbe')">移除就绪探针</a>
                   </p>
                 </div>
-                <h3>活动探针</h3>
+                <h3>存活探针</h3>
                 <div class="help-block mar-bottom-md" ng-if="$first">
-                  活动探针检查容器是否仍在运行。如果活动探测失败，容器将被杀死。
+                  存活探针检查容器是否仍在运行。如果活动探测失败，容器将被杀死。
                 </div>
                 <div ng-if="!container.livenessProbe">
-                  <a href="" ng-click="addProbe(container, 'livenessProbe')">添加活动探针</a>
+                  <a href="" ng-click="addProbe(container, 'livenessProbe')">添加存活探针</a>
                 </div>
                 <div ng-if="container.livenessProbe">
                   <edit-probe
@@ -47,7 +47,7 @@
                       exposed-ports="container.ports">
                   </edit-probe>
                   <p>
-                    <a href="" ng-click="removeProbe(container, 'livenessProbe')">移除活动探针</a>
+                    <a href="" ng-click="removeProbe(container, 'livenessProbe')">移除存活探针</a>
                   </p>
                 </div>
               </div>
