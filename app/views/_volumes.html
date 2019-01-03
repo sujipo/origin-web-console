@@ -34,8 +34,8 @@
     <div ng-if="volume.persistentVolumeClaim">
       <dt>Type:</dt>
       <dd>
-        持久卷声明
-        <span class="small text-muted">(引用持久卷声明)</span>
+        持久卷请求
+        <span class="small text-muted">(引用持久卷请求)</span>
       </dd>
       <dt>Claim name:</dt>
       <dd><a ng-href="{{volume.persistentVolumeClaim.claimName | navigateResourceURL : 'PersistentVolumeClaim' : namespace}}">{{volume.persistentVolumeClaim.claimName}}</a></dd>

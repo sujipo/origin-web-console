@@ -285,7 +285,7 @@ angular.module('openshiftConsole')
           }
 
           if (volume.persistentVolumeClaim) {
-            details += " 它不会删除持久卷声明。";
+            details += " 它不会删除持久卷请求。";
           } else if (volume.secret) {
             details += " 它不会删除这个私密。";
           } else if (volume.configMap) {

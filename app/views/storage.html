@@ -33,9 +33,9 @@
             </p>
             <div ng-if="pvcsLoaded" class="empty-state-message text-center">
               <div ng-if="!filterWithZeroResults">
-                <h2>没有持久卷申请（PVC）</h2>
+                <h2>没有持久卷请求（PVC）</h2>
                 <p>
-                  没有持久卷申请（PVC）添加到项目 {{projectName}}.
+                  没有持久卷请求（PVC）添加到项目 {{projectName}}.
                 </p>
                 <p ng-if="project && (persistentVolumeClaimsVersion | canI : '创建') && !filterWithZeroResults">
                   <a ng-if="!outOfClaims" ng-href="project/{{project.metadata.name}}/create-pvc" class="btn btn-primary">创建存储</a>
@@ -43,7 +43,7 @@
                 </p>
               </div>
               <div ng-if="filterWithZeroResults">
-                <h2>过滤器隐藏了所有持久卷申请。 <button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">清除所有过滤器</button></h2>
+                <h2>过滤器隐藏了所有持久卷请求。 <button type="button" class="btn btn-link inline-btn-link" ng-click="clearFilter()">清除所有过滤器</button></h2>
               </div>
             </div>
           </div>

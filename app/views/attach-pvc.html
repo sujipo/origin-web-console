@@ -7,10 +7,10 @@
           <div ng-show="!pvcs || !attach.resource">加载中...</div>
 
           <div ng-show="pvcs && !pvcs.length && attach.resource" class="empty-state-message empty-state-full-page text-center">
-            <h2>没有持久卷声明.</h2>
+            <h2>没有持久卷请求.</h2>
 
             <p>
-              一个 <b>持久卷声明</b> 被要求附加到 {{kind | humanizeKind}},
+              一个 <b>持久卷请求</b> 被要求附加到 {{kind | humanizeKind}},
               但是这个项目上没有加载任何文件。
             </p>
 
@@ -20,7 +20,7 @@
             </div>
 
             <p ng-if="project && !(pvcVersion | canI : '创建')">
-              要从持久卷声明存储，请参阅使用持久卷的<a target="_blank" ng-href="{{'persistent_volumes' | helpLink}}">文档</a>.
+              要从持久卷请求存储，请参阅使用持久卷的<a target="_blank" ng-href="{{'persistent_volumes' | helpLink}}">文档</a>.
             </p>
 
             <p ng-if="attach.resource"><a ng-href="{{attach.resource | navigateResourceURL}}">返回 {{kind | humanizeKind}} {{name}}</a></p>
@@ -29,7 +29,7 @@
           <div ng-show="pvcs && pvcs.length && attach.resource" class="mar-top-xl">
             <h1>添加存储到 {{name}}</h1>
             <div class="help-block">
-              向 {{kind | humanizeKind}} {{name}} 模板添加一个现有的持久卷声明。
+              向 {{kind | humanizeKind}} {{name}} 模板添加一个现有的持久卷请求。
             </div>
             <form name="attachPVCForm" class="mar-top-lg">
               <fieldset ng-disabled="disableInputs">
