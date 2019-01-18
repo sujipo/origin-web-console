@@ -180,7 +180,7 @@ angular.module('openshiftConsole')
 
               $scope.alerts["load"] = {
                 type: "error",
-                message: "The deployment configuration details could not be loaded.",
+                message: "无法加载部署配置细节。",
                 details: $filter('getErrorDetails')(e)
               };
             }
@@ -229,7 +229,7 @@ angular.module('openshiftConsole')
               if (action === "DELETED") {
                 $scope.alerts['deployment-deleted'] = {
                   type: "warning",
-                  message: "The deployment controlling this replica set has been deleted."
+                  message: "控制此副本集的部署已被删除。"
                 };
                 $scope.healthCheckURL = Navigate.healthCheckURL($routeParams.project,
                                                                 "ReplicaSet",
@@ -303,7 +303,7 @@ angular.module('openshiftConsole')
               if (action === "DELETED") {
                 $scope.alerts["deleted"] = {
                   type: "warning",
-                  message: "This " + displayKind + " has been deleted."
+                  message: "该" + displayKind + "已被删除。"
                 };
               }
 
@@ -330,7 +330,7 @@ angular.module('openshiftConsole')
             $scope.loaded = true;
             $scope.alerts["load"] = {
               type: "error",
-              message: "The " + displayKind + " details could not be loaded.",
+              message: "无法加载" + displayKind + "详细信息",
               details: $filter('getErrorDetails')(e)
             };
             $scope.breadcrumbs = BreadcrumbsService.getBreadcrumbs({
@@ -443,7 +443,7 @@ angular.module('openshiftConsole')
             $scope.alerts = $scope.alerts || {};
             $scope.alerts["scale"] = {
               type: "error",
-              message: "An error occurred scaling.",
+              message: "缩放发生错误。",
               details: $filter('getErrorDetails')(result)
             };
           };
@@ -475,17 +475,17 @@ angular.module('openshiftConsole')
         };
 
         $scope.removeVolume = function(volume) {
-          var details = "This will remove the volume from the " + $filter('humanizeKind')($scope.replicaSet.kind) + ".";
+          var details = "该操作将从" + $filter('humanizeKind')($scope.replicaSet.kind) + "移除卷。";
           if (volume.persistentVolumeClaim) {
-            details += " It will not delete the persistent volume claim.";
+            details += " 该操作不会删除持久卷请求。";
           } else if (volume.secret) {
-            details += " It will not delete the secret.";
+            details += " 该操作不会删除私密。";
           } else if (volume.configMap) {
-            details += " It will not delete the config map.";
+            details += " 该操作不会删除配置映射。";
           }
 
           var confirm = ModalsService.confirm({
-            title: "Remove volume " + volume.name + "?",
+            title: "移除卷" + volume.name + "?",
             details: details,
             okButtonText: "移除",
             okButtonClass: "btn-danger",
