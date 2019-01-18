@@ -24,7 +24,7 @@ angular.module('openshiftConsole')
                        StorageService,
                        RELATIVE_PATH_PATTERN) {
     if (!$routeParams.kind || !$routeParams.name) {
-      Navigate.toErrorPage("Kind or name parameter missing.");
+      Navigate.toErrorPage("缺少类型或名称参数。");
       return;
     }
 
@@ -36,7 +36,7 @@ angular.module('openshiftConsole')
     ];
 
     if (!_.includes(supportedKinds, $routeParams.kind)) {
-      Navigate.toErrorPage("Volumes are not supported for kind " + $routeParams.kind + ".");
+      Navigate.toErrorPage("卷不支持类型" + $routeParams.kind + "。");
       return;
     }
 
@@ -59,7 +59,7 @@ angular.module('openshiftConsole')
       name: $routeParams.name,
       kind: $routeParams.kind,
       namespace: $routeParams.project,
-      subpage: 'Add Config Files'
+      subpage: '添加配置文件'
     });
 
     $scope.configMapVersion = APIService.getPreferredVersion('configmaps');
@@ -117,7 +117,7 @@ angular.module('openshiftConsole')
         $scope.project = project;
 
         if (!AuthorizationService.canI(resourceGroupVersion, 'update', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to update ' +
+          Navigate.toErrorPage('您没有权限更新' +
                                humanizeKind($routeParams.kind) + ' ' + $routeParams.name + '.', 'access_denied');
           return;
         }
@@ -132,7 +132,7 @@ angular.module('openshiftConsole')
             $scope.breadcrumbs = BreadcrumbsService.getBreadcrumbs({
               object: object,
               project: project,
-              subpage: 'Add Config Files'
+              subpage: '添加配置文件'
             });
           },
           function(e) {

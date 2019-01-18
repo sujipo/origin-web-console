@@ -24,7 +24,7 @@ angular.module('openshiftConsole')
                         ProjectsService,
                         keyValueEditorUtils) {
     if (!$routeParams.kind || !$routeParams.name) {
-      Navigate.toErrorPage("Kind or name parameter missing.");
+      Navigate.toErrorPage("缺少类型或名称参数。");
       return;
     }
 
@@ -37,7 +37,7 @@ angular.module('openshiftConsole')
     ];
 
     if (!_.includes(supportedKinds, $routeParams.kind)) {
-      Navigate.toErrorPage("Autoscaling not supported for kind " + $routeParams.kind + ".");
+      Navigate.toErrorPage("自动缩放不支持类型" + $routeParams.kind + "。");
       return;
     }
 
@@ -86,8 +86,9 @@ angular.module('openshiftConsole')
         $scope.project = project;
 
         var verb = $routeParams.kind === 'HorizontalPodAutoscaler' ? 'update' : 'create';
+        var verbShow = $routeParams.kind === 'HorizontalPodAutoscaler' ? '更新' : '创建';
         if (!AuthorizationService.canI({ resource: 'horizontalpodautoscalers', group: 'autoscaling' }, verb, $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to ' + verb + ' horizontal pod autoscalers in project ' + $routeParams.project + '.', 'access_denied');
+          Navigate.toErrorPage('您没有权限在项目' + $routeParams.project + '中' + verbShow + '水平Pod自动伸缩控制器。', 'access_denied');
           return;
         }
 
@@ -210,13 +211,13 @@ angular.module('openshiftConsole')
               kind: $scope.targetKind,
               namespace: $routeParams.project,
               project: project,
-              subpage: 'Autoscale'
+              subpage: '自动伸缩'
             });
           } else {
             $scope.breadcrumbs = BreadcrumbsService.getBreadcrumbs({
               object: resource,
               project: project,
-              subpage: 'Autoscale'
+              subpage: '自动伸缩'
             });
 
             // Create a new HPA.

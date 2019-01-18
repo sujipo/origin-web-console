@@ -14,23 +14,23 @@ angular.module('openshiftConsole')
 
     switch(error) {
       case 'access_denied':
-        $scope.errorMessage = "Access denied";
+        $scope.errorMessage = "拒绝访问";
         break;
       case 'not_found':
-        $scope.errorMessage = "Not found";
+        $scope.errorMessage = "未找到";
         break;
       case 'invalid_request':
-        $scope.errorMessage = "Invalid request";
+        $scope.errorMessage = "无效请求";
         break;
       case 'API_DISCOVERY':
         $scope.errorLinks = [{
           href: window.location.protocol + "//" + window.OPENSHIFT_CONFIG.api.openshift.hostPort + window.OPENSHIFT_CONFIG.api.openshift.prefix,
-          label: "Check Server Connection",
+          label: "检查服务器连接",
           target: "_blank"
         }];
         break;
       default:
-        $scope.errorMessage = "An error has occurred";
+        $scope.errorMessage = "发生了一个错误";
     }
 
     if (params.error_description) {

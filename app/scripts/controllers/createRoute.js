@@ -62,7 +62,7 @@ angular.module('openshiftConsole')
         $scope.project = project;
 
         if (!AuthorizationService.canI(routesVersion, 'create', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to create routes in project ' + $routeParams.project + '.', 'access_denied');
+          Navigate.toErrorPage('您没有权限在项目' + $routeParams.project + '中创建路由。', 'access_denied');
           return;
         }
 

@@ -117,7 +117,7 @@ describe("BreadcrumbsService", function() {
     it("should generate breadcrumbs for a deployment config object subpage", function() {
       var breadcrumbs = BreadcrumbsService.getBreadcrumbs({
         object: testDC,
-        subpage: "Edit Health Checks",
+        subpage: "编辑健康检查",
         includeProject: true
       });
 
@@ -155,7 +155,7 @@ describe("BreadcrumbsService", function() {
         name: "my-replication-controller",
         kind: "ReplicationController",
         namespace: "my-project",
-        subpage: "Edit Health Checks",
+        subpage: "编辑健康检查",
         project: projectWithDisplayName,
         includeProject: true
       });
@@ -219,7 +219,7 @@ describe("BreadcrumbsService", function() {
     it("should generate breadcrumbs for a deployment subpage", function() {
       var breadcrumbs = BreadcrumbsService.getBreadcrumbs({
         object: testDeployment,
-        subpage: "Edit Health Checks"
+        subpage: "编辑健康检查"
       });
 
       expect(breadcrumbs).toEqual([{

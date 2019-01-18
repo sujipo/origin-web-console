@@ -39,7 +39,7 @@ angular.module('openshiftConsole')
         $scope.context = context;
 
         if (!AuthorizationService.canI('secrets', 'create', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to create secrets in project ' + $routeParams.project + '.', 'access_denied');
+          Navigate.toErrorPage('您没有权限在项目' + $routeParams.project + '中创建私密。', 'access_denied');
           return;
         }
 

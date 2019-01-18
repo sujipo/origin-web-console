@@ -66,7 +66,7 @@ angular.module('openshiftConsole')
       .then(_.spread(function(project, context) {
         $scope.project = project;
         if (!AuthorizationService.canI(createPVCVersion, 'create', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to create persistent volume claims in project ' + $routeParams.project + '.', 'access_denied');
+          Navigate.toErrorPage('您没有权限在项目' + $routeParams.project + '中创建持久卷申请.', 'access_denied');
           return;
         }
 

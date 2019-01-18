@@ -31,7 +31,7 @@ angular.module('openshiftConsole')
     var imageObjectRef = $filter('imageObjectRef');
 
     if (!name) {
-      Navigate.toErrorPage("Cannot create from template: a template name was not specified.");
+      Navigate.toErrorPage("无法从模板创建:没有指定模板名称。");
       return;
     }
 
@@ -165,7 +165,7 @@ angular.module('openshiftConsole')
         $scope.project = project;
 
         if (!AuthorizationService.canI('processedtemplates', 'create', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to process templates in project ' + $routeParams.project + '.', 'access_denied');
+          Navigate.toErrorPage('您没有权限在项目' + $routeParams.project + '中处理模板。', 'access_denied');
           return;
         }
 
@@ -206,7 +206,7 @@ angular.module('openshiftConsole')
               }
             },
             function() {
-              Navigate.toErrorPage("Cannot create from template: the specified template could not be retrieved.");
+              Navigate.toErrorPage("无法从模板创建:无法检索指定的模板。");
             });
         }
       }));

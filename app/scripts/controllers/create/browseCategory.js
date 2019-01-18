@@ -41,7 +41,7 @@ angular.module('openshiftConsole')
     var categoryID = $routeParams.category === 'none' ? '' : $routeParams.category;
     $scope.category = findCategoryItem(categories, categoryID);
     if (!$scope.category) {
-      Navigate.toErrorPage("Catalog category " + $routeParams.category + " not found.");
+      Navigate.toErrorPage("应用目录分类" + $routeParams.category + "找不到。");
       return;
     }
 
@@ -52,7 +52,7 @@ angular.module('openshiftConsole')
       subcategories = _.get($scope.category, 'subcategories', []);
       $scope.category = findCategoryItem(subcategories, categoryID);
       if (!$scope.category) {
-        Navigate.toErrorPage("Catalog category " + $routeParams.category + "/" + $routeParams.subcategory + " not found.");
+        Navigate.toErrorPage("应用目录分类" + $routeParams.category + "/" + $routeParams.subcategory + "找不到。");
         return;
       }
     }

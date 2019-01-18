@@ -238,7 +238,7 @@ angular.module('openshiftConsole')
         $scope.context = context;
 
         if (!AuthorizationService.canI('buildconfigs', 'update', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to update build config ' +
+          Navigate.toErrorPage('您没有权限更新构建配置' +
                                $routeParams.buildconfig + '.', 'access_denied');
           return;
         }

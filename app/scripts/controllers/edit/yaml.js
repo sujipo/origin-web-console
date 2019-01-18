@@ -21,7 +21,7 @@ angular.module('openshiftConsole')
                                               NotificationsService,
                                               ProjectsService) {
     if (!$routeParams.kind || !$routeParams.name) {
-      Navigate.toErrorPage("Kind or name parameter missing.");
+      Navigate.toErrorPage("缺少类型或名称参数。");
       return;
     }
 
@@ -58,7 +58,7 @@ angular.module('openshiftConsole')
         };
 
         if (!AuthorizationService.canI(resourceGroupVersion, 'update', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to update ' +
+          Navigate.toErrorPage('您没有权限更新' +
                                humanizeKind($routeParams.kind) + ' ' + $routeParams.name + '.', 'access_denied');
           return;
         }
@@ -161,7 +161,7 @@ angular.module('openshiftConsole')
           },
           // GET failure
           function(e) {
-            Navigate.toErrorPage("Could not load " + humanizeKind($routeParams.kind) + " '" + $routeParams.name + "'. " + $filter('getErrorDetails')(e));
+            Navigate.toErrorPage("无法加载" + humanizeKind($routeParams.kind) + " '" + $routeParams.name + "'。" + $filter('getErrorDetails')(e));
           });
 
           $scope.$on('$destroy', function(){

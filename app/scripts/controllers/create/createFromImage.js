@@ -33,11 +33,11 @@ angular.module("openshiftConsole")
     var imageName = $routeParams.imageStream;
 
     if(!imageName){
-      Navigate.toErrorPage("Cannot create from source: a base image was not specified");
+      Navigate.toErrorPage("无法从源文件创建:未指定基础镜像");
       return;
     }
     if(!$routeParams.imageTag){
-      Navigate.toErrorPage("Cannot create from source: a base image tag was not specified");
+      Navigate.toErrorPage("无法从源文件创建:未指定基础镜标签");
       return;
     }
 
@@ -111,10 +111,10 @@ angular.module("openshiftConsole")
             replicas: 1,
             autoscale: false,
             autoscaleOptions: [{
-              label: 'Manual',
+              label: '手动',
               value: false
             }, {
-              label: 'Automatic',
+              label: '自动',
               value: true
             }]
           };
@@ -168,7 +168,7 @@ angular.module("openshiftConsole")
              NotificationsService.addNotification({
                id: "create-builder-list-config-maps-error",
                type: "error",
-               message: "Could not load config maps.",
+               message: "无法加载配置映射。",
                details: getErrorDetails(e)
              });
            });
@@ -190,7 +190,7 @@ angular.module("openshiftConsole")
              NotificationsService.addNotification({
                id: "create-builder-list-secrets-error",
                type: "error",
-               message: "Could not load secrets.",
+               message: "无法加载私密。",
                details: getErrorDetails(e)
              });
            });
@@ -216,12 +216,12 @@ angular.module("openshiftConsole")
                     scope.routing.targetPort = scope.routing.portOptions[0].port;
                   }
                 }, function(){
-                    Navigate.toErrorPage("Cannot create from source: the specified image could not be retrieved.");
+                    Navigate.toErrorPage("无法从源文件创建:无法检索指定的镜像。");
                   }
                 );
             },
             function(){
-              Navigate.toErrorPage("Cannot create from source: the specified image could not be retrieved.");
+              Navigate.toErrorPage("无法从源文件创建:无法检索指定的镜像。");
             });
         }
 
@@ -329,9 +329,9 @@ angular.module("openshiftConsole")
               modalConfig: function() {
                 return {
                   alerts: alerts,
-                  title: "Confirm Creation",
-                  details: "Problems were detected while checking your application configuration.",
-                  okButtonText: "Create Anyway",
+                  title: "确认创建",
+                  details: "在检查应用程序配置时检测到问题。",
+                  okButtonText: "坚持创建",
                   okButtonClass: "btn-danger",
                   cancelButtonText: "取消"
                 };

@@ -35,7 +35,13 @@ angular
     'openshiftCommonUI',
     'webCatalog'
   ])
-  .config(function ($routeProvider, $uibModalProvider, HomePagePreferenceServiceProvider) {
+  .config(function ($sceDelegateProvider, $routeProvider, $uibModalProvider, HomePagePreferenceServiceProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+             'self',
+             // Allow loading from our assets domain.  Notice the difference between * and **.
+             'https://www.baidu.com/**']
+    );
+
     var landingPageRoute;
     var projectsPageRoute = {
       templateUrl: 'views/projects.html',
@@ -446,6 +452,20 @@ angular
       .when('/project/:project/browse/deployments-replicationcontrollers/:rc', {
         redirectTo: '/project/:project/browse/rc/:rc'
       })
+      // my test
+      .when('/project/:project/mytest1', {
+        templateUrl: 'views/mytest/test1.html',
+        controller: 'MytestModalController'
+      })
+      .when('/project/:project/mytest2/subtest1', {
+        templateUrl: 'views/mytest/test2.html',
+        controller: 'MytestModalController'
+      })
+      .when('/project/:project/mytest2/subtest2', {
+        templateUrl: 'views/mytest/test3.html',
+        controller: 'MytestModalController'
+      })
+
       .otherwise({
         redirectTo: '/'
       });

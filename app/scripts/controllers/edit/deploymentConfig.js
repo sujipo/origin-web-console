@@ -36,7 +36,7 @@ angular.module('openshiftConsole')
       name: $routeParams.name,
       kind: $routeParams.kind,
       namespace: $routeParams.project,
-      subpage: 'Edit Deployment Config'
+      subpage: '编辑部署配置'
     });
 
     $scope.deploymentConfigStrategyTypes = [
@@ -87,7 +87,7 @@ angular.module('openshiftConsole')
         $scope.context = context;
 
         if (!AuthorizationService.canI('deploymentconfigs', 'update', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to update deployment config ' +
+          Navigate.toErrorPage('您没有权限更新部署配置' +
                                $routeParams.deploymentconfig + '.', 'access_denied');
           return;
         }
@@ -100,7 +100,7 @@ angular.module('openshiftConsole')
             $scope.breadcrumbs = BreadcrumbsService.getBreadcrumbs({
               object: deploymentConfig,
               project: project,
-              subpage: 'Edit'
+              subpage: '编辑'
             });
 
             // Create map which will associate concatiner name to container's data(envVar, trigger and image which will be used on manual deployment)

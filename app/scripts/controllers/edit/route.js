@@ -59,14 +59,14 @@ angular.module('openshiftConsole')
         $scope.project = project;
 
         if (!AuthorizationService.canI('routes', 'update', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to update route ' + $routeParams.routeName + '.', 'access_denied');
+          Navigate.toErrorPage('您没有权限更新路由' + $routeParams.routeName + '.', 'access_denied');
           return;
         }
 
         var orderByDisplayName = $filter('orderByDisplayName');
 
         var showNonServiceTargetError = function() {
-          Navigate.toErrorPage('Editing routes with non-service targets is unsupported. You can edit the route with the "Edit YAML" action instead.');
+          Navigate.toErrorPage('不支持使用非服务目标编辑路由。您可以使用“编辑YAML”操作来编辑路由。');
         };
 
         var route;
@@ -111,7 +111,7 @@ angular.module('openshiftConsole')
             });
           },
           function() {
-            Navigate.toErrorPage("Could not load route " + $scope.routeName + ".");
+            Navigate.toErrorPage("无法加载路由" + $scope.routeName + "。");
           });
 
         // Update the fields in the route from what was entered in the form.

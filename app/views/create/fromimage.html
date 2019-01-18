@@ -67,7 +67,7 @@
                           'col-lg-12': !advancedOptions && !advancedSourceOptions
                         }">
                           <div class="form-group">
-                            <label for="sourceUrl" class="required">Git 仓库 URL</label>
+                            <label for="sourceUrl" class="required">Git仓库地址</label>
                             <div ng-class="{
                               'has-warning': buildConfig.sourceUrl && form.sourceUrl.$touched && !sourceURLPattern.test(buildConfig.sourceUrl),
                               'has-error': (form.sourceUrl.$error.required && form.sourceUrl.$dirty)
@@ -299,7 +299,7 @@
                           can-toggle="false"
                           >
                           <div class="form-group">
-                            <label for="scale-type">Strategy</label>
+                            <label for="scale-type">策略</label>
                             <ui-select ng-model="scaling.autoscale" input-id="scale-type" search-enabled="false" aria-describedby="scale-type-help">
                               <ui-select-match>{{$select.selected.label}}</ui-select-match>
                               <ui-select-choices repeat="option.value as option in scaling.autoscaleOptions">
@@ -307,22 +307,21 @@
                               </ui-select-choices>
                             </ui-select>
                             <div class="help-block" id="scale-type-help">
-                              Scale replicas manually or automatically based on CPU usage.
+                              根据CPU使用情况手动或自动伸缩副本。
                             </div>
                             <div class="learn-more-block">
                               <a href="{{'pod_autoscaling' | helpLink}}" target="_blank">了解更多&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
                             </div>
                             <div class="has-warning" ng-if="metricsWarning && scaling.autoscale">
                               <span class="help-block">
-                                CPU指标可能不可用。为了使用水平pod自动定标器，
-                                集群管理员必须正确配置集群指标。
+                                CPU指标可能不可用。为了使用水平pod自动伸缩控制器，集群管理员必须正确配置集群指标。
                               </span>
                             </div>
                           </div>
                           <div ng-if="!scaling.autoscale"
                                class="form-group"
                                ng-class="{ 'has-error': form.replicas.$dirty && form.replicas.$invalid }">
-                            <label class="number">Replicas</label>
+                            <label class="number">副本</label>
                             <input type="number"
                                    class="form-control"
                                    min="0"

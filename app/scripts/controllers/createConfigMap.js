@@ -48,7 +48,7 @@ angular.module('openshiftConsole')
         $scope.project = project;
 
         if (!AuthorizationService.canI('configmaps', 'create', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to create config maps in project ' + $routeParams.project + '.', 'access_denied');
+          Navigate.toErrorPage('您没有权限在项目' + $routeParams.project + '中创建配置映射', 'access_denied');
           return;
         }
 

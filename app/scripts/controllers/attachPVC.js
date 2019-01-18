@@ -24,7 +24,7 @@ angular.module('openshiftConsole')
                        StorageService,
                        RELATIVE_PATH_PATTERN) {
     if (!$routeParams.kind || !$routeParams.name) {
-      Navigate.toErrorPage("Kind or name parameter missing.");
+      Navigate.toErrorPage("缺少类型或名称参数。");
       return;
     }
 
@@ -37,7 +37,7 @@ angular.module('openshiftConsole')
 
     var humanizeKind = $filter('humanizeKind');
     if (!_.includes(supportedKinds, $routeParams.kind)) {
-      Navigate.toErrorPage("Storage is not supported for kind " + humanizeKind($routeParams.kind) + ".");
+      Navigate.toErrorPage("存储不支持种类" + humanizeKind($routeParams.kind) + "。");
       return;
     }
 
@@ -64,7 +64,7 @@ angular.module('openshiftConsole')
       name: $routeParams.name,
       kind: $routeParams.kind,
       namespace: $routeParams.project,
-      subpage: 'Add Storage'
+      subpage: '添加存储'
     });
 
     $scope.pvcVersion = APIService.getPreferredVersion('persistentvolumeclaims');
@@ -77,7 +77,7 @@ angular.module('openshiftConsole')
         $scope.project = project;
 
         if (!AuthorizationService.canI(resourceGroupVersion, 'update', $routeParams.project)) {
-          Navigate.toErrorPage('You do not have authority to update ' +
+          Navigate.toErrorPage('您没有权限更新' +
                                humanizeKind($routeParams.kind) + ' ' + $routeParams.name + '.', 'access_denied');
           return;
         }
@@ -152,7 +152,7 @@ angular.module('openshiftConsole')
               $scope.breadcrumbs = BreadcrumbsService.getBreadcrumbs({
                 object: resource,
                 project: project,
-                subpage: 'Add Storage'
+                subpage: '添加存储'
               });
               var podTemplate = _.get(resource, 'spec.template');
               $scope.existingVolumeNames = StorageService.getVolumeNames(podTemplate);

@@ -426,6 +426,29 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
         addToProject: true
       }
     }
+    // ,{
+    //   label: "测试菜单1",
+    //   iconClass: "pficon pficon-print",
+    //   href: "/mytest1"
+    // },
+    // {
+    //   label: "测试菜单2",
+    //   iconClass: "fa fa-cloud",
+    //   secondaryNavSections: [
+    //     {
+    //       items: [
+    //         {
+    //           label: "测试子菜单1",
+    //           href: "/mytest2/subtest1"
+    //         },
+    //         {
+    //           label: "测试子菜单2",
+    //           href: "/mytest2/subtest2"
+    //         }
+    //       ]
+    //     }
+    //   ]
+    // }
   ],
   CATALOG_CATEGORIES: [
     {
