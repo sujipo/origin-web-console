@@ -158,11 +158,11 @@
           modalConfig: function() {
             return {
               alerts: alerts,
-              title: "Confirm Creation",
-              details: "We checked your application for potential problems. Please confirm you still want to create this application.",
-              okButtonText: "Create Anyway",
+              title: "确认创建",
+              details: "我们检查了你的申请是否有潜在的问题。请确认您仍然想要创建此应用程序。",
+              okButtonText: "坚持创建",
               okButtonClass: "btn-danger",
-              cancelButtonText: "Cancel"
+              cancelButtonText: "取消"
             };
           }
         }

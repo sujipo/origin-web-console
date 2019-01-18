@@ -308,11 +308,11 @@
         resolve: {
           modalConfig: function() {
             return {
-              title: "Cancel deployment " + rcName + "?",
+              title: "取消部署" + rcName + "?",
               details: details,
-              okButtonText: "Yes, cancel",
+              okButtonText: "是的，取消",
               okButtonClass: "btn-danger",
-              cancelButtonText: "No, don't cancel"
+              cancelButtonText: "不, 不要取消"
             };
           }
         }

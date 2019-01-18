@@ -340,11 +340,11 @@ angular.module("openshiftConsole")
                 modalConfig: function() {
                   return {
                     alerts: alerts,
-                    title: "Confirm Creation",
-                    details: "Problems were detected while checking your application configuration.",
-                    okButtonText: "Create Anyway",
+                    title: "确认创建",
+                    details: "在检查应用程序配置时检测到问题。",
+                    okButtonText: "坚持创建",
                     okButtonClass: "btn-danger",
-                    cancelButtonText: "Cancel"
+                    cancelButtonText: "取消"
                   };
                 }
               }

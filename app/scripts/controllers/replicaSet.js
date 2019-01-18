@@ -487,9 +487,9 @@ angular.module('openshiftConsole')
           var confirm = ModalsService.confirm({
             title: "Remove volume " + volume.name + "?",
             details: details,
-            okButtonText: "Remove",
+            okButtonText: "移除",
             okButtonClass: "btn-danger",
-            cancelButtonText: "Cancel"
+            cancelButtonText: "取消"
           });
 
           var removeVolume = function() {
