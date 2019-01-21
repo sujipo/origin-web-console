@@ -255,7 +255,7 @@
         drawerHidden: true,
         allowExpand: true,
         drawerExpanded: localStorage.getItem(DRAWER_EXPANDED_STORAGE_KEY) === 'true',
-        drawerTitle: 'Notifications',
+        drawerTitle: '通知',
         hasUnread: false,
         showClearAll: true,
         showMarkAllRead: true,

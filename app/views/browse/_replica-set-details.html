@@ -58,7 +58,7 @@
       <dd ng-if-end>
         {{replicaSet | annotation:'deploymentStatusReason'}}
       </dd>
-      <dt ng-if-start="replicaSet | deploymentIsInProgress">Duration:</dt>
+      <dt ng-if-start="replicaSet | deploymentIsInProgress">持续时间:</dt>
       <dd ng-if-end>
         <span ng-switch="replicaSet | deploymentStatus" class="hide-ng-leave">
           <span ng-switch-when="Running">running for <duration-until-now timestamp="replicaSet.metadata.creationTimestamp"></duration-until-now></span>
@@ -158,7 +158,7 @@
 
 <!-- Autoscaling -->
 <div ng-if="!deploymentConfigName || autoscalers.length">
-  <h3>自动伸缩</h3>
+  <h3>自动缩放</h3>
 
   <!-- Show any warnings. -->
   <div ng-repeat="warning in hpaWarnings" class="alert alert-warning">
@@ -202,7 +202,7 @@
          role="button">添加自动伸缩控制</a>
     </span>
     <span ng-if="!({resource: 'horizontalpodautoscalers', group: 'autoscaling'} | canI : '创建')">
-      自动伸缩控制没有启用. 没有设置自动伸缩控制针对这个
+      自动缩放控制没有启用. 没有针对此设置自动缩放控制
       <span ng-if="deploymentConfigName">部署配置或部署。</span>
       <span ng-if="!deploymentConfigName">{{replicaSet.kind | humanizeKind}}.</span>
     </span>
