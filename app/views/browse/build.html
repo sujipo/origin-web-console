@@ -10,7 +10,7 @@
             <!-- Primary Actions -->
             <button class="btn btn-default hidden-xs"
                     ng-click="cancelBuild()"
-                    ng-if="!build.metadata.deletionTimestamp && (build | isIncompleteBuild) && (buildsVersion | canI : '更新')">Cancel Build</button>
+                    ng-if="!build.metadata.deletionTimestamp && (build | isIncompleteBuild) && (buildsVersion | canI : '更新')">取消构建</button>
             <button class="btn btn-default hidden-xs"
                     ng-click="cloneBuild()"
                     ng-hide="build.metadata.deletionTimestamp || (build | isIncompleteBuild) || !(buildsCloneVersion | canI : '创建') || (build | isBinaryBuild)"
