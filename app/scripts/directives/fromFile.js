@@ -58,7 +58,7 @@ angular.module("openshiftConsole")
                 return {
                   alerts: alerts,
                   title: "确认创建",
-                  details: "我们检查了你的申请是否有潜在的问题。请确认您仍然想要创建此应用程序。",
+                  details: "我们检查认为您的申请可能有潜在的问题。请您确认是否仍然想要创建此应用程序。",
                   okButtonText: "坚持创建",
                   okButtonClass: "btn-danger",
                   cancelButtonText: "取消"

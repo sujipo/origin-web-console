@@ -37,7 +37,7 @@ angular.module('openshiftConsole')
     ];
 
     if (!_.includes(supportedKinds, $routeParams.kind)) {
-      Navigate.toErrorPage("自动缩放不支持类型" + $routeParams.kind + "。");
+      Navigate.toErrorPage("自动伸缩不支持类型" + $routeParams.kind + "。");
       return;
     }
 

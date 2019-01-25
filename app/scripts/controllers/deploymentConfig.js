@@ -244,7 +244,7 @@ angular.module('openshiftConsole')
           var showScalingError = function(result) {
             $scope.alerts["scale-error"] = {
               type: "error",
-              message: "缩放部署配置时发生错误。",
+              message: "伸缩部署配置时发生错误。",
               details: $filter('getErrorDetails')(result)
             };
           };

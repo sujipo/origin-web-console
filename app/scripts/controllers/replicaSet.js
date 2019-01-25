@@ -443,7 +443,7 @@ angular.module('openshiftConsole')
             $scope.alerts = $scope.alerts || {};
             $scope.alerts["scale"] = {
               type: "error",
-              message: "缩放发生错误。",
+              message: "伸缩发生错误。",
               details: $filter('getErrorDetails')(result)
             };
           };

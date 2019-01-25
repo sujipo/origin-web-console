@@ -164,16 +164,16 @@
                       <span am-time-ago="deployment.metadata.creationTimestamp"></span>
                     </td>
                     <td data-title="Trigger">
-                      <span ng-if="!deployment.causes.length">未知</span>
+                      <span ng-if="!deployment.causes.length">Unknown</span>
                       <span ng-if="deployment.causes.length">
                         <span ng-repeat="cause in deployment.causes">
                           <span ng-switch="cause.type">
                             <span ng-switch-when="ImageChange">
                               <span ng-if="cause.imageTrigger.from">
-                                <abbr title="{{cause.imageTrigger.from | imageObjectRef : null : true}}">镜像</abbr> 变更
+                                <abbr title="{{cause.imageTrigger.from | imageObjectRef : null : true}}">Image</abbr> change
                               </span>
                             </span>
-                            <span ng-switch-when="ConfigChange">配置变更</span>
+                            <span ng-switch-when="ConfigChange">Config change</span>
                             <span ng-switch-default>{{cause.type}}</span>
                           </span>
                         </span>
