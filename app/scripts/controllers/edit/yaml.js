@@ -125,15 +125,15 @@ angular.module('openshiftConsole')
                   if (newResourceVersion === editedResourceVersion) {
                     $scope.alerts['no-changes-applied'] = {
                       type: "warning",
-                      message: "No changes were applied to " + humanizeKind($routeParams.kind) + " " + $routeParams.name + ".",
-                      details: "Make sure any new fields you may have added are supported API fields."
+                      message: "没有进行任何更改针对" + humanizeKind($routeParams.kind) + " " + $routeParams.name + ".",
+                      details: "确保您添加的任何新字段都是受支持的API字段。"
                     };
                     $scope.updatingNow = false;
                     return;
                   }
                   NotificationsService.addNotification({
                       type: "success",
-                      message: humanizeKind($routeParams.kind, true) + " " + $routeParams.name + " was successfully updated."
+                      message: humanizeKind($routeParams.kind, true) + " " + $routeParams.name + " 已成功更新。"
                   });
                   navigateBack();
                 },
