@@ -114,11 +114,11 @@
                 <span ng-switch-when="configMapKeyRef">
                     设置为配置映射中的键 {{entry.valueFrom.configMapKeyRef.key}}
                   <span
-                    ng-if="!(configMapVersion | canI : '获取')">
+                    ng-if="!(configMapVersion | canI : 'get')">
                     {{entry.valueFrom.configMapKeyRef.name}}
                   </span>
                   <a
-                    ng-if="configMapVersion | canI : '获取'"
+                    ng-if="configMapVersion | canI : 'get'"
                     ng-href="{{entry.apiObj | navigateResourceURL}}">
                     {{entry.valueFrom.configMapKeyRef.name}}
                   </a>
@@ -126,11 +126,11 @@
                 <span ng-switch-when="secretKeyRef">
                     设置为密匙中的键 {{entry.valueFrom.secretKeyRef.key}}
                   <span
-                    ng-if="!(secretsVersion | canI : '获取')">
+                    ng-if="!(secretsVersion | canI : 'get')">
                     {{entry.valueFrom.secretKeyRef.name}}
                   </span>
                   <a
-                    ng-if="secretsVersion | canI : '获取'"
+                    ng-if="secretsVersion | canI : 'get'"
                     ng-href="{{entry.apiObj | navigateResourceURL}}">
                     {{entry.valueFrom.secretKeyRef.name}}
                   </a>

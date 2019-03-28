@@ -295,10 +295,10 @@
                 </div>
               </div>
               <div ng-repeat="pipeline in overview.filteredPipelineBuildConfigs track by (pipeline | uid)">
-                <div ng-if="overview.buildConfigsInstantiateVersion | canI : '创建'" class="pull-right">
+                <div ng-if="overview.buildConfigsInstantiateVersion | canI : 'create'" class="pull-right">
                   <button
                       class="btn btn-default"
-                      ng-if="overview.buildConfigsInstantiateVersion | canI : '创建'"
+                      ng-if="overview.buildConfigsInstantiateVersion | canI : 'create'"
                       ng-click="overview.startBuild(pipeline)">
                     开始流水线
                   </button>

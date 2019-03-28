@@ -9,7 +9,7 @@
     service-instances="$ctrl.serviceInstances">
   </service-binding>
   <div ng-if="($ctrl.bindableServiceInstances | size) &&
-              ($ctrl.serviceBindingsVersion | canI : '创建') &&
+              ($ctrl.serviceBindingsVersion | canI : 'create') &&
               !$ctrl.apiObject.metadata.deletionTimestamp">
     <a href="" ng-click="$ctrl.createBinding()" role="button">
       <span class="pficon pficon-add-circle-o" aria-hidden="true"></span>
@@ -22,7 +22,7 @@
       <a ng-href="{{project | catalogURL}}">应用商店</a>
     </div>
   </div>
-  <div ng-if="!($ctrl.bindings | size) && ($ctrl.bindableServiceInstances | size) && !($ctrl.serviceBindingsVersion | canI : '创建')">
+  <div ng-if="!($ctrl.bindings | size) && ($ctrl.bindableServiceInstances | size) && !($ctrl.serviceBindingsVersion | canI : 'create')">
     <span>没有服务绑定。</span>
   </div>
 </div>

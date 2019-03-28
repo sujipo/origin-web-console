@@ -28,7 +28,7 @@
       </div>
     </div>
     <div ng-if="!row.pipelines.length">
-      <button ng-if="row.deploymentConfigsInstantiateVersion | canI : '创建'"
+      <button ng-if="row.deploymentConfigsInstantiateVersion | canI : 'create'"
               class="btn btn-primary"
               ng-click="row.startDeployment()">
         开始部署

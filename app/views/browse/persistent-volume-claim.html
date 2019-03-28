@@ -20,13 +20,13 @@
               </li>
               <li>
                 <edit-pvc
-                  ng-if="isExpansionAllowed && (pvcVersion | canI : '更新')"
+                  ng-if="isExpansionAllowed && (pvcVersion | canI : 'update')"
                   pvc="pvc">
                 </edit-pvc>
               </li>
               <li>
                 <delete-link
-                  ng-if="pvcVersion | canI : '删除'"
+                  ng-if="pvcVersion | canI : 'delete'"
                   kind="PersistentVolumeClaim"
                   resource-name="{{pvc.metadata.name}}"
                   project-name="{{pvc.metadata.namespace}}"
@@ -82,7 +82,7 @@
                 </dl>
               </div>
             </uib-tab>
-            <uib-tab active="selectedTab.events" ng-if="eventsVersion | canI : '关注'">
+            <uib-tab active="selectedTab.events" ng-if="eventsVersion | canI : 'watch'">
               <uib-tab-heading>事件</uib-tab-heading>
               <events api-objects="[ pvc ] " project-context="projectContext" ng-if="selectedTab.events"></events>
             </uib-tab>

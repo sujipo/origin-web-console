@@ -455,6 +455,10 @@ angular
         templateUrl: 'views/cockpid/go.html',
         controller: 'CockpitModalController'
       })
+      .when('/project/:project/dockerfile', {
+        templateUrl: 'views/dockerfile/go.html',
+        controller: 'DockerFileModalController'
+      })
       .when('/project/:project/mytest2/subtest1', {
         templateUrl: 'views/mytest/test2.html',
         controller: 'MytestModalController'

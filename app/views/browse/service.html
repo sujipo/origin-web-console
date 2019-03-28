@@ -15,14 +15,14 @@
                class="dropdown-toggle actions-dropdown-kebab visible-xs-inline"
                data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">Actions</span></a>
             <ul class="dropdown-menu dropdown-menu-right actions action-button">
-              <li ng-if="routesVersion | canI : '创建'">
+              <li ng-if="routesVersion | canI : 'create'">
                 <a ng-href="project/{{project.metadata.name}}/create-route?service={{service.metadata.name}}"
                    role="button">创建路由</a>
               </li>
-              <li ng-if="servicesVersion | canI : '更新'">
+              <li ng-if="servicesVersion | canI : 'update'">
                 <a ng-href="{{service | editYamlURL}}" role="button">编辑YAML</a>
               </li>
-              <li ng-if="servicesVersion | canI : '删除'">
+              <li ng-if="servicesVersion | canI : 'delete'">
                 <delete-link
                   kind="Service"
                   resource-name="{{service.metadata.name}}"
@@ -81,8 +81,8 @@
                   <dt ng-if-start="(routesForService | hashSize) == 0">路由:</dt>
                   <dd ng-if-end>
                     <span>
-                      <a ng-href="project/{{project.metadata.name}}/create-route?service={{service.metadata.name}}"  ng-if="routesVersion | canI : '创建'">创建路由</a>
-                      <span ng-if="!(routesVersion | canI : '创建')"><em>None</em></span>
+                      <a ng-href="project/{{project.metadata.name}}/create-route?service={{service.metadata.name}}"  ng-if="routesVersion | canI : 'create'">创建路由</a>
+                      <span ng-if="!(routesVersion | canI : 'create')"><em>None</em></span>
                     </span>
                   </dd>
                 </dl>
@@ -100,7 +100,7 @@
                 <annotations annotations="service.metadata.annotations"></annotations>
               </div>
             </uib-tab>
-            <uib-tab active="selectedTab.events" ng-if="eventsVersion | canI : '关注'">
+            <uib-tab active="selectedTab.events" ng-if="eventsVersion | canI : 'watch'">
               <uib-tab-heading>事件</uib-tab-heading>
               <events api-objects="[ service ]" project-context="projectContext" ng-if="selectedTab.events"></events>
             </uib-tab>

@@ -35,7 +35,7 @@
       <div class="list-pf-details" ng-if="!row.expanded">
         <span ng-if="!row.bindings.length
                     && row.isBindable
-                    && (row.serviceBindingsVersion | canI : '创建')"
+                    && (row.serviceBindingsVersion | canI : 'create')"
               class="hidden-xs hidden-sm">
           <a href="" ng-click="row.showOverlayPanel('bindService', {target: row.apiObject})">
             <span class="pficon pficon-add-circle-o" aria-hidden="true"></span>
@@ -75,16 +75,16 @@
           <i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sr-only">动作</span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu">
-          <li role="menuitem" ng-if="row.isBindable && (row.serviceBindingsVersion | canI : '创建')">
+          <li role="menuitem" ng-if="row.isBindable && (row.serviceBindingsVersion | canI : 'create')">
             <a href="" ng-click="row.showOverlayPanel('bindService', {target: row.apiObject})">
               添加绑定
             </a>
           </li>
-          <li role="menuitem" ng-if="row.deleteableBindings.length && (row.serviceBindingsVersion | canI : '删除')">
+          <li role="menuitem" ng-if="row.deleteableBindings.length && (row.serviceBindingsVersion | canI : 'delete')">
             <a href="" ng-click="row.showOverlayPanel('unbindService', {target: row.apiObject})">删除绑定</a>
           </li>
           <li role="menuitem">
-            <a href="" ng-click="row.deprovision()" role="button" ng-if="row.serviceInstancesVersion | canI : '删除'">删除</a>
+            <a href="" ng-click="row.deprovision()" role="button" ng-if="row.serviceInstancesVersion | canI : 'delete'">删除</a>
           </li>
         </ul>
       </div>
@@ -119,7 +119,7 @@
                   limit="265"
                   newline-limit="4"></truncate-long-text>
               </span>
-              <div ng-if="row.serviceInstancesVersion | canI : '删除'">
+              <div ng-if="row.serviceInstancesVersion | canI : 'delete'">
                 <a href="" ng-click="row.deprovision()">删除此服务</a>
               </div>
             </div>

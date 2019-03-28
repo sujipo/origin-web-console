@@ -427,9 +427,14 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
       }
     },
     {
-      label: "cockpit管理",
-      iconClass: "pficon pficon-print",
+      label: "Cockpit管理",
+      iconClass: "pficon pficon-resource-pool",
       href: "/cockpit"
+    },
+    {
+      label: "DockerFile管理",
+      iconClass: "pficon pficon-replicator",
+      href: "/dockerfile"
     }
     // {
     //   label: "测试菜单2",

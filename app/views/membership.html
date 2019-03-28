@@ -24,11 +24,11 @@
   <div class="middle-content" persist-tab-state>
     <div class="container-fluid">
       <alerts alerts="alerts"></alerts>
-      <div  ng-if="!(roleBindingsVersion | canI : '列出')">
+      <div  ng-if="!(roleBindingsVersion | canI : 'list')">
         <p>您没有权限查看此项目中的角色。</p>
       </div>
       <uib-tabset
-        ng-if="roleBindingsVersion | canI : '列出'">
+        ng-if="roleBindingsVersion | canI : 'list'">
         <uib-tab
           ng-repeat="subjectKind in subjectKindsForUI | orderBy: 'sortOrder'"
           active="selectedTab[subjectKind.name]"

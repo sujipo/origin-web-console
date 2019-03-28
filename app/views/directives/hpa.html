@@ -2,11 +2,11 @@
   {{hpa.metadata.name}}
   <!-- HPA actions -->
   <span ng-if="'horizontalPodAutoscalers' | canIDoAny" class="header-actions">
-    <a ng-if="{resource: 'horizontalpodautoscalers', group: 'autoscaling'} | canI : '更新'" ng-href="project/{{hpa.metadata.namespace}}/edit/autoscaler?kind=HorizontalPodAutoscaler&group=autoscaling&name={{hpa.metadata.name}}"
+    <a ng-if="{resource: 'horizontalpodautoscalers', group: 'autoscaling'} | canI : 'update'" ng-href="project/{{hpa.metadata.namespace}}/edit/autoscaler?kind=HorizontalPodAutoscaler&group=autoscaling&name={{hpa.metadata.name}}"
        role="button">编辑</a>
     <span class="action-divider">|</span>
     <delete-link
-        ng-if="{resource: 'horizontalpodautoscalers', group: 'autoscaling'} | canI : '删除'"
+        ng-if="{resource: 'horizontalpodautoscalers', group: 'autoscaling'} | canI : 'delete'"
         kind="HorizontalPodAutoscaler"
         group="autoscaling"
         resource-name="{{hpa.metadata.name}}"

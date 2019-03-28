@@ -11,7 +11,7 @@
         </div>
 
         <div ng-if="targetObject && configMaps && secrets">
-          <div ng-if="!configMaps.length && !secrets.length && !(configMapVersion | canI : '创建') && !(secretVersion | canI : '创建')" class="empty-state-message empty-state-full-page text-center">
+          <div ng-if="!configMaps.length && !secrets.length && !(configMapVersion | canI : 'create') && !(secretVersion | canI : 'create')" class="empty-state-message empty-state-full-page text-center">
             <h2>没有配置映射或私密。</h2>
 
             <p>
@@ -21,7 +21,7 @@
             <p ng-if="targetObject"><a ng-href="{{targetObject | navigateResourceURL}}">返回 {{kind | humanizeKind}} {{name}}</a></p>
           </div>
 
-          <div ng-if="configMaps.length || secrets.length || (configMapVersion | canI : '创建') || (secretVersion | canI : '创建')" class="mar-top-xl">
+          <div ng-if="configMaps.length || secrets.length || (configMapVersion | canI : 'create') || (secretVersion | canI : 'create')" class="mar-top-xl">
             <h1>将配置文件添加到 {{name}}</h1>
             <div class="help-block">
               从配置映射或私密中添加值作为卷。这将使数据作为{{kind | humanizeKind}} {{name}}的文件可用。
@@ -43,12 +43,12 @@
                       <span ng-bind-html="source.metadata.name | highlight : $select.search"></span>
                     </ui-select-choices>
                   </ui-select>
-                  <div ng-if="(configMapVersion | canI : '创建') || (secretVersion | canI : '创建')" class="mar-top-md">
-                    <span ng-if="configMapVersion | canI : '创建'">
+                  <div ng-if="(configMapVersion | canI : 'create') || (secretVersion | canI : 'create')" class="mar-top-md">
+                    <span ng-if="configMapVersion | canI : 'create'">
                       <a ng-href="project/{{project.metadata.name}}/create-config-map">创建配置映射</a>
                     </span>
-                    <span ng-if="secretVersion | canI : '创建'">
-                      <span ng-if="configMapVersion | canI : '创建'" class="action-divider" aria-hidden="true">|</span>
+                    <span ng-if="secretVersion | canI : 'create'">
+                      <span ng-if="configMapVersion | canI : 'create'" class="action-divider" aria-hidden="true">|</span>
                       <a ng-href="project/{{project.metadata.name}}/create-secret">创建私密</a>
                     </span>
                   </div>

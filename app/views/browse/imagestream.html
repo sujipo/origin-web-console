@@ -15,10 +15,10 @@
                class="dropdown-toggle actions-dropdown-kebab visible-xs-inline"
                data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i><span class="sr-only">动作</span></a>
             <ul class="dropdown-menu dropdown-menu-right actions action-button">
-              <li ng-if="imageStreamsVersion | canI : '更新'">
+              <li ng-if="imageStreamsVersion | canI : 'update'">
                 <a ng-href="{{imageStream | editYamlURL}}" role="button">编辑YAML</a>
               </li>
-              <li ng-if="imageStreamsVersion | canI : '删除'">
+              <li ng-if="imageStreamsVersion | canI : 'delete'">
                 <delete-link
                   kind="ImageStream"
                   resource-name="{{imageStream.metadata.name}}"

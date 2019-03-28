@@ -14,7 +14,7 @@
               <div class="pull-right dropdown" ng-hide="!('serviceInstances' | canIDoAny)">
                 <!-- Primary Actions -->
                 <button
-                  ng-if="editAvailable && (serviceInstancesVersion | canI : '更新')"
+                  ng-if="editAvailable && (serviceInstancesVersion | canI : 'update')"
                   class="btn btn-default hidden-xs"
                   ng-click="showEditDialog()">
                   编辑
@@ -29,15 +29,15 @@
                    class="dropdown-toggle actions-dropdown-kebab visible-xs-inline"
                    data-toggle="dropdown"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sr-only">动作</span></a>
                 <ul class="dropdown-menu dropdown-menu-right actions action-button">
-                  <li class="visible-xs-inline" ng-if="editAvailable && (serviceInstancesVersion  | canI : '更新')">
+                  <li class="visible-xs-inline" ng-if="editAvailable && (serviceInstancesVersion  | canI : 'update')">
                     <a href=""
                        role="button"
                        ng-click="showEditDialog()">编辑</a>
                   </li>
-                  <li ng-if="serviceInstancesVersion | canI : '更新'">
+                  <li ng-if="serviceInstancesVersion | canI : 'update'">
                     <a ng-href="{{serviceInstance | editYamlURL}}" role="button">编辑YAML</a>
                   </li>
-                  <li ng-if="serviceInstancesVersion | canI : '删除'">
+                  <li ng-if="serviceInstancesVersion | canI : 'delete'">
                     <a href="" ng-click="deprovision()" ng-attr-aria-disabled="{{serviceInstance.metadata.deletionTimestamp ? 'true' : undefined}}" ng-class="{ 'disabled-link': serviceInstance.metadata.deletionTimestamp }" role="button">删除</a>
                   </li>
                 </ul>
@@ -150,7 +150,7 @@
                     <annotations annotations="serviceInstance.metadata.annotations"></annotations>
                   </div>
                 </uib-tab>
-                <uib-tab active="selectedTab.events" ng-if="eventsVersion | canI : '关注'">
+                <uib-tab active="selectedTab.events" ng-if="eventsVersion | canI : 'watch'">
                   <uib-tab-heading>事件</uib-tab-heading>
                   <events api-objects="[ serviceInstance ]" project-context="projectContext" ng-if="selectedTab.events"></events>
                 </uib-tab>

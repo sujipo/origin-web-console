@@ -14,12 +14,12 @@
               但是这个项目上没有加载任何文件。
             </p>
 
-            <div ng-if="project && (pvcVersion | canI : '创建')">
+            <div ng-if="project && (pvcVersion | canI : 'create')">
               <a ng-href="project/{{project.metadata.name}}/create-pvc"
                  class="btn btn-primary">创建存储</a>
             </div>
 
-            <p ng-if="project && !(pvcVersion | canI : '创建')">
+            <p ng-if="project && !(pvcVersion | canI : 'create')">
               要从持久卷请求存储，请参阅使用持久卷的<a target="_blank" ng-href="{{'persistent_volumes' | helpLink}}">文档</a>.
             </p>
 
@@ -61,10 +61,10 @@
                     </tbody>
                   </table>
                 </div>
-                <div ng-if="!(project && (pvcVersion | canI : '创建'))" class="help-block">
+                <div ng-if="!(project && (pvcVersion | canI : 'create'))" class="help-block">
                   选择要使用的存储。
                 </div>
-                <div ng-if="project && (pvcVersion | canI : '创建')" class="help-block">
+                <div ng-if="project && (pvcVersion | canI : 'create')" class="help-block">
                   选择要使用的存储<span ng-if="!outOfClaims"> 或 <a ng-href="project/{{project.metadata.name}}/create-pvc" >创建存储</a>。</span>
                   <span ng-if="outOfClaims">. 由于您的配额状态,您不能创建新的存储。</span>
                 </div>

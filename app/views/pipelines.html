@@ -51,7 +51,7 @@
               <div class="pull-right">
                 <button
                     class="btn btn-default"
-                    ng-if="buildConfigsInstantiateVersion | canI : '创建'"
+                    ng-if="buildConfigsInstantiateVersion | canI : 'create'"
                     ng-click="startBuild(buildConfig)">
                   开始流水线
                 </button>
@@ -110,7 +110,7 @@
               </div>
               <div ng-if="buildConfig" class="mar-top-sm mar-bottom-xl">
                 <a ng-href="{{buildConfigs[buildConfigName] | navigateResourceURL}}">查看流水线运行</a>
-                <span ng-if="buildConfigsVersion | canI : '更新'">
+                <span ng-if="buildConfigsVersion | canI : 'update'">
                   <span class="action-divider">|</span>
                   <a ng-href="{{buildConfig | editResourceURL}}" role="button">编辑流水线</a>
                 </span>
