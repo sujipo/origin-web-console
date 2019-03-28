@@ -426,11 +426,11 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
         addToProject: true
       }
     }
-    // ,{
-    //   label: "测试菜单1",
-    //   iconClass: "pficon pficon-print",
-    //   href: "/mytest1"
-    // },
+    ,{
+      label: "cockpit管理",
+      iconClass: "pficon pficon-print",
+      href: "/cockpit"
+    }
     // {
     //   label: "测试菜单2",
     //   iconClass: "fa fa-cloud",

@@ -36,10 +36,9 @@ angular
     'webCatalog'
   ])
   .config(function ($sceDelegateProvider, $routeProvider, $uibModalProvider, HomePagePreferenceServiceProvider) {
-    $sceDelegateProvider.resourceUrlWhitelist([
-             'self',
-             // Allow loading from our assets domain.  Notice the difference between * and **.
-             'https://www.baidu.com/**']
+    $sceDelegateProvider.resourceUrlWhitelist(
+      ['self', 'https://www.baidu.com/**'],
+      ['self', 'https://localhost:9090/**']
     );
 
     var landingPageRoute;
@@ -453,9 +452,9 @@ angular
         redirectTo: '/project/:project/browse/rc/:rc'
       })
       // my test
-      .when('/project/:project/mytest1', {
-        templateUrl: 'views/mytest/test1.html',
-        controller: 'MytestModalController'
+      .when('/project/:project/cockpit', {
+        templateUrl: 'views/cockpit/go.html',
+        controller: 'CockpitModalController'
       })
       .when('/project/:project/mytest2/subtest1', {
         templateUrl: 'views/mytest/test2.html',
