@@ -37,7 +37,7 @@ angular
   ])
   .config(function ($sceDelegateProvider, $routeProvider, $uibModalProvider, HomePagePreferenceServiceProvider) {
     $sceDelegateProvider.resourceUrlWhitelist(
-      ['self', 'https://localhost:9090/**']
+      ['self', 'https://dev.okd.com:9090/**']
     );
 
     var landingPageRoute;
@@ -452,7 +452,7 @@ angular
       })
       // my test
       .when('/project/:project/cockpit', {
-        templateUrl: 'views/cockpit/go.html',
+        templateUrl: 'views/cockpid/go.html',
         controller: 'CockpitModalController'
       })
       .when('/project/:project/mytest2/subtest1', {
