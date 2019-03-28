@@ -36,9 +36,9 @@ angular
     'webCatalog'
   ])
   .config(function ($sceDelegateProvider, $routeProvider, $uibModalProvider, HomePagePreferenceServiceProvider) {
-    $sceDelegateProvider.resourceUrlWhitelist(
-      ['self', 'https://localhost:9090/**']
-    );
+    // $sceDelegateProvider.resourceUrlWhitelist(
+    //   ['self', 'https://localhost:9090/**']
+    // );
 
     var landingPageRoute;
     var projectsPageRoute = {
