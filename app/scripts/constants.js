@@ -425,8 +425,8 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
       canI: {
         addToProject: true
       }
-    }
-    ,{
+    },
+    {
       label: "cockpit管理",
       iconClass: "pficon pficon-print",
       href: "/cockpit"
