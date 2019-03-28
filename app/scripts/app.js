@@ -37,7 +37,6 @@ angular
   ])
   .config(function ($sceDelegateProvider, $routeProvider, $uibModalProvider, HomePagePreferenceServiceProvider) {
     $sceDelegateProvider.resourceUrlWhitelist(
-      ['self', 'https://www.baidu.com/**'],
       ['self', 'https://localhost:9090/**']
     );
 
