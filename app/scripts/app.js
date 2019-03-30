@@ -37,7 +37,7 @@ angular
   ])
   .config(function ($sceDelegateProvider, $routeProvider, $uibModalProvider, HomePagePreferenceServiceProvider) {
     $sceDelegateProvider.resourceUrlWhitelist(
-      ['self', 'https://dev.okd.com:9090/**']
+      ['self', 'https://dev.okd.com:8080/**']
     );
 
     var landingPageRoute;
@@ -450,15 +450,33 @@ angular
       .when('/project/:project/browse/deployments-replicationcontrollers/:rc', {
         redirectTo: '/project/:project/browse/rc/:rc'
       })
-      // my test
+      // cockpit
       .when('/project/:project/cockpit', {
         templateUrl: 'views/cockpid/go.html',
         controller: 'CockpitModalController'
       })
+      // dockerfile
       .when('/project/:project/dockerfile', {
-        templateUrl: 'views/dockerfile/go.html',
-        controller: 'DockerFileModalController'
+        templateUrl: 'views/dockerfile/dockerfiles.html',
+        controller: 'DockerFileController'
       })
+      .when('/project/:project/dockerfile/create', {
+        templateUrl: 'views/dockerfile/create.html',
+        controller: 'DockerFileController'
+      })
+      .when('/project/:project/dockerfile/view/:name', {
+        templateUrl: 'views/dockerfile/view.html',
+        controller: 'DockerFileController'
+      })      
+      .when('/project/:project/dockerfile/edit/:name', {
+        templateUrl: 'views/dockerfile/edit.html',
+        controller: 'DockerFileController'
+      })
+      .when('/project/:project/dockerfile/delete/:name', {
+        templateUrl: 'views/dockerfile/dockerfiles.html',
+        controller: 'DockerFileController'
+      })
+      // my test
       .when('/project/:project/mytest2/subtest1', {
         templateUrl: 'views/mytest/test2.html',
         controller: 'MytestModalController'

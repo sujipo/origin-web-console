@@ -1,0 +1,56 @@
+<div class="middle">
+    <div class="middle-header">
+      <div class="container-fluid">
+        <div class="page-header page-header-bleed-right page-header-bleed-left">
+          <div class="pull-right">
+            <a ng-href="{{'./project/'+projectName+'/dockerfile/create'}}" class="btn btn-default">创建DockerFile</a>
+          </div>
+          <h1>
+            DockerFile管理
+          </h1>
+        </div>
+      </div>
+    </div><!-- /middle-header-->
+    <div class="middle-content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div ng-if="(dockerfiles | size) === 0">
+              <div class="empty-state-message text-center">
+                  <h2>没有DockerFile</h2>
+                  <p>没有DockerFile添加到项目 {{projectName}}.</p>
+              </div>
+            </div>
+            <table ng-if="(dockerfiles | size) > 0" class="table table-bordered table-mobile secrets-table table-layout-fixed">
+              <colgroup>
+                <col class="col-sm-5">
+                <col class="col-sm-5">
+                <col class="col-sm-2">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>名称</th>
+                  <th>说明</th>
+                  <th>创建</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="dockerfile in dockerfiles">
+                  <td data-title="Name">
+                    <a ng-href="{{'./project/'+projectName+'/dockerfile/view/'+dockerfile.Name}}">{{dockerfile.Name}}</a>
+                  </td>
+                  <td data-title="Content">
+                    {{dockerfile.Content}}
+                  </td>
+                  <td data-title="Created">
+                    <span am-time-ago="dockerfile.Created"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div><!-- /col-* -->
+        </div>
+      </div>
+    </div><!-- /middle-content -->
+  </div>
+  

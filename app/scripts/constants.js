@@ -425,17 +425,17 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
       canI: {
         addToProject: true
       }
-    },
-    {
-      label: "Cockpit管理",
-      iconClass: "pficon pficon-resource-pool",
-      href: "/cockpit"
-    },
-    {
-      label: "DockerFile管理",
-      iconClass: "pficon pficon-replicator",
-      href: "/dockerfile"
-    }
+    }//,
+    // {
+    //   label: "Cockpit管理",
+    //   iconClass: "pficon pficon-resource-pool",
+    //   href: "/cockpit"
+    // },
+    // {
+    //   label: "DockerFile管理",
+    //   iconClass: "pficon pficon-replicator",
+    //   href: "/dockerfile"
+    // }
     // {
     //   label: "测试菜单2",
     //   iconClass: "fa fa-cloud",

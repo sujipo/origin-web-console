@@ -1,0 +1,71 @@
+<div class="middle surface-shaded">
+  <div class="middle-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-10">
+            <breadcrumbs breadcrumbs="breadcrumbs"></breadcrumbs>
+            <alerts alerts="alerts"></alerts>
+            <div class="mar-top-xl">
+              <h1>修改DockerFile</h1>
+              <div class="help-block">
+                  修改已经存在的DockerFile，名称不能修改
+              </div>
+                <ng-form name="dockerfileForm" class="create-secret-form">
+                    <label class="required">名称</label>
+                    <span ng-class="{'has-error': nameTaken || (dockerfileForm.name.$invalid && dockerfileForm.name.$touched)}">
+                      <input class="form-control"
+                        id="dockfile-name"
+                        name="Name"
+                        ng-model="dockerfile.Name"
+                        ng-readonly="readonly"
+                        type="text">
+                    </span>
+
+                    <label class="required">说明</label>
+                    <span ng-class="{'has-error': nameTaken || (dockerfileForm.Desc.$invalid && dockerfileForm.Desc.$touched)}">
+                      <input class="form-control"
+                        id="dockfile-desc"
+                        name="Desc"
+                        ng-model="dockerfile.Desc"
+                        type="text"
+                        autocorrect="off"
+                        autocapitalize="none"
+                        spellcheck="false"
+                        aria-describedby=""
+                        ng-pattern=""
+                        ng-maxlength=""
+                        ng-change=""
+                        required>
+                    </span>
+                
+                    <label class="required">内容</label>
+                    <span ng-class="{'has-error': nameTaken || (dockerfileForm.Content.$invalid && dockerfileForm.Content.$touched)}">
+                      <textarea ng-model="dockerfile.Content"
+                      id="dockfile-content"
+                      name="Content"
+                      rows="20"
+                      required
+                      class="form-control"
+                      autocorrect="off"
+                      autocapitalize="none"
+                      spellcheck="false">
+                      </textarea>
+                  </span>
+
+                  <div class="buttons gutter-top-bottom">
+                    <button class="btn btn-primary"
+                            type="button"
+                            ng-disabled="dockerfileForm.$invalid || dockerfileForm.$pristine || invalidConfigFormat"
+                            ng-click="update()">保存</button>
+                    <button class="btn btn-default"
+                            type="button"
+                            ng-click="cancel()">取消</button>
+                  </div>
+                </ng-form>
+                
+            </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /middle-content -->
+</div><!-- /middle -->
